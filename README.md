@@ -5,7 +5,7 @@
 - [Course website](https://avehtari.github.io/BDA_course_Aalto/)
 - [2021 Schedule](https://avehtari.github.io/BDA_course_Aalto/Aalto2021.html#Schedule_2021)
 - [GitHub repo](https://github.com/avehtari/BDA_course_Aalto) ([my fork](https://github.com/jhrcook/BDA_course_Aalto))
-- [*Bayesian Data Analysis* (3e)](https://users.aalto.fi/~ave/BDA3.pdf) (BDA3)
+- [*Bayesian Data Analysis* (3e)](https://users.aalto.fi/~ave/BDA3.pdf) (BDA3) ([exercise solutions](book/bda-exercise-solutions3.pdf))
 - [Chapter Notes](https://avehtari.github.io/BDA_course_Aalto/chapter_notes/BDA_notes.pdf)
 - [Video lectures](https://aalto.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f0ec3a25-9e23-4935-873b-a9f401646812%22) or individually lists [here](https://avehtari.github.io/BDA_course_Aalto/#videos)
 - [Lecture slides](https://github.com/avehtari/BDA_course_Aalto/tree/master/slides)

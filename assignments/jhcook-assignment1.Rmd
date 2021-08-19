@@ -1,0 +1,46 @@
+---
+title: "Assignment 1"
+date: "2021-08-19"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment = "#>", dpi = 300)
+```
+
+# Exercise 1
+
+**(Basic probability theory notation and terms). This can be trivial or you may need to refresh your memory on these concepts. Note that some terms may be different names for the same concept. Explain each of the following terms with one sentence:**
+
+a) probability: how likely some assertion is to be true
+b) probability mass: how likely a discrete random variable is to be some value
+c) probability density: how likely a continuous random variable is to be some value
+d) probability mass function (pmf): a function describing how likely a discrete random variable is to be any possible value
+e) probability density function (pdf): a function describing how likely a continuous random variable is to be any possible value
+f) probability distribution: a function describing how likely a random variable is to be of some value
+g) discrete probability distribution: a probability distribution over discrete values
+h) continuous probability distribution: a probability distribution over continuous values
+i) cumulative distribution function (cdf): the cumulative sum of probabilities from a probability distribution
+j) likelihood: how probable some event is under a given hypothesis
+
+# Exercise 3
+
+**(Bayes' theorem) A group of researchers has designed a new inexpensive and painless test for detecting lung cancer.**
+**The test is intended to be an initial screening test for the population in general.**
+**A positive result (presence of lung cancer) from the test would be followed up immediately with medication, surgery or more extensive and expensive test.**
+**The researchers know from their studies the following facts:**
+
+- Test gives a positive result in 98% of the time when the test subject has lung cancer.
+- Test gives a negative result in 96 % of the time when the test subject does not have lung cancer.
+- In general population approximately 1 person in 1000 has lung cancer.
+
+**The researchers are happy with these preliminary results (about 97% success rate), and wish to get the test to market as soon as possible.**
+**How would you advise them?**
+**Base your answer on Bayes’ rule computations.**
+
+**Hint: Relatively high false negative (cancer doesn’t get detected) or high false positive (unnecessarily administer medication) rates are typically bad and undesirable in tests.**
+
+**Hint: Here are some probability values that can help you figure out if you copied the right conditional probabilities from the question.**
+
+- $P(\text{Test gives positive} | \text{Subject does not have lung cancer}) = 0.04$
+- $P(\text{Test gives positive and Subject has lung cancer}) = 0.00098$ this is also referred to as the joint probability of test being positive and the subject having lung cancer.

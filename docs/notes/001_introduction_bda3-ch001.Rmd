@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 - video['Introduction to uncertainty and modelling'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d841f429-9c3d-4d24-8228-a9f400efda7b)
 - video: ['Introduction to the course contents'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=13fc7889-cfd1-4d99-996c-a9f400f6e5a2)
 - [slides](../slides/bayes_intro.pdf)
-- Assignment 1 (to-do)
+- [Assignment 1](assignments/assignment1.pdf)
 
 ## Notes
 
@@ -65,80 +65,3 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
   2. use relevant prior information
   3. hierarchical models
   4. model checking and evaluation
-
----
-
-## BDA Exercises
-
-Questions 1-4 and 6-8
-
-**Question 1**: When $\theta = 1$, then $y = N(\mu = 1, \sigma)$ and when $\theta = 2$, then $y = N(\mu=2, \sigma)$.
-$\Pr(\theta=1)= \Pr(\theta=2) = 0.5$.
-
-a) If $\sigma=2$ what is the marginal probability density for $y$?
-
-$$
-\begin{aligned}
-&= \sigma_{\theta=1}^{\Theta} \Pr(\theta) N(y | \mu_\theta, \sigma) \\
-&= \frac{1}{2} N(y|1,2) + \frac{1}{2} N(y|2,2)
-\end{aligned}
-$$
-```{r}
-y <- seq(-6, 10, 0.1)
-d <- 0.5 * dnorm(y, 1, 2) + 0.5 * dnorm(y, 2, 2)
-plot(y, d, type = "l", frame = FALSE, xlab = "y", ylab = "probability density", main = "Joint probability density of y")
-```
-
-b) What is $\Pr(\theta=1 | y=1)$ with $\sigma=2$.
-
-Solve using Baye's rule:
-
-$$
-\begin{aligned}
-\Pr(\theta | y) &= \frac{\Pr(\theta) \Pr(y | \theta)}{\Pr(y)} \\
-\Pr(\theta=1 | y=1) &= \frac{\Pr(\theta=1) \Pr(y=1 | \theta=1)}{\Pr(y=1)} \\
-\end{aligned}
-$$
-
-where
-
-$$
-\Pr(\theta = 1) = 0.5 \\
-\Pr(y=1 | \theta=1) = N(y=1|1,2) \\
-\Pr(y=1) = \frac{1}{2} N(y=1|1,2) + \frac{1}{2} N(y=1|2,2)
-$$
-
-thus
-
-$$
-\begin{aligned}
-\Pr(\theta=1 | y=1) &= \frac{\Pr(\theta=1) \Pr(y=1 | \theta=1)}{\Pr(y=1)} \\
-&= \frac{\frac{1}{2} N(y=1|1,2)}{\frac{1}{2} N(y=1|1,2) + \frac{1}{2} N(y=1|2,2)} \\
-\end{aligned}
-$$
-
-```{r}
-(0.5 * dnorm(1, 1, 2)) / (0.5 * dnorm(1, 1, 2) + 0.5 * dnorm(1, 2, 2))
-```
-
-c) Describe the posterior density of $\theta$ as $\sigma$ increases or decreases.
-
-As $\sigma \to \infty$, the probabilities $\Pr(y|\theta)$ and $\Pr(y)$ become increasingly wide, resulting in the prior probability $\Pr(\theta)$ consuming the equation resulting in $\Pr(\theta=1|y=1) = \frac{1}{2}$.
-This situation would be analogous to having no data.
-
-As $\sigma \to 0$, the opposite occurs and the prior is overwhelmed by the probability $\Pr(y=1|\theta=1)$.
-Thus $\Pr(\theta=1|y=1) = 1$; complete certainty in the value of $\theta$.
-This situation would be analogous to collecting a lot of highly homogeneous data.
-
-**Question 2**: Conditional means and variances: show that equations 1.8 and 1.9 hold if $u$ is a vector.
-
-Equation 1.8: $\text{E}(u) = \text{E}(\text{E}(u|v))$
-
-For a vector $u$, Equation 1.8 would be computed componentwise: $\text{E}(u_i) = \text{E}(\text{E}(u_i|v))$.
-
-Equation 1.9: $\text{var}(u) = \text{E}(\text{var}(u|v)) + \text{var}(\text{E}(u|v))$
-
-For a vecotr $u$, the diagnoals for Euqation 1.9 would be computed componentwise: $\text{var}(u_i) = \text{E}(\text{var}(u_i|v)) + \text{var}(\text{E}(u_i|v))$.
-For off-diagonals, the result is the covariance between the indeices of $u$: $\text{cov}(u_i, u_j)$.
-
-**Question 3**:

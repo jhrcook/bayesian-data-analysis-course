@@ -86,31 +86,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>001. Course introduction and prerequisites</title>
+  <title>Assignment 1</title>
 
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-08-17" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-08-17" />
+  <meta property="article:published" itemprop="datePublished" content="2021-08-19" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-08-19" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="001. Course introduction and prerequisites" />
+  <meta property="og:title" content="Assignment 1" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_US" />
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary" />
-  <meta property="twitter:title" content="001. Course introduction and prerequisites" />
+  <meta property="twitter:title" content="Assignment 1" />
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["001. Course introduction and prerequisites"]},{"type":"character","attributes":{},"value":["2021-08-17"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Assignment 1"]},{"type":"character","attributes":{},"value":["2021-08-19"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
-
+  
   <script type="text/json" id="radix-resource-manifest">
   {"type":"list","attributes":{},"value":[]}
   </script>
@@ -1451,7 +1451,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"001. Course introduction and prerequisites","authors":[],"publishedDate":"2021-08-17T00:00:00.000+00:00"}
+{"title":"Assignment 1","authors":[],"publishedDate":"2021-08-19T00:00:00.000+00:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1461,7 +1461,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>001. Course introduction and prerequisites</h1>
+<h1>Assignment 1</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -1469,87 +1469,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<h2 id="resources">Resources</h2>
-<ul>
-<li>BDA Chapter 1 and <a href="../reading-instructions/BDA-notes-ch1.pdf">chapter instructions</a></li>
-<li>video: <a href="https://www.youtube.com/watch?v=ukE5aqdoLZI">‘Computational probabilistic modeling’</a></li>
-<li>video<a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d841f429-9c3d-4d24-8228-a9f400efda7b">‘Introduction to uncertainty and modelling’</a></li>
-<li>video: <a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=13fc7889-cfd1-4d99-996c-a9f400f6e5a2">‘Introduction to the course contents’</a></li>
-<li><a href="../slides/bayes_intro.pdf">slides</a></li>
-<li><a href="assignments/assignment1.pdf">Assignment 1</a></li>
-</ul>
-<h2 id="notes">Notes</h2>
-<h3 id="chapter-instructions">Chapter instructions</h3>
-<ul>
-<li>model vs. likelihood for <span class="math inline">\(p(y|\theta, M)\)</span>
-<ul>
-<li><em>model</em> when the function is in terms of <span class="math inline">\(y\)</span>
-<ul>
-<li>should be written as <span class="math inline">\(p_y(y|\theta, M)\)</span> used to describe uncertainty about <span class="math inline">\(y\)</span> given values of <span class="math inline">\(\theta\)</span> and <span class="math inline">\(M\)</span></li>
-</ul></li>
-<li><em>likelihood</em> when in the function is in terms of <span class="math inline">\(\theta\)</span>
-<ul>
-<li>should be written as <span class="math inline">\(p_\theta(y|\theta, M)\)</span></li>
-<li>the posterior distribution describes the probability for different values of <span class="math inline">\(\theta\)</span> given fixed values for <span class="math inline">\(y\)</span></li>
-<li>“The likelihood function is unnormalized probability distribution describing uncertainty related to <span class="math inline">\(\theta\)</span> (and that’s why Bayes rule has the normalization term to get the posterior distribution).”</li>
-</ul></li>
-</ul></li>
-<li><em>exchangeability</em>
-<ol type="1">
-<li>independence is stronger condition than exchangeability</li>
-<li>independence implies exchangeability</li>
-<li>exchangeability does not imply independence</li>
-<li>exchangeability is related to what information is available instead of the properties of unknown underlying data generating mechanism</li>
-</ol></li>
-</ul>
-<h3 id="introduction-to-uncertainty-and-modelling">Introduction to uncertainty and modelling</h3>
-<ul>
-<li>two types of uncertainty:
-<ul>
-<li><em>aleatoric</em>: due to randomness</li>
-<li><em>epistemic</em>: due to lack of knowledge</li>
-</ul></li>
-<li>model vs. likelihood:
-<ul>
-<li>model
-<ul>
-<li><span class="math inline">\(p_y(y|\theta, M)\)</span></li>
-<li>a function of <span class="math inline">\(y\)</span> given fixed values of <span class="math inline">\(\theta\)</span></li>
-<li>describes <em>aleatoric</em> uncertainty</li>
-</ul></li>
-<li>likelihood
-<ul>
-<li><span class="math inline">\(p_\theta(y|\theta, M)\)</span></li>
-<li>function of <span class="math inline">\(\theta\)</span> given fixed values of <span class="math inline">\(y\)</span></li>
-<li>provides information about the <em>epistemic</em> uncertainty</li>
-<li>is <em>not</em> a probability distribution</li>
-</ul></li>
-<li>Bayes rule combines the likelihood with prior uncertainty to update the posterior uncertainty</li>
-<li>example with a bag containing red and yellow chips:
-<ul>
-<li>probability of red = #red / #red + #yellow = <span class="math inline">\(\theta\)</span></li>
-<li><span class="math inline">\(p(y = \text{red} | \theta)\)</span>: aleatoric uncertainty
-<ul>
-<li>predicting the probability of pulling a red chip has uncertainty due to randomness even if we new <span class="math inline">\(\theta\)</span> exactly</li>
-</ul></li>
-<li><span class="math inline">\(p(\theta)\)</span>: epistemic uncertainty
-<ul>
-<li>we don’t know <span class="math inline">\(\theta\)</span> but could compute it exactly if we knew the contents of the bag</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-<h3 id="introduction-to-the-course-contents">Introduction to the course contents</h3>
-<ul>
-<li>benefits of Bayesian approach
-<ol type="1">
-<li>integrate over uncertainties to focus on interesting parts</li>
-<li>use relevant prior information</li>
-<li>hierarchical models</li>
-<li>model checking and evaluation</li>
+<h1 id="exercise-1">Exercise 1</h1>
+<p><strong>(Basic probability theory notation and terms). This can be trivial or you may need to refresh your memory on these concepts. Note that some terms may be different names for the same concept. Explain each of the following terms with one sentence:</strong></p>
+<ol type="a">
+<li>probability: how likely some assertion is to be true</li>
+<li>probability mass: how likely a discrete random variable is to be some value</li>
+<li>probability density: how likely a continuous random variable is to be some value</li>
+<li>probability mass function (pmf): a function describing how likely a discrete random variable is to be any possible value</li>
+<li>probability density function (pdf): a function describing how likely a continuous random variable is to be any possible value</li>
+<li>probability distribution: a function describing how likely a random variable is to be of some value</li>
+<li>discrete probability distribution: a probability distribution over discrete values</li>
+<li>continuous probability distribution: a probability distribution over continuous values</li>
+<li>cumulative distribution function (cdf): the cumulative sum of probabilities from a probability distribution</li>
+<li>likelihood: how probable some event is under a given hypothesis</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+<h1 id="exercise-3">Exercise 3</h1>
+<p><strong>(Bayes’ theorem) A group of researchers has designed a new inexpensive and painless test for detecting lung cancer.</strong> <strong>The test is intended to be an initial screening test for the population in general.</strong> <strong>A positive result (presence of lung cancer) from the test would be followed up immediately with medication, surgery or more extensive and expensive test.</strong> <strong>The researchers know from their studies the following facts:</strong></p>
+<ul>
+<li>Test gives a positive result in 98% of the time when the test subject has lung cancer.</li>
+<li>Test gives a negative result in 96 % of the time when the test subject does not have lung cancer.</li>
+<li>In general population approximately 1 person in 1000 has lung cancer.</li>
 </ul>
+<p><strong>The researchers are happy with these preliminary results (about 97% success rate), and wish to get the test to market as soon as possible.</strong> <strong>How would you advise them?</strong> <strong>Base your answer on Bayes’ rule computations.</strong></p>
+<p><strong>Hint: Relatively high false negative (cancer doesn’t get detected) or high false positive (unnecessarily administer medication) rates are typically bad and undesirable in tests.</strong></p>
+<p><strong>Hint: Here are some probability values that can help you figure out if you copied the right conditional probabilities from the question.</strong></p>
+<ul>
+<li><span class="math inline">\(P(\text{Test gives positive} | \text{Subject does not have lung cancer}) = 0.04\)</span></li>
+<li><span class="math inline">\(P(\text{Test gives positive and Subject has lung cancer}) = 0.00098\)</span> this is also referred to as the joint probability of test being positive and the subject having lung cancer.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
