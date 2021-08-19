@@ -224,7 +224,7 @@ vignettes/*.pdf
 .Renviron
 
 # pkgdown site
-docs/
+# docs/
 
 # translation temp files
 po/*~
@@ -234,4 +234,3 @@ po/*~
 /*_files/
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,python,r,jupyternotebooks
-
