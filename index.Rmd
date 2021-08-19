@@ -1,4 +1,20 @@
-# Bayesian Data Analysis course
+---
+title: "Bayesian Data Analysis course"
+description: |
+  My notes for the Bayesian Data Analaysis course taught by Aki Vehtari.
+author:
+  - first_name: "Joshua"
+    last_name: "Cook"
+    url: https://joshuacook.netlify.app
+    affiliation: Harvard Medical School
+    affiliation_url: https://hms.harvard.edu/
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, dpi = 300)
+```
+
 
 ## Resources
 
@@ -26,4 +42,4 @@ The recommended way to go through the material is:
 
 ## Notes
 
-**My notes are published as a website [here](https://jhrcook.github.io/bayesian-data-analysis-course/).**
+1. [**Section 1**: Course Introduction](notes/001_introduction_bda3-ch001.html)

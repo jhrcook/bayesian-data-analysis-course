@@ -1,0 +1,19 @@
+name: "docs"
+title: "Bayesian Data Analysis course"
+description: |
+  Bayesian Data Analysis course
+repository_url: https://github.com/jhrcook/bayesian-data-analysis-course
+base_url: https://jhrcook.github.io/bayesian-data-analysis-course
+output_dir: "docs"
+exclude: ["renv.lock"]
+navbar:
+  right:
+    - text: "Notes"
+      menu:
+        - text: "Section 1"
+          href: notes/001_introduction_bda3-ch001.html
+    - text: "About"
+      href: about.html
+    - icon: fab fa-github
+      href: https://github.com/rstudio/distill
+output: distill::distill_article

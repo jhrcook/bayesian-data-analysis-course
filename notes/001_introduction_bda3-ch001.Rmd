@@ -1,6 +1,7 @@
 ---
 title: "001. Course introduction and prerequisites"
-output: github_document
+date: "2021-08-17"
+output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
