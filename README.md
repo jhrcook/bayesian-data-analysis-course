@@ -7,7 +7,7 @@
 - [GitHub repo](https://github.com/avehtari/BDA_course_Aalto) ([my fork](https://github.com/jhrcook/BDA_course_Aalto))
 - [*Bayesian Data Analysis* (3e)](https://users.aalto.fi/~ave/BDA3.pdf) (BDA3)
 - [Chapter Notes](https://avehtari.github.io/BDA_course_Aalto/chapter_notes/BDA_notes.pdf)
-- [Video lectures](https://aalto.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f0ec3a25-9e23-4935-873b-a9f401646812%22) or invidually lists [here](https://avehtari.github.io/BDA_course_Aalto/#videos)
+- [Video lectures](https://aalto.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f0ec3a25-9e23-4935-873b-a9f401646812%22) or individually lists [here](https://avehtari.github.io/BDA_course_Aalto/#videos)
 - [Lecture slides](https://github.com/avehtari/BDA_course_Aalto/tree/master/slides)
 
 ## How to study
@@ -26,4 +26,4 @@ The recommended way to go through the material is:
 
 ## Notes
 
-Below are my notes for the course.
+**My notes are published as a website [here](https://jhrcook.github.io/bayesian-data-analysis-course/).**
