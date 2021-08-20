@@ -97,7 +97,7 @@ For off-diagonals, the result is the covariance between the indeices of $u$: $\t
 **What is the probability that Elivs was an identical twin?**
 
 $$
-\Pr(\text{identical twin} | \text{twin and brother}) = 
+\Pr(\text{identical twin} | \text{twin and brother}) =
 \frac{\Pr(\text{identical twin}) \Pr(\text{twin and brother} | \text{identical twin})}{\Pr(\text{twin and brother})} \\
 $$
 

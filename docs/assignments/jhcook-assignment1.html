@@ -110,7 +110,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Assignment 1"]},{"type":"character","attributes":{},"value":["2021-08-19"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
-  
+
   <script type="text/json" id="radix-resource-manifest">
   {"type":"list","attributes":{},"value":[]}
   </script>
@@ -1469,7 +1469,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<h1 id="exercise-1">Exercise 1</h1>
+<p><strong><a href="assignment1.pdf">Assignment 1</a></strong></p>
+<h2 id="exercise-1">Exercise 1</h2>
 <p><strong>(Basic probability theory notation and terms). This can be trivial or you may need to refresh your memory on these concepts. Note that some terms may be different names for the same concept. Explain each of the following terms with one sentence:</strong></p>
 <ol type="a">
 <li>probability: how likely some assertion is to be true</li>
@@ -1483,7 +1484,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li>cumulative distribution function (cdf): the cumulative sum of probabilities from a probability distribution</li>
 <li>likelihood: how probable some event is under a given hypothesis</li>
 </ol>
-<h1 id="exercise-3">Exercise 3</h1>
+<h2 id="exercise-3">Exercise 3</h2>
 <p><strong>(Bayes’ theorem) A group of researchers has designed a new inexpensive and painless test for detecting lung cancer.</strong> <strong>The test is intended to be an initial screening test for the population in general.</strong> <strong>A positive result (presence of lung cancer) from the test would be followed up immediately with medication, surgery or more extensive and expensive test.</strong> <strong>The researchers know from their studies the following facts:</strong></p>
 <ul>
 <li>Test gives a positive result in 98% of the time when the test subject has lung cancer.</li>
@@ -1497,7 +1498,106 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><span class="math inline">\(P(\text{Test gives positive} | \text{Subject does not have lung cancer}) = 0.04\)</span></li>
 <li><span class="math inline">\(P(\text{Test gives positive and Subject has lung cancer}) = 0.00098\)</span> this is also referred to as the joint probability of test being positive and the subject having lung cancer.</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>We are interested in the false positive and false negative rates.</p>
+<p>The false positive rate, a positive test when the patient does not have cancer, is calculated below using Bayes’ rule:</p>
+<p><span class="math display">\[
+\Pr(\text{no cancer} | \text{positive test}) = \frac{\Pr(\text{no cancer}) \Pr(\text{positive test} | \text{no cancer})}{\Pr(\text{positive test})}
+\]</span></p>
+<p>Each of the components:</p>
+<p><span class="math display">\[
+\Pr(\text{no cancer}) = 999/1000\\
+\Pr(\text{positive test} | \text{no cancer}) = 4\% = 4/100\\
+\begin{aligned}
+\Pr(\text{positive test}) &amp;= \Pr(\text{positive test AND cancer}) + \Pr(\text{positive test AND no cancer}) \\
+&amp;= \frac{98}{100} \frac{1}{1000} + \frac{4}{100} \frac{999}{1000} = \frac{4094}{100000}
+\end{aligned}
+\]</span></p>
+<p>thus</p>
+<p><span class="math display">\[
+\begin{aligned}
+\Pr(\text{no cancer} | \text{positive test}) &amp;= \frac{\Pr(\text{no cancer}) \Pr(\text{positive test} | \text{no cancer})}{\Pr(\text{positive test})} \\
+&amp;= \frac{\frac{999}{1000} \frac{4}{100}}{\frac{4094}{100000}} \\
+&amp;= 0.976 \\
+&amp;= 97.6 \%
+\end{aligned}
+\]</span></p>
+<p>The false positive rate, a negative test when the patient does have cancer, is calculated below using Bayes’ rule:</p>
+<p><span class="math display">\[
+\Pr(\text{cancer} | \text{negative test}) = \frac{\Pr(\text{cancer}) \Pr(\text{negative test} | \text{cancer})}{\Pr(\text{negative test})}
+\]</span></p>
+<p>Each of the components:</p>
+<p><span class="math display">\[
+\Pr(\text{cancer}) = 1/1000\\
+\Pr(\text{negative test} | \text{cancer}) = 1-0.98 = 2/100 \\
+\begin{aligned}
+\Pr(\text{negative test}) &amp;= \Pr(\text{negative test AND cancer}) + \Pr(\text{negative test AND no cancer}) \\
+&amp;= \frac{2}{100} \frac{1}{1000} + \frac{96}{100} \frac{999}{1000} = \frac{95906}{100000}
+\end{aligned}
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\Pr(\text{cancer} | \text{negative test}) &amp;= \frac{\Pr(\text{cancer}) \Pr(\text{negative test} | \text{cancer})}{\Pr(\text{negative test})} \\
+&amp;= \frac{\frac{1}{1000} \frac{2}{100}}{\frac{95906}{100000}} \\
+&amp;= 0.0000209 \\
+&amp;= 0.00209 \%
+\end{aligned}
+\]</span></p>
+<p>The false negative rate is quite low, primarily because the cancer is relatively rare to begin with. But, for the same reason, the false positive rate is very high. Therefore, it could be advised that positive tests are confirmed with an independently-conducted second test or another testing procedure (e.g. CT scan). Taking the test twice will only help if the false positive is caused by randomness and is not due to some other factor of the patient (e.g. the test is picking up some metabolite this patient produces due to their specific diet).</p>
+<h2 id="exercise-4">Exercise 4</h2>
+<p><strong>We have three boxes, A, B, and C. There are</strong></p>
+<ul>
+<li><strong>2 red balls and 5 white balls in the box A,</strong></li>
+<li><strong>4 red balls and 1 white ball in the box B, and</strong></li>
+<li><strong>1 red ball and 3 white balls in the box C.</strong></li>
+</ul>
+<p><strong>Consider a random experiment in which one of the boxes is randomly selected and from that box, one ball is randomly picked up.</strong> <strong>After observing the color of the ball it is replaced in the box it came from.</strong> <strong>Suppose also that on average box A is selected 40% of the time and box B 10% of the time (i.e. P (A) = 0.4).</strong></p>
+<ol type="a">
+<li><strong>What is the probability of picking a red ball?</strong></li>
+<li><strong>If a red ball was picked, from which box it most probably came from?</strong></li>
+</ol>
+<p><strong>Implement two functions in R that computes the probabilities.</strong></p>
+<h3 id="a">4.a</h3>
+<p><span class="math display">\[
+\Pr(red) = \Sigma_{b}^{boxes} \Pr(\text{red} | \text{box}_b) \Pr(\text{box}_b)
+\]</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>#&gt; probability of red: 0.319285714285714</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>#&gt;         A         B         C
+#&gt; 0.3579418 0.2505593 0.3914989</code></pre>
+</div>
+<h2 id="exercise-5">Exercise 5</h2>
+<p><strong>Assume that on average fraternal twins (two fertilized eggs and then could be of different sex) occur once in 150 births and identical twins (single egg divides into two separate embryos, so both have the same sex) once in 400 births (Note! This is not the true values, see Exercise 1.6, page 28, in BDA3).</strong> <strong>American male singer-actor Elvis Presley (1935 – 1977) had a twin brother who died in birth.</strong> <strong>Assume that an equal number of boys and girls are born on average.</strong> <strong>What is the probability that Elvis was an identical twin?</strong> <strong>Show the steps how you derived the equations to compute that probability.</strong></p>
+<p>State the problem as a conditional probability and use Bayes’ rule to decompose into simpler terms.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\Pr(\text{Elvis was an identical twin}) &amp;= \\
+\Pr(\text{identical} | \text{twin AND brother}) &amp;= \frac{\Pr(\text{identical})\Pr(\text{twin AND bro} |
+\text{identical})}{\Pr(\text{twin AND bro})} \\
+\end{aligned}
+\]</span></p>
+<p>Each component separately.</p>
+<p><span class="math display">\[
+\Pr(\text{identical}) = \frac{1}{400} \\
+\Pr(\text{twin AND bro} | \text{identical}) = \frac{1}{2} \\
+\]</span> <span class="math display">\[
+\begin{aligned}
+\Pr(\text{twin AND bro}) &amp;= \Pr(\text{identical AND bro}) + \Pr(\text{fraternal AND bro}) \\
+&amp;= \frac{1}{400} \frac{1}{2} + \frac{1}{150} \frac{1}{4} \\
+&amp;= \frac{7}{2400} \\
+\end{aligned}
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\Pr(\text{identical} | \text{twin AND brother}) = \frac{\frac{1}{400} \frac{1}{2}}{\frac{7}{2400}} = 0.429
+\]</span></p>
+<p><strong>Implement this as a function in R that computes the probability.</strong></p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>#&gt; [1] 0.4285714</code></pre>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
