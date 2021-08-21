@@ -1,5 +1,5 @@
 ---
-title: "001. Course introduction and prerequisites"
+title: "01. Course introduction and prerequisites"
 date: "2021-08-17"
 output: distill::distill_article
 ---
@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 ## Resources
 
-- BDA Chapter 1 and [chapter instructions](../reading-instructions/BDA-notes-ch1.pdf)
+- BDA chapter 1 and [reading instructions](../reading-instructions/BDA3_ch01_reading-instructions.pdf)
 - video: ['Computational probabilistic modeling'](https://www.youtube.com/watch?v=ukE5aqdoLZI)
 - video['Introduction to uncertainty and modelling'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d841f429-9c3d-4d24-8228-a9f400efda7b)
 - video: ['Introduction to the course contents'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=13fc7889-cfd1-4d99-996c-a9f400f6e5a2)
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 ## Notes
 
-### Chapter instructions
+### Reading instructions
 
 - model vs. likelihood for $p(y|\theta, M)$
   - *model* when the function is in terms of $y$
