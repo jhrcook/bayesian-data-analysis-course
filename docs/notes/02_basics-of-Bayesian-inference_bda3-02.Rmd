@@ -1,0 +1,22 @@
+---
+title: "02. Baiscs of Bayesian inferences"
+date: "2021-08-21"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
+
+## Resources
+
+- BDA3 chapter 2 and [reading instructions](../reading-instructions/BDA3_ch02_reading-instructions.pdf)
+- video: ['Computational probabilistic modeling'](https://www.youtube.com/watch?v=ukE5aqdoLZI)
+- [slides](../slides/bayes_intro.pdf)
+- [Assignment 2](assignments/assignment2.pdf)
+
+## Notes
+
+### Chapter instructions
+
+### Reading Section...

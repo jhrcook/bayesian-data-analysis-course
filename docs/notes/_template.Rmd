@@ -1,8 +1,0 @@
----
-title: "Title"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
-```
