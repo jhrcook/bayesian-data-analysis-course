@@ -1472,9 +1472,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="resources">Resources</h2>
 <ul>
 <li>BDA3 chapter 2 and <a href="../reading-instructions/BDA3_ch02_reading-instructions.pdf">reading instructions</a></li>
-<li>video: <a href="https://www.youtube.com/watch?v=ukE5aqdoLZI">‘Computational probabilistic modeling’</a></li>
-<li><a href="../slides/bayes_intro.pdf">slides</a></li>
-<li><a href="assignments/assignment2.pdf">Assignment 2</a></li>
+<li>lectures:
+<ul>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9c271082-5a8c-4b66-b6c2-aacc00fc683f">‘2.1 Basics of Bayesian inference, observation model, likelihood, posterior and binomial model, predictive distribution and benefit of integration’</a></li>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=70655a8a-0eb4-4ddd-9f52-aacc00fc67a2">‘2.2 Priors and prior information, and one parameter normal model’</a></li>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=158d119d-8673-4120-8669-ac3900c13304">‘Extra explanations about likelihood, normalization term, density, and conditioning on model M’</a> (optional)</li>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7a297f7d-bb7b-4dd0-9913-a9f500ec822d">‘Summary 2.1. Observation model, likelihood, posterior and binomial model’</a> (optional)</li>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=75b9f18f-e379-4557-a5fa-a9f500f11b40">‘Summary 2.2. Predictive distribution and benefit of integration’</a> (optional)</li>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=099659a5-f707-473d-8b03-a9f500f39eb5">‘Summary 2.3. Priors and prior information’</a> (optional)</li>
+</ul></li>
+<li><a href="../slides/slides_ch2.pdf">slides</a> and <a href="../slides/slides_ch2_extra1.pdf">extra slides</a></li>
+<li><a href="../assignments/assignment2.pdf">Assignment 2</a></li>
 </ul>
 <h2 id="notes">Notes</h2>
 <h3 id="chapter-instructions">Chapter instructions</h3>
@@ -1530,7 +1538,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><em>conjugacy</em>: “the property that the posterior distribution follows the same parameter form as the prior distribution”
 <ul>
 <li>e.g. the beta prior is a conjugate family for the binomial likelihood</li>
-<li>e.g. the gamma prior is a conjuagte family for the Poisson likelihood</li>
+<li>e.g. the gamma prior is a conjugate family for the Poisson likelihood</li>
 <li>convenient because the posterior follows a known parametric family</li>
 <li>formal definition of conjugacy:</li>
 </ul></li>
@@ -1572,6 +1580,33 @@ p(\theta | y) \in \mathcal{P} \text{ for all } p(\cdot | \theta) \in \mathcal{F}
 <li>“in general, any problem has some natural constraints that would allow a weakly informative model”</li>
 <li>small amount of real-world knowledge to ensure the posterior makes sense</li>
 </ul>
+<h3 id="lecture-notes">Lecture notes</h3>
+<h4 id="basics-of-bayesian-inference-observation-model-likelihood-posterior-and-binomial-model-predictive-distribution-and-benefit-of-integration">2.1 Basics of Bayesian inference, observation model, likelihood, posterior and binomial model, predictive distribution and benefit of integration</h4>
+<ul>
+<li>predictive distribution
+<ul>
+<li>“integrate over uncertainties”</li>
+<li>for the example of pulling red or yellow chips out of a bag:
+<ul>
+<li>want a predictive distribution for some data point <span class="math inline">\(\tilde{y} = 1\)</span>:</li>
+<li>if we know <span class="math inline">\(\theta\)</span> then it is easy: <span class="math inline">\(p(\tilde{y} = 1 | \theta, y, n, M)\)</span>
+<ul>
+<li>where <span class="math inline">\(n\)</span> is number of draws, <span class="math inline">\(y\)</span> is number of success (red chip), <span class="math inline">\(M\)</span> is model</li>
+</ul></li>
+<li>we don’t know <span class="math inline">\(\theta\)</span>, we weight the probability of the new data for a given <span class="math inline">\(\theta\)</span> by the posterior probability that <span class="math inline">\(\theta\)</span> is that value
+<ul>
+<li>sum (integrate) over all possible values for <span class="math inline">\(\theta\)</span> (“integrate out the uncertainty of <span class="math inline">\(\theta\)</span>”)</li>
+<li><span class="math inline">\(p(\tilde{y}=1|y, n, M) = \int_0^1 p(\tilde{y} = 1 | \theta, y, n, M) p(\theta | y, n, M) d\theta\)</span></li>
+</ul></li>
+<li>now the prediction is not conditioned on <span class="math inline">\(\theta\)</span>, just on what was observed</li>
+</ul></li>
+</ul></li>
+<li>prior predictive: predictions before seeing any data
+<ul>
+<li><span class="math inline">\(p(\tilde{y}=1|M) = \int_o^1 p(\tilde{y}=1 | \theta, y, n, M) p(\theta|M)\)</span></li>
+</ul></li>
+</ul>
+<h4 id="priors-and-prior-information-and-one-parameter-normal-model">2.2 Priors and prior information, and one parameter normal model</h4>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
