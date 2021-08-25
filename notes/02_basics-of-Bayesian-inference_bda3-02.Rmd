@@ -19,4 +19,77 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 ### Chapter instructions
 
-### Reading Section...
+- recommendations about weakly informative priors has changed a bit
+  - updated recommendations: [Prior Choice Recommendations](https://github.com/ stan-dev/stan/wiki/Prior-Choice-Recommendations)
+  - "5 levels of priors":
+    1. **Flat prior** (not usually recommended)
+    2. **Super-vague** but proper prior: $N(0, 10^6)$ (not usually recommended)
+    3. **Weakly informative prior**: very weak; $N(0, 10)$
+    4. **Generic weakly informative prior**: $N(0, 1)$
+    5. **Specific informative prior**: $N(0.4, 0.2)$ or whatever; can sometimes be expressed as a scaling followed by a generic prior: $\theta = 0.4 + 0.2z; \text{ } z \sim N(0, 1)$
+  - "flat and super-vague priors are not usually recommended"
+  - even a seemingly weakly informative prior could be informative
+    - e.g. a prior of $N(0, 1)$ could put weight on values too *large* if a large effect size would only be on the scale of 0.1
+  - def. **weakly informative**: "if there's a reasonably large amount of data, the likelihood will dominate, and the prior will not be important"
+  - section on [General Principles](https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations#general-principles); some stand-outs copied here:
+    - "Computational goal in Stan: reducing instability which can typically arise from bad geometry in the posterior"
+    - "Weakly informative prior should contain enough information to regularize: the idea is that the prior rules out unreasonable parameter values but is not so strong as to rule out values that might make sense"
+    - "When using informative priors, be explicit about every choice; write a sentence about each parameter in the model."
+
+### Chapter 2. Single-parameter models
+
+> I took notes in the book, so below are just some main points.
+
+#### 2.2 Posterior as compromise between data and prior information
+
+- "general feature of Bayesian inference: the posterior distribution is centered at a point that represents a compromise between the prior information and the data"
+
+#### 2.3 Estimating a probability from binomial data
+
+- a key benefit of Bayesian modeling is the flexibility of summarizing posterior probabilities
+  - can be used to answer the key research questions
+- commonly used summary statistics
+  - centrality: mean, median, mode
+  - variation: standard deviation, interquartile range, highest posterior density
+
+#### 2.4 Informative prior distributions
+
+- *hyperparameter*: parameter of a prior distribution
+- *conjugacy*: "the property that the posterior distribution follows the same parameter form as the prior distribution"
+  - e.g. the beta prior is a conjugate family for the binomial likelihood
+  - e.g. the gamma prior is a conjuagte family for the Poisson likelihood
+  - convenient because the posterior follows a known parametric family
+  - formal definition of conjugacy:
+
+$$
+p(\theta | y) \in \mathcal{P} \text{ for all } p(\cdot | \theta) \in \mathcal{F} \text{ and } p(\cdot) \in \mathcal{P}
+$$
+
+#### 2.5 Normal distribution with known variance
+
+- *precision* (when discussing normal distributions): the inverse of the variance $\frac{1}{\tau^2}$
+
+#### 2.6 Other standard single-parameter models
+
+- Poisson model for count data
+  - data $y$ is the number of positive events
+  - unknown rate of the events $\theta$
+  - conjugate prior is the gamma distribution
+  section 2.7 is a good example of a hierarchical Poisson model
+
+#### 2.8 Noninformative prior distributions
+
+> See more information in the notes from the [chapter instructions](#chapter-instructions).
+
+- rationale: let the data speak for themselves; inferences are unaffected by external information/bias
+- problems:
+  - can cause the posterior to become improper
+  - computationally, makes it harder to sample from the posterior
+
+#### 2.9 Weakly informative prior distributions
+
+> See more information in the notes from the [chapter instructions](#chapter-instructions).
+
+- **weakly informative**: the prior is proper, but intentionally weaker than whatever actual prior knowledge is available
+- "in general, any problem has some natural constraints that would allow a weakly informative model"
+- small amount of real-world knowledge to ensure the posterior makes sense
