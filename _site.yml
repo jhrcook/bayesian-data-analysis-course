@@ -7,11 +7,17 @@ base_url: https://jhrcook.github.io/bayesian-data-analysis-course
 output_dir: "docs"
 exclude: ["renv.lock"]
 navbar:
+  search: true
+  logo:
+    image: assets/book-cover-image.png
+  source_url: https://github.com/jhrcook/bayesian-data-analysis-course
   right:
     - text: "Notes"
       menu:
         - text: "Section 1"
-          href: notes/001_introduction_bda3-ch001.html
+          href: notes/01_introduction_bda3-01.html
+        - text: "Section 2"
+          href: notes/02_basics-of-Bayesian-inference_bda3-02.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
@@ -22,6 +28,4 @@ navbar:
           href: assignments/jhcook-assignment1.html
     - text: "About"
       href: about.html
-    - icon: fab fa-github
-      href: https://github.com/rstudio/distill
 output: distill::distill_article
