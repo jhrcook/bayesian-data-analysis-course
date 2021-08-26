@@ -11,7 +11,8 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 ## Resources
 
 - BDA3 chapter 1 and [reading instructions](../reading-instructions/BDA3_ch01_reading-instructions.pdf)
-- video: ['Computational probabilistic modeling'](https://www.youtube.com/watch?v=ukE5aqdoLZI)
+- lectures:
+  - ['Lecture title'](link-to-lecture)
 - [slides](../slides/bayes_intro.pdf)
 - [Assignment 1](assignments/assignment1.pdf)
 
@@ -21,6 +22,8 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 - notes from the reading instructions
 
-### Reading Section...
+### Chapter N. Chapter title
 
 - notes from the book
+
+### Lecture notes

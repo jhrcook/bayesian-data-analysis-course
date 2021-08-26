@@ -11,8 +11,9 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 ## Resources
 
 - BDA chapter 1 and [reading instructions](../reading-instructions/BDA3_ch01_reading-instructions.pdf)
-- video: ['Computational probabilistic modeling'](https://www.youtube.com/watch?v=ukE5aqdoLZI)
-- video['Introduction to uncertainty and modelling'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d841f429-9c3d-4d24-8228-a9f400efda7b)
+- lectures:
+  - ['Computational probabilistic modeling'](https://www.youtube.com/watch?v=ukE5aqdoLZI)
+  - ['Introduction to uncertainty and modelling'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d841f429-9c3d-4d24-8228-a9f400efda7b)
 - video: ['Introduction to the course contents'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=13fc7889-cfd1-4d99-996c-a9f400f6e5a2)
 - [slides](../slides/bayes_intro.pdf)
 - [Assignment 1](assignments/assignment1.pdf)
@@ -35,7 +36,9 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
   3. exchangeability does not imply independence
   4. exchangeability is related to what information is available instead of the properties of unknown underlying data generating mechanism
 
-### Introduction to uncertainty and modelling
+### Lecture notes
+
+#### Introduction to uncertainty and modelling
 
 - two types of uncertainty:
   - *aleatoric*: due to randomness
@@ -58,7 +61,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
     - $p(\theta)$: epistemic uncertainty
       - we don't know $\theta$ but could compute it exactly if we knew the contents of the bag
 
-### Introduction to the course contents
+#### Introduction to the course contents
 
 - benefits of Bayesian approach
   1. integrate over uncertainties to focus on interesting parts

@@ -118,3 +118,15 @@ $$
   - $p(\tilde{y}=1|M) = \int_o^1 p(\tilde{y}=1 | \theta, y, n, M) p(\theta|M)$
 
 #### 2.2 Priors and prior information, and one parameter normal model
+
+- proper prior: $\int p(\theta) = 1$
+  - better to use proper priors
+- improper prior density does not have a finite integral
+  - the posterior can sometimes still be proper, though
+  - uniform distributions to infinity are improper
+- a weak prior is *not* non-informative
+  - could give a lot of a weight to very unlikely (or impossible) values
+  - make sure to check prior values against knowable values
+- *sufficient statistic*: the quantity $t(y)$ is a sufficient statistic for $\theta$ because the likelihood for $\theta$ depends on the data $y$ only through the value of $t(y)$
+  - smaller dimensional data that fully summarizes the full data
+  - can define a Gaussian with just the mean and s.d.
