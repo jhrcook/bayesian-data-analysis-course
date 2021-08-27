@@ -130,3 +130,5 @@ $$
 - *sufficient statistic*: the quantity $t(y)$ is a sufficient statistic for $\theta$ because the likelihood for $\theta$ depends on the data $y$ only through the value of $t(y)$
   - smaller dimensional data that fully summarizes the full data
   - can define a Gaussian with just the mean and s.d.
+
+#### Extras: likelihood, normalization term, density, and conditioning on model M
