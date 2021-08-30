@@ -1626,9 +1626,39 @@ p(\theta | y) \in \mathcal{P} \text{ for all } p(\cdot | \theta) \in \mathcal{F}
 <ul>
 <li>smaller dimensional data that fully summarizes the full data</li>
 <li>can define a Gaussian with just the mean and s.d.</li>
+</ul></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+<h4 id="extras-likelihood-normalization-term-density-and-conditioning-on-model-m">Extras: likelihood, normalization term, density, and conditioning on model M</h4>
+<h4 id="predictive-distribution-and-benefit-of-integration">Predictive distribution and benefit of integration</h4>
+<ul>
+<li>predictive dist.
+<ul>
+<li>effect of integration
+<ul>
+<li>predictive dist of new <span class="math inline">\(\hat{y}\)</span> (discrete) with model <span class="math inline">\(M\)</span>:
+<ul>
+<li>if we know <span class="math inline">\(\theta\)</span>: <span class="math inline">\(p(\hat{y} = 1| y, n, M) = p(\hat{y} = 1 | \theta, y, n, M)\)</span></li>
+<li>if we don’t know <span class="math inline">\(\theta\)</span>: <span class="math inline">\(p(\hat{y} = 1 | \theta, y, n, M) p(\theta| y, n, M)\)</span>
+<ul>
+<li>weight by the probability of the value for <span class="math inline">\(\theta\)</span></li>
+</ul></li>
+</ul></li>
+<li>integrate over all possible values of <span class="math inline">\(\theta\)</span>: <span class="math inline">\(p(\hat{y} = 1|y, n, M) = \int_0^1 p(\hat{y}=1| \theta, y, n, M) p(\theta|y, n, M)d\theta\)</span>
+<ul>
+<li>“integrate out the uncertainty over <span class="math inline">\(\theta\)</span>”</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>prior predictive for new data <span class="math inline">\(\hat{y}\)</span>: <span class="math inline">\(p(\hat{y} =1|M) = int_0^1 p(\hat{y}=1|\theta,y,n,M)p(\theta|M)\)</span></li>
 </ul>
+<h4 id="priors-and-prior-information">Priors and prior information</h4>
+<ul>
+<li>conjugate priors do not result in any computational benefits in HMC or NUTS
+<ul>
+<li>can be useful to analytically reduce the size of a model, beforehand, though</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
