@@ -1,0 +1,23 @@
+---
+title: "Assignment N"
+date: "2021-08-19"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+```
+
+## Setup
+
+```{r}
+# Load packages here.
+```
+
+**[Assignment N](assignment-00.pdf)**
+
+## Exercise 1
+
+**Type out the main important bits of the question here...**
+
+Answer the question here.
