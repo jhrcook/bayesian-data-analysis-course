@@ -1469,7 +1469,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<p><strong><a href="assignment1.pdf">Assignment 1</a></strong></p>
+<p><strong><a href="assignment-01.pdf">Assignment 1</a></strong></p>
+<h2 id="setup">Setup</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/glue">glue</a></span><span class="op">)</span>
+</code></pre>
+</div>
+</div>
 <h2 id="exercise-1">Exercise 1</h2>
 <p><strong>(Basic probability theory notation and terms). This can be trivial or you may need to refresh your memory on these concepts. Note that some terms may be different names for the same concept. Explain each of the following terms with one sentence:</strong></p>
 <ol type="a">
@@ -1562,9 +1569,57 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 \Pr(red) = \Sigma_{b}^{boxes} \Pr(\text{red} | \text{box}_b) \Pr(\text{box}_b)
 \]</span></p>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Contents of the boxes.</span>
+<span class="va">boxes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>,
+  ncol <span class="op">=</span> <span class="fl">2</span>,
+  dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;red&quot;</span>, <span class="st">&quot;white&quot;</span><span class="op">)</span><span class="op">)</span>
+<span class="op">)</span>
+<span class="co"># Probability of selecting each box.</span>
+<span class="va">box_probs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span><span class="op">)</span>,
+  ncol <span class="op">=</span> <span class="fl">1</span>,
+  dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span><span class="op">)</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="co"># Calculate the probability of red per box.</span>
+<span class="va">p_red_per_box</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">boxes</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">boxes</span><span class="op">[</span>, <span class="st">&quot;red&quot;</span><span class="op">]</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">boxes</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Calculate the probability of pulling red.</span>
+<span class="va">p_red</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">boxes</span>, <span class="va">box_probs</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">red_probs</span> <span class="op">&lt;-</span> <span class="fu">p_red_per_box</span><span class="op">(</span><span class="va">boxes</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">red_probs</span> <span class="op">*</span> <span class="va">box_probs</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">prob_red</span> <span class="op">&lt;-</span> <span class="fu">p_red</span><span class="op">(</span><span class="va">boxes</span>, <span class="va">box_probs</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">&quot;probability of red: {prob_red}&quot;</span><span class="op">)</span><span class="op">)</span>
+</code></pre>
+</div>
 <pre><code>#&gt; probability of red: 0.319285714285714</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate the prob. that each box was used given a red ball was selected.</span>
+<span class="va">p_box</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">boxes</span>, <span class="va">box_probs</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">prob_red</span> <span class="op">&lt;-</span> <span class="fu">p_red</span><span class="op">(</span><span class="va">boxes</span>, <span class="va">box_probs</span><span class="op">)</span>
+  <span class="va">red_probs</span> <span class="op">&lt;-</span> <span class="fu">p_red_per_box</span><span class="op">(</span><span class="va">boxes</span><span class="op">)</span>
+  <span class="va">box_probs_red</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="kw">for</span> <span class="op">(</span><span class="va">box</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">box_probs</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">box_probs</span><span class="op">[</span><span class="va">box</span>, <span class="op">]</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">red_probs</span><span class="op">[</span><span class="va">box</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="va">prob_red</span>
+    <span class="va">box_probs_red</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">box_probs_red</span>, <span class="va">p</span><span class="op">)</span>
+  <span class="op">}</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">box_probs_red</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">box_probs</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">box_probs_red</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">probs_of_boxes</span> <span class="op">&lt;-</span> <span class="fu">p_box</span><span class="op">(</span>boxes <span class="op">=</span> <span class="va">boxes</span>, box_probs <span class="op">=</span> <span class="va">box_probs</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">probs_of_boxes</span><span class="op">)</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">probs_of_boxes</span>
+</code></pre>
+</div>
 <pre><code>#&gt;         A         B         C
 #&gt; 0.3579418 0.2505593 0.3914989</code></pre>
 </div>
@@ -1595,6 +1650,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 \]</span></p>
 <p><strong>Implement this as a function in R that computes the probability.</strong></p>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="va">p_identical_twin</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">fraternal_prob</span>, <span class="va">identical_prob</span><span class="op">)</span> <span class="op">{</span>
+  <span class="op">(</span><span class="va">identical_prob</span> <span class="op">*</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">identical_prob</span> <span class="op">*</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="va">fraternal_prob</span> <span class="op">*</span> <span class="fl">0.25</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Tests from provided examples.</span>
+<span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">p_identical_twin</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">125</span>, <span class="fl">1</span> <span class="op">/</span> <span class="fl">300</span><span class="op">)</span>, <span class="fl">7</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0.4545455</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">p_identical_twin</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">100</span>, <span class="fl">1</span> <span class="op">/</span> <span class="fl">500</span><span class="op">)</span>, <span class="fl">7</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0.2857143</span><span class="op">)</span>
+
+<span class="fu">p_identical_twin</span><span class="op">(</span>fraternal_prob <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">150</span>, identical_prob <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fl">400</span><span class="op">)</span>
+</code></pre>
+</div>
 <pre><code>#&gt; [1] 0.4285714</code></pre>
 </div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

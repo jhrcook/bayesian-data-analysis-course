@@ -25,7 +25,9 @@ navbar:
     - text: "Assignments"
       menu:
         - text: "Assignment 1"
-          href: assignments/jhcook-assignment1.html
+          href: assignments/jhcook-assignment-01.html
+        - text: "Assignment 2"
+          href: assignments/jhcook-assignment-02.html
     - text: "About"
       href: about.html
 output: distill::distill_article

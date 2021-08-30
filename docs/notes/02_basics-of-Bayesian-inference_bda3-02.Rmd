@@ -130,3 +130,23 @@ $$
 - *sufficient statistic*: the quantity $t(y)$ is a sufficient statistic for $\theta$ because the likelihood for $\theta$ depends on the data $y$ only through the value of $t(y)$
   - smaller dimensional data that fully summarizes the full data
   - can define a Gaussian with just the mean and s.d.
+
+#### Extras: likelihood, normalization term, density, and conditioning on model M
+
+#### Predictive distribution and benefit of integration
+
+- predictive dist.
+  - effect of integration
+    - predictive dist of new $\hat{y}$ (discrete) with model $M$:
+      - if we know $\theta$: $p(\hat{y} = 1| y, n, M) = p(\hat{y} = 1 | \theta, y, n, M)$
+      - if we don't know $\theta$: $p(\hat{y} = 1 | \theta, y, n, M) p(\theta| y, n, M)$
+        - weight by the probability of the value for $\theta$
+    - integrate over all possible values of $\theta$: $p(\hat{y} = 1|y, n, M) = \int_0^1 p(\hat{y}=1| \theta, y, n, M) p(\theta|y, n, M)d\theta$
+      - "integrate out the uncertainty over $\theta$"
+- prior predictive for new data $\hat{y}$: $p(\hat{y} =1|M) = int_0^1 p(\hat{y}=1|\theta,y,n,M)p(\theta|M)$
+    
+#### Priors and prior information
+
+- conjugate priors do not result in any computational benefits in HMC or NUTS
+  - can be useful to analytically reduce the size of a model, beforehand, though
+  

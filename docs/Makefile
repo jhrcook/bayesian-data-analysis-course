@@ -9,4 +9,4 @@ help:
 	@echo " - render             : render the distill website"
 
 render:
-	Rscript -e "rmarkdown::render_site()"
+	Rscript -e "rmarkdown::render_site()" && rm -r docs/data

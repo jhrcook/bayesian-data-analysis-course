@@ -5,12 +5,16 @@ output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, comment = "#>", dpi = 300)
-
-library(glue)
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 ```
 
-**[Assignment 1](assignment1.pdf)**
+**[Assignment 1](assignment-01.pdf)**
+
+## Setup
+
+```{r}
+library(glue)
+```
 
 ## Exercise 1
 
