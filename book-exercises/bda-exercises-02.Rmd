@@ -1,0 +1,83 @@
+---
+title: "Chapter N Exercises"
+date: "2021-08-19"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+```
+
+> Complete questions 2.1-2.5, 2.8, 2.9, 2.14, 2.17, and 2.22.
+
+
+
+## Setup
+
+```{r}
+# Packages, data, settings, globals, etc.
+```
+
+
+## Question 1
+
+**Posterior inference: suppose you have a $\text{Beta}(4,4)$ prior distribution on the probability $\theta$ that a coint will yield a 'head' when spun.**
+**The coin is spun 10 times and 'heads' appear *fewer* than 3 times.**
+**Calculate the exact posterior density for $\theta$ and sketch it.**
+
+prior: $\text{Beta}(4,4)$
+
+data: $y = 0 \text{ or } 1 \text{ or } 2$
+
+- if $y=2$: $p(\theta | y=2) = \text{Beta}(4+2, 4+8)$
+- if $y=1$: $p(\theta | y=1) = \text{Beta}(4+1, 4+9)$
+- if $y=0$: $p(\theta | y=0) = \text{Beta}(4+0, 4+10)$
+
+$p(\theta|y) = \frac{1}{3} \text{Beta}(6, 12) + \frac{1}{3} \text{Beta}(5, 13) + \frac{1}{3} \text{Beta}4, 14)$
+
+```{r}
+theta <- seq(0, 1, 0.01)
+prob_density <- (dbeta(theta, 6, 12) + dbeta(theta, 5, 13) + dbeta(theta, 4, 14)) / 3
+plot(
+  theta,
+  prob_density,
+  type = "l",
+  xlab = "theta",
+  ylab = "probability",
+  ylim = c(0, max(prob_density) * 1.02),
+  yaxs = "i"
+)
+```
+
+## Question 2
+
+**Predictive distributions: consider two coins $C_1$ and $C_2$ with the following characteristics: $\Pr(\text{heads} | C_1) = 0.6$ and $\Pr(\text{heads} | C_2) = 0.4$.**
+**Choose one of the coins at random and spin it.**
+**Given that the first two spins are tails, what is the expectation of the number of additional spins until a heads?**
+
+Find the probability of each coin given the data and use those as "weights" for the expected number of spins to get heads.
+
+$$
+p(C_1|y) = \frac{p(C_1) p(y|C_1)}{p(y)} \\
+p(C_1) = \frac{1}{2} \\
+p(y|C_1) = (1-0.6)^2 = 0.4^2 = \frac{16}{100} \\
+p(y) =  \frac{1}{2} \frac{16}{100} + \frac{1}{2} \frac{36}{100} \\
+p(C_1|y) = \frac{\frac{1}{2} \frac{16}{100}}{\frac{1}{2} \frac{16}{100} + \frac{1}{2} \frac{36}{100}} = \frac{8}{26}
+$$
+Same cacuation for $p(C_2|y)$ resulting in $p(C_2|y) = \frac{18}{26}$.
+
+Expected number $n$ of coin spins until get heads given the probability of getting heads $\theta$:
+
+$$
+\text{E}(n|\theta) = 1 \theta + 2(1-\theta)\theta + 3(1 - \theta)^2 \theta + \dots = \frac{1}{\theta}
+$$
+
+Thus
+
+$$
+\begin{aligned}
+\text{E}(n|y) &= p(C_1|y) \text{E}(n|C_1,y) + p(C_2|y) \text{E}(n|C_2,y) \\
+&= \frac{8}{26} \frac{1}{0.6} + \frac{18}{26} \frac{1}{0.4} \\
+&= 2.24
+\end{aligned}
+$$
