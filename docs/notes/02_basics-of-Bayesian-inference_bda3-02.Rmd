@@ -144,9 +144,8 @@ $$
     - integrate over all possible values of $\theta$: $p(\hat{y} = 1|y, n, M) = \int_0^1 p(\hat{y}=1| \theta, y, n, M) p(\theta|y, n, M)d\theta$
       - "integrate out the uncertainty over $\theta$"
 - prior predictive for new data $\hat{y}$: $p(\hat{y} =1|M) = int_0^1 p(\hat{y}=1|\theta,y,n,M)p(\theta|M)$
-    
+
 #### Priors and prior information
 
 - conjugate priors do not result in any computational benefits in HMC or NUTS
   - can be useful to analytically reduce the size of a model, beforehand, though
-  

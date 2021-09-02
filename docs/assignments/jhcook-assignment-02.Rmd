@@ -43,7 +43,7 @@ print(paste("Prop. of 1's:", round(mean(algae), 3)))
 
 1. likelihood: $p(y|\pi) = \text{Beta}(44, 274-44)$
 2. prior: $p(\pi) = \text{Beta}(2, 10)$
-3. posterior: $p(\pi|y) = \text{Beta}(46, 240)$ 
+3. posterior: $p(\pi|y) = \text{Beta}(46, 240)$
 
 **b) What can you say about the value of the unknown \pi according to the observations and your prior knowledge?**
 **Summarize your results with a point estimate (i.e. $E(\pi|y)$) and a 90% posterior interval.**

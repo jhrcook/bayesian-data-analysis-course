@@ -1,0 +1,29 @@
+---
+title: "Chapter N Exercises"
+date: "2021-08-19"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
+rfiles <- list.files(here::here("src"), full.names = TRUE, pattern = "R$")
+for (rfile in rfiles) {
+  source(rfile)
+}
+```
+
+> Complete questions ...
+
+## Setup
+
+```{r setup-show, message=FALSE, warning=FALSE}
+# Packages, data, settings, globals, etc.
+```
+
+
+## Question 1
+
+**Type out the question here...**
+
+**a) If there are multiple parts...**

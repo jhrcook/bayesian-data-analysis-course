@@ -22,6 +22,8 @@ navbar:
       menu:
         - text: "Chapter 1"
           href: book-exercises/bda-exercises-01.html
+        - text: "Chapter 2"
+          href: book-exercises/bda-exercises-02.html
     - text: "Assignments"
       menu:
         - text: "Assignment 1"
