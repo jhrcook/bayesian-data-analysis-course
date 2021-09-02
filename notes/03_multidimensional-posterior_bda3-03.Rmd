@@ -1,0 +1,30 @@
+---
+title: "03. Multidimensional Posterior"
+date: "2021-09-02"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
+
+## Resources
+
+- BDA3 chapter 1 and [reading instructions](../reading-instructions/BDA3_ch03_reading-instructions.pdf)
+- lectures:
+  - ['Lecture 3. Multiparameter models, joint, marginal and conditional distribution, normal model, bioassay example, grid sampling and grid evaluation'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ab958b4b-e2c4-4534-8305-aad100ba191f)
+- [slides](../slides/slides_ch3.pdf)
+- [Assignment 3](assignments/assignment-03.pdf)
+
+## Notes
+
+### Reading instructions
+
+- the trace of a square matrix $tr(A)$ is the sum of the diagonals
+  - the following property is used in derivation of 3.11: $tr(ABC) = tr(CAB) = tr(BCA)$
+
+### Chapter 3. Introduction to multiparameter models
+
+-
+
+### Lecture notes
