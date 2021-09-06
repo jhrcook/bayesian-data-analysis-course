@@ -44,6 +44,8 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 2. write the posterior density: $p(\theta|y) \propto p(\theta) p(y|\theta)$$
 3. estimate the parameters $\theta$ (e.g. using MLE)
 4. draw simulations $\theta^1, \dots, \theta^S$ for the posterior distribution (using the results of 3 as a starting point); use the samples to compute any other functions of $\theta$ that are of interest
-5. if any preditive quantities $\tilde{y}$ are of interest, simulate $\tilde{y}^1, \dots, \tilde{y}^S$ from $p(\tilde{y} | \theta^s)$
+5. if any predictive quantities $\tilde{y}$ are of interest, simulate $\tilde{y}^1, \dots, \tilde{y}^S$ from $p(\tilde{y} | \theta^s)$
 
 ### Lecture notes
+
+(No extra notes were taken — some comments added directly to slides.)
