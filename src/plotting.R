@@ -1,6 +1,6 @@
 
 
-plot_dist <- function(x, y, xlab, ylab) {
+plot_dist <- function(x, y, xlab, ylab, ...) {
   plot(
     x,
     y,
@@ -8,6 +8,7 @@ plot_dist <- function(x, y, xlab, ylab) {
     xlab = xlab,
     ylab = ylab,
     ylim = c(0, max(y) * 1.02),
-    yaxs = "i"
+    yaxs = "i",
+    ...
   )
 }

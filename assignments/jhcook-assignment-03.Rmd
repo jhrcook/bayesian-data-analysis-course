@@ -1,0 +1,284 @@
+---
+title: "Assignment 3"
+date: "2021-09-07"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
+for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
+  source(f)
+}
+```
+
+## Setup
+
+```{r}
+library(glue)
+library(tidyverse)
+
+theme_set(theme_bw() + theme(plot.title = element_text(hjust = 0.5)))
+
+set.seed(748)
+```
+
+**[Assignment 3](assignments/assignment-03.pdf)**
+
+## Exercise 1
+
+**A factory produces car windshields and we have sample of data from testing their hardness.**
+**Assume the observations follow a normal distribution with unknown standard deviation.**
+**Also use an uninformative prior $p(\mu, \sigma) \propto \sigma^{-1}$.**
+
+```{r}
+windshieldy <- readLines(here::here("data", "windshieldy1.txt"))
+windshieldy <- as.numeric(windshieldy)
+windshieldy_test <- c(13.357, 14.928, 14.896, 14.820)
+```
+
+**a) What can you say about the unknown $\mu$?**
+**Summarize your results using Bayesian point estimate (i.e. $E(\mu|y)$), a posterior interval (95%), and plot the density.**
+
+The point estimate and 95% CI for $\mu$ can be calculated using the $t$-distribution and scaling the result according to the following equation for BDA3 (pg. 66):
+
+$$
+\frac{\mu - \bar{y}}{s / \sqrt{n}} | y \sim t_{n-1}
+$$
+where
+
+$$
+s = \frac{1}{n-1} \Sigma(y - \bar{y})^2
+$$
+
+and $n$ is the total number of data points.
+
+```{r}
+calc_s_statistic <- function(a) {
+  s_sqr <- (1 / (length(a) - 1)) * sum((a - mean(a))^2)
+  return(sqrt(s_sqr))
+}
+
+mu_point_est <- function(data, q = 0.5) {
+  y <- data
+  n <- length(y)
+  y_bar <- mean(y)
+  s <- calc_s_statistic(y)
+  t_prob <- qt(q, df = n - 1)
+  return(t_prob * s / sqrt(n) + y_bar)
+}
+
+
+stopifnot(close_to(mu_point_est(data = windshieldy_test), 14.5))
+mu_point_est(data = windshieldy)
+```
+
+```{r}
+mu_interval <- function(data, prob = 0.95) {
+  lower_q <- (1 - prob) / 2.0
+  upper_q <- 1 - lower_q
+  return(c(mu_point_est(data, lower_q), mu_point_est(data, upper_q)))
+}
+
+stopifnot(all(close_to(
+  mu_interval(data = windshieldy_test, prob = 0.95),
+  c(13.3, 15.7),
+  epsilon = 0.1
+)))
+mu_interval(data = windshieldy)
+```
+
+The probability density function of $\mu$ can be estimated using the same equations.
+The PDF is plotted below.
+
+```{r}
+mu_density <- function(mu, data) {
+  y <- data
+  n <- length(y)
+  y_bar <- mean(y)
+  s <- calc_s_statistic(y)
+  mu_trans <- (mu - y_bar) / (s / sqrt(n))
+  d <- dt(mu_trans, df = n - 1)
+  return(d)
+}
+
+mus <- seq(11.5, 17.5, 0.01)
+mu_dens <- purrr::map_dbl(mus, ~ mu_density(.x, windshieldy))
+plot_dist(
+  mus,
+  mu_dens,
+  xlab = "mu",
+  ylab = "probability",
+  main = "posterior distribution of mu"
+)
+```
+
+The PDF for $\sigma$ can be calculated analytically from equation 3.5 in BDA (pg. 65).
+
+$$
+\sigma^2 | y \sim \text{Inv-}\chi^2(n-1, s^2)
+$$
+where $n$ and $s$ have the same description as above.
+The $\text{Inv-}\chi^2(\nu, s^2)$ distribtuion is the scaled inverse chi-squared distribution parameterized by the degrees of freedom $\nu$ and scale $s$ (BDA3, Appendix A, pg. 578).
+I used the function `dinvchisq()` from the package ['LaplacesDemon'](https://CRAN.R-project.org/package=LaplacesDemon) to calculate the probabilities of values of $\sigma^2$.
+The PDF for $sigma^2$ is plotted below.
+
+```{r}
+sigma_probability <- function(x, data) {
+  nu <- length(data) - 1
+  s <- calc_s_statistic(data)
+  d <- LaplacesDemon::dinvchisq(x = x, df = nu, scale = s)
+  return(d)
+}
+
+sigmas <- seq(0, 10.0, 0.01)
+sigmas <- sigmas[2:length(sigmas)]
+sigma_dens <- purrr::map_dbl(sigmas, ~ sigma_probability(.x, windshieldy))
+plot_dist(
+  sigmas,
+  sigma_dens,
+  xlab = "sigma^2",
+  ylab = "probability",
+  main = "posterior distribution of sigma^2"
+)
+```
+
+**b) What can you say about the hardness of the next windshield coming from the production line before actually measuring the hardness?**
+**Summarize your results using Bayesian point estimate, a predictive interval (95%), and plot the density.**
+
+Random values of $\mu$ can be sampled from the $t$-distribution (and transformed as explained above) and samples for $\sigma^2$ can be sampled from the $\text{Inv-}\chi^2$ distribution.
+Another option for sampling $\sigma^2$ is to first sample values $X$ from the $\chi_\nu^2$ distribution and transform them by $\nu s^2 / X$ (BDA3, Appendix A, pg. 583).
+
+The posterior predictive sampling procedure was to sample 1,000 random values for $\mu$ and $\sigma$ then sample a random value from a normal distribution described with each pair of the random values.
+
+```{r}
+random_mu <- function(n, data) {
+  y <- data
+  nu <- length(y)
+  y_bar <- mean(y)
+  s <- calc_s_statistic(y)
+  r <- rt(n, df = nu)
+  return(r * s / sqrt(nu) + y_bar)
+}
+
+scaled_rinvchiq <- function(n, data) {
+  nu <- length(data) - 1
+  s <- calc_s_statistic(data)
+  theta <- LaplacesDemon::rinvchisq(n = n, df = nu, scale = s)
+  return(theta)
+}
+
+n <- 1e4
+r_sigmas_sqrd <- scaled_rinvchiq(n, data = windshieldy)
+r_mus <- random_mu(n, data = windshieldy)
+y_tildes <- rnorm(n, mean = r_mus, sd = sqrt(r_sigmas_sqrd))
+```
+
+The plot below shows 100 of the randomly created normal distributions form the sampled values of $\mu$ and $\sigma$.
+
+```{r}
+get_densities_over_x <- function(mu, sigma, a = 10, b = 20, stepsize = 0.1) {
+  x <- seq(a, b, stepsize)
+  y <- dnorm(x, mean = mu, sd = sigma)
+  return(tibble(x, y))
+}
+
+plot_n <- 100
+tibble(sigma = head(sqrt(r_sigmas_sqrd), n = plot_n), mu = head(r_mus, n = plot_n)) %>%
+  mutate(
+    grp = glue("mu = {round(mu, 2)}, sigma = {round(sigma, 2)}"),
+    dist_data = purrr::map2(mu, sigma, get_densities_over_x)
+  ) %>%
+  unnest(dist_data) %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_line(aes(group = grp), alpha = 0.25) +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.02))) +
+  labs(
+    x = "windshield hardness",
+    y = "probability",
+    title = "Posterior distributions for the hardness of windshield"
+  )
+```
+
+The density of the posterior samples for $\mu$ and $\sigma$ is shown in the plot below.
+
+```{r}
+post_pred_df <- tibble(mu = r_mus, sigma = sqrt(r_sigmas_sqrd), y_tilde = y_tildes)
+post_pred_df %>%
+  ggplot(aes(x = mu, y = sigma)) +
+  geom_point(alpha = 0.5, size = 0.2) +
+  geom_density2d() +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.02))) +
+  scale_y_continuous(expand = expansion(mult = c(0.02, 0.02))) +
+  labs(title = "Posterior samples for distribution parameters")
+```
+
+Finally, the following is the posterior predictive distribution.
+
+```{r}
+post_pred_df %>%
+  add_column(grp = "y_tilde") %>%
+  bind_rows(tibble(y_tilde = windshieldy, grp = "y")) %>%
+  ggplot(aes(x = y_tilde)) +
+  geom_rug(aes(x = y), data = tibble(y = windshieldy)) +
+  geom_density(aes(color = grp)) +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.02))) +
+  scale_color_brewer(type = "qual", palette = "Set1") +
+  labs(
+    x = "windshield hardness",
+    y = "density",
+    color = NULL,
+    title = "Posterior predicitive distribution"
+  )
+```
+
+Using the functions created above, I can address the specific tests provided with the question.
+It would be better to provide an analytic solution by integrating over the probability densities of $\sigma$ and $\mu$, but these sampling-based solutions are pretty close.
+
+```{r}
+post_pred_sample <- function(data, n) {
+  mu <- random_mu(n, data = data)
+  sigma <- sqrt(scaled_rinvchiq(n, data = data))
+  purrr::map2_dbl(mu, sigma, ~ rnorm(1, mean = .x, sd = .y))
+}
+
+mu_pred_point_est <- function(data, n = 1e6, iters = 5) {
+  lapply(
+    seq(1, iters),
+    function(x) {
+      mean(post_pred_sample(data = data, n = n))
+    }
+  ) %>%
+    unlist() %>%
+    mean()
+}
+
+mu_pred_interval <- function(data, prob, n = 1e7) {
+  lower_q <- (1.0 - prob) / 2.0
+  upper_q <- 1.0 - lower_q
+  post_pred_samples <- post_pred_sample(data = data, n = n)
+  quantile(post_pred_samples, c(lower_q, upper_q))
+}
+
+stopifnot(close_to(
+  mu_pred_point_est(data = windshieldy_test), 14.5,
+  epsilon = 0.1
+))
+stopifnot(all(close_to(
+  mu_pred_interval(data = windshieldy_test, prob = 0.95),
+  c(11.8, 17.2),
+  epsilon = 0.5
+)))
+```
+
+```{r}
+mu_pred_point_est(data = windshieldy)
+```
+
+```{r}
+mu_pred_interval(data = windshieldy, prob = 0.95)
+```
+
+## Exercise 2
