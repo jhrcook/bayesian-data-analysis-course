@@ -184,7 +184,10 @@ get_densities_over_x <- function(mu, sigma, a = 10, b = 20, stepsize = 0.1) {
 }
 
 plot_n <- 100
-tibble(sigma = head(sqrt(r_sigmas_sqrd), n = plot_n), mu = head(r_mus, n = plot_n)) %>%
+tibble(
+  sigma = head(sqrt(r_sigmas_sqrd), n = plot_n),
+  mu = head(r_mus, n = plot_n)
+) %>%
   mutate(
     grp = glue("mu = {round(mu, 2)}, sigma = {round(sigma, 2)}"),
     dist_data = purrr::map2(mu, sigma, get_densities_over_x)
@@ -204,7 +207,10 @@ tibble(sigma = head(sqrt(r_sigmas_sqrd), n = plot_n), mu = head(r_mus, n = plot_
 The density of the posterior samples for $\mu$ and $\sigma$ is shown in the plot below.
 
 ```{r}
-post_pred_df <- tibble(mu = r_mus, sigma = sqrt(r_sigmas_sqrd), y_tilde = y_tildes)
+post_pred_df <- tibble(
+  mu = r_mus, sigma = sqrt(r_sigmas_sqrd), y_tilde = y_tildes
+)
+
 post_pred_df %>%
   ggplot(aes(x = mu, y = sigma)) +
   geom_point(alpha = 0.5, size = 0.2) +
@@ -282,3 +288,160 @@ mu_pred_interval(data = windshieldy, prob = 0.95)
 ```
 
 ## Exercise 2
+
+**An experiment was performed to estimate the effect of beta-blockers on mortality of cardiac patients.**
+**A group of patients was randomly assigned to treatment and control groups: out of 674 patients receiving the control, 39 died, and out of 680 receiving the treatment, 22 died.**
+**Assume that the outcomes are independent and binomially distributed, with probabilities of death of $p_0$ and $p_1$ under the control and treatment, respectively.**
+**Set up a noninformative or weakly informative prior distribution on $(p_0,p_1)$.**
+
+**a) Summarize the posterior distribution for the odds ratio, $\frac{p_1 / (1-p_1)}{p_0 / (1-p_0)}$.**
+**Compute the point estimate, a posterior interval (95%), and plot the histogram.**
+
+
+priors: $p_0, p_1 \sim \text{Beta}(2, 5)$
+
+```{r}
+x <- seq(0, 1, 0.01)
+p <- dbeta(x, 2, 5)
+plot_dist(
+  x = x,
+  y = p,
+  xlab = "proportion",
+  ylab = "probability",
+  main = "Prior distribution for p0, p1 ~ Beta(2, 5)"
+)
+```
+
+likelihoods:
+
+- $y_0|p_0, n_0 \sim \text{Binomial}(p_0, n_0)$
+- $y_1|p_1, n_1 \sim \text{Binomial}(p_1, n_1)$
+
+posteriors:
+
+- $p_0|y_0, n_0 \sim \text{Beta}(y_0 + 2, n_0 - y_0 + 5)$
+- $p_1|y_1, n_1 \sim \text{Beta}(y_1 + 2, n_1 - y_1 + 5)$
+
+```{r}
+posterior_odds_ratio <- function(p0, p1) {
+  or <- (p1 / (1 - p1)) / (p0 / (1 - p0))
+  return(or)
+}
+```
+
+```{r}
+posterior_odds_ratio_point_est <- function(p0, p1) {
+  return(mean(posterior_odds_ratio(p0, p1)))
+}
+```
+
+```{r}
+posterior_odds_ratio_interval <- function(p0, p1, prob = 0.95) {
+  lower_q <- (1.0 - prob) / 2.0
+  upper_q <- 1.0 - lower_q
+  or <- posterior_odds_ratio(p0, p1)
+  return(quantile(or, c(lower_q, upper_q)))
+}
+```
+
+```{r}
+# test data
+set.seed(4711)
+p0 <- rbeta(100000, 5, 95)
+p1 <- rbeta(100000, 10, 90)
+stopifnot(close_to(
+  posterior_odds_ratio_point_est(p0 = p0, p1 = p1), 2.676,
+  epsilon = 0.01
+))
+stopifnot(all(close_to(
+  posterior_odds_ratio_interval(p0 = p0, p1 = p1, prob = 0.9),
+  c(0.875, 6.059),
+  epsilon = 0.01
+)))
+```
+
+```{r}
+n0 <- 674
+y0 <- 39
+n1 <- 680
+y1 <- 22
+
+prior_a <- 2
+prior_b <- 5
+
+sample_posterior_p <- function(prior_a, prior_b, y, n, draws = 1e6) {
+  a <- prior_a + y
+  b <- prior_b + n - y
+  return(rbeta(draws, a, b))
+}
+
+p0_post <- sample_posterior_p(prior_a, prior_b, y = y0, n = n0)
+p1_post <- sample_posterior_p(prior_a, prior_b, y = y1, n = n1)
+post_or <- posterior_odds_ratio(p0_post, p1_post)
+```
+
+```{r}
+plot_two_distributions(p0_post, "p0", p1_post, "p1") +
+  labs(
+    x = "parameter value",
+    y = "density",
+    color = "parameter",
+    fill = "parameter"
+  )
+```
+
+```{r}
+plot_single_distribution(post_or) +
+  labs(x = "odds ratio", y = "density")
+```
+
+**b) Discuss the sensitivity of your inference to your choice of prior density with a couple of sentences.**
+
+```{r}
+# Non-informative priors
+prior_a <- 1
+prior_b <- 1
+
+sample_posterior_p <- function(prior_a, prior_b, y, n, draws = 1e6) {
+  a <- prior_a + y
+  b <- prior_b + n - y
+  return(rbeta(draws, a, b))
+}
+
+p0_post_noinfo <- sample_posterior_p(prior_a, prior_b, y = y0, n = n0)
+p1_post_noinfo <- sample_posterior_p(prior_a, prior_b, y = y1, n = n1)
+post_or_noinfo <- posterior_odds_ratio(p0_post_noinfo, p1_post_noinfo)
+
+plot_single_distribution(post_or_noinfo)
+```
+
+```{r}
+plot_two_distributions(post_or, "weakly info.", post_or_noinfo, "non-info.") +
+  labs(x = "odds ratio", y = "density", color = "prior", fill = "prior")
+```
+
+The difference in influence on the posterior inference between a weakly informative prior $\text{Beta}(2, 5)$ and non-informative, uniform prior $\text{Beta}(1, 1)$ is negligible.
+The large number of data points overwhelms the prior's influence.
+
+This can be tested by experimenting with a very strong prior $\text{Beta}(1000, 5)$, as shown below.
+
+```{r}
+# Strong priors
+prior_a <- 1000
+prior_b <- 5
+
+sample_posterior_p <- function(prior_a, prior_b, y, n, draws = 1e6) {
+  a <- prior_a + y
+  b <- prior_b + n - y
+  return(rbeta(draws, a, b))
+}
+
+p0_post_strong <- sample_posterior_p(prior_a, prior_b, y = y0, n = n0)
+p1_post_strong <- sample_posterior_p(prior_a, prior_b, y = y1, n = n1)
+post_or_strong <- posterior_odds_ratio(p0_post_strong, p1_post_strong)
+
+plot_two_distributions(post_or, "weakly info.", post_or_strong, "strong") +
+  labs(x = "odds ratio", y = "density", color = "prior", fill = "prior")
+```
+
+## Exercise 3
