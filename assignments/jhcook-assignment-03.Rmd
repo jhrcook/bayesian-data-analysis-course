@@ -25,14 +25,14 @@ set.seed(748)
 
 **[Assignment 3](assignments/assignment-03.pdf)**
 
-## Exercise 1
+## Exercise 1. Inference for normal mean and deviation
 
 **A factory produces car windshields and we have sample of data from testing their hardness.**
 **Assume the observations follow a normal distribution with unknown standard deviation.**
 **Also use an uninformative prior $p(\mu, \sigma) \propto \sigma^{-1}$.**
 
 ```{r}
-windshieldy <- readLines(here::here("data", "windshieldy1.txt"))
+windshieldy <- read_data("windshieldy1.txt")
 windshieldy <- as.numeric(windshieldy)
 windshieldy_test <- c(13.357, 14.928, 14.896, 14.820)
 ```
@@ -287,7 +287,7 @@ mu_pred_point_est(data = windshieldy)
 mu_pred_interval(data = windshieldy, prob = 0.95)
 ```
 
-## Exercise 2
+## Exercise 2. Inference for the difference between proportions
 
 **An experiment was performed to estimate the effect of beta-blockers on mortality of cardiac patients.**
 **A group of patients was randomly assigned to treatment and control groups: out of 674 patients receiving the control, 39 died, and out of 680 receiving the treatment, 22 died.**
@@ -444,4 +444,85 @@ plot_two_distributions(post_or, "weakly info.", post_or_strong, "strong") +
   labs(x = "odds ratio", y = "density", color = "prior", fill = "prior")
 ```
 
-## Exercise 3
+## Exercise 3. Inference for the difference between normal means
+
+**Consider a case where the same factory has two production lines for manufacturing car windshields.**
+**Independent samples from the two production lines were tested for hardness.**
+**We assume that the samples have unknown standard deviations $\sigma_1$ and $\sigma_2$.**
+**Use uninformative or weakly informative priors.**
+
+```{r}
+windshieldy1 <- read_data("windshieldy1.txt") %>% as.numeric()
+windshieldy2 <- read_data("windshieldy2.txt") %>% as.numeric()
+```
+
+**a) What can you say about $\mu_d = \mu_1 - \mu_2$?**
+
+```{r}
+mus <- seq(11.5, 17.5, 0.01)
+mu1_dens <- purrr::map_dbl(mus, ~ mu_density(.x, windshieldy1))
+mu2_dens <- purrr::map_dbl(mus, ~ mu_density(.x, windshieldy2))
+```
+
+```{r}
+data_tibble <- tibble(
+  prod_line = c(rep("1", length(windshieldy1)), rep("2", length(windshieldy2))),
+  y = c(windshieldy1, windshieldy2)
+)
+
+tibble(
+  mu = c(mus, mus),
+  prob = c(mu1_dens, mu2_dens),
+  prod_line = c(rep("1", length(mu1_dens)), rep("2", length(mu2_dens)))
+) %>%
+  ggplot() +
+  geom_line(aes(x = mu, y = prob, color = prod_line)) +
+  geom_rug(aes(x = y, color = prod_line), data = data_tibble, size = 1.2) +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "windshield hardness", y = "probability", color = "production line")
+```
+
+```{r}
+n <- 1e6
+mu1_draws <- random_mu(n, data = windshieldy1)
+mu2_draws <- random_mu(n, data = windshieldy2)
+mud_draws <- mu1_draws - mu2_draws
+
+plot_single_distribution(mud_draws) +
+  theme(axis.title.x = ggtext::element_markdown()) +
+  labs(x = "µ<sub>d</sub>", y = "probability density")
+```
+
+```{r}
+glue(
+  "point estimate for µ_d as mean of posterior = {round(mean(mud_draws), 3)}"
+)
+```
+
+```{r}
+mud_95ci <- round(quantile(mud_draws, c(0.025, 0.975)), 3)
+glue("95% CI of posterior for µ_d: {mud_95ci[[1]]}, {mud_95ci[[2]]}")
+```
+
+```{r}
+prob_mud_neg <- mean(mud_draws < 0)
+glue("Pr(µ1 < µ2) = {round(prob_mud_neg, 3)}")
+```
+
+**b) Given the model used, what is the probability that the means are exactly the same ($\mu_1 = \mu_2$)? Explain your reasoning.**
+
+The probability that $\mu_1 = \mu_2$ is technically 0 because we cannot compute the probability of individual values.
+Instead, we can define a region of practical equivalence (ROPE) that represents a range of values where we would say the values are effectively the same.
+Ideally, we would ask someone with domain expertise to devise a region based on the real-world meaning of the values, but, in this example with windshield hardness, that is not possible.
+Thus, I will define the ROPE to be 1% of the standard deviation of the observed hardness measurements: $0.01 \times \sigma(y_1, y_2)$.
+
+```{r}
+rope <- sd(c(windshieldy1, windshieldy2)) * 0.01
+rope
+```
+
+```{r}
+prob_rope <- mean((mud_draws > -rope) & (mud_draws < rope))
+glue("probability that µd is within the ROPE: {round(prob_rope, 3)}")
+```
