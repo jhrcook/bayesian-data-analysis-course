@@ -20,6 +20,8 @@ navbar:
           href: notes/02_basics-of-Bayesian-inference_bda3-02.html
         - text: "Section 3. Multidimensional posterior"
           href: notes/03_multidimensional-posterior_bda3-03.html
+        - text: "Section 4. Monte Carlo"
+          href: notes/04_monte-carlo_bda3-10.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
@@ -34,6 +36,8 @@ navbar:
           href: assignments/jhcook-assignment-02.html
         - text: "Assignment 3"
           href: assignments/jhcook-assignment-03.html
+        - text: "Assignment 4"
+          href: assignments/jhcook-assignment-04.html
     - text: "About"
       href: about.html
 output: distill::distill_article

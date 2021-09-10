@@ -1,0 +1,30 @@
+---
+title: "04. Monte Carlo"
+date: "2021-09-10"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
+
+## Resources
+
+- BDA3 chapter 10 and [reading instructions](../reading-instructions/BDA3_ch10_reading-instructions.pdf)
+- lectures:
+  - ['Numerical issues, Monte Carlo, how many simulation draws are needed, how many digits to report'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=8a3c7bbc-e2b8-4c16-97b2-aad800ba7927)
+  - ['Direct simulation, curse of dimensionality, rejection sampling, and importance sampling'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=44446861-eaa2-41b5-bf33-aad800caf18a)
+- [slides](../slides/slides_ch10.pdf)
+- [Assignment 1](assignments/assignment-04.pdf)
+
+## Notes
+
+### Reading instructions
+
+- notes from the reading instructions
+
+### Chapter N. Chapter title
+
+- notes from the book
+
+### Lecture notes
