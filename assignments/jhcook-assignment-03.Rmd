@@ -119,7 +119,7 @@ $$
 \sigma^2 | y \sim \text{Inv-}\chi^2(n-1, s^2)
 $$
 where $n$ and $s$ have the same description as above.
-The $\text{Inv-}\chi^2(\nu, s^2)$ distribtuion is the scaled inverse chi-squared distribution parameterized by the degrees of freedom $\nu$ and scale $s$ (BDA3, Appendix A, pg. 578).
+The $\text{Inv-}\chi^2(\nu, s^2)$ distribution is the scaled inverse chi-squared distribution parameterized by the degrees of freedom $\nu$ and scale $s$ (BDA3, Appendix A, pg. 578).
 I used the function `dinvchisq()` from the package ['LaplacesDemon'](https://CRAN.R-project.org/package=LaplacesDemon) to calculate the probabilities of values of $\sigma^2$.
 The PDF for $sigma^2$ is plotted below.
 
@@ -292,11 +292,10 @@ mu_pred_interval(data = windshieldy, prob = 0.95)
 **An experiment was performed to estimate the effect of beta-blockers on mortality of cardiac patients.**
 **A group of patients was randomly assigned to treatment and control groups: out of 674 patients receiving the control, 39 died, and out of 680 receiving the treatment, 22 died.**
 **Assume that the outcomes are independent and binomially distributed, with probabilities of death of $p_0$ and $p_1$ under the control and treatment, respectively.**
-**Set up a noninformative or weakly informative prior distribution on $(p_0,p_1)$.**
+**Set up a non-informative or weakly informative prior distribution on $(p_0,p_1)$.**
 
 **a) Summarize the posterior distribution for the odds ratio, $\frac{p_1 / (1-p_1)}{p_0 / (1-p_0)}$.**
 **Compute the point estimate, a posterior interval (95%), and plot the histogram.**
-
 
 priors: $p_0, p_1 \sim \text{Beta}(2, 5)$
 
@@ -323,6 +322,7 @@ posteriors:
 - $p_1|y_1, n_1 \sim \text{Beta}(y_1 + 2, n_1 - y_1 + 5)$
 
 ```{r}
+# Calculate the odds ratio given two values or vectors.
 posterior_odds_ratio <- function(p0, p1) {
   or <- (p1 / (1 - p1)) / (p0 / (1 - p0))
   return(or)
@@ -330,12 +330,14 @@ posterior_odds_ratio <- function(p0, p1) {
 ```
 
 ```{r}
+# Calculate a point estimate (mean) for the OR.
 posterior_odds_ratio_point_est <- function(p0, p1) {
   return(mean(posterior_odds_ratio(p0, p1)))
 }
 ```
 
 ```{r}
+# Find probability intervals for the posterior OR.
 posterior_odds_ratio_interval <- function(p0, p1, prob = 0.95) {
   lower_q <- (1.0 - prob) / 2.0
   upper_q <- 1.0 - lower_q
@@ -343,6 +345,8 @@ posterior_odds_ratio_interval <- function(p0, p1, prob = 0.95) {
   return(quantile(or, c(lower_q, upper_q)))
 }
 ```
+
+I can check my calculations and implementation using the test data provided with the exercise.
 
 ```{r}
 # test data
@@ -359,6 +363,10 @@ stopifnot(all(close_to(
   epsilon = 0.01
 )))
 ```
+
+Finally, I can address the question using the following values: $n_0= 674$, $y_0 = 39$, $n_1=680$, and $y_1 = 22$.
+I used a weakly informative prior $\text{Beta}(2, 5)$
+I first drew samples from the posteriors for $p_0$ and $p_1$ then used those to calculate the posterior for the odds ratio.
 
 ```{r}
 n0 <- 674
@@ -380,6 +388,9 @@ p1_post <- sample_posterior_p(prior_a, prior_b, y = y1, n = n1)
 post_or <- posterior_odds_ratio(p0_post, p1_post)
 ```
 
+The posterior distributions of $p_0$ and $p_1$ are shown below.
+From this plot, it appears that $p_1$ is likely lower than $p_0$ and we should expect an $OR < 1$.
+
 ```{r}
 plot_two_distributions(p0_post, "p0", p1_post, "p1") +
   labs(
@@ -389,6 +400,8 @@ plot_two_distributions(p0_post, "p0", p1_post, "p1") +
     fill = "parameter"
   )
 ```
+
+The posterior distribution for the odds ratio is plotted below and it is shifted primarily to values less than 1.
 
 ```{r}
 plot_single_distribution(post_or) +
@@ -458,6 +471,9 @@ windshieldy2 <- read_data("windshieldy2.txt") %>% as.numeric()
 
 **a) What can you say about $\mu_d = \mu_1 - \mu_2$?**
 
+I calculated $\mu_1$ and $\mu_2$ as in Exercise 1.
+The posterior distributions for these parameters is plotted below along with the actual observed values along the x-axis.
+
 ```{r}
 mus <- seq(11.5, 17.5, 0.01)
 mu1_dens <- purrr::map_dbl(mus, ~ mu_density(.x, windshieldy1))
@@ -483,6 +499,9 @@ tibble(
   labs(x = "windshield hardness", y = "probability", color = "production line")
 ```
 
+As before, I can sample from the posteriors of $\mu_1$ and $\mu_2$ and use these simulated values for further calculations, in this case $\mu_d = \mu_1 - \mu_2$.
+The distribution for $\mu_d$ is plotted below.
+
 ```{r}
 n <- 1e6
 mu1_draws <- random_mu(n, data = windshieldy1)
@@ -494,20 +513,26 @@ plot_single_distribution(mud_draws) +
   labs(x = "µ<sub>d</sub>", y = "probability density")
 ```
 
+Using the simulated posterior, I can get an estimate for the expected value of $\mu_d$ as the mean of the posterior distribution.
+
 ```{r}
 glue(
   "point estimate for µ_d as mean of posterior = {round(mean(mud_draws), 3)}"
 )
 ```
 
+I can also use the simulated values to get 95% CI of the posterior.
+
 ```{r}
 mud_95ci <- round(quantile(mud_draws, c(0.025, 0.975)), 3)
 glue("95% CI of posterior for µ_d: {mud_95ci[[1]]}, {mud_95ci[[2]]}")
 ```
 
+Lastly, I can calculate the probability that $\mu_1$ is less than $\mu_2$, i.e. $\mu_d < 0$.
+
 ```{r}
 prob_mud_neg <- mean(mud_draws < 0)
-glue("Pr(µ1 < µ2) = {round(prob_mud_neg, 3)}")
+glue("Pr(µ_1 < µ_2) = {round(prob_mud_neg, 3)}")
 ```
 
 **b) Given the model used, what is the probability that the means are exactly the same ($\mu_1 = \mu_2$)? Explain your reasoning.**
@@ -524,5 +549,5 @@ rope
 
 ```{r}
 prob_rope <- mean((mud_draws > -rope) & (mud_draws < rope))
-glue("probability that µd is within the ROPE: {round(prob_rope, 3)}")
+glue("probability that µ_d is within the ROPE: {round(prob_rope, 3)}")
 ```

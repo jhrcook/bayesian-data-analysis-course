@@ -14,10 +14,12 @@ navbar:
   right:
     - text: "Notes"
       menu:
-        - text: "Section 1"
+        - text: "Section 1. Introduction"
           href: notes/01_introduction_bda3-01.html
-        - text: "Section 2"
+        - text: "Section 2. Basics of Bayesian inference"
           href: notes/02_basics-of-Bayesian-inference_bda3-02.html
+        - text: "Section 3. Multidimensional posterior"
+          href: notes/03_multidimensional-posterior_bda3-03.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
@@ -30,6 +32,8 @@ navbar:
           href: assignments/jhcook-assignment-01.html
         - text: "Assignment 2"
           href: assignments/jhcook-assignment-02.html
+        - text: "Assignment 3"
+          href: assignments/jhcook-assignment-03.html
     - text: "About"
       href: about.html
 output: distill::distill_article
