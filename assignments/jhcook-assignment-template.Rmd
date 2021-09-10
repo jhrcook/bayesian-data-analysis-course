@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 # Load packages here.
 ```
 
-**[Assignment N](assignment-00.pdf)**
+**[Assignment N](assignments/assignment-00.pdf)**
 
 ## Exercise 1
 
