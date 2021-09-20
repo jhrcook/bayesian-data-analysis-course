@@ -21,10 +21,99 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 ### Reading instructions
 
-- notes from the reading instructions
+Overview of chapter sections:
 
-### Chapter N. Chapter title
+- 10.1 Numerical integration (overview)
+- 10.2 Distributional approximations (overview, more in Chapter 4 and 13)
+- 10.3 Direct simulation and rejection sampling (overview)
+- 10.4 Importance sampling (used in PSIS-LOO discussed later)
+- 10.5 How many simulation draws are needed? (Important! Ex 10.1 and 10.2) • 10.6 Software (can be skipped)
+- 10.7 Debugging (can be skipped)
 
-- notes from the book
+Other comments:
+
+- "Importance sampling is useful in importance sampling leave-one-out cross-validation (LOO-CV)" and Pareto smoothed importance sampling (PSIS-LOO).
+- "BDA3 p. 266 recommends importance resampling without replacement. At the time of writing that in 2013, we had less experience with importance sampling and there were some reasonable papers showing reduced variance doing resampling without replacement. We don’t recommend this anymore as Pareto smoothed importance sampling works better and is also applicable when the resample sample size is equal to the original sample size."
+
+### Chapter 10. Introduction to Bayesian computation
+
+- Bayesian computation revolves around 2 steps:
+  1. computing the posterior distribution $p(\theta|y)$
+  2. computing the posterior predictive distribution $p(\tilde{y}|y)$
+- this chapter summarizes statistical procedures for approximately evaluating integrals
+- define two distributions:
+  - *target distribution*: distribution to be simulated $p(\theta$|y)
+  - *unnormalized density*: distribution to be simulated $q(\theta$|y)
+    - $q(\theta|y)/p(\theta|y)$ is a constant only dependent on $y$
+    - thus, for Bayes theorem, use $p(\theta)p(y|\theta) \propto p(\theta|y)$
+- when possible, use log posterior densities to avoid computational over/underflows
+
+#### 10.1 Numerical integration
+
+- methods where the integral over a continuous function is evaluated by computing the value of the function at a finite number of points
+  - included simulation methods (such as Monte Carlo) and deterministic methods
+- posterior expectation of a function $h(\theta)$: $\text{E}(h(\theta)|y) = \int h(\theta) p(\theta|y) d\theta$
+  - thus can express any integral over $\theta$ as a posterior expectation by properly defining $h(\theta)$
+- simulation methods obtain random samples of $\theta^s$ from the target dist. $p(\theta)$ and estimate the expectation of and function $h(\theta)$:
+
+$$
+\text{E}(h(\theta)|y) = int h(\theta)p(\theta|y) d\theta \approx \frac{1}{S} \Sigma_{s=1}^S h(\theta^s)
+$$
+
+- Monte Carlo methods produce independent samples and are described in this chapter
+- Markov chain Monte Carlo methods better adapt to higher-dimensional, complex distributions, but produce dependent samples (discussed in chapter 11 and 12)
+
+#### 10.2 Distributional approximations
+
+- approx the posterior with a simpler parameter distribution
+  - can solve these integrals analytically or use them as starting points for simulation-based methods
+  - often useful to create a simpler model that can be solved analytically to get a approx for the original posterior
+
+#### 10.3 Direct simulation and rejection sampling
+
+- can often draw directly from the posterior distribution for simpler models
+  - otherwise, often good to factor the distribution analytically and simulate it in parts
+- *grid approximation*: compute the target density $p(\theta|y)$ at a set of evenly spaced values $\theta_1, \dots, \theta_N$ that cover the parameter space for $\theta$
+  - then normalize the samples by dividing over the sum of all probs.
+  - difficult for high-dimensional $\theta$
+- *rejection sampling*
+  - require a positive function $g(\theta)$ defined for all $\theta$ where the posterior is positive $p(\theta|y)>0$ and:
+    1. we can draw from the probability density proportional to $g$ and $g(\theta)$ has a finite integral
+    2. there must be a known upper bound $M$ on $\frac{p(\theta|y)}{g(\theta)} \le M \text{ } \forall \text{ } \theta$
+  - rejection sampling algorithm:
+    1. sample $\theta$ from the probability density proportional to $g(\theta)$
+    2. accept $\theta$ as a draw from $p$ with a probability $\frac{p(\theta|y)}{Mg(\theta)}$ (the *importance ratio*); if rejected, return to step 1
+- *the distribution of accepted $\theta$ is $p(\theta|y)$*
+- ideally $g \propto p$
+  - else, the bound for $M$ must be large to ensure the importance ratio in step 2 is $\frac{p(\theta|y)}{g(\theta)} \le M$, causing a lot of rejections in step 2 of the algorithm
+  - the function $g(\theta)$ is implicitly dependent on $y$, but that is not of interest so it is not reflected in the notation
+
+#### 10.4 Importance sampling
+
+- *importance sampling*: used for computing expectations using a random sample drawn from an approx to the target dist $p(\theta|y)$
+  - related to rejection sampling
+  - precursor to Metropolis algorithm in chapter 11
+- suppose we are interested in $\text{E}(h(\theta)|y)$, but cannot generate random draws of $\theta$ from $p(\theta|y)$:
+
+$$
+\begin{aligned}
+\text{E}(h(\theta)|y) &= \frac{\int h(\theta)p(\theta|y) d \theta}{\int q(\theta|y) d \theta} \\
+ &= \frac{\int [h(\theta) q(\theta|y) / g(\theta)] g(\theta) d \theta}{\int[q(\theta|y)/g(\theta)] g(\theta) d \theta}
+\end{aligned}
+$$
+
+which can be estimated using $S$ draws $\theta^1, \dots \theta^S$ from $g(\theta)$ by:
+
+$$
+\text{E}(h(\theta)|y) \approx \frac{\frac{1}{s} \Sigma^S h(\theta^s) w(\theta^s)}{\frac{1}{S} \Sigma^S w(\theta^s)} \text{ where } w(\theta^s) = \frac{q(\theta^s|y)}{g(\theta^s)}
+$$
+
+- $w(\theta^s)$ is the *importance ratio/weight*
+  - can run into problem if some weights are much larger than others
+  - diagnose by looking at histogram of weights or calculating effective sample size $1 / \Sigma^S (\tilde{w}(\theta^s))^s$ where $\tilde{w}$ are normalized weights
+- there is a variant called *importance resampling* that offers a fix to the problem of uneven weights, but it is no longer recommended (chapter notes)
+- importance sampling in Bayesian computation:
+  - obtain a starting point for iterative simulations of the posterior
+  - useful for LOO-CV where the original posterior is used as an approximation to the modified posterior dist
 
 ### Lecture notes
