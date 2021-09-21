@@ -1605,6 +1605,53 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li>useful for LOO-CV where the original posterior is used as an approximation to the modified posterior dist</li>
 </ul></li>
 </ul>
+<h4 id="how-many-simulation-draws-are-needed">10.5 How many simulation draws are needed?</h4>
+<ul>
+<li>goal: “…enough draws <span class="math inline">\(S\)</span> so that quantities of interest can be estimated with reasonable accuracy”
+<ul>
+<li>for most examples, <span class="math inline">\(S=100\)</span> <em>independent</em> draws are enough</li>
+<li>often convenient to have more draws for numerical stability of posterior summaries</li>
+</ul></li>
+<li>accuracy of estimates of <span class="math inline">\(\theta\)</span> as a normal distribution:
+<ul>
+<li>for <span class="math inline">\(\mu_\theta\)</span>, accuracy: <span class="math inline">\(\sigma_\theta / \sqrt{S}\)</span></li>
+<li>for <span class="math inline">\(\sigma_\theta\)</span>, accuracy: <span class="math inline">\(\sigma_\theta \sqrt{1 + 1/S}\)</span>
+<ul>
+<li>for <span class="math inline">\(S=100\)</span>, <span class="math inline">\(\sqrt{1 + 1/S} = 1.005\)</span> indicating that Monte Carlo error has little effect on the uncertainty</li>
+</ul></li>
+</ul></li>
+<li>for rare events:
+<ul>
+<li>ex: probability of very large differences between parameter values; may be 0 posterior draws, but doesn’t mean there is 0 probability</li>
+<li>can make more draws to have a non-zero number of rare events</li>
+<li><em>semi-analytically</em>
+<ol type="1">
+<li>use the draws to estimate the parameters of a <span class="math inline">\(\theta\)</span>’s posterior distribution</li>
+</ol>
+<ul>
+<li>ex: <span class="math inline">\(\mu_\theta\)</span> and <span class="math inline">\(\sigma_\theta\)</span> is <span class="math inline">\(\theta\)</span> is described as a normal distribution</li>
+</ul>
+<ol start="2" type="1">
+<li>use the described distribution to answer further questions</li>
+</ol></li>
+</ul></li>
+</ul>
+<h4 id="computing-environments">10.6 Computing environments</h4>
+<ul>
+<li>the <em>Stan</em> program is named after the mathematician Stanislaw Ulam</li>
+</ul>
+<h4 id="debugging-bayesian-computing">10.7 Debugging Bayesian computing</h4>
+<ul>
+<li>running multiple chains and checking for convergence and mixing</li>
+<li>debugging using fake data:
+<ol type="1">
+<li>pick a reasonable value as a “true” parameter vector <span class="math inline">\(\theta\)</span> (can sample from prior distributions unless too weak)</li>
+<li>if model is hierarchical, sample hyperparameters and use those for lower down values of <span class="math inline">\(\theta\)</span></li>
+<li>simulate a fake dataset <span class="math inline">\(y^{\text{fake}}\)</span> from the data distribution <span class="math inline">\(p(y|\theta)\)</span></li>
+<li>sample from the posterior <span class="math inline">\(p(\theta|y^{\text{fake}})\)</span></li>
+<li>compare estimated <span class="math inline">\(\theta\)</span> to known <span class="math inline">\(\theta\)</span></li>
+</ol></li>
+</ul>
 <h3 id="lecture-notes">Lecture notes</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

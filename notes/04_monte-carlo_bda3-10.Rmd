@@ -116,4 +116,35 @@ $$
   - obtain a starting point for iterative simulations of the posterior
   - useful for LOO-CV where the original posterior is used as an approximation to the modified posterior dist
 
+#### 10.5 How many simulation draws are needed?
+
+- goal: "...enough draws $S$ so that quantities of interest can be estimated with reasonable accuracy"
+  - for most examples, $S=100$ *independent* draws are enough
+  - often convenient to have more draws for numerical stability of posterior summaries
+- accuracy of estimates of $\theta$ as a normal distribution:
+  - for $\mu_\theta$, accuracy: $\sigma_\theta / \sqrt{S}$
+  - for $\sigma_\theta$, accuracy: $\sigma_\theta \sqrt{1 + 1/S}$
+    - for $S=100$, $\sqrt{1 + 1/S} = 1.005$ indicating that Monte Carlo error has little effect on the uncertainty
+- for rare events:
+  - ex: probability of very large differences between parameter values; may be 0 posterior draws, but doesn't mean there is 0 probability
+  - can make more draws to have a non-zero number of rare events
+  - *semi-analytically*
+    1. use the draws to estimate the parameters of a $\theta$'s posterior distribution
+      - ex: $\mu_\theta$ and $\sigma_\theta$ is $\theta$ is described as a normal distribution
+    2. use the described distribution to answer further questions
+
+#### 10.6 Computing environments
+
+- the *Stan* program is named after the mathematician Stanislaw Ulam
+
+#### 10.7 Debugging Bayesian computing
+
+- running multiple chains and checking for convergence and mixing
+- debugging using fake data:
+  1. pick a reasonable value as a "true" parameter vector $\theta$ (can sample from prior distributions unless too weak)
+  2. if model is hierarchical, sample hyperparameters and use those for lower down values of $\theta$
+  3. simulate a fake dataset $y^{\text{fake}}$ from the data distribution $p(y|\theta)$
+  4. sample from the posterior $p(\theta|y^{\text{fake}})$
+  5. compare estimated $\theta$ to known $\theta$
+
 ### Lecture notes
