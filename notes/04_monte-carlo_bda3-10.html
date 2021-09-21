@@ -1528,7 +1528,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li>simulation methods obtain random samples of <span class="math inline">\(\theta^s\)</span> from the target dist. <span class="math inline">\(p(\theta)\)</span> and estimate the expectation of and function <span class="math inline">\(h(\theta)\)</span>:</li>
 </ul>
 <p><span class="math display">\[
-\text{E}(h(\theta)|y) = int h(\theta)p(\theta|y) d\theta \approx \frac{1}{S} \Sigma_{s=1}^S h(\theta^s)
+\text{E}(h(\theta)|y) = int h(\theta)p(\theta|y) d\theta \approx \frac{1}{S} \sum_{s=1}^S h(\theta^s)
 \]</span></p>
 <ul>
 <li>Monte Carlo methods produce independent samples and are described in this chapter</li>
@@ -1590,13 +1590,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 \]</span></p>
 <p>which can be estimated using <span class="math inline">\(S\)</span> draws <span class="math inline">\(\theta^1, \dots \theta^S\)</span> from <span class="math inline">\(g(\theta)\)</span> by:</p>
 <p><span class="math display">\[
-\text{E}(h(\theta)|y) \approx \frac{\frac{1}{s} \Sigma^S h(\theta^s) w(\theta^s)}{\frac{1}{S} \Sigma^S w(\theta^s)} \text{ where } w(\theta^s) = \frac{q(\theta^s|y)}{g(\theta^s)}
+\text{E}(h(\theta)|y) \approx \frac{\frac{1}{s} \sum^S h(\theta^s) w(\theta^s)}{\frac{1}{S} \sum^S w(\theta^s)} \text{ where } w(\theta^s) = \frac{q(\theta^s|y)}{g(\theta^s)}
 \]</span></p>
 <ul>
 <li><span class="math inline">\(w(\theta^s)\)</span> is the <em>importance ratio/weight</em>
 <ul>
 <li>can run into problem if some weights are much larger than others</li>
-<li>diagnose by looking at histogram of weights or calculating effective sample size <span class="math inline">\(1 / \Sigma^S (\tilde{w}(\theta^s))^s\)</span> where <span class="math inline">\(\tilde{w}\)</span> are normalized weights</li>
+<li>diagnose by looking at histogram of weights or calculating effective sample size <span class="math inline">\(1 / \sum^S (\tilde{w}(\theta^s))^s\)</span> where <span class="math inline">\(\tilde{w}\)</span> are normalized weights</li>
 </ul></li>
 <li>there is a variant called <em>importance resampling</em> that offers a fix to the problem of uneven weights, but it is no longer recommended (chapter notes)</li>
 <li>importance sampling in Bayesian computation:
@@ -1614,8 +1614,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul></li>
 <li>accuracy of estimates of <span class="math inline">\(\theta\)</span> as a normal distribution:
 <ul>
-<li>for <span class="math inline">\(\mu_\theta\)</span>, accuracy: <span class="math inline">\(\sigma_\theta / \sqrt{S}\)</span></li>
-<li>for <span class="math inline">\(\sigma_\theta\)</span>, accuracy: <span class="math inline">\(\sigma_\theta \sqrt{1 + 1/S}\)</span>
+<li>for <span class="math inline">\(\mu_\theta\)</span>, accuracy: <span class="math inline">\(\sum_\theta / \sqrt{S}\)</span></li>
+<li>for <span class="math inline">\(\sum_\theta\)</span>, accuracy: <span class="math inline">\(\sum_\theta \sqrt{1 + 1/S}\)</span>
 <ul>
 <li>for <span class="math inline">\(S=100\)</span>, <span class="math inline">\(\sqrt{1 + 1/S} = 1.005\)</span> indicating that Monte Carlo error has little effect on the uncertainty</li>
 </ul></li>
@@ -1629,7 +1629,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li>use the draws to estimate the parameters of a <span class="math inline">\(\theta\)</span>’s posterior distribution</li>
 </ol>
 <ul>
-<li>ex: <span class="math inline">\(\mu_\theta\)</span> and <span class="math inline">\(\sigma_\theta\)</span> is <span class="math inline">\(\theta\)</span> is described as a normal distribution</li>
+<li>ex: <span class="math inline">\(\mu_\theta\)</span> and <span class="math inline">\(\sum_\theta\)</span> is <span class="math inline">\(\theta\)</span> is described as a normal distribution</li>
 </ul>
 <ol start="2" type="1">
 <li>use the described distribution to answer further questions</li>
@@ -1653,7 +1653,52 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ol></li>
 </ul>
 <h3 id="lecture-notes">Lecture notes</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h4 id="numerical-issues-monte-carlo-how-many-simulation-draws-are-needed-how-many-digits-to-report">4.1 Numerical issues, Monte Carlo, how many simulation draws are needed, how many digits to report</h4>
+<ul>
+<li>numerical accuracy:
+<ul>
+<li>in R, more accuracy near 0:</li>
+</ul></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">pbeta</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">241945</span>, <span class="fl">251527</span><span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>#&gt; [1] 1</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/stats/Beta.html">pbeta</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">241945</span>,<span class="fl">251527</span>,lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="co"># 1 - p</span>
+</code></pre>
+</div>
+<pre><code>#&gt; [1] 1.145624e-42</code></pre>
+</div>
+<ul>
+<li>use logarithms of probabilities and avoid exponentiation until as late as possible
+<ul>
+<li>ex: for <span class="math inline">\(a&gt;b\)</span>, compute
+<ul>
+<li><span class="math inline">\(\log(\exp(a) + \exp(b)) = a + \log(1 + \exp(b-a))\)</span></li>
+<li><span class="math inline">\(\log(\exp(800) + \exp(800)) \to \infty\)</span> while <span class="math inline">\(800 + \log(1 + \exp(800-800)) \approx 800.69\)</span></li>
+</ul></li>
+</ul></li>
+<li>using unnormalized posterior for computing expectations:
+<ul>
+<li><span class="math inline">\(E_{p(\theta|y)}[f(\theta)] = \int f(\theta) p(\theta|y) d \theta\)</span></li>
+<li>where <span class="math inline">\(p(\theta|y) = \frac{p(y|\theta) p(\theta)}{\int p(y|\theta) p(\theta) d \theta}\)</span>
+<ul>
+<li>easy to compute <span class="math inline">\(p(y|\theta) p(\theta)\)</span> for any <span class="math inline">\(\theta\)</span>, but the denominator is difficult</li>
+</ul></li>
+<li>thus, use <span class="math inline">\(q(\theta|y) = p(y|\theta)p(\theta)\)</span> and <span class="math inline">\(q(\theta|y) \propto p(\theta|y)\)</span></li>
+<li>then:
+<ul>
+<li>gird evaluation with self-normalization: <span class="math inline">\(E_{p(\theta|y)} [f(\theta)] \approx \frac{\sum^S [f(\theta^s) q(\theta^s|y)]}{\sum^S q(\theta^s|y)}\)</span></li>
+<li>Monte Carlo methods that sample from <span class="math inline">\(p(\theta^s|y)\)</span> using <span class="math inline">\(q(\theta^s|y)\)</span>: <span class="math inline">\(E_{p(\theta|y)}[f(\theta)] \approx \frac{1}{S} \sum^S f(\theta^s)\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>(pasued at 25:48)</p>
+<h4 id="direct-simulation-curse-of-dimensionality-rejection-sampling-and-importance-sampling">4.2 Direct simulation, curse of dimensionality, rejection sampling, and importance sampling</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

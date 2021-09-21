@@ -57,7 +57,7 @@ Other comments:
 - simulation methods obtain random samples of $\theta^s$ from the target dist. $p(\theta)$ and estimate the expectation of and function $h(\theta)$:
 
 $$
-\text{E}(h(\theta)|y) = int h(\theta)p(\theta|y) d\theta \approx \frac{1}{S} \Sigma_{s=1}^S h(\theta^s)
+\text{E}(h(\theta)|y) = int h(\theta)p(\theta|y) d\theta \approx \frac{1}{S} \sum_{s=1}^S h(\theta^s)
 $$
 
 - Monte Carlo methods produce independent samples and are described in this chapter
@@ -105,12 +105,12 @@ $$
 which can be estimated using $S$ draws $\theta^1, \dots \theta^S$ from $g(\theta)$ by:
 
 $$
-\text{E}(h(\theta)|y) \approx \frac{\frac{1}{s} \Sigma^S h(\theta^s) w(\theta^s)}{\frac{1}{S} \Sigma^S w(\theta^s)} \text{ where } w(\theta^s) = \frac{q(\theta^s|y)}{g(\theta^s)}
+\text{E}(h(\theta)|y) \approx \frac{\frac{1}{s} \sum^S h(\theta^s) w(\theta^s)}{\frac{1}{S} \sum^S w(\theta^s)} \text{ where } w(\theta^s) = \frac{q(\theta^s|y)}{g(\theta^s)}
 $$
 
 - $w(\theta^s)$ is the *importance ratio/weight*
   - can run into problem if some weights are much larger than others
-  - diagnose by looking at histogram of weights or calculating effective sample size $1 / \Sigma^S (\tilde{w}(\theta^s))^s$ where $\tilde{w}$ are normalized weights
+  - diagnose by looking at histogram of weights or calculating effective sample size $1 / \sum^S (\tilde{w}(\theta^s))^s$ where $\tilde{w}$ are normalized weights
 - there is a variant called *importance resampling* that offers a fix to the problem of uneven weights, but it is no longer recommended (chapter notes)
 - importance sampling in Bayesian computation:
   - obtain a starting point for iterative simulations of the posterior
@@ -122,15 +122,15 @@ $$
   - for most examples, $S=100$ *independent* draws are enough
   - often convenient to have more draws for numerical stability of posterior summaries
 - accuracy of estimates of $\theta$ as a normal distribution:
-  - for $\mu_\theta$, accuracy: $\sigma_\theta / \sqrt{S}$
-  - for $\sigma_\theta$, accuracy: $\sigma_\theta \sqrt{1 + 1/S}$
+  - for $\mu_\theta$, accuracy: $\sum_\theta / \sqrt{S}$
+  - for $\sum_\theta$, accuracy: $\sum_\theta \sqrt{1 + 1/S}$
     - for $S=100$, $\sqrt{1 + 1/S} = 1.005$ indicating that Monte Carlo error has little effect on the uncertainty
 - for rare events:
   - ex: probability of very large differences between parameter values; may be 0 posterior draws, but doesn't mean there is 0 probability
   - can make more draws to have a non-zero number of rare events
   - *semi-analytically*
     1. use the draws to estimate the parameters of a $\theta$'s posterior distribution
-      - ex: $\mu_\theta$ and $\sigma_\theta$ is $\theta$ is described as a normal distribution
+      - ex: $\mu_\theta$ and $\sum_\theta$ is $\theta$ is described as a normal distribution
     2. use the described distribution to answer further questions
 
 #### 10.6 Computing environments
@@ -148,3 +148,30 @@ $$
   5. compare estimated $\theta$ to known $\theta$
 
 ### Lecture notes
+
+#### 4.1 Numerical issues, Monte Carlo, how many simulation draws are needed, how many digits to report
+
+- numerical accuracy:
+  - in R, more accuracy near 0:
+
+```{r}
+pbeta(0.5, 241945, 251527)
+pbeta(0.5, 241945, 251527, lower.tail = FALSE) # 1 - p
+```
+
+- use logarithms of probabilities and avoid exponentiation until as late as possible
+  - ex: for $a>b$, compute
+    - $\log(\exp(a) + \exp(b)) = a + \log(1 + \exp(b-a))$
+    - $\log(\exp(800) + \exp(800)) \to \infty$ while $800 + \log(1 + \exp(800-800)) \approx 800.69$
+- using unnormalized posterior for computing expectations:
+  - $E_{p(\theta|y)}[f(\theta)] = \int f(\theta) p(\theta|y) d \theta$
+  - where $p(\theta|y) = \frac{p(y|\theta) p(\theta)}{\int p(y|\theta) p(\theta) d \theta}$
+    - easy to compute $p(y|\theta) p(\theta)$ for any $\theta$, but the denominator is difficult
+  - thus, use $q(\theta|y) = p(y|\theta)p(\theta)$ and $q(\theta|y) \propto p(\theta|y)$
+  - then:
+    - gird evaluation with self-normalization: $E_{p(\theta|y)} [f(\theta)] \approx \frac{\sum^S [f(\theta^s) q(\theta^s|y)]}{\sum^S q(\theta^s|y)}$
+    - Monte Carlo methods that sample from $p(\theta^s|y)$ using $q(\theta^s|y)$: $E_{p(\theta|y)}[f(\theta)] \approx \frac{1}{S} \sum^S f(\theta^s)$
+
+(pasued at 25:48)
+
+#### 4.2 Direct simulation, curse of dimensionality, rejection sampling, and importance sampling
