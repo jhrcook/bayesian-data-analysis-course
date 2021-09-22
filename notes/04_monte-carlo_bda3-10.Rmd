@@ -180,3 +180,33 @@ pbeta(0.5, 241945, 251527, lower.tail = FALSE) # 1 - p
 ![uncertatiny-of-rare-events](assets/04_monte-carlo_bda3-10/slides_ch10-s17.jpg)
 
 #### 4.2 Direct simulation, curse of dimensionality, rejection sampling, and importance sampling
+
+- rejection sampling:
+  - have proposal $g(\theta)$ and target $q(\theta|y)$ distributions
+    - $g(\theta)$ must be greater than $q(\theta|y)$ at all possible $\theta$
+  - for a given value of $\theta$, accept with probability $\frac{q(\theta|y)}{M g(\theta)}$
+
+![rejection-sampling](assets/04_monte-carlo_bda3-10/slides_ch10-s26.jpg)
+
+- importance sampling:
+  - unlike rejection sampling, proposal distribution does *not* need to be greater than the target
+  - re-sampling using normalized importance weights can be used to pick a smaller number of draws with uniform weights
+    - can use to correct an approximated distribution (e.g. if used normal approx.)
+  - selection of the proposal distribution is difficult in higher dimensions
+  - can use the weights to estimate the *effective sample size* $S_{eff}$ and use this for estimates of accuracy of parameter values
+
+![importance-sampling](assets/04_monte-carlo_bda3-10/slides_ch10-s28.jpg)
+
+- leave-one-out cross validation (LOO-CV)
+  - can be used for comparing models and how a single point impacts the model
+  - re-fit the model without data point $i$ and then estimate the probability of that data point: $p(y_i|p_{-i})$
+  - use $p(\theta|y)$ as a proposal distribution for $p(\theta|y_{-i})$
+    - $p(y_i | y_{-i}) = \int p(y_i|\theta) p(\theta|y_{-i}) d \theta$
+- MCMC:
+  - pros:
+     - Markov chain goes where most of the posterior mass is
+     - can scale well to high dimensions
+  - cons:
+    - draws are *dependent*
+    - computationally heavy
+  - we will see Gibbs, Metropolis, and Dynamic Hamiltonian Monte Carlo (HMC; state-of-the-art)
