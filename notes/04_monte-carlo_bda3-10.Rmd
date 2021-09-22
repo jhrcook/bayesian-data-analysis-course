@@ -171,7 +171,12 @@ pbeta(0.5, 241945, 251527, lower.tail = FALSE) # 1 - p
   - then:
     - gird evaluation with self-normalization: $E_{p(\theta|y)} [f(\theta)] \approx \frac{\sum^S [f(\theta^s) q(\theta^s|y)]}{\sum^S q(\theta^s|y)}$
     - Monte Carlo methods that sample from $p(\theta^s|y)$ using $q(\theta^s|y)$: $E_{p(\theta|y)}[f(\theta)] \approx \frac{1}{S} \sum^S f(\theta^s)$
+- number of posterior samples to take
+  - to get estimates of mean and variance, do not need too many draws, but if we want certain accuracy for percent intervals, may need more draws to accurately describe the tails (see slide 15, below)
+  - estimating the probability of $\theta$ to be in some interval $A$, can estimate uncertainty as a binomial distribution and calculate certainty of a value for a given number of draws $S$ and probability (slide 16)
+    - effect gets worse for smaller probabilities because need more samples to get enough draws of the rare event (demonstrated in slide 17, below)
 
-(pasued at 25:48)
+![uncertatiny-of-intervals](assets/04_monte-carlo_bda3-10/slides_ch10-s15.jpg)
+![uncertatiny-of-rare-events](assets/04_monte-carlo_bda3-10/slides_ch10-s17.jpg)
 
 #### 4.2 Direct simulation, curse of dimensionality, rejection sampling, and importance sampling
