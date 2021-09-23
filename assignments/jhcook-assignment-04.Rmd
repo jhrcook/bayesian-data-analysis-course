@@ -1,0 +1,120 @@
+---
+title: "Assignment 4"
+date: "2021-09-23"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+```
+
+## Setup
+
+```{r}
+# library(conflicted)
+library(tidyverse)
+
+theme_set(theme_classic())
+```
+
+**[Assignment 4](assignments/assignment-04.pdf)**
+
+## Exercise 1. Bioassay model
+
+**In this exercise, you will use a dose-response relation model that is used in Section 3.7.**
+**The used likelihood is the same, but instead of uniform priors, we will use a bivariate normal distribution as the joint prior distribution of the parameters $\alpha$ and $\beta$.**
+
+Below is a description of the bioassy from the reading instructions (with some minor changes to help the grammar):
+
+> The example is from Racine *et al.* (1986) (see ref in the end of the BDA3).
+> [This] Swiss company makes classification[s] of chemicals to different toxicity categories defined by [governmental] authorities (like [the] EU).
+> Toxicity classification is based on [the] lethal dose 50% (LD50) which [indicates] what amount of [a] chemical [that] kills 50% of the subjects.
+> [The] [s]maller the LD50, [the] more lethal the chemical is.
+> The original paper mentions "1983 Swiss poison Regulation" which defines [the] following categories for chemicals orally given to rats (mg/ml):
+
+| Class | LD50      |
+|:-----:|:---------:|
+| 1     | <5        |
+| 2     | 5-50      |
+| 3     | 50-500    |
+| 4     | 500-2000  |
+| 5     | 2000-5000 |
+
+> To reduce the number of rats needed in the experiments, the company started to use Bayesian methods.
+> The paper mentions that in those days, [the] use of just 20 rats to define the classification was very little.
+> [The] book gives the LD50 in log(g/ml).
+> When the result from demo3_6 is transformed to mg/ml, we see that the mean LD50 is about 900 and $p(500 < LD50 < 2000) \approx 0.99$.
+> Thus, the tested chemical can be classified as category 4 toxic.
+
+**a) In the prior distribution for $\alpha, \beta)$, the marginal distributions are $\alpha \sim N(0, 2^2)$ and $\beta \sim N(10, 10^2)$, and the correlation between them is $\text{corr}(\alpha, \beta) = 0.6$.**
+**Report the mean (vector of two values) and covariance (two by two matrix) of the bivariate normal distribution.**
+
+The definition of a bivariate normal distribution is
+
+$$
+\begin{pmatrix} X_1 \\ X_2 \end{pmatrix}
+\sim N
+\begin{bmatrix}
+  \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix} ,
+  \begin{pmatrix}
+    \sigma_1^2 & \rho \sigma_2 \sigma_1 \\
+    \rho \sigma_1 \sigma_2 & \sigma_2^2 \\
+  \end{pmatrix}
+\end{bmatrix}
+$$
+
+Because $\alpha$ and $\beta$ are both normal distributions, but the mean vector is
+
+$$
+\begin{pmatrix} \mu_\alpha \\ \mu_\beta \end{pmatrix} =
+\begin{pmatrix} 0 \\ 10 \end{pmatrix}
+$$
+
+and the covariance matrix is
+
+$$
+\begin{aligned}
+\begin{pmatrix}
+  \sigma_\alpha^2 & \rho \sigma_\beta \sigma_\alpha \\
+  \rho \sigma_\alpha \sigma_\beta & \sigma_\beta^2 \\
+\end{pmatrix} &=
+\begin{pmatrix}
+  2^2 & 0.6 \times 10 \times 2 \\
+  0.6 \times 2 \times 10 & 10^2 \\
+\end{pmatrix} \\
+&= \begin{pmatrix}
+  4 & 12 \\
+  12 & 100 \\
+\end{pmatrix}
+\end{aligned}
+$$
+
+```{r}
+N <- 1e5
+
+mu_a <- 0
+sigma_a <- 2
+mu_b <- 10
+sigma_b <- 10
+rho <- 0.6
+cov_value <- rho * sigma_a * sigma_b
+
+mu <- c(mu_a, mu_b)
+cov_mat <- matrix(
+  c(sigma_a^2, cov_value, cov_value, sigma_b^2),
+  nrow = 2,
+  byrow = FALSE
+)
+bvn <- MASS::mvrnorm(N, mu = mu, Sigma = cov_mat)
+
+plot_df <- as.data.frame(bvn) %>%
+  as_tibble() %>%
+  set_names("alpha", "beta")
+
+plot_df %>%
+  ggplot(aes(x = alpha, y = beta)) +
+  geom_point(data = sample_n(plot_df, size = 1000), alpha = 0.6, color = "#7AAED1") +
+  geom_density_2d(bins = 5, linetype = 2, color = "#011F4B")
+```
+
+source: [PennState, Elberl College of Science: "4.2 - Bivariate Normal Distribution"](https://online.stat.psu.edu/stat505/lesson/4/4.2)
