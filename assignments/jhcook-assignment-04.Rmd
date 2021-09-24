@@ -4,17 +4,23 @@ date: "2021-09-23"
 output: distill::distill_article
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
-```
-
 ## Setup
 
-```{r}
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
+for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
+  source(f)
+}
+
 # library(conflicted)
+library(glue)
 library(tidyverse)
 
 theme_set(theme_classic())
+
+light_blue <- "#7AAED1"
+dark_blue <- "#011F4B"
 ```
 
 **[Assignment 4](assignments/assignment-04.pdf)**
@@ -111,10 +117,169 @@ plot_df <- as.data.frame(bvn) %>%
   as_tibble() %>%
   set_names("alpha", "beta")
 
-plot_df %>%
-  ggplot(aes(x = alpha, y = beta)) +
-  geom_point(data = sample_n(plot_df, size = 1000), alpha = 0.6, color = "#7AAED1") +
-  geom_density_2d(bins = 5, linetype = 2, color = "#011F4B")
+plot_points_and_density <- function(df,
+                                    x,
+                                    y,
+                                    n_samples = 1000,
+                                    point_alpha = 0.6,
+                                    density_bins = 5) {
+  df %>%
+    ggplot(aes(x = {{ x }}, y = {{ y }})) +
+    geom_point(
+      data = sample_n(df, size = min(c(nrow(df), n_samples))),
+      alpha = point_alpha,
+      color = light_blue
+    ) +
+    geom_density_2d(bins = density_bins, linetype = 2, color = dark_blue)
+}
+
+plot_points_and_density(plot_df, alpha, beta)
 ```
 
 source: [PennState, Elberl College of Science: "4.2 - Bivariate Normal Distribution"](https://online.stat.psu.edu/stat505/lesson/4/4.2)
+
+**b) You are given 4000 independent draws from the posterior distribution of the model.**
+**Report the mean as well as 5% and 95% quantiles separately for both $\alpha$ and $\beta$.**
+**Report also the Monte Carlo standard errors (MCSEs) for the mean and quantile estimates.**
+**Explain in words what does Monte Carlo standard error mean and how you decided the number of digits to show.**
+
+```{r}
+bioassay_posterior <- read_data(
+  "bioassay_posterior.txt",
+  read_tsv,
+  col_names = FALSE
+)
+colnames(bioassay_posterior) <- c("alpha", "beta")
+head(bioassay_posterior)
+```
+
+```{r}
+p <- plot_points_and_density(
+  bioassay_posterior,
+  alpha,
+  beta,
+  n_samples = Inf,
+  point_alpha = 0.3
+)
+p
+```
+
+MCSE accuracy of averages: $s_\theta / \sqrt(S)$ where $s_\theta$ is the standard deviation of the draws and $S$ is the number of draws.
+
+```{r}
+apply(bioassay_posterior, 2, function(s) {
+  sd(s) / sqrt(length(s))
+})
+```
+
+Calculate the means of the posterior distributions.
+
+```{r}
+print("Posterior means:")
+apply(bioassay_posterior, 2, mean)
+```
+
+Calculate the MCSE of the quantiles.
+
+```{r}
+apply(bioassay_posterior, 2, function(x) {
+  unlist(c(
+    aaltobda::mcse_quantile(x, 0.05),
+    aaltobda::mcse_quantile(x, 0.95)
+  ))
+})
+```
+
+
+```{r}
+print("Posterior 5% and 95% quantiles:")
+apply(bioassay_posterior, 2, function(x) {
+  quantile(x, c(0.05, 0.95))
+})
+```
+
+Accounting for the precisions of MCSE:
+
+- $\mu_\alpha = 1.0$ with 5% and 95% CI: $(-0.5, 2.6)$
+- $\mu_\beta = 10.6$ with 5% and 95% CI: $(4.0, 19)$
+
+MCSE is the expected error from the stochastic process of Monte Carlo simulations.
+Here, it is used to determine the number of digits to report where we report the digits where the MCSE is 0.
+
+```{r}
+p +
+  geom_vline(xintercept = 1.0, color = "red") +
+  geom_ribbon(aes(xmin = -0.5, xmax = 2.6), alpha = 0.1, fill = "red") +
+  geom_hline(yintercept = 10.6, color = "orange") +
+  geom_ribbon(aes(ymin = 4.0, ymax = 19), alpha = 0.1, fill = "orange") +
+  scale_x_continuous(expand = expansion(0)) +
+  scale_y_continuous(expand = expansion(0))
+```
+
+**c) Implement a function for computing the log importance ratios (log importance weights) when the importance sampling target distribution is the posterior distribution, and the proposal distribution is the prior distribution from question *a*.**
+**Explain in words why it’s better to compute log ratios instead of ratios.**
+
+It is better to compute log ratios to avoid overflow or underflow that can occur more easily when using the ratios.
+
+As hinted in the assignment (see PDF), because we are using the prior distribution as the proposal distribution, the calculation of the importance weights is much easier.
+
+The importance weight $w(\theta^s)$ is calculated as follows:
+
+$$
+w(\theta^s) = \frac{q(\theta^s|y)}{g(\theta^s)}
+$$
+
+With the proposal distribution $g$ set as the prior distribution, $g(\theta) = p(\theta)$, the equation simplifies to:
+
+$$
+\begin{aligned}
+w(\theta^s) &= \frac{q(\theta^s|y)}{g(\theta^s)} \\
+ &= \frac{p(\theta^s) p(y|\theta^s)}{p(\theta^s)} \\
+ &= p(y|\theta^s)
+\end{aligned}
+$$
+Thus, the importance weight is just the likelihood for the model.
+In the question(again, see the PDF), we are asked to use `aaltobda::bioassaylp()` to calculate the logarith of the likelihood.
+
+```{r}
+log_importance_weights <- function(a, b) {
+  bioassay_data <- read_bioassay_data(show_col_types = FALSE)
+  aaltobda::bioassaylp(
+    alpha = alpha,
+    beta = beta,
+    x = bioassay_data$x,
+    y = bioassay_data$y,
+    n = bioassay_data$n
+  )
+}
+
+# Test data.
+alpha <- c(1.896, -3.6, 0.374, 0.964, -3.123, -1.581)
+beta <- c(24.76, 20.04, 6.15, 18.65, 8.16, 17.4)
+test_results <- round(log_importance_weights(alpha, beta), 2)
+stopifnot(all(close_to(
+  test_results,
+  c(-8.95, -23.47, -6.02, -8.13, -16.61, -14.57)
+)))
+```
+
+**d) Implement a function for computing normalized importance ratios from the unnormalized log ratios in question *c*.**
+**In other words, exponentiate the log ratios and scale them such that they sum to one.**
+**Explain in words what is the effect of exponentiating and scaling so that sum is one.**
+
+```{r}
+normalized_importance_weights <- function(alpha, beta) {
+  stop("TODO")
+}
+
+# Test data.
+alpha <- c(1.896, -3.6, 0.374, 0.964, -3.123, -1.581)
+beta <- c(24.76, 20.04, 6.15, 18.65, 8.16, 17.4)
+test_results <- round(
+  normalized_importance_weights(alpha = alpha, beta = beta), 3
+)
+stopifnot(all(close_to(
+  test_results,
+  c(0.045, 0.000, 0.852, 0.103, 0.000, 0.000)
+)))
+```
