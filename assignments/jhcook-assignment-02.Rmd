@@ -13,6 +13,10 @@ knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 ## Setup
 
 ```{r, warning=FALSE, message=FALSE}
+for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
+  source(f)
+}
+
 # Libraries
 library(aaltobda)
 library(glue)

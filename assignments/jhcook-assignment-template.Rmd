@@ -4,14 +4,16 @@ date: "2021-08-19"
 output: distill::distill_article
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
-```
-
 ## Setup
 
-```{r}
-# Load packages here.
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
+for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
+  source(f)
+}
+
+# Load packages and data, set config, etc.
 ```
 
 **[Assignment N](assignments/assignment-00.pdf)**

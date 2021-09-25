@@ -47,3 +47,4 @@ The recommended way to go through the material is:
 | **1. Course Introduction** | [notes](notes/01_introduction_bda3-01.html) | [exercises](book-exercises/bda-exercises-01.html) | [assignment](assignments/jhcook-assignment-01.html) |
 | **2. Basics of Bayesian Inference** | [notes](notes/02_basics-of-Bayesian-inference_bda3-02.html) | [exercises](book-exercises/bda-exercises-02.html) | [assignment](assignments/jhcook-assignment-02.html) |
 | **3. Multidimensional Posterior** | [notes](notes/03_multidimensional-posterior_bda3-03.html) | exercises | [assignment](assignments/jhcook-assignment-03.html) |
+| **4. Monte Carlo** | [notes](notes/04_monte-carlo_bda3-10.html) | exercises | [assignment](assignments/jhcook-assignment-04.html) |
