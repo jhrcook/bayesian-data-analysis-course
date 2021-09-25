@@ -30,7 +30,7 @@ dark_blue <- "#011F4B"
 **In this exercise, you will use a dose-response relation model that is used in Section 3.7.**
 **The used likelihood is the same, but instead of uniform priors, we will use a bivariate normal distribution as the joint prior distribution of the parameters $\alpha$ and $\beta$.**
 
-Below is a description of the bioassy from the reading instructions (with some minor changes to help the grammar):
+Below is a description of the bioassay from the reading instructions (with some minor changes to help the grammar):
 
 > The example is from Racine *et al.* (1986) (see ref in the end of the BDA3).
 > [This] Swiss company makes classification[s] of chemicals to different toxicity categories defined by [governmental] authorities (like [the] EU).
@@ -96,24 +96,31 @@ $$
 $$
 
 ```{r}
-N <- 1e5
+get_prior_parameters <- function() {
+  mu_a <- 0
+  sigma_a <- 2
+  mu_b <- 10
+  sigma_b <- 10
+  rho <- 0.6
+  cov_value <- rho * sigma_a * sigma_b
 
-mu_a <- 0
-sigma_a <- 2
-mu_b <- 10
-sigma_b <- 10
-rho <- 0.6
-cov_value <- rho * sigma_a * sigma_b
+  mu <- c(mu_a, mu_b)
+  cov_mat <- matrix(
+    c(sigma_a^2, cov_value, cov_value, sigma_b^2),
+    nrow = 2,
+    byrow = FALSE
+  )
 
-mu <- c(mu_a, mu_b)
-cov_mat <- matrix(
-  c(sigma_a^2, cov_value, cov_value, sigma_b^2),
-  nrow = 2,
-  byrow = FALSE
-)
-bvn <- MASS::mvrnorm(N, mu = mu, Sigma = cov_mat)
+  return(list(mu = mu, cov_mat = cov_mat))
+}
 
-plot_df <- as.data.frame(bvn) %>%
+sample_from_prior <- function(n) {
+  params <- get_prior_parameters()
+  bvn <- MASS::mvrnorm(n, mu = params$mu, Sigma = params$cov_mat)
+  return(bvn)
+}
+
+plot_df <- as.data.frame(sample_from_prior(1e5)) %>%
   as_tibble() %>%
   set_names("alpha", "beta")
 
@@ -216,7 +223,7 @@ p +
   scale_y_continuous(expand = expansion(0))
 ```
 
-**c) Implement a function for computing the log importance ratios (log importance weights) when the importance sampling target distribution is the posterior distribution, and the proposal distribution is the prior distribution from question *a*.**
+**c) Implement a function for computing the log importance ratios (log importance weights) when the importance sampling target distribution is the posterior distribution, and the proposal distribution is the prior distribution from question a).**
 **Explain in words why it’s better to compute log ratios instead of ratios.**
 
 It is better to compute log ratios to avoid overflow or underflow that can occur more easily when using the ratios.
@@ -239,14 +246,14 @@ w(\theta^s) &= \frac{q(\theta^s|y)}{g(\theta^s)} \\
 \end{aligned}
 $$
 Thus, the importance weight is just the likelihood for the model.
-In the question(again, see the PDF), we are asked to use `aaltobda::bioassaylp()` to calculate the logarith of the likelihood.
+In the question(again, see the PDF), we are asked to use `aaltobda::bioassaylp()` to calculate the logarithm of the likelihood.
 
 ```{r}
 log_importance_weights <- function(a, b) {
   bioassay_data <- read_bioassay_data(show_col_types = FALSE)
   aaltobda::bioassaylp(
-    alpha = alpha,
-    beta = beta,
+    alpha = a,
+    beta = b,
     x = bioassay_data$x,
     y = bioassay_data$y,
     n = bioassay_data$n
@@ -256,30 +263,196 @@ log_importance_weights <- function(a, b) {
 # Test data.
 alpha <- c(1.896, -3.6, 0.374, 0.964, -3.123, -1.581)
 beta <- c(24.76, 20.04, 6.15, 18.65, 8.16, 17.4)
+
 test_results <- round(log_importance_weights(alpha, beta), 2)
-stopifnot(all(close_to(
+stop_if_not_all_close_to(
   test_results,
   c(-8.95, -23.47, -6.02, -8.13, -16.61, -14.57)
-)))
+)
 ```
 
-**d) Implement a function for computing normalized importance ratios from the unnormalized log ratios in question *c*.**
+**d) Implement a function for computing normalized importance ratios from the unnormalized log ratios in question c).**
 **In other words, exponentiate the log ratios and scale them such that they sum to one.**
 **Explain in words what is the effect of exponentiating and scaling so that sum is one.**
 
+The normalized importance weights are just the exponentiated log importance weights divided by the total to sum to one.
+This is conducted in `normalized_importance_weights()`, below.
+
 ```{r}
 normalized_importance_weights <- function(alpha, beta) {
-  stop("TODO")
+  weights <- exp(log_importance_weights(alpha, beta))
+  return(weights / sum(weights))
 }
 
 # Test data.
-alpha <- c(1.896, -3.6, 0.374, 0.964, -3.123, -1.581)
-beta <- c(24.76, 20.04, 6.15, 18.65, 8.16, 17.4)
 test_results <- round(
   normalized_importance_weights(alpha = alpha, beta = beta), 3
 )
-stopifnot(all(close_to(
+stop_if_not_all_close_to(
   test_results,
   c(0.045, 0.000, 0.852, 0.103, 0.000, 0.000)
-)))
+)
+```
+
+The exponentiation is to put the importance weights into a linear-scale instead of a log-scale in which they are calculated.
+They are normalized such that they sum to one so they can be used to scale the values of $\theta$ without changing the mean of $\theta$ for importance sampling.
+Also, normalizing to sum to 1 makes them comparable regardless of the values of $\theta$.
+
+
+**e) Sample 4000 draws of $\alpha$ and $\beta$ from the prior distribution from a).**
+**Compute and plot a histogram of the 4000 normalized importance ratios.**
+**Use the functions you implemented in c) and d).**
+
+```{r}
+prior_draws <- sample_from_prior(4000)
+norm_importance_ratios <- normalized_importance_weights(
+  alpha = prior_draws[, 1],
+  beta = prior_draws[, 2]
+)
+
+plot_single_hist(
+  x = norm_importance_ratios, bins = 30, alpha = 0.3, color = "black"
+) +
+  labs(x = "normalized importance ratios")
+```
+
+**f) Using the importance ratios, compute the importance sampling effective sample size $S_\text{eff}$ and report it.**
+
+From equation 10.4 in *BDA3*:
+
+$$
+S_\text{eff} = \frac{1}{\sum^S (\tilde{w}(\theta^s))^2}
+$$
+
+where $\tilde{w}(\theta^s)$ are the *normalized* importance weights.
+
+```{r}
+S_eff <- function(alpha, beta) {
+  w_tilde <- normalized_importance_weights(alpha, beta)
+  s_eff <- 1 / sum(w_tilde^2)
+  return(s_eff)
+}
+
+# Test data.
+test_results <- round(
+  S_eff(alpha = alpha, beta = beta), 3
+)
+stop_if_not_close_to(test_results, 1.354)
+```
+
+```{r}
+bioassy_s_eff <- S_eff(bioassay_posterior$alpha, bioassay_posterior$beta)
+glue("S_eff for posterior draws of bioassy model: {round(bioassy_s_eff, 3)}")
+```
+
+**g) Explain in your own words what the importance sampling effective sample size represents.**
+**Also explain how the effective sample size is seen in the histogram of the weights that you plotted in e).**
+
+The importance sampling effective sample size indicates how well the samples from the importance sampling cover the density of the target distribution $q(\theta|y)$.
+Ideally, the weights are uniform, resulting in a $S_\text{eff}$ near the true number of draws (i.e. 4000 in this case).
+If there are some samples with very high importance, then $S_\text{eff}$ gets smaller to indicate that the sampling did accurately cover the target distribution.
+
+```{r}
+prior_s_eff <- S_eff(prior_draws[, 1], prior_draws[, 2])
+glue("S_eff for prior draws of bioassy model: {round(prior_s_eff, 3)}")
+```
+
+The $S_\text{eff}$ for the prior draws is calculated above.
+We can see that even though there were 4000 draws, the effective sampling size is about `r round(prior_s_eff)`.
+This means that the prior samples do no accurately sample from the target distribution.
+We can see this in the histogram with most importance weights near 0 and a thick tail of higher values.
+This is also shown in the plot below of the prior samples colored by their importance ratios.
+There is a density of higher importance ratios in one region of the samples, likely indicating where there is a lot of posterior density for the model.
+
+```{r}
+p <- tibble(
+  alpha = prior_draws[, 1],
+  beta = prior_draws[, 2],
+  norm_imp_ratio = norm_importance_ratios
+) %>%
+  ggplot(aes(x = alpha, y = beta, color = norm_imp_ratio)) +
+  geom_point(size = 1, alpha = 0.5) +
+  scale_color_viridis_b() +
+  labs(x = "alpha", y = "beta", color = "normalized\nimportance\nratio")
+p
+```
+
+**h) Implement a function for computing the posterior mean using importance sampling, and compute the mean using your 4000 draws.**
+**Explain in your own words the computation for importance sampling.**
+**Report the means for $\alpha$ and $\beta$, and also the Monte Carlo standard errors (MCSEs) for the mean estimates.**
+**Report the number of digits for the means based on the MCSEs.**
+
+**Hint. Use the same equation for the MCSE of $\text{E}[\theta]$ as earlier $\sqrt{\text{Var}[\theta]/S}$, but now replace $S$ with $S_\text{eff}$.**
+**To compute $\text{Var}[\theta]$ with importance sampling, use the identity $\text{Var}[\theta] = \text{E}[\theta^2] − \text{E}[\theta]^2$.**
+
+The posterior mean (expectation) of $\theta = (\alpha, \beta)$ can be computed using importance sampling using the following equation (eq. 10.3 in *BDA3*):
+
+$$
+\text{E}(h(\theta|y)) = \frac{\frac{1}{S} \sum^S h(\theta^s) w(\theta^s)}{\frac{1}{S} \sum^S w(\theta^s)} \\
+w(\theta^s) = \frac{q(\theta^s|y)}{g(\theta^s)}
+$$
+
+where $w(\theta^s)$ is the importance weight calculated as the quotient of the target distribution $q$ and the proposal distribution $g$.
+The importance weights are calculated in `log_importance_weights()` in question c).
+
+In this case, $h(\theta|y)$ is the posterior distribution of $\theta$ and $\text{E}(h(\theta|y))$ is the mean of the posterior distribution of $\theta$.
+$h(\theta)$ is the prior distribution.
+Thus, the algorithm is weight prior draws by their importance weight.
+
+```{r}
+posterior_mean <- function(alpha, beta) {
+  weights <- exp(log_importance_weights(alpha, beta))
+  theta <- tibble(alpha = alpha, beta = beta)
+
+  # Remove values that have NA weights (lazy solution).
+  if (any(is.na(weights))) {
+    num_missing <- sum(is.na(weights))
+    warning(glue("NA weights - removing {num_missing} sample(s)."))
+    theta <- theta[!is.na(weights), ]
+    weights <- weights[!is.na(weights)]
+  }
+
+  denominator <- sum(weights)
+  mu_theta_post <- apply(theta, 2, function(x) {
+    sum(x * weights) / sum(weights)
+  })
+  return(mu_theta_post)
+}
+
+test_results <- round(posterior_mean(alpha = alpha, beta = beta), 3)
+stop_if_not_all_close_to(test_results, c(0.503, 8.275))
+```
+
+Importance sampling is really just a method for weighting possible values of $\theta$ by their importance ratio.
+In this case, because we used the prior distribution at the proposal distribution, the importance ratio is the probability of $\theta$ under the unnormalized posterior distribution.
+Thus, this procedure weights possible values of $\theta$ by how likely they are given the posterior distribution.
+
+```{r}
+prior_a <- prior_draws[, 1]
+prior_b <- prior_draws[, 2]
+
+post_means <- posterior_mean(prior_a, prior_b)
+post_means
+```
+
+As stated in the hint with the question, we can calculate the MCSE of $\text{E}[\theta]$ as $\sqrt{\text{Var}[\theta]/S},$, using $S_\text{eff}$ for $S$, and $\text{Var}[\theta]$ as $\text{E}[\theta^2] − \text{E}[\theta]^2$
+
+```{r}
+e_theta_squared <- posterior_mean(prior_a^2, prior_b^2)
+var_theta <- abs(e_theta_squared - (post_means^2))
+s_eff <- S_eff(prior_a, prior_b)
+mcse <- sqrt(var_theta / s_eff)
+mcse
+```
+
+```{r}
+a_post_mean <- round(post_means[[1]], 2)
+b_post_mean <- round(post_means[[2]], 0)
+glue("alpha post mean: {a_post_mean}, beta post mean: {b_post_mean}")
+```
+
+The posterior means for $\alpha$ and $\beta$ are indicated by the red dot over-layed on the distribution of importance weights from a previous question.
+
+```{r}
+p + geom_point(x = a_post_mean, y = b_post_mean, color = "red", shape = 4, size = 3)
 ```
