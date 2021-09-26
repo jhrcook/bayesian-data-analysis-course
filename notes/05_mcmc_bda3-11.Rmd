@@ -1,0 +1,30 @@
+---
+title: "05. Markov chain Monte Carlo"
+date: "2021-09-26"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
+
+## Resources
+
+- BDA3 chapter 11 and [reading instructions](../reading-instructions/BDA3_ch11_reading-instructions.pdf)
+- lectures:
+  - ['5.1. Markov chain Monte Carlo, Gibbs sampling, Metropolis algorithm'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=098dfdb4-f3b8-46aa-b988-aadf00bd3177)
+  - ['5.2. Warm-up, convergence diagnostics, R-hat, and effective sample size'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9f657178-d8cf-4cb8-af62-aadf00cd9423)
+- [slides](../slides/slides_ch11.pdf)
+- [Assignment 5](assignments/assignment-05.pdf)
+
+## Notes
+
+### Reading instructions
+
+- notes from the reading instructions
+
+### Chapter N. Chapter title
+
+- notes from the book
+
+### Lecture notes
