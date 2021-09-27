@@ -4,8 +4,13 @@ date: "2021-09-26"
 output: distill::distill_article
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+
+library(patchwork)
+suppressPackageStartupMessages(library(tidyverse))
+
+theme_set(theme_bw())
 ```
 
 ## Resources
@@ -89,6 +94,150 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
   (\#eq:gibbs-conditional-posterior)
 \end{align}
 
-**TODO**: replicate example from book in code
+- below is the code for the example described above
+
+```{r}
+chain_to_df <- function(chain, names) {
+  purrr::map_dfr(chain, ~ as.data.frame(t(.x))) %>%
+    tibble::as_tibble() %>%
+    purrr::set_names(names)
+}
+
+# Run a single chain of a Gibbs sampler for a bivariate normal distribution.
+gibbs_sample_demo <- function(data, rho, theta_t0, N = 100) {
+  theta_1 <- theta_t0[[1]]
+  theta_2 <- theta_t0[[2]]
+  y1 <- data[[1]]
+  y2 <- data[[2]]
+
+  chain <- as.list(rep(theta_t0, n = (2 * N) + 1))
+  chain[[1]] <- c(theta_1, theta_2, 1)
+
+  for (t in seq(2, N)) {
+    theta_1 <- rnorm(1, y1 + rho * (theta_2 - y2), 1 - rho^2)
+    chain[[2 * (t - 1)]] <- c(theta_1, theta_2, t)
+    theta_2 <- rnorm(1, y2 + rho * (theta_1 - y1), 1 - rho^2)
+    chain[[2 * (t - 1) + 1]] <- c(theta_1, theta_2, t)
+  }
+
+  chain_df <- chain_to_df(chain, names = c("theta_1", "theta_2", "t"))
+  return(chain_df)
+}
+
+
+rho <- 0.8
+y <- c(0, 0)
+starting_points <- list(
+  c(-2.5, -2.5), c(2.5, -2.5), c(-2.5, 2.5), c(2.5, 2.5)
+)
+
+set.seed(0)
+gibbs_demo_chains <- purrr::map_dfr(
+  seq(1, 4),
+  ~ gibbs_sample_demo(y, rho, starting_points[[.x]]) %>%
+    add_column(chain = as.character(.x))
+)
+
+plot_chains <- function(chain_df, x = theta_1, y = theta_2, color = chain) {
+  chain_df %>%
+    ggplot(aes(x = {{ x }}, y = {{ y }}, color = {{ color }})) +
+    geom_path(alpha = 0.6, show.legend = FALSE) +
+    scale_color_brewer(type = "qual", palette = "Set1")
+}
+
+plot_points <- function(chain_df, x = theta_1, y = theta_2, color = chain) {
+  chain_df %>%
+    ggplot(aes(x = {{ x }}, y = {{ y }}, color = {{ color }})) +
+    geom_point(size = 0.75, alpha = 0.75) +
+    scale_color_brewer(type = "qual", palette = "Set1")
+}
+
+gibbs_plot_chains <- plot_chains(gibbs_demo_chains)
+
+gibbs_plot_points <- gibbs_demo_chains %>%
+  group_by(chain, t) %>%
+  slice_tail(n = 1) %>%
+  ungroup() %>%
+  plot_points()
+
+gibbs_plot_chains | gibbs_plot_points
+```
+
+#### 11.2 Metropolis and Metropolis-Hastings algorithms
+
+- the Metropolis-Hastings algorithm is a generalized version of the Metropolis algorithm
+
+##### The Metropolis algorithm
+
+- is a random walk with an acceptance and rejection rule to converge to the target distribution
+- steps:
+  1. draws a starting point $\theta^0$ from a *starting distribution* $p_0(\theta)$ such that $p(\theta^0|y) > 0$
+  2. for time $t = 1, 2, \dots$:
+    a. sample a *proposal* $\theta^*$ from a *jumping/proposal distribution* $J_t(\theta^*|\theta^{t-1})$
+    b. calculate the ratio of the densities: $r = \frac{p(\theta^*|y)}{p(\theta^{t-1}|y)}$
+    c. set $\theta^t = \theta^*$ with probability $\min(r, 1)$, else $\theta^t = \theta^{t-1}$
+- the jumping distribution $J_t$ must be symmetric such that $J_t(\theta_a|\theta_b) = J_t(\theta_b|\theta_a)$
+- the iteration still counts even if the proposal $\theta^*$ is rejected
+- ex: bivariate normal distribution (same as before):
+  - target density as bivariate normal: $p(\theta|y) = \text{N}(\theta | 0, I)$
+  - jumping distribution as a bivariate normal with smaller deviations and centered around the previous iteration's $\theta^{t-1}$: $J_t(\theta^*|\theta^{t-1}) = \text{N}(\theta^* | \theta^{t-1}, 0.2^2I)$
+  - thus, the density ratio: $r = \text{N}(\theta^*|0, I) / \text{N}(\theta^{t-1}|0, I)$
+
+**TODO: fix the issue below.**
+
+```{r}
+calc_metropolis_density_ratio <- function(t_star, t_m1, data, prior_cov_mat, jumping_cov_mat) {
+  numerator <- mvtnorm::dmvnorm(t_star, data, prior_cov_mat)
+  denominator <- mvtnorm::dmvnorm(t_m1, data, jumping_cov_mat)
+  return(numerator / denominator)
+}
+
+metropolis_algorithm_demo <- function(data, theta_t0, N = 1000) {
+  theta_t <- unlist(theta_t0)
+  prior_dist_mu <- data
+  prior_dist_cov_mat <- matrix(c(1, 0, 0, 1), nrow = 2)
+  jumping_dist_cov_mat <- prior_dist_cov_mat * 0.2^2
+
+  chain <- as.list(rep(NA_real_, n = N + 1))
+  chain[[1]] <- theta_t
+
+  for (t in seq(2, N + 1)) {
+    theta_star <- mvtnorm::rmvnorm(
+      n = 1, mean = theta_t, sigma = jumping_dist_cov_mat
+    )[1, ]
+
+    density_ratio <- calc_metropolis_density_ratio(
+      t_star = theta_star,
+      t_m1 = theta_t,
+      data = data,
+      prior_cov_mat = prior_dist_cov_mat,
+      jumping_cov_mat = jumping_dist_cov_mat
+    )
+
+    accept <- runif(1) < min(c(1, density_ratio))
+    if (accept) {
+      theta_t <- theta_star
+    }
+    chain[[t]] <- theta_t
+  }
+  return(chain_to_df(chain, names = c("theta_1", "theta_2")))
+}
+
+set.seed(0)
+metropolis_chains <- purrr::map_dfr(
+  seq(1, 4),
+  ~ metropolis_algorithm_demo(c(0, 0), starting_points[[.x]]) %>%
+    add_column(chain = as.character(.x))
+)
+
+metropolis_plot_chains <- plot_chains(metropolis_chains)
+metropolis_plot_points <- metropolis_chains %>%
+  group_by(chain) %>%
+  slice_tail(n = 500) %>%
+  plot_points()
+metropolis_plot_chains | metropolis_plot_points
+```
+
+
 
 ### Lecture notes
