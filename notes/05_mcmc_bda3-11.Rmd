@@ -7,6 +7,8 @@ output: distill::distill_article
 ```{r setup, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
+library(glue)
+library(ggtext)
 library(patchwork)
 suppressPackageStartupMessages(library(tidyverse))
 
@@ -152,15 +154,26 @@ plot_points <- function(chain_df, x = theta_1, y = theta_2, color = chain) {
     scale_color_brewer(type = "qual", palette = "Set1")
 }
 
-gibbs_plot_chains <- plot_chains(gibbs_demo_chains)
+theta_axis_labs <- function(p) {
+  p +
+    theme(
+      axis.title.x = element_markdown(),
+      axis.title.y = element_markdown()
+    ) +
+    labs(x = "θ<sub>1</sub>", y = "θ<sub>2</sub>")
+}
+
+gibbs_plot_chains <- plot_chains(gibbs_demo_chains) %>%
+  theta_axis_labs()
 
 gibbs_plot_points <- gibbs_demo_chains %>%
   group_by(chain, t) %>%
   slice_tail(n = 1) %>%
   ungroup() %>%
-  plot_points()
+  plot_points() %>%
+  theta_axis_labs()
 
-gibbs_plot_chains | gibbs_plot_points
+(gibbs_plot_chains | gibbs_plot_points) + plot_annotation(title = "Gibbs sampler")
 ```
 
 #### 11.2 Metropolis and Metropolis-Hastings algorithms
@@ -183,16 +196,14 @@ gibbs_plot_chains | gibbs_plot_points
   - jumping distribution as a bivariate normal with smaller deviations and centered around the previous iteration's $\theta^{t-1}$: $J_t(\theta^*|\theta^{t-1}) = \text{N}(\theta^* | \theta^{t-1}, 0.2^2I)$
   - thus, the density ratio: $r = \text{N}(\theta^*|0, I) / \text{N}(\theta^{t-1}|0, I)$
 
-**TODO: fix the issue below.**
-
-```{r}
-calc_metropolis_density_ratio <- function(t_star, t_m1, data, prior_cov_mat, jumping_cov_mat) {
+```{r, message=TRUE}
+calc_metropolis_density_ratio <- function(t_star, t_m1, data, prior_cov_mat) {
   numerator <- mvtnorm::dmvnorm(t_star, data, prior_cov_mat)
-  denominator <- mvtnorm::dmvnorm(t_m1, data, jumping_cov_mat)
+  denominator <- mvtnorm::dmvnorm(t_m1, data, prior_cov_mat)
   return(numerator / denominator)
 }
 
-metropolis_algorithm_demo <- function(data, theta_t0, N = 1000) {
+metropolis_algorithm_demo <- function(data, theta_t0, N = 1000, quiet = FALSE) {
   theta_t <- unlist(theta_t0)
   prior_dist_mu <- data
   prior_dist_cov_mat <- matrix(c(1, 0, 0, 1), nrow = 2)
@@ -200,6 +211,8 @@ metropolis_algorithm_demo <- function(data, theta_t0, N = 1000) {
 
   chain <- as.list(rep(NA_real_, n = N + 1))
   chain[[1]] <- theta_t
+
+  n_accepts <- 0
 
   for (t in seq(2, N + 1)) {
     theta_star <- mvtnorm::rmvnorm(
@@ -210,15 +223,19 @@ metropolis_algorithm_demo <- function(data, theta_t0, N = 1000) {
       t_star = theta_star,
       t_m1 = theta_t,
       data = data,
-      prior_cov_mat = prior_dist_cov_mat,
-      jumping_cov_mat = jumping_dist_cov_mat
+      prior_cov_mat = prior_dist_cov_mat
     )
 
     accept <- runif(1) < min(c(1, density_ratio))
     if (accept) {
       theta_t <- theta_star
+      n_accepts <- n_accepts + 1
     }
     chain[[t]] <- theta_t
+  }
+  if (!quiet) {
+    frac_accepts <- n_accepts / N
+    message(glue("fraction of accepted jumps: {frac_accepts}"))
   }
   return(chain_to_df(chain, names = c("theta_1", "theta_2")))
 }
@@ -230,13 +247,80 @@ metropolis_chains <- purrr::map_dfr(
     add_column(chain = as.character(.x))
 )
 
-metropolis_plot_chains <- plot_chains(metropolis_chains)
+metropolis_plot_chains <- plot_chains(metropolis_chains) %>%
+  theta_axis_labs()
 metropolis_plot_points <- metropolis_chains %>%
   group_by(chain) %>%
   slice_tail(n = 500) %>%
-  plot_points()
-metropolis_plot_chains | metropolis_plot_points
+  plot_points() %>%
+  theta_axis_labs()
+
+(metropolis_plot_chains | metropolis_plot_points) + plot_annotation(title = "Metropolis algorithm")
 ```
+
+##### The Metropolis-Hastings algorithm
+
+- two changes to generalize the Metropolis algorithm:
+  1. the jumping rule $J_t$ need not be symmetric
+    - generally results in a faster random walk
+  2. a new ratio $r$ \@ref(eq:mh-ratio)
+    - can interpret at a re-weighting of the numerator and denominator by the probability of accepting or rejecting $\theta^*$
+
+\begin{equation}
+  r = \frac{p(\theta^* | y) / J_t(\theta^* | \theta^{t-1})}{p(\theta^{t-1} | y) / J_t(\theta^{t-1} | \theta^*)}
+  (\#eq:mh-ratio)
+\end{equation}
+
+- properties of a good jumping rule:
+  1. easy to sample $J(\theta^*|\theta)$ for any $\theta$
+  2. easy to compute the ratio $r$
+  3. each jump travels a "reasonable" distance
+  4. the jumpy are not rejected too frequently
+
+#### 11.2 Metropolis and Metropolis-Hastings algorithms
+
+- for Bayesian analysis, we want to be able to use the posterior samples for inference, but requires special care when using iterative simulation
+
+##### Difficulties of inference from iterative simulation
+
+- two main challenges:
+  1. "if the iterations have not proceeded long enough... the simulations may be grossly unrepresentative of the target distribution" (pg 282)
+  2. correlation between draws: "simulation inference from correlated draws is generally less precise than from the same number of independent draws" (pg 282)
+- to address these issues:
+  - design the simulations to enable monitoring of convergence
+  - compare variation between and within chains
+
+##### Discarding early iterations of the simulation runs
+
+- *warm-up*: remove first portion of draws to diminish the influence on the starting location
+  - how many to drop depends on the specific case, but dropping the first half of the chain is usually good
+
+##### Dependence of the iterations in each sequence
+
+- *thinning* a chain: keeping every $k$th simulation draw
+  - not necessary if the chains have converged
+  - can help with preserving RAM if many parameters
+
+##### Multiple sequences with overdispersed starting points
+
+- use multiple chains to be able to compare with each other
+  - *mixing* and *stationarity* discussed below
+
+##### Monitoring scalar estimands
+
+- check estimated parameter values and any other computed values of interest to see if their posterior distributions settle
+
+##### Challenges of monitoring convergence: missing and stationarity
+
+- *mixing*: when the chains converge to the same distribution
+- *stationarity*: when each chains has converged to a consistent distribution of values
+
+##### Splitting each saved sequence into two parts
+
+**TODO**: finish adding notes for these sub-sections
+
+##### Assessing mising using between- and within-sequence variances
+
 
 
 
