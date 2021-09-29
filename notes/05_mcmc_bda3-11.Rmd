@@ -36,35 +36,35 @@ theme_set(theme_bw())
   - 11.5 Effective number of simulation draws (important)
   - 11.6 Example: hierarchical normal model (skip this)
 - Animations
-  - Nice animations with discussion: http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/
-  - And just the animations with more options to experiment: https://chi-feng.github.io/mcmc-demo/
+  - Nice animations with discussion: (Markov Chains: Why Walk When You Can Flow?)[http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/]
+  - And just the animations with more options to experiment: (The Markov-chain Monte Carlo Interactive Gallery)[https://chi-feng.github.io/mcmc-demo/]
 - Convergence
   - theoretical convergence in an infinite time is different than practical convergence in a finite time
   - no exact moment when chain has converged
     - convergence diagnostics can help to find out if the chain is unlikely to be representative of the target distribution
-- $\hat{R}$ effective sample size (ESS, previously $n_\text{eff}$)
-  - there are many versions of $\hat{R}$ and effective sample size
+- $\widehat{R}$ effective sample size (ESS, previously $n_\text{eff}$)
+  - there are many versions of $\widehat{R}$ and effective sample size
     - some software packages compute these using old inferior approaches
-    - updated version in [*Rank-normalization, folding, and localization: An improved $\hat{R} for assessing convergence of MCMC*](https://projecteuclid.org/euclid.ba/1593828229)
+    - updated version in [*Rank-normalization, folding, and localization: An improved $\widehat{R} for assessing convergence of MCMC*](https://projecteuclid.org/euclid.ba/1593828229)
 
 ### Chapter 11. Basics of Markov chain simulation
 
 #### Introduction
 
-- **MCMC**: general method based on drawing values of $\theta$ from approximate distribtuions and then correcting those draws to better approximate the target posterior distribution $p(\theta, y)$
-  - **Markov chain**: a sequence of random variables $\theta^1, \theta^2, \dots$ for wihch, for any $t$, the distribtuion of $\theta^t$ given all previous $\theta$'s depends only on the previous value $\theta^{t-1}$
+- **MCMC**: general method based on drawing values of $\theta$ from approximate distributions and then correcting those draws to better approximate the target posterior distribution $p(\theta, y)$
+  - **Markov chain**: a sequence of random variables $\theta^1, \theta^2, \dots$ for which, for any $t$, the distribution of $\theta^t$ given all previous $\theta$'s depends only on the previous value $\theta^{t-1}$
 - general process:
   1. create several independent sequences
   2. each sequence $\theta^1, \theta^2, \dots$ starts from some point $\theta^0$
   3. for each $t$, draws $\theta^t$ from the *transition distribution $T_t (\theta^t | \theta^{t-1})$
 - essential to check convergence of chains
-- this chapter introduces the *Gibbs sampler* and *Metropolic-Hastings algorithm*
+- this chapter introduces the *Gibbs sampler* and *Metropolis-Hastings algorithm*
 
 #### 11.1 Gibbs sampler
 
 - algorithm:
   1. separate the parameter vector $\theta$ into $d$ components (also called subvectors) $\theta = (\theta_1, \dots, \theta_d)$
-  2. for each iteration $t$, each compoent is cycled through (thus, there are $d$ steps for each iteration)
+  2. for each iteration $t$, each component is cycled through (thus, there are $d$ steps for each iteration)
   3. for each iteration $t$, for each $j$ component of $\theta$, each $\theta_j^t$ is sampled from the conditional distribution given all the other current values of $\theta$: $p(\theta_j | \theta_{-j}^{t-1})$
     - where $\theta_{-j}^{t-1} = (\theta_1^t, \dots, \theta_{j-1}^t, \theta_{j+1}^{t-1}, \dots, \theta_d^{t-1})$
     - is just all of the current values of $\theta$ where some have yet to be update in iteration $t$
@@ -317,11 +317,53 @@ metropolis_plot_points <- metropolis_chains %>%
 
 ##### Splitting each saved sequence into two parts
 
-**TODO**: finish adding notes for these sub-sections
+- a method for checking convergence and stationarity of multiple chains:
+  - (after adjusting for warm-up) split each chain in half and check if all of the halves have mixed
+  - checks mixing: if all of the chains have mixed, the separate parts of the different chains should also have mixed
+  - checks stationarity: the first and second half of each sequence should be traversing the same distribution
 
 ##### Assessing mising using between- and within-sequence variances
 
+- calculations for mixing of the split chains:
+  - $m$: number of chains after splitting; $n$: length of each split chain
+  - $\psi$: each labeled estimand (parameter or calculated value of interest)
+    - label the simulations as $\psi_{ij}$ where $(i=1, \dots, n; j=1, \dots, m)$
+  - between-sequence variance $B$ \@ref(eq:Bvar) and within-sequence variance $W$ \@ref(eq:Wvar)
+  - estimate $\text{var}(\psi|y)$ as a weighted average of $B$ and $W$ \@ref(eq:seq-var)
+    - is actually an overestimate
+  - use $\widehat{\text{var}}^+(\psi|y)$ to calculate a factor by which the scale of the current distribution for $\psi$ might be reduced if the simulations were continued $\widehat{R}$
+    - the calculation for $\widehat{R}$ has been updated since publishing *BDA3*
+    - if $\widehat{R}$ is above 1, indicates that letting the chains run longer would improve inference
+  - using these calculations of variance is more reliable than visually checking for mixing, convergence, and stationarity using trace-plots
+     - is also more practical when there are many parameters (such as is common for hierarchical distributions)
 
+\begin{equation}
+  B = \frac{n}{m-1} \sum_j^m (\bar{\psi}_{.j} - \bar{\psi}_{..})^2 \\
+  \quad \text{where} \quad
+    \bar{\psi}_{.j} = \frac{1}{n} \sum _i^n \psi_{ij}
+    \quad \text{and} \quad
+    \bar{\psi}_{..} = \frac{1}{m} \sum_j^m \bar{\psi}_{.j}
+  (\#eq:Bvar)
+\end{equation}
 
+\begin{equation}
+  W = \frac{1}{m} \sum_j^m s_j^2
+    \quad \text{where} \quad
+    s_j^2 = \frac{1}{n-1} \sum_i^n (\psi_ij - \bar{\psi}_{.j})^2
+  (\#eq:Wvar)
+\end{equation}
+
+\begin{equation}
+  \widehat{\text{var}}^+(\psi|y) = \frac{n-1}{n}W + \frac{1}{n}B
+  (\#eq:seq-var)
+\end{equation}
+
+#### 11.5 Effective number of simulation draws
+
+- compute an approximate "effective number of independent simulation draws" $n_\text{eff}$
+  - if all draws were truly independent, then $B \approx \text{var}(\psi|y)$
+  - but usually draws of $\psi$ are autocorrelated and $B$ will be larger than $\text{var}(\psi|y)$
+- with non-normal posterior samples, may need to first transform the draws before calculating $n_\text{eff}$ and $\widehat{R}$
+- recommendation is to sample until $\widehat{R} \le 1.1$ and $n_\text{eff} \ge 5m$ where $m$ is the number of split chains (i.e. $\text{number of chains} \times 2$) (pg. 287)
 
 ### Lecture notes
