@@ -367,3 +367,16 @@ metropolis_plot_points <- metropolis_chains %>%
 - recommendation is to sample until $\widehat{R} \le 1.1$ and $n_\text{eff} \ge 5m$ where $m$ is the number of split chains (i.e. $\text{number of chains} \times 2$) (pg. 287)
 
 ### Lecture notes
+
+#### 5.1. Markov chain Monte Carlo, Gibbs sampling, Metropolis algorithm
+
+- Gibbs sampler
+  - with conditionally conjugate priors, the sampling from the conditional distributions is easy for wide range of models
+    - software: BUGS, WinBUGS, OpenBUGS, JAGS
+  - benefit: no algorithm parameters to tune
+  - slow if parameters are highly dependent in the posterior
+    - the high correlation create a narrow region in which the sampler moves, slowing exploration of the posterior
+
+pasued at 33:47 (Metropolis alg)
+
+#### 5.2. Warm-up, convergence diagnostics, R-hat, and effective sample size
