@@ -189,6 +189,7 @@ gibbs_plot_points <- gibbs_demo_chains %>%
     a. sample a *proposal* $\theta^*$ from a *jumping/proposal distribution* $J_t(\theta^*|\theta^{t-1})$
     b. calculate the ratio of the densities: $r = \frac{p(\theta^*|y)}{p(\theta^{t-1}|y)}$
     c. set $\theta^t = \theta^*$ with probability $\min(r, 1)$, else $\theta^t = \theta^{t-1}$
+      - if the proposal is more likely, it is always accepted, otherwise the ratio $r$ is used as the probability of acceptance
 - the jumping distribution $J_t$ must be symmetric such that $J_t(\theta_a|\theta_b) = J_t(\theta_b|\theta_a)$
 - the iteration still counts even if the proposal $\theta^*$ is rejected
 - ex: bivariate normal distribution (same as before):
@@ -377,6 +378,30 @@ metropolis_plot_points <- metropolis_chains %>%
   - slow if parameters are highly dependent in the posterior
     - the high correlation create a narrow region in which the sampler moves, slowing exploration of the posterior
 
-pasued at 33:47 (Metropolis alg)
-
 #### 5.2. Warm-up, convergence diagnostics, R-hat, and effective sample size
+
+- $\widehat{R}$ with only a few draws and with many draws:
+
+![Rhat-with-few-draws](assets/05_mcmc_bda3-11/slides_ch11-s28-1.png)
+
+![Rhat-with-many-draws](assets/05_mcmc_bda3-11/slides_ch11-s28-3.png)
+- update $\widehat{R}$ is *rank normalized $\widehat{R}$*
+  - original $\widehat{R}$ requires that the target distribution has finite mean and variance
+  - rank normalized removes this requirement
+  - improved detection of different scales between chains
+  - the paper also proposes local convergence diagnostics and practical MCSE estimates for quantiles
+- autocorrelation in the chains (think of as a time series analysis)
+  - describes the correlation given a certain lag
+    - how many steps does it take for the chain to forget a previous step
+  - can be used to compare efficiency of MCMC algorithms and parameterizations
+  - in the example below, the autocorrelation plot shows that it takes about 40 steps to reach a correlation of 0
+    - the x-axis should be "lag"
+
+![autocorrelation-example](assets/05_mcmc_bda3-11/slides_ch11-s36.png)
+- calculating autocorrelation function
+  - $\hat{\rho}_{n,m}$ is the autocorrelation at lag $n$ for chain $m$ of $M$ chains
+  - can see the use of $W$ and $\widehat{\text{var}}^+$ from the calculation of $\widehat{R}$ so that is accounts for how well the chains mix
+
+$$
+\hat{\rho}_n = 1 - \frac{W - \frac{1}{M} \sum_m^M \hat{\rho}_{n,m}}{2 \widehat{\text{var}}^+}
+$$
