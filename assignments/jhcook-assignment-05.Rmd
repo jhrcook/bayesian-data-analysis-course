@@ -13,6 +13,7 @@ for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
   source(f)
 }
 
+library(glue)
 library(patchwork)
 library(tidyverse)
 
@@ -85,7 +86,6 @@ density_ratio <- function(alpha_propose,
   return(exp(log_post_new - log_post_old))
 }
 ```
-
 
 ```{r}
 test_1 <- density_ratio(
@@ -279,8 +279,11 @@ plot_chains(metropolis_chains, alpha = 0.5)
 plot_posterior(metropolis_chains)
 ```
 
+<br> <!-- For some reason this is need to fix some weird formatting behavior. -->
+
 The chains did not mix well with these smaller proposal distribution standard deviations.
 Below, I try slightly larger values for the jump sizes and also run 2,000 total iterations (1,000 warm-up steps).
+
 ```{r}
 set.seed(0)
 metropolis_chains <- purrr::map_dfr(
@@ -342,3 +345,79 @@ I used 4 chains to make sure that the starting location was not influential in t
 (I have already plotted the traces in Exercise 1.)
 
 ### Exercise 3
+
+**In complex scenarios, visual assessment is not sufficient and $\widehat{R}$ is a more robust indicator of convergence of the Markov chains.**
+**Use $\widehat{R}$ for convergence analysis.**
+**You can either use Eq. (11.4) in *BDA3* or the more recent version described here.**
+**You should specify which $\widehat{R}$ you used.**
+**In R the best choice is to use function `Rhat()` from [the] package 'rstan'**
+**Remember to remove the warm-up samples before computing $\widehat{R}$.**
+**Report the $\widehat{R}$ values for $\alpha$ and $\beta$ separately.**
+**Report the values for the proposal distribution you finally used.**
+
+```{r}
+long_chains_df_to_matrix <- function(chains_df,
+                                     mdl_param,
+                                     drop_cols = c(),
+                                     warm_up = -1) {
+  chains_df %>%
+    select(-c(tidyselect::any_of(drop_cols))) %>%
+    group_by(chain) %>%
+    mutate(idx__ = row_number()) %>%
+    ungroup() %>%
+    filter(idx__ > warm_up) %>%
+    pivot_wider(idx__, names_from = chain, values_from = {{ mdl_param }}) %>%
+    select(-idx__) %>%
+    as.matrix()
+}
+```
+
+```{r}
+alpha_rhat <- rstan::Rhat(
+  long_chains_df_to_matrix(
+    metropolis_chains, alpha,
+    drop_cols = "beta", warm_up = 1000
+  )
+)
+
+print(glue("alpha Rhat: {round(alpha_rhat, 3)}"))
+
+beta_rhat <- rstan::Rhat(
+  long_chains_df_to_matrix(
+    metropolis_chains, beta,
+    drop_cols = "alpha", warm_up = 1000
+  )
+)
+
+print(glue("beta Rhat: {round(beta_rhat, 3)}"))
+```
+
+**a) Describe briefly in your own words the basic idea of $\widehat{R}$ and how to to interpret the obtained $\widehat{R}$ values.**
+
+$\widehat{R}$ is a metric for how well the chains have converged by comparing the variance within and between chains to the within-chain variance alone.
+If the value is 1, then the between- and within-chain variance are about equal meaning that the chains have both converged and mixed.
+If it is above 1, this is likely because the between-chain variance is greater than the within-chain variance indicating that the chains have yet to mix.
+The value itself represents the degree to which the estimate of the parameter posterior would change if the chains were able to full mix.
+
+**b) Tell whether you obtained good $\widehat{R}$ with first try, or whether you needed to run more iterations or how did you modify the proposal distribution.**
+
+The $\widehat{R}$ for $\alpha$ looks fine, but the value for $\beta$ is a bit large.
+I would just run the chains for a bit longer, perhaps 3,000 steps, or I could continue tweaking the standard deviations of the jump/proposal distribution.
+
+### Exercise 4
+
+**Plot the draws for $\alpha$ and $\beta$ (scatter plot) and include this plot in your report.**
+**You can compare the results to Figure 3.3b in BDA3 to verify that your code gives sensible results **
+**Notice though that the results in Figure 3.3b are generated from posterior with a uniform prior, so even when if your algorithm works perfectly, the results will look slightly different (although fairly similar).**
+
+Below is the same plot that was created in Exercise 2.
+
+```{r}
+plot_posterior(metropolis_chains)
+```
+
+---
+
+```{r}
+sessionInfo()
+```
