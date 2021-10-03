@@ -1,6 +1,6 @@
 ---
 title: "00. Title"
-date: "2021-08-17"
+date: "2021-10-01"
 output: distill::distill_article
 ---
 
@@ -13,8 +13,8 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 - BDA3 chapter 1 and [reading instructions](../reading-instructions/BDA3_ch01_reading-instructions.pdf)
 - lectures:
   - ['Lecture title'](link-to-lecture)
-- [slides](../slides/bayes_intro.pdf)
-- [Assignment 1](assignments/assignment1.pdf)
+- [slides](../slides/slides_ch00.pdf)
+- [Assignment 1](assignments/assignment-01.pdf)
 
 ## Notes
 

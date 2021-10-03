@@ -22,6 +22,8 @@ navbar:
           href: notes/03_multidimensional-posterior_bda3-03.html
         - text: "Section 4. Monte Carlo"
           href: notes/04_monte-carlo_bda3-10.html
+        - text: "Section 5. Markov chain Monte Carlo"
+          href: notes/04_mcmc_bda3-11.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
@@ -38,6 +40,8 @@ navbar:
           href: assignments/jhcook-assignment-03.html
         - text: "Assignment 4"
           href: assignments/jhcook-assignment-04.html
+        - text: "Assignment 5"
+          href: assignments/jhcook-assignment-05.html
     - text: "About"
       href: about.html
 output: distill::distill_article
