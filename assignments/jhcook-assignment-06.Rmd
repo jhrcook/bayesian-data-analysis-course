@@ -1,6 +1,6 @@
 ---
-title: "Assignment N"
-date: "2021-10-00"
+title: "Assignment 6"
+date: "2021-10-03"
 output: distill::distill_article
 ---
 
@@ -16,14 +16,13 @@ for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
 # Load packages and data, set config, etc.
 ```
 
-**[Assignment N](assignments/assignment-00.pdf)**
+**[Assignment 6](assignments/assignment-06.pdf)**
 
 ## Exercise 1
 
 **Type out the main important bits of the question here...**
 
 Answer the question here.
-
 
 ---
 
