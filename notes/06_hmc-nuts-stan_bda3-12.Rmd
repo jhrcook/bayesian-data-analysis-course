@@ -88,7 +88,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
   (\#eq:accept-reject-r)
 \end{equation}
 
-**NEXT -> watch video on HMC by Betancourt: https://www.youtube.com/watch?v=jUSZboSq1zg**
+> Pause here and watch video on HMC by Betancourt: [Scalable Bayesian Inference with Hamiltonian Monte Carlo](https://youtu.be/jUSZboSq1zg).
 
 #### 12.5 Hamiltonian Monte Carlo for a hierarchical model
 
