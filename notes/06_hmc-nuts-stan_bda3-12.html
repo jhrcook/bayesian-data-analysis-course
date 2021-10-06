@@ -1517,11 +1517,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>(skipping sections 12.1-12.3)</p>
 <h4 id="hamiltonian-monte-carlo-1">12.4 Hamiltonian Monte Carlo</h4>
 <ul>
-<li>random walk of Gibbs sampler and Metropolis algorthim is inherently inefficient</li>
-<li>Hamiltonian Monte Carlo (HMC) uses “mommentum” to suppress the local random walk behavior of the Metropolis algorithm
+<li>random walk of Gibbs sampler and Metropolis algorithm is inherently inefficient</li>
+<li>Hamiltonian Monte Carlo (HMC) uses “momentum” to suppress the local random walk behavior of the Metropolis algorithm
 <ul>
 <li>such that is moves more rapidly through the target distribution</li>
-<li>for each compoent <span class="math inline">\(\theta_j\)</span> in the target space, there is a corresponding <em>momentum</em> variable <span class="math inline">\(\phi_j\)</span></li>
+<li>for each component <span class="math inline">\(\theta_j\)</span> in the target space, there is a corresponding <em>momentum</em> variable <span class="math inline">\(\phi_j\)</span></li>
 <li>the posterior density <span class="math inline">\(p(\theta|y)\)</span> is augmented by an <em>independent</em> distribution <span class="math inline">\(p(\phi|y)\)</span> on the momentum: <span class="math inline">\(p(\theta, \phi | y) = p(\phi) p(\theta | y)\)</span></li>
 <li>to compute the momentum, HMC requires the gradient of the log-posterior density
 <ul>
@@ -1531,25 +1531,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul>
 <h5 id="the-momentum-distribution-pphi">The momentum distribution <span class="math inline">\(p(\phi)\)</span></h5>
 <ul>
-<li>common to usea multivariate normal distribution with mean 0 and a diagonal <em>mass matrix</em> <span class="math inline">\(M\)</span>
+<li>common to use a multivariate normal distribution with mean 0 and a diagonal <em>mass matrix</em> <span class="math inline">\(M\)</span>
 <ul>
 <li><span class="math inline">\(\phi_j \sim \text{N}(0, M_{jj})\)</span> for each <span class="math inline">\(j = 1, \dots, d\)</span></li>
-<li>ideally, the mass matrix should scale with the inverse covaraince matrix of the posterior distribution <span class="math inline">\((\text{var}(\theta|y))^{-1}\)</span></li>
+<li>ideally, the mass matrix should scale with the inverse covariance matrix of the posterior distribution <span class="math inline">\((\text{var}(\theta|y))^{-1}\)</span></li>
 </ul></li>
 </ul>
 <h5 id="the-three-steps-of-an-hmc-iteration">The three steps of an HMC iteration</h5>
 <ol type="1">
 <li>update <span class="math inline">\(\phi\)</span> by sampling from its posterior (same as its prior): <span class="math inline">\(\phi \sim \text{N}(0, M)\)</span></li>
-<li>simultaneously update <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> using a leapfrog algorith to simulate physical Hamilotnian dynaimcs where the position and momentum evolve continuously; for <span class="math inline">\(L\)</span> leapfrog steps with scaling factor <span class="math inline">\(\epsilon\)</span>:</li>
+<li>simultaneously update <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> using a leapfrog algorithm to simulate physical Hamiltonian dynamics where the position and momentum evolve continuously; for <span class="math inline">\(L\)</span> leapfrog steps with scaling factor <span class="math inline">\(\epsilon\)</span>:</li>
 </ol>
 <ol type="a">
 <li>use the gradient of the log-posterior density of <span class="math inline">\(\theta\)</span> to make a half-step of <span class="math inline">\(\phi\)</span>: <span class="math inline">\(\phi \leftarrow \phi + \frac{1}{2} \epsilon \frac{d \log p(\theta|y)}{d \theta}\)</span></li>
-<li>use the momentum <span class="math inline">\(\phi\)</span> to update postition <span class="math inline">\(\theta\)</span>: <span class="math inline">\(\theta \leftarrow \theta + \epsilon M^{-1} \phi\)</span></li>
+<li>use the momentum <span class="math inline">\(\phi\)</span> to update position <span class="math inline">\(\theta\)</span>: <span class="math inline">\(\theta \leftarrow \theta + \epsilon M^{-1} \phi\)</span></li>
 <li>use the gradient of <span class="math inline">\(\theta\)</span> for the second half-step of <span class="math inline">\(\phi\)</span>: <span class="math inline">\(\phi \leftarrow \phi + \frac{1}{2} \epsilon \frac{d \log p(\theta|y)}{d \theta}\)</span></li>
 </ol>
 <ol start="3" type="1">
 <li>calculate the accept/reject ratio <span class="math inline">\(r\)</span> <a href="#eq:accept-reject-r">(1)</a></li>
-<li>set <span class="math inline">\(\theta^t = \theta^*\)</span> with probability <span class="math inline">\(\min(r, 1)\)</span>, else reject the prposed <span class="math inline">\(\theta\)</span> and set <span class="math inline">\(\theta^t = \theta^{t-1}\)</span></li>
+<li>set <span class="math inline">\(\theta^t = \theta^*\)</span> with probability <span class="math inline">\(\min(r, 1)\)</span>, else reject the proposed <span class="math inline">\(\theta\)</span> and set <span class="math inline">\(\theta^t = \theta^{t-1}\)</span></li>
 </ol>
 <p><span class="math display" id="eq:accept-reject-r">\[\begin{equation}
   r
@@ -1561,14 +1561,89 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Pause here and watch video on HMC by Betancourt: <a href="https://youtu.be/jUSZboSq1zg">Scalable Bayesian Inference with Hamiltonian Monte Carlo</a>.</p>
 </blockquote>
 <h4 id="hamiltonian-monte-carlo-for-a-hierarchical-model">12.5 Hamiltonian Monte Carlo for a hierarchical model</h4>
+<p>(Walks through the process of deciding on model and HMC parameters and tuning <span class="math inline">\(\epsilon\)</span> and <span class="math inline">\(L\)</span> for HMC.)</p>
 <h4 id="stan-developing-a-computing-environment">12.6 Stan: developing a computing environment</h4>
+<p>(<em>Very</em> briefly describes Stan.)</p>
 <h3 id="lecture-notes">Lecture notes</h3>
+<h4 id="hmc-nuts-dynamic-hmc-and-hmc-specific-convergence-diagnostics">6.1 HMC, NUTS, dynamic HMC and HMC specific convergence diagnostics</h4>
+<p><em>Definitely worth looking at the visualizations in this blog post: <a href="http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/">Markov Chains: Why Walk When You Can Flow?</a></em></p>
+<p><em>Interactively play with HMC and NUTS: <a href="https://chi-feng.github.io/mcmc-demo/">MCMC demo</a></em></p>
+<ul>
+<li>Hamiltonian Monte Carlo
+<ul>
+<li>uses gradient of log density for more efficient sampling of the posterior</li>
+<li>parameters: step size <span class="math inline">\(\epsilon\)</span>, number of steps in each chain <span class="math inline">\(L\)</span>
+<ul>
+<li>if step size is too large, then the chain can get further and further away from the high density regions leading to “exploding error”
+<ul>
+<li>can experiment with this in the simulation linked above</li>
+</ul></li>
+</ul></li>
+<li>No U-Turn Sampling (NUTS) and dynamic HMC
+<ul>
+<li>adaptively selects the number of steps to improve robustness and sampling efficiency</li>
+<li>“dynamic” HMC refers to dynamic trajectory length</li>
+<li>to maintain “reversibility” condition for the Markov chain, must simulate in two directions</li>
+</ul></li>
+</ul></li>
+<li>dynamic HMC in Stan
+<ul>
+<li>use a growing tree to increase simulation trajectory until no-U-turn stopping criterion
+<ul>
+<li>there is a <em>max tree depth</em> parameter to control the size of this</li>
+<li>pick a draw along the trajectory with probability adjusted to account for the error in discretized dynamic simulation and higher probability for parts further away from the start
+<ul>
+<li>therefore, don’t always end up at the end of the trajectory, but usually somewhere near the end</li>
+</ul></li>
+</ul></li>
+<li>Stan can also adjust the mass matrix to “reshape” the posterior to make more circular and reduce correlations between parameters to make sampling faster and more efficient
+<ul>
+<li>occurs during the initial adaptation in the warm-up</li>
+</ul></li>
+</ul></li>
+<li>max tree depth diagnostic
+<ul>
+<li>indicates inefficiency in sampling leading to higher autocorrelation and lower ESS</li>
+<li>possibly step size is too small</li>
+<li>different parameterizations matter</li>
+</ul></li>
+<li>divergences
+<ul>
+<li>HMC specific</li>
+<li>indicates that there are unexpectedly fast changes in log-density</li>
+<li>comes from exploding error where the chain leaves high-density regions of the posterior and gets lost in other directions</li>
+<li>occurs in funnel geometries common in hierarchical models because in the neck of the funnel, the high-density region is so thin, the trajectory can easily leave and enter a very low-density region</li>
+</ul></li>
+<li>problematic distributions
+<ul>
+<li><em>Nonlinear dependencies</em>
+<ul>
+<li>simple mass matrix scaling doesn’t help</li>
+</ul></li>
+<li><em>Funnels</em>
+<ul>
+<li>optimal step size depends on location</li>
+<li>can get stuck in the neck of the funnel causing divergences</li>
+</ul></li>
+<li><em>Multimodal</em>
+<ul>
+<li>difficult to move from one mode to another</li>
+<li>can be seen if multiple chains end up in different locations</li>
+</ul></li>
+<li><em>Long-tailed with non-finite variance and mean</em>
+<ul>
+<li>efficiency of exploration is reduced</li>
+<li>central limit theorem doesn’t hold for mean and variance</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="probabilistic-programming-and-stan">6.2 probabilistic programming and Stan</h4>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Radford Neal (2011). MCMC using Hamiltonian dynamics. In Brooks et al (ed), <em>Handbook of Markov Chain Monte Carlo</em>, Chapman &amp; Hall / CRC Press. Preprint <a href="https://arxiv.org/pdf/1206" class="uri">https://arxiv.org/pdf/1206</a>. 1901.pdf.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Matthew D. Hoffman, Andrew Gelman (2014). The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo. <em>JMLR</em>, 15:1593–1623 <a href="http://jmlr.org/papers/v15/" class="uri">http://jmlr.org/papers/v15/</a> hoffman14a.html.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Radford Neal (2011). MCMC using Hamiltonian dynamics. In Brooks et al (ed), <em>Handbook of Markov Chain Monte Carlo</em>, Chapman &amp; Hall / CRC Press. Preprint <a href="https://arxiv.org/pdf/1206.1901.pdf" class="uri">https://arxiv.org/pdf/1206.1901.pdf</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Matthew D. Hoffman, Andrew Gelman (2014). The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo. <em>JMLR</em>, 15:1593–1623 <a href="http://jmlr.org/papers/v15/hoffman14a.html" class="uri">http://jmlr.org/papers/v15/hoffman14a.html</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3" role="doc-endnote"><p>Michael Betancourt (2018). A Conceptual Introduction to Hamiltonian Monte Carlo. arXiv preprint arXiv:1701.02434 <a href="https://arxiv.org/abs/1701.02434" class="uri">https://arxiv.org/abs/1701.02434</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4" role="doc-endnote"><p>Betancourt, Michael. 2016. “Diagnosing Suboptimal Cotangent Disintegrations in Hamiltonian Monte Carlo.” arXiv [stat.ME]. arXiv. <a href="http://arxiv.org/abs/1604.00695" class="uri">http://arxiv.org/abs/1604.00695</a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
