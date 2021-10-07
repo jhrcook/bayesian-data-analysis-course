@@ -1638,7 +1638,87 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul></li>
 </ul>
 <h4 id="probabilistic-programming-and-stan">6.2 probabilistic programming and Stan</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>example: Binomial model</p>
+<pre><code>data {
+  int &lt;lower=0&gt; N; // number of experiments
+  int&lt;lower=0,upper=N&gt; y; // number of successes
+}
+
+parameters {
+  real &lt;lower=0,upper=1&gt; theta ; // parameter of the binomial
+}
+
+model {
+  theta ~ beta(1,1); //prior
+  y ~ binomial (N, theta ); // observation model
+}</code></pre>
+<p>example: running Stan from R</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (rstan)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> parallel <span class="sc">::</span><span class="fu">detectCores</span>())</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>d_bin <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">N =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="dv">7</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fit_bin <span class="ot">&lt;-</span> <span class="fu">stan</span>(<span class="at">file =</span> <span class="st">&quot;binom.stan&quot;</span>, <span class="at">data =</span> d_bin)</span></code></pre></div>
+<p>example: running Stan from Python</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pystan </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> stan_utility</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">&quot;N&quot;</span>: <span class="dv">10</span>, <span class="st">&quot;y&quot;</span>: <span class="dv">8</span>}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> stan_utility.compile_model(<span class="st">&#39;binom.stan&#39;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>fit <span class="op">=</span> model.sampling(data<span class="op">=</span>data)</span></code></pre></div>
+<p>example: Difference between proportions</p>
+<pre><code>data {
+  int&lt;lower=0&gt; N1;
+  int&lt;lower=0&gt; y1;
+  int&lt;lower=0&gt; N2;
+  int&lt;lower=0&gt; y2;
+}
+parameters {
+  real &lt;lower=0,upper=1&gt; theta1;
+  real &lt;lower=0,upper=1&gt; theta2;
+}
+model {
+  theta1 ~ beta(1,1);
+  theta2 ~ beta(1,1);
+  y1 ~ binomial(N1,theta1);
+  y2 ~ binomial(N2,theta2);
+}
+generated quantities {
+  real oddsratio;
+  oddsratio = (theta2 / (1 - theta2)) / (theta1 / (1 - theta1))
+}</code></pre>
+<p>some HMC-specific diagnostics with ‘rstan’</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_treedepth</span>(fit_bin2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_energy</span>(fit_bin2)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">check_div</span>(fit_bin2)</span></code></pre></div>
+<p>example of scaling data in the Stan language</p>
+<pre><code>data {
+  int&lt;lower=0&gt; N; // number of data points
+  vector[N] x;
+  vector[N] y;
+  real xpred; // input location for prediction
+}
+
+transformed_data {
+  vector[N] x_std;
+  vector[N] y_std;
+  real xpred_std;
+  x_std = (x - mean(x)) / sd(x);
+  y_std = (y - mean(y)) / sd(y);
+  xpred_std = (xpred - mean(x)) / sd(x);
+}</code></pre>
+<ul>
+<li>other useful R packages worth looking into:
+<ul>
+<li>‘rstanarm’ and ‘brms’: for quickly building models with the R formula language</li>
+<li>‘shinystan’: interactive diagnostics</li>
+<li>‘bayesplot’: visualization and model checking (see model checking in Ch 6)</li>
+<li>‘loo’: cross-validation model assessment, comparison and averaging (see Ch 7)</li>
+<li>‘projpred’: projection predictive variable selection</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+</ul>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>

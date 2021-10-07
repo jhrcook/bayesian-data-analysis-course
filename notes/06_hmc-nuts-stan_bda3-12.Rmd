@@ -145,3 +145,104 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
     - central limit theorem doesn’t hold for mean and variance
 
 #### 6.2 probabilistic programming and Stan
+
+example: Binomial model
+
+```
+data {
+  int <lower=0> N; // number of experiments
+  int<lower=0,upper=N> y; // number of successes
+}
+
+parameters {
+  real <lower=0,upper=1> theta ; // parameter of the binomial
+}
+
+model {
+  theta ~ beta(1,1); //prior
+  y ~ binomial (N, theta ); // observation model
+}
+```
+
+example: running Stan from R
+
+```r
+library (rstan)
+
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel ::detectCores())
+
+d_bin <- list(N = 10, y = 7)
+fit_bin <- stan(file = "binom.stan", data = d_bin)
+```
+
+example: running Stan from Python
+
+```python
+import pystan
+import stan_utility
+
+data = {"N": 10, "y": 8}
+model = stan_utility.compile_model('binom.stan')
+fit = model.sampling(data=data)
+```
+
+example: Difference between proportions
+
+```
+data {
+  int<lower=0> N1;
+  int<lower=0> y1;
+  int<lower=0> N2;
+  int<lower=0> y2;
+}
+parameters {
+  real <lower=0,upper=1> theta1;
+  real <lower=0,upper=1> theta2;
+}
+model {
+  theta1 ~ beta(1,1);
+  theta2 ~ beta(1,1);
+  y1 ~ binomial(N1,theta1);
+  y2 ~ binomial(N2,theta2);
+}
+generated quantities {
+  real oddsratio;
+  oddsratio = (theta2 / (1 - theta2)) / (theta1 / (1 - theta1))
+}
+```
+
+some HMC-specific diagnostics with 'rstan'
+
+```r
+check_treedepth(fit_bin2)
+check_energy(fit_bin2)
+check_div(fit_bin2)
+```
+
+example of scaling data in the Stan language
+
+```
+data {
+  int<lower=0> N; // number of data points
+  vector[N] x;
+  vector[N] y;
+  real xpred; // input location for prediction
+}
+
+transformed_data {
+  vector[N] x_std;
+  vector[N] y_std;
+  real xpred_std;
+  x_std = (x - mean(x)) / sd(x);
+  y_std = (y - mean(y)) / sd(y);
+  xpred_std = (xpred - mean(x)) / sd(x);
+}
+```
+
+- other useful R packages worth looking into:
+  - 'rstanarm' and 'brms': for quickly building models with the R formula language
+  - 'shinystan': interactive diagnostics
+  - 'bayesplot': visualization and model checking (see model checking in Ch 6)
+  - 'loo': cross-validation model assessment, comparison and averaging (see Ch 7)
+  - 'projpred': projection predictive variable selection
