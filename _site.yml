@@ -23,7 +23,9 @@ navbar:
         - text: "Section 4. Monte Carlo"
           href: notes/04_monte-carlo_bda3-10.html
         - text: "Section 5. Markov chain Monte Carlo"
-          href: notes/04_mcmc_bda3-11.html
+          href: notes/05_mcmc_bda3-11.html
+        - text: "Section 6. HMC, NUTS, and Stan"
+          href: notes/06_hmc-nuts-stan_bda3-12.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
@@ -42,6 +44,8 @@ navbar:
           href: assignments/jhcook-assignment-04.html
         - text: "Assignment 5"
           href: assignments/jhcook-assignment-05.html
+        - text: "Assignment 6"
+          href: assignments/jhcook-assignment-06.html
     - text: "About"
       href: about.html
 output: distill::distill_article

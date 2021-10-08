@@ -23,3 +23,10 @@ for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
 **Type out the main important bits of the question here...**
 
 Answer the question here.
+
+
+---
+
+```{r}
+sessionInfo()
+```
