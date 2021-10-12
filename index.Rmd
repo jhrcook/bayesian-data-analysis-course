@@ -50,3 +50,4 @@ The recommended way to go through the material is:
 | **4. Monte Carlo** | [notes](notes/04_monte-carlo_bda3-10.html) | exercises | [assignment](assignments/jhcook-assignment-04.html) |
 | **5. Markov chain Monte Carlo** | [notes](notes/05_mcmc_bda3-11.html) | exercises | [assignment](assignments/jhcook-assignment-05.html) |
 | **6. HMC, NUTS, and Stan** | [notes](notes/06_hmc-nuts-stan_bda3-12.html) | exercises | [assignment](assignments/jhcook-assignment-06.html) |
+| **7. Hierarchical models and exchangeability** | [notes](notes/07_hierarchical-models_bda3-5.html) | exercises | [assignment](assignments/jhcook-assignment-07.html) |
