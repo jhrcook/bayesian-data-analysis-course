@@ -1,0 +1,91 @@
+---
+title: "7. Hierarchical models and exchangeability"
+date: "2021-10-12"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
+
+## Resources
+
+- BDA3 chapter 5 and [reading instructions](../reading-instructions/BDA3_ch05_reading-instructions.pdf)
+- lectures:
+  - ['Hierarchical models'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=79dee6de-afa9-446f-b533-aaf400cabf2b)
+  - ['Exchangeability'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c822561c-f95d-44fc-a1d0-aaf400d9fae3)
+- [slides](../slides/slides_ch5.pdf)
+- [Assignment 7](assignments/assignment-07.pdf)
+
+## Notes
+
+### Reading instructions
+
+- "The hierarchical models in the chapter are simple to keep computation simple. More advanced computational tools are presented in Chapters 10-12 (part of the course) and 13 (not part of the course)."
+
+#### Exchangeability vs. independence
+
+- exchangeability and independence are two separate concepts; neither necessarily implies the other
+  - independent identically distributed variables/parameters are exchangeable
+  - exchangeability is less strict condition than independence
+
+#### Weakly informative priors for hierarchical variance parameters
+
+- suggestions have changed since writing section 5.7
+  - section 5.7 recommends use of half-Cauchy as weakly informative prior for hierarchical variance parameters
+  - now recommend a "half-normal if you have substantial information on the high end values, or or half-$t_4$ if you there might be possibility of surprise"
+  - "half-normal produces usually more sensible prior predictive distributions and is thus better justified"
+  - "half-normal leads also usually to easier inference"
+
+### Chapter 5. Hierarchical models
+
+- individual parameters for groups can be modeled as coming from a *population distribution*
+  - model these relationships hierarchically
+- hierarchical models can often have more parameters than data but avoid overfitting of tranditional linear models
+- sections
+  - 5.2: how to construct a hierarchical prior distribtuion in the context of a fully Bayesian analysis
+  - 5.7: weakly informative priors
+
+#### 1. Constructing a parameterized prior distribution
+
+- have historical data to inform our model
+  - can use it to construct a prior for our new data or use it as data to inform the posterior
+  - probably should not use it for both though, thus favor using it directly in the model alongisde our new data
+- for each experiment $j$, with data $y_j$, estimate the parameter $\theta_j$
+  - the parameters $\theta_j$ can come from a *population distribution* parameterized by $\text{Beta}(\alpha, \beta)$
+
+![hierarchical-structure](assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-1.png)
+
+#### 5.2 Exchangeability and hierarchical models
+
+- if no information (other than $y$) is available to distrnguish any of the $\theta_j$'s, and no ordering (time) or grouping can be made, then we must assume symmetry among the parameters in the prior distribution
+  - *this symmetry is represented probabilistically by exchangeability*: the parameters $(\theta_1, \dots, \theta_J)$ are *exchangeable* in the join distribution if $p(\theta_1, \dots, \theta_J)$ is invariant to permutations of the indices $(1, \dots, J)$
+- "in practice, ignorance implies exchangeability" (pg. 104)
+  - the less we know about a problem, the more confident we can claim exchangeability (i.e. we don't know any better)
+- exchangeability is not the same as i.i.d:
+  - probability of a die landing on each face: parameters $(\theta_1, \dots, \theta_6)$ are exchangeable because we think the faces are all the same, but they are not independent because the total must sum to 1
+- exchangeability when additional information is available on the groups
+  - if the observations can be grouped in their own submodels, but the group properties are unknown, can make a common prior distribution for the group properties
+  - if $y_i$ has additional information $x_i$ so that $y_i$ are not exchangeable, but $(y_i, x_i)$ are exchangeable, we can make a join model for $(y_i, x_i)$ or a conditional model $y_i | x_i$
+- the usual wauy to model exchangeability with covariates is through conditional independence
+
+$$
+p(\theta_1, \dots, \theta_J | x_1, \dots, x_J) = \int [\prod_{j=1}^J p(\theta_j | \phi, x_j)] p(\phi|x) d \phi
+$$
+
+- $phi$ is unknown, so it gets a prior distribution, too $p(\phi)$
+  - the posterior distribution is of the vector $(\phi, \theta)$
+  - thus the joint prior is: $p(\phi, \theta) = p(\phi) p(\theta|\phi)$
+- joint posterior:
+
+$$
+\begin{aligned}
+p(\phi, \theta | y) &\propto p(\phi, \theta) p(y|\phi, \theta) \\
+ &= p(\phi, \theta) p(y|\theta)
+\end{aligned}
+$$
+
+- posterior predictive distributions
+  - get predictions on both levels
+
+### Lecture notes
