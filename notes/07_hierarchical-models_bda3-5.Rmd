@@ -88,4 +88,34 @@ $$
 - posterior predictive distributions
   - get predictions on both levels
 
+#### 5.3 Bayesian analysis of conjugate hierarchical models
+
+- analysis derivation of conditional and marginal distributions
+  1. write the (unnormalized) joint posterior density $p(\theta, \phi | y)$ as a product of the hyperprior $p(\phi)$, the population distribution $p(\theta|\phi)$ and the likelihood $p(y|\theta)$
+  2. determine the conditional posterior density of $\theta$ given $\phi$: $p(\theta | \phi, y)$
+  3. estimate $\phi$ from its marginal posterior distribution $p(\phi|y)$
+- drawing simulations from the posterior distribution
+  1. draw $\phi$ from $p(\phi|y)$
+  2. draw $\theta$ from its conditional posterior distribution $p(\theta | \phi, y)$ using the values of $\phi$ from the previous step
+  3. draw predictive values $\tilde{y}$ given the values of $\theta$
+- example on rat tumors is a good demonstration of the shrinkage of parameter estimates in a hierarchical model
+  - the 1:1 line represents where the posteriors would be for a non-pooling model
+  - can see the shrinkage of the extreme values towards the average
+  - the effect is stronger for experiments with fewer rats
+
+![rat-tumor-model-posterior](assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-4.png)
+
+#### 5.4 Normal model with exchangeable parameters
+
+- drawing posterior predictive samples:
+  1. for new data $\tilde{y}$ of existing groups $J$, use the posterior distributions for $(\theta_1, \dots, \theta_j)$
+  2. for new data $\tilde{y}$ for $\tilde{J}$ new groups:
+    1. draw values for the hyperparameters $\mu, \tau$ (in this case)
+    2. draw $\tilde{J}$ new parameters $(\tilde{\theta}_1, \dots, \tilde{\theta}_\tilde{J})$ from $p(\tilde{\theta} | \mu, \tau)$
+    3. draw $\tilde{y}$ given $\tilde{\theta}$
+
+#### 5.5 Example: parallel experiments in eight schools
+
+- a full example of a Bayesian hierarchcial modeling process and analysis
+
 ### Lecture notes
