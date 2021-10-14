@@ -12,8 +12,8 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 - BDA3 chapter 5 and [reading instructions](../reading-instructions/BDA3_ch05_reading-instructions.pdf)
 - lectures:
-  - ['Hierarchical models'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=79dee6de-afa9-446f-b533-aaf400cabf2b)
-  - ['Exchangeability'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c822561c-f95d-44fc-a1d0-aaf400d9fae3)
+  - ['7.1. Hierarchical models'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=79dee6de-afa9-446f-b533-aaf400cabf2b)
+  - ['7.2. Exchangeability'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c822561c-f95d-44fc-a1d0-aaf400d9fae3)
 - [slides](../slides/slides_ch5.pdf)
 - [Assignment 7](assignments/assignment-07.pdf)
 
@@ -41,24 +41,24 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 - individual parameters for groups can be modeled as coming from a *population distribution*
   - model these relationships hierarchically
-- hierarchical models can often have more parameters than data but avoid overfitting of tranditional linear models
+- hierarchical models can often have more parameters than data but avoid overfitting of traditional linear models
 - sections
-  - 5.2: how to construct a hierarchical prior distribtuion in the context of a fully Bayesian analysis
+  - 5.2: how to construct a hierarchical prior distribution in the context of a fully Bayesian analysis
   - 5.7: weakly informative priors
 
 #### 1. Constructing a parameterized prior distribution
 
 - have historical data to inform our model
   - can use it to construct a prior for our new data or use it as data to inform the posterior
-  - probably should not use it for both though, thus favor using it directly in the model alongisde our new data
+  - probably should not use it for both though, thus favor using it directly in the model alongside our new data
 - for each experiment $j$, with data $y_j$, estimate the parameter $\theta_j$
   - the parameters $\theta_j$ can come from a *population distribution* parameterized by $\text{Beta}(\alpha, \beta)$
 
-![hierarchical-structure](assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-1.png)
+![hierarchical structure graph](assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-1.png)
 
 #### 5.2 Exchangeability and hierarchical models
 
-- if no information (other than $y$) is available to distrnguish any of the $\theta_j$'s, and no ordering (time) or grouping can be made, then we must assume symmetry among the parameters in the prior distribution
+- if no information (other than $y$) is available to distinguish any of the $\theta_j$'s, and no ordering (time) or grouping can be made, then we must assume symmetry among the parameters in the prior distribution
   - *this symmetry is represented probabilistically by exchangeability*: the parameters $(\theta_1, \dots, \theta_J)$ are *exchangeable* in the join distribution if $p(\theta_1, \dots, \theta_J)$ is invariant to permutations of the indices $(1, \dots, J)$
 - "in practice, ignorance implies exchangeability" (pg. 104)
   - the less we know about a problem, the more confident we can claim exchangeability (i.e. we don't know any better)
@@ -67,7 +67,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 - exchangeability when additional information is available on the groups
   - if the observations can be grouped in their own submodels, but the group properties are unknown, can make a common prior distribution for the group properties
   - if $y_i$ has additional information $x_i$ so that $y_i$ are not exchangeable, but $(y_i, x_i)$ are exchangeable, we can make a join model for $(y_i, x_i)$ or a conditional model $y_i | x_i$
-- the usual wauy to model exchangeability with covariates is through conditional independence
+- the usual way to model exchangeability with covariates is through conditional independence
 
 $$
 p(\theta_1, \dots, \theta_J | x_1, \dots, x_J) = \int [\prod_{j=1}^J p(\theta_j | \phi, x_j)] p(\phi|x) d \phi
@@ -103,7 +103,7 @@ $$
   - can see the shrinkage of the extreme values towards the average
   - the effect is stronger for experiments with fewer rats
 
-![rat-tumor-model-posterior](assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-4.png)
+![rat tumor model posterior](assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-4.png)
 
 #### 5.4 Normal model with exchangeable parameters
 
@@ -116,6 +116,33 @@ $$
 
 #### 5.5 Example: parallel experiments in eight schools
 
-- a full example of a Bayesian hierarchcial modeling process and analysis
+- a full example of a Bayesian hierarchical modeling process and analysis
+
+#### 5.6 Hierarchical modeling applied to a meta-analysis
+
+- another good example of analyzing the results of a Bayesian hierarchical model
+  - notes the importance of interpreting both the mean and standard error hyperparameters to interpret the distribution of possible parameter values
+
+#### 5.7 Weakly informative priors for variance parameters
+
+- "It turns out the the choice of 'noninformative' prior distribution can have a big effect on inferences," (pg. 128)
+  - uniform prior distributions will often lead to overly-dispersed posteriors
+    - this is especially true for the standard error term of a hyperparameter when there are few groups
+  - half-Cauchy is often a good balance between restricting the prior to reasonable value but with fat enough tails to allow for uncertainty
+    - particularly good for variance parameters of hierarchical models with few groups
 
 ### Lecture notes
+
+#### ['7.1. Hierarchical models'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=79dee6de-afa9-446f-b533-aaf400cabf2b)
+
+- description of the diagram of a hierarchical model
+  - box: known value
+    - double box: indicates a fixed experimental value (e.g. decided how many rats to include in an experiment)
+  - circle: unknown parameter
+  - box with the subscript $j$: indicates that everything within the box is repeated $J$ times
+
+![hierarchical box diagram](assets/07_hierarchical-models_bda3-05/slides_ch5_s7-crop.jpg)
+
+**paused at 27:00**
+
+#### ['7.2. Exchangeability'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c822561c-f95d-44fc-a1d0-aaf400d9fae3)
