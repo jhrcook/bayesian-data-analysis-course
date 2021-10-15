@@ -51,3 +51,8 @@ The recommended way to go through the material is:
 | **5. Markov chain Monte Carlo** | [notes](notes/05_mcmc_bda3-11.html) | exercises | [assignment](assignments/jhcook-assignment-05.html) |
 | **6. HMC, NUTS, and Stan** | [notes](notes/06_hmc-nuts-stan_bda3-12.html) | exercises | [assignment](assignments/jhcook-assignment-06.html) |
 | **7. Hierarchical models and exchangeability** | [notes](notes/07_hierarchical-models_bda3-5.html) | exercises | [assignment](assignments/jhcook-assignment-07.html) |
+
+## Stan models
+
+- [Drug bioassay model](models/assignment06-bioassay.stan) for Assignment 6
+- [8 school SAT model](models/8-schools.stan)

@@ -6,6 +6,8 @@ output: distill::distill_article
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+
+set.seed(659)
 ```
 
 ## Resources
@@ -143,6 +145,62 @@ $$
 
 ![hierarchical box diagram](assets/07_hierarchical-models_bda3-05/slides_ch5_s7-crop.jpg)
 
-**paused at 27:00**
+- hierarchical model shrinkage effects with sample size
+  - below example shows how shrinkage is stronger for data points with smaller sample size (county radon example)
+
+![chrinkage with sample size](assets/07_hierarchical-models_bda3-05/slides_ch5_s17-crop.jpg)
+
+- below, I replicate the 8-schools model in Stan and try to make the plot of $\theta$ over $\tau$
+
+```{r}
+library(rstan)
+library(tidybayes)
+suppressPackageStartupMessages(library(tidyverse))
+
+options(mc.cores = 2)
+rstan_options(auto_write = TRUE)
+
+schools_data <- list(
+  J = 8,
+  y = c(28, 8, -3, 7, -1, 1, 18, 12),
+  sigma = c(15, 10, 16, 11, 9, 11, 10, 18)
+)
+
+eight_schools <- stan(
+  file = here::here("models", "8-schools.stan"),
+  data = schools_data,
+  chains = 4,
+  warmup = 1000,
+  iter = 2000,
+  cores = 2,
+  refresh = 0
+)
+
+eight_schools
+```
+
+```{r}
+theta_tau_post <- eight_schools %>%
+  spread_draws(theta[school], tau) %>%
+  mutate(school = purrr::map_chr(school, ~ LETTERS[[.x]]))
+
+theta_tau_post %>%
+  filter(tau < 20) %>%
+  arrange(tau) %>%
+  ggplot(aes(x = tau, y = theta, color = school)) +
+  geom_smooth(
+    method = "loess", formula = "y ~ x", n = 250, size = 0.8, alpha = 0.1
+  ) +
+  scale_x_continuous(expand = expansion(c(0, 0))) +
+  scale_y_continuous(expand = expansion(c(0.02, 0.02))) +
+  scale_color_brewer(type = "qual", palette = "Set1") +
+  theme_classic()
+```
 
 #### ['7.2. Exchangeability'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c822561c-f95d-44fc-a1d0-aaf400d9fae3)
+
+- **exchangeability**: parameters $\theta_1, \dots ,\theta_J$ (or observations $y_1, \dots , y_J$) are exchangeable if the joint distribution $p$ is invariant to the permutation of indices $(1, \dots, J)$
+  - e.g.: $p(\theta_1, \theta_2, \theta_3) = p(\theta_2, \theta_3, \theta_1)$
+- exchangeability implies symmetry
+   - if there is no information which can be used a priori to separate $\theta_j$ form each other, we can assume exchangeability
+   - ”Ignorance implies exchangeability”
