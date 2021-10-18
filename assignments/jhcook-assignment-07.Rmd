@@ -1,6 +1,6 @@
 ---
-title: "Assignment N"
-date: "2021-10-00"
+title: "Assignment 7"
+date: "2021-10-18"
 output: distill::distill_article
 ---
 
@@ -13,17 +13,191 @@ for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
   source(f)
 }
 
-# Load packages and data, set config, etc.
+library(rstan)
+library(tidybayes)
+library(magrittr)
+library(tidyverse)
+
+theme_set(theme_classic() + theme(strip.background = element_blank()))
+
+options(mc.cores = 2)
+rstan_options(auto_write = TRUE)
 ```
 
-**[Assignment N](assignments/assignment-00.pdf)**
+**[Assignment 7](assignments/assignment-07.pdf)**
 
-## Exercise 1
+## 1. Linear model: drowning data with Stan
 
-**Type out the main important bits of the question here...**
+**The provided data `drowning` in the 'aaltobda' package contains the number of people who died from drowning each year in Finland 1980–2019.**
+**A statistician is going to fit a linear model with Gaussian residual model to these data using time as the predictor and number of drownings as the target variable.**
+**She has two objective questions:**
 
-Answer the question here.
+i) **What is the trend of the number of people drowning per year? (We would plot the histogram of the slope of the linear model.)**
+ii) **What is the prediction for the year 2020? (We would plot the histogram of the posterior predictive distribution for the number of people drowning at $\tilde{x} = 2020$.)**
 
+**Corresponding Stan code is provided in Listing 1.**
+**However, it is not entirely correct for the problem.**
+**First, there are *three mistakes*.**
+**Second, there are no priors defined for the parameters.**
+**In Stan, this corresponds to using uniform priors.**
+
+**a) Find the three mistakes in the code and fix them.**
+**Report the original mistakes and your fixes clearly in your report.**
+**Include the full corrected Stan code in your report.**
+
+1. Declaration of `sigma` on line 10 should be `real<lower=0>`.
+2. Missing semicolon at the end of line 16.
+3. On line 19, the prediction on new data does not use the new data in `xpred`. This has been changed to `real ypred = normal_rng(alpha + beta*xpred, sigma);`.
+
+Below is a copy of the final model.
+The full Stan file is at [models/assignment07-drownings.stan](../models/assignment07-drownings.stan).
+
+```
+data {
+  int<lower=0> N;  // number of data points
+  vector[N] x;     // observation year
+  vector[N] y;     // observation number of drowned
+  real xpred;      // prediction year
+}
+parameters {
+  real alpha;
+  real beta;
+  real<lower=0> sigma;  // fix: 'upper' should be 'lower'
+}
+transformed parameters {
+  vector[N] mu = alpha + beta*x;
+}
+model {
+  y ~ normal(mu, sigma);  // fix: missing semicolor
+}
+generated quantities {
+  real ypred = normal_rng(alpha + beta*xpred, sigma);  // fix: use `xpred`
+}
+```
+
+**b) Determine a suitable weakly-informative prior $\text{Normal}(0,\sigma_\beta)$ for the slope $\beta$.**
+**It is very unlikely that the mean number of drownings changes more than 50 % in one year.**
+**The approximate historical mean yearly number of drownings is 138.**
+**Hence, set $\sigma_\beta$ so that the following holds for the prior probability for $\beta$: $Pr(−69 < \beta < 69) = 0.99$.**
+**Determine suitable value for $\sigma_\beta$ and report the approximate numerical value for it.**
+
+```{r}
+x <- rnorm(1e5, 0, 26)
+print(mean(-69 < x & x < 69))
+plot_single_hist(x, alpha = 0.5, color = "black") + geom_vline(xintercept = c(-69, 69)) + labs(x = "beta")
+```
+
+**c) Using the obtained σβ, add the desired prior in the Stan code.**
+
+From some trial and error, it seems that a prior of $\text{Normal}(0, 26)$ should work.
+I have added this prior distribution to `beta` in the model at line 17.
+
+```
+beta ~ normal(0, 26);   // prior on `beta`
+```
+
+**d) In a similar way, add a weakly informative prior for the intercept alpha and explain how you chose the prior.**
+
+To use the year directly as the values for $x$ would lead to a massive value of $\alpha$ because the values for $x$ range from 1980 to 2019.
+Thus, it would be advisable to first center the year, meaning at the prior distribution for $\alpha$ can be centered around the average of the number of drownings per year and a standard deviation near that of the actual number of drownings.
+
+```{r}
+drowning <- aaltobda::drowning
+head(drowning)
+```
+
+```{r}
+print(mean(drowning$drownings))
+print(sd(drowning$drownings))
+```
+
+Therefore, I add the prior $\text{Normal}(135, 50)$ to $\alpha$ on line 16.
+
+```
+alpha ~ normal(135, 50);   // prior on `alpha`
+```
+
+```{r}
+data <- list(
+  N = nrow(drowning),
+  x = drowning$year - mean(drowning$year),
+  y = drowning$drownings,
+  xpred = 2020 - mean(drowning$year)
+)
+drowning_model <- stan(
+  here::here("models", "assignment07-drownings.stan"),
+  data = data
+)
+```
+
+```{r}
+variable_post <- spread_draws(drowning_model, alpha, beta) %>%
+  pivot_longer(c(alpha, beta), names_to = "variable", values_to = "value")
+head(variable_post)
+```
+
+```{r}
+variable_post %>%
+  ggplot(aes(x = .iteration, y = value, color = factor(.chain))) +
+  facet_grid(rows = vars(variable), scales = "free_y") +
+  geom_path(alpha = 0.5) +
+  scale_x_continuous(expand = expansion(c(0, 0))) +
+  scale_y_continuous(expand = expansion(c(0.02, 0.02))) +
+  labs(x = "iteration", y = "value", color = "chain")
+```
+
+```{r}
+variable_post %>%
+  ggplot(aes(x = value)) +
+  facet_grid(cols = vars(variable), scales = "free_x") +
+  geom_histogram(color = "black", alpha = 0.3, bins = 30) +
+  scale_x_continuous(expand = expansion(c(0.02, 0.02))) +
+  scale_y_continuous(expand = expansion(c(0, 0.02)))
+```
+
+```{r}
+spread_draws(drowning_model, ypred) %$%
+  plot_single_hist(ypred, alpha = 0.3, color = "black") +
+  labs(x = "predicted number of drownings in 2020")
+```
+
+```{r}
+red <- "#C34E51"
+
+bayestestR::describe_posterior(drowning_model, ci = 0.89, test = c()) %>%
+  as_tibble() %>%
+  filter(str_detect(Parameter, "mu")) %>%
+  select(Parameter, Median, CI_low, CI_high) %>%
+  janitor::clean_names() %>%
+  mutate(idx = row_number()) %>%
+  left_join(drowning %>% mutate(idx = row_number()), by = "idx") %>%
+  ggplot(aes(x = year)) +
+  geom_point(aes(y = drownings), data = drowning, color = "#4C71B0") +
+  geom_line(aes(y = median), color = red, size = 1.2) +
+  geom_smooth(
+    aes(y = ci_low),
+    method = "loess",
+    formula = "y ~ x",
+    linetype = 2,
+    se = FALSE,
+    color = red,
+    size = 1
+  ) +
+  geom_smooth(
+    aes(y = ci_high),
+    method = "loess",
+    formula = "y ~ x",
+    linetype = 2,
+    se = FALSE,
+    color = red,
+    size = 1
+  ) +
+  labs(x = "year", y = "number of drownings (mean ± 89% CI)")
+```
+
+## 2. Hierarchical model: factory data with Stan
+
+**TODO**
 
 ---
 
