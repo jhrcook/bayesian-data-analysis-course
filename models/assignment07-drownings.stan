@@ -13,9 +13,9 @@ transformed parameters {
   vector[N] mu = alpha + beta*x;
 }
 model {
-  alpha ~ normal(135, 50);   // prior on `beta`
-  beta ~ normal(0, 26);   // prior on `beta`
-  y ~ normal(mu, sigma);  // fix: missing semicolor
+  alpha ~ normal(135, 50);   // prior on `alpha`
+  beta ~ normal(0, 26);      // prior on `beta`
+  y ~ normal(mu, sigma);     // fix: missing semicolor
 }
 generated quantities {
   real ypred = normal_rng(alpha + beta*xpred, sigma);  // fix: use `xpred`
