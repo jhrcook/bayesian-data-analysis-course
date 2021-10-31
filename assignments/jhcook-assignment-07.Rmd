@@ -246,6 +246,9 @@ y_{ij} \sim N(\mu_j, \sigma_j) \\
 \sigma \sim \text{Inv-}\chi^2(10)
 $$
 
+The separate model is effectively building a different linear model for each machine where as the pooled model treats all the measurements as coming from the same model.
+The hierarchical model is treating the machines as having come from a single, shared distribution.
+
 **b) Implement the model in Stan and include the code in the report.**
 **Use weakly informative priors for all your models.**
 
@@ -342,14 +345,70 @@ i) **the posterior distribution of the mean of the quality measurements of the s
 ii) **the predictive distribution for another quality measurement of the sixth machine.**
 iii) **the posterior distribution of the mean of the quality measurements of the seventh machine.**
 
+```{r}
+plot_hist_mean_of_sixth <- function(vals) {
+  plot_single_hist(vals, bins = 30, color = "black", alpha = 0.3) +
+    labs(x = "mean of 6th machine", y = "posterior density")
+}
+
+plot_hist_sixth_predictions <- function(vals) {
+  plot_single_hist(vals, bins = 30, color = "black", alpha = 0.3) +
+    labs(x = "posterior predictions for 6th machine", y = "posterior density")
+}
+
+plot_hist_mean_of_seventh <- function(vals) {
+  plot_single_hist(vals, bins = 30, color = "black", alpha = 0.3) +
+    labs(x = "mean of 7thth machine", y = "posterior density")
+}
+```
 
 
+*Separate model*
 
+```{r}
+plot_hist_mean_of_sixth(rstan::extract(separate_model)$mu[, 6])
+```
+
+```{r}
+plot_hist_sixth_predictions(rstan::extract(separate_model)$y6pred)
+```
+
+It is not possible to estimate the posterior for the mean of some new 7th machine because all machines are treated separately.
+
+*Pooled model*
+
+```{r}
+plot_hist_mean_of_sixth(rstan::extract(pooled_model)$mu)
+```
+
+```{r}
+plot_hist_sixth_predictions(rstan::extract(pooled_model)$ypred)
+```
+
+The predicted mean for a new machine is the same as the pooled mean $mu$.
+
+```{r}
+plot_hist_mean_of_seventh(rstan::extract(pooled_model)$mu)
+```
+
+*Hierarchical model*
+
+```{r}
+plot_hist_mean_of_sixth(rstan::extract(hierarchical_model)$mu[, 6])
+```
+
+```{r}
+plot_hist_sixth_predictions(rstan::extract(hierarchical_model)$y6pred)
+```
+
+```{r}
+plot_hist_mean_of_seventh(rstan::extract(hierarchical_model)$mu7pred)
+```
 
 **d) Report the posterior expectation for $\mu_1$ with a 90% credible interval but using a $\text{Normal}(0,10)$ prior for the $\mu$ parameter(s) and a $\text{Gamma}(1,1)$ prior for the $\sigma$ parameter(s).**
 **For the hierarchical model, use the $\text{Normal}(0, 10)$ and $\text{Gamma}(1, 1)$ as hyper-priors.**
 
-
+(I'm going to skip this one, but come back to it if it is needed for future assignments.)
 
 ---
 
