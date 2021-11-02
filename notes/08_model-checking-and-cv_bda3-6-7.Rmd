@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 ```
 
 ## Resources
+
 - reading:
   - BDA3 ch. 6 "Model checking" and [ch. 6 reading instructions](../reading-instructions/BDA3_ch06_reading-instructions.pdf)
   - BDA3 ch. 7 "Evaluating, comparing, and expanding models" and [ch. 7 reading instructions](../reading-instructions/BDA3_ch07_reading-instructions.pdf)
@@ -18,8 +19,8 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
     - [Model assesment, selection and inference after selection](https://avehtari.github.io/modelselection/)
     - [Cross-validation FAQ](https://avehtari.github.io/modelselection/CV-FAQ.html)
 - lectures:
-  - ['Model Checking'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7047e366-0df6-453c-867f-aafb00ca2d78)
-  - ['Cross-Validation (part 1)'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d7849131-0afd-4ae6-ad64-aafb00da36f4)
+  - ['Lecture 8.1. Model Checking'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7047e366-0df6-453c-867f-aafb00ca2d78)
+  - ['Lecture 8.2. Cross-Validation (part 1)'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d7849131-0afd-4ae6-ad64-aafb00da36f4)
 - slides:
   - [ch 6 slides](../slides/slides_ch6.pdf)
   - [ch 7 slides](../slides/slides_ch7.pdf)
@@ -74,18 +75,70 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 #### 6.4 Graphical posterior predictive checks
 
+- three types of graphical display to start a posterior predictive check:
+  1. direct display of all the data
+    - may need to get clever with how to do this effectively
+  2. display of data summaries or parameter inferences
+    - useful when dataset is very large or want to focus on a particular part of the model
+  3. graphs of residuals or other measures of discrepancy between the model and data
+    - description of how to do this effectively for discrete data
 
+#### 6.5 Model checking for the educational testing example
 
+- check that posterior parameter values and predictions are reasonable
+- compare summary statistics of real data and predictive distributions
+  - min. and max. values, averages, skewness
+- sensitivity analysis can assuage concerns that the outcome was not determined by specific choices of priors
 
+### Chapter 6. Lecture notes
 
+#### Lecture 8.1. Model Checking
 
+- model checking overview:
+  - Sensibility with respect to additional information not used in modeling
+    - e.g., if posterior would claim that hazardous chemical decreases probability of death
+  - External validation
+    - compare predictions to completely new observations
+    - compare to theorectical values
+      - e.g., relativity theory predictions on the speed of light (not based on model optimized to data)
+  - Internal validation
+    - posterior predictive checking
+    - cross-validation predictive checking
+- example of posterior checks with air quality model
+- examples with binary data and logistic regression
+- get posterior predictive distribution in Stan:
+
+```
+data {
+  int<lower=1> N;
+  int<lower=0> y[N];
+}
+parameters {
+  real<lower=0> lambda;
+}
+model {
+  lambda ~ exponential(0.2);
+  y ~ poisson(lambda);
+}
+generated_quantities {
+  real log_lik[N];
+  int y_rep[N];
+  for (n in 1:N) {
+    y_rep[n] = poisson_rng(lambda);
+    log_lik[n] = poisson_lpmf(y[n] | lambda);
+  }
+}
+```
+
+---
 
 ### Chapter 7 reading instructions
 
-- notes from the reading insturctions
+- notes from the reading instructions
 
 ### Chapter 7. Evaluating, comparing, and expanding models
 
 - notes from the book
 
-### Lecture notes
+
+### Chapter 7. Lecture notes

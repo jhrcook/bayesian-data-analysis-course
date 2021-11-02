@@ -2503,8 +2503,8 @@ distill-header .nav a {
 </ul></li>
 <li>lectures:
 <ul>
-<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7047e366-0df6-453c-867f-aafb00ca2d78">‘Model Checking’</a></li>
-<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d7849131-0afd-4ae6-ad64-aafb00da36f4">‘Cross-Validation (part 1)’</a></li>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7047e366-0df6-453c-867f-aafb00ca2d78">‘Lecture 8.1. Model Checking’</a></li>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d7849131-0afd-4ae6-ad64-aafb00da36f4">‘Lecture 8.2. Cross-Validation (part 1)’</a></li>
 </ul></li>
 <li>slides:
 <ul>
@@ -2575,16 +2575,93 @@ distill-header .nav a {
 </ul></li>
 </ul>
 <h4 id="graphical-posterior-predictive-checks">6.4 Graphical posterior predictive checks</h4>
+<ul>
+<li>three types of graphical display to start a posterior predictive check:
+<ol type="1">
+<li>direct display of all the data</li>
+</ol>
+<ul>
+<li>may need to get clever with how to do this effectively</li>
+</ul>
+<ol start="2" type="1">
+<li>display of data summaries or parameter inferences</li>
+</ol>
+<ul>
+<li>useful when dataset is very large or want to focus on a particular part of the model</li>
+</ul>
+<ol start="3" type="1">
+<li>graphs of residuals or other measures of discrepancy between the model and data</li>
+</ol>
+<ul>
+<li>description of how to do this effectively for discrete data</li>
+</ul></li>
+</ul>
+<h4 id="model-checking-for-the-educational-testing-example">6.5 Model checking for the educational testing example</h4>
+<ul>
+<li>check that posterior parameter values and predictions are reasonable</li>
+<li>compare summary statistics of real data and predictive distributions
+<ul>
+<li>min. and max. values, averages, skewness</li>
+</ul></li>
+<li>sensitivity analysis can assuage concerns that the outcome was not determined by specific choices of priors</li>
+</ul>
+<h3 id="chapter-6.-lecture-notes">Chapter 6. Lecture notes</h3>
+<h4 id="lecture-8.1.-model-checking">Lecture 8.1. Model Checking</h4>
+<ul>
+<li>model checking overview:
+<ul>
+<li>Sensibility with respect to additional information not used in modeling
+<ul>
+<li>e.g., if posterior would claim that hazardous chemical decreases probability of death</li>
+</ul></li>
+<li>External validation
+<ul>
+<li>compare predictions to completely new observations</li>
+<li>compare to theorectical values
+<ul>
+<li>e.g., relativity theory predictions on the speed of light (not based on model optimized to data)</li>
+</ul></li>
+</ul></li>
+<li>Internal validation
+<ul>
+<li>posterior predictive checking</li>
+<li>cross-validation predictive checking</li>
+</ul></li>
+</ul></li>
+<li>example of posterior checks with air quality model</li>
+<li>examples with binary data and logistic regression</li>
+<li>get posterior predictive distribution in Stan:</li>
+</ul>
+<pre><code>data {
+  int&lt;lower=1&gt; N;
+  int&lt;lower=0&gt; y[N];
+}
+parameters {
+  real&lt;lower=0&gt; lambda;
+}
+model {
+  lambda ~ exponential(0.2);
+  y ~ poisson(lambda);
+}
+generated_quantities {
+  real log_lik[N];
+  int y_rep[N];
+  for (n in 1:N) {
+    y_rep[n] = poisson_rng(lambda);
+    log_lik[n] = poisson_lpmf(y[n] | lambda);
+  }
+}</code></pre>
+<hr />
 <h3 id="chapter-7-reading-instructions">Chapter 7 reading instructions</h3>
 <ul>
-<li>notes from the reading insturctions</li>
+<li>notes from the reading instructions</li>
 </ul>
 <h3 id="chapter-7.-evaluating-comparing-and-expanding-models">Chapter 7. Evaluating, comparing, and expanding models</h3>
 <ul>
 <li>notes from the book</li>
 </ul>
-<h3 id="lecture-notes">Lecture notes</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h3 id="chapter-7.-lecture-notes">Chapter 7. Lecture notes</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
