@@ -2658,10 +2658,112 @@ generated_quantities {
 </ul>
 <h3 id="chapter-7.-evaluating-comparing-and-expanding-models">Chapter 7. Evaluating, comparing, and expanding models</h3>
 <ul>
-<li>notes from the book</li>
+<li>reading
+<ul>
+<li>7.1 Measures of predictive accuracy</li>
+<li>7.2 Information criteria and cross-validation
+<ul>
+<li>replace with: <em>Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+</ul></li>
+<li>7.3 Model comparison based on predictive performance
+<ul>
+<li>replace with: <em>Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+</ul></li>
+<li>7.4 Model comparison using Bayes factors</li>
+<li>7.5 Continuous model expansion / sensitivity analysis</li>
+<li>7.6 Example (may be skipped)</li>
+</ul></li>
+<li>extra material
+<ul>
+<li><a href="https://mc-stan.org/loo/reference/loo-glossary.html">LOO package glossary</a> summarises many important terms used in the assignments<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li>article discussing “How should I evaluate my modelling choices?”: <em>Between the devil and the deep blue sea: Tensions between scientific judgement and statistical model selection.</em><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+<li>website about model selection by Vehtari: <a href="https://avehtari.github.io/modelselection/">Model assesment, selection and inference after selection</a></li>
+<li>sections 1 &amp; 5 of <em>Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> clarify how to interpret standard error in model comparison</li>
+<li><em>A survey of Bayesian predictive methods for model assessment, selection and comparison.</em><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+<li><em>Comparison of Bayesian predictive methods for model selection.</em><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
+</ul></li>
 </ul>
 <h3 id="chapter-7.-lecture-notes">Chapter 7. Lecture notes</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<ul>
+<li>goal of this chapter is not to check model fit but to compare models and explore directions for improvement</li>
+</ul>
+<h4 id="measures-of-predictive-accuracy">7.1 Measures of predictive accuracy</h4>
+<ul>
+<li>can use predictive accuracy for comparing models</li>
+<li><strong>log predictive density</strong>: the logarithmic score for predictions is the log predictive density <span class="math inline">\(\log p(y|\theta)\)</span>
+<ul>
+<li>expected log predictive density as a measure of overall model fit</li>
+</ul></li>
+<li><em>external validation</em>: ideally, would check a model’s fit on out-of-sample (new) data</li>
+</ul>
+<h5 id="averaging-over-the-distirbution-of-future-data">Averaging over the distirbution of future data</h5>
+<ul>
+<li><em>expected log predictive density</em> (<em>elpd</em>) for a new data point:
+<ul>
+<li>where <span class="math inline">\(f\)</span> is the true data-generating process and <span class="math inline">\(p_\text{post}(y)\)</span> is the posterior probability of <span class="math inline">\(y\)</span></li>
+<li><span class="math inline">\(f\)</span> is usually unknown</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+\text{elpd} =
+  \text{E}_f(\log p_\text{post}(\tilde{y}_i)) =
+  \int (\log p_\text{post}(\tilde{y}_i)) f(\tilde{y}_i) d\tilde{y}
+\]</span></p>
+<ul>
+<li>for a new <em>dataset</em> (instead of a single point) of <span class="math inline">\(n\)</span> data points
+<ul>
+<li>kept as pointwise so can be related to cross-validtion</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+\text{elppd} =
+  \text{expected log pointwise predictive density} =
+  \sum_{i=1}^{n} \text{E}_f (\log p_\text{post}(\tilde{y}_i))
+\]</span></p>
+<h5 id="evaluating-predictive-accuracy-for-a-fitted-model">Evaluating predictive accuracy for a fitted model</h5>
+<ul>
+<li>in practice, we do not know <span class="math inline">\(\theta\)</span> so cannot know the log predictive density <span class="math inline">\(\log p(y|\theta)\)</span></li>
+<li>want to use the posterior distribution <span class="math inline">\(p_\text{post}(\theta) = p(\theta|y)\)</span> and summarize the predictive accuracy of a fitted model to data:</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+\text{lppd} &amp;= \text{log pointwise predictive density} \\
+  &amp;= \log \prod_{i=1}^{n} p_\text{post}(y_i) \\
+  &amp;= \sum_{i=1}^{n} \log \int p(y_i|\theta) p_\text{post}(\theta) d\theta
+\end{aligned}
+\]</span></p>
+<ul>
+<li>to actually compute <em>lppd</em>, evaluate the expectation using the draws from <span class="math inline">\(p_\text{post}(\theta)\)</span>, <span class="math inline">\(\theta^s\)</span>:
+<ul>
+<li>this equation is a biased version of <em>elppd</em> so need to correct it (next section in information criteria)</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+\text{computed lppd} &amp;= \text{computed log pointwise predictive density} \\
+  &amp;= \sum_{i=1}^{n} \log \lgroup \frac{1}{S} \sum_{s=1}^{S} p(y_i|\theta^s) \rgroup
+\end{aligned}
+\]</span></p>
+<h4 id="information-criteria-and-cross-validation">7.2 Information criteria and cross-validation</h4>
+<ul>
+<li>historically, measures of predictive accuracy are referred to as <em>information criteria</em>
+<ul>
+<li>are typically defined based on the deviance</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+</ul>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. “Practical Bayesian Model Evaluation Using Leave-One-out Cross-Validation and WAIC.” Statistics and Computing 27 (5): 1413–32.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. “Practical Bayesian Model Evaluation Using Leave-One-out Cross-Validation and WAIC.” Statistics and Computing 27 (5): 1413–32.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p><a href="https://CRAN.R-project.org/package=loo" class="uri">https://CRAN.R-project.org/package=loo</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Navarro, D.J. Between the Devil and the Deep Blue Sea: Tensions Between Scientific Judgement and Statistical Model Selection. Comput Brain Behav 2, 28–34 (2019). <a href="https://doi.org/10.1007/s42113-018-0019-z" class="uri">https://doi.org/10.1007/s42113-018-0019-z</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>Tuomas Sivula, Måns Magnusson, Aki Vehtari “Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison,” arXiv, 2008.10296, (2020)<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>Aki Vehtari, Janne Ojanen “A survey of Bayesian predictive methods for model assessment, selection and comparison,” Statistics Surveys, Statist. Surv. 6(none), 142-228, (2012)<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p>Piironen, J., Vehtari, A. Comparison of Bayesian predictive methods for model selection. Stat Comput 27, 711–735 (2017). <a href="https://doi.org/10.1007/s11222-016-9649-y" class="uri">https://doi.org/10.1007/s11222-016-9649-y</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
