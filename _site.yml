@@ -2,6 +2,7 @@ name: "docs"
 title: "Bayesian Data Analysis course"
 description: |
   My notes and work for the Bayesian Data Analysis course taught by Aki Vehtari.
+theme: theme.css
 repository_url: https://github.com/jhrcook/bayesian-data-analysis-course
 base_url: https://jhrcook.github.io/bayesian-data-analysis-course
 output_dir: "docs"
