@@ -99,7 +99,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
     - e.g., if posterior would claim that hazardous chemical decreases probability of death
   - External validation
     - compare predictions to completely new observations
-    - compare to theorectical values
+    - compare to theoretical values
       - e.g., relativity theory predictions on the speed of light (not based on model optimized to data)
   - Internal validation
     - posterior predictive checking
@@ -148,7 +148,7 @@ generated_quantities {
   - 7.5 Continuous model expansion / sensitivity analysis
   - 7.6 Example (may be skipped)
 - extra material
-  - [LOO package glossary](https://mc-stan.org/loo/reference/loo-glossary.html) summarises many important terms used in the assignments[^2]
+  - [LOO package glossary](https://mc-stan.org/loo/reference/loo-glossary.html) summarizes many important terms used in the assignments[^2]
   - article discussing “How should I evaluate my modelling choices?”: *Between the devil and the deep blue sea: Tensions between scientific judgement and statistical model selection.*[^3]
   - website about model selection by Vehtari: [Model assesment, selection and inference after selection](https://avehtari.github.io/modelselection/)
   - sections 1 & 5 of *Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison*[^4] clarify how to interpret standard error in model comparison
@@ -187,7 +187,7 @@ $$
 $$
 
 - for a new *dataset* (instead of a single point) of $n$ data points
-  - kept as pointwise so can be related to cross-validtion
+  - kept as pointwise so can be related to cross-validation
 
 $$
 \text{elppd} =
@@ -222,3 +222,69 @@ $$
 
 - historically, measures of predictive accuracy are referred to as *information criteria*
   - are typically defined based on the deviance
+
+##### Estimating out-of-sample predictive accuracy using available data
+
+- estimate the expected predictive accuracy without waiting for new data
+- some reasonable approximations for out-of-sample predictive accuracy
+  - *within-sample predictive accuracy*: "naive estimate of the expected log predictive density for new data is the log predictive density for existing data" (pg 170)
+  - *adjusted within-sample predictive accuracy*: information criteria such as WAIC
+  - *cross-validation*: estimate out-of-sample prediction error by fitting to training data and evaluating predictive accuracy on the held-out data
+
+- descriptions of Akaike information criterion (AIC), deviance information criterion (DIC), and Watanabe-Akaike information criterion (or widely applicable information criterion; WAIC)
+  - DIC and WAIC try to adjust for the *effective* number of parameters
+  - WAIC is the best for Bayesian because it uses the full posterior distributions, not point estimates
+    - there are actually two formulations for WAIC, and Gelman *et al.* recommend the second form they describe
+
+##### Effective number of parameters as a random variable
+
+- DIC and WAIC adjust the effective number of parameters according to the model structure and the data
+  - the latter seems unintuitive
+- example: image a simple model: $y_i, \dots, y_n \sim N(\theta, 1)$ with $n$ large and $\theta \sim U(0, \infty)$
+  - $\theta$ is constrained to be positive but is otherwise uninformed
+  - if the measure of $y$ is near 0, then the effective number of parameters $p$ is effectively $\frac{1}{2}$ because the prior removed all negative values
+  - if the measure of $y$ is a large positive value, then the constraint by the prior is unimportant and the effective number of parameters $p$ is essentially 1
+
+- Bayesian information criterion (BIC) is not comparable to AIC, DIC, and WAIC as it serves a different purpose
+  - more discussion on pg. 175
+
+#### 7.3 Model comparison based on predictive performance
+
+- in comparing "nested" models, the large model is often better fit, but is more difficult to understand and compute
+  - "nested" models are where one contains the structure of the other and a little more
+    - either broader priors or additional parameters
+  - key questions of model comparison:
+    1. Is the improvement in fit large enough to justify the additional difficulty of fitting?
+    2. Is the prior distribution on the additional parameters reasonable?
+- for non-nested models, not typically interested in *choosing* one over the other, but more interested in seeing the differences between them
+  - ideally, could construct a single model containing both of the non-nested models
+- authors recommend using LOO-=CV where possible and WAIC, otherwise (pg. 182)
+
+#### 7.4 Model comparison using Bayes factor
+
+- generally not recommended (pg. 182 for reasons why)
+
+#### 7.5 Continuous model expansion
+
+- posterior distributions of model parameters can either overestimate or underestimate different aspects of the "true" posterior uncertainty
+  - overestimate uncertainty because the model usually does not contain *all* of one's substantive knowledge
+  - underestimate uncertainty by
+    - the model is almost always wrong (i.e. imperfect) - the reason for posterior predictive checking
+    - other reasonable models could have fit the data equally well - the reason for sensitivity analysis
+
+##### Adding parameters to a model
+
+- reasons to expand a model:
+  1. add knew parameters if the model does not fit the data or prior knowledge in some important way
+  2. the class of models can be broadened if some modeling assumption was unfounded
+  3. if two different models are under consideration, they can be combined into a larger model with a continuous parameterization that includes both models as special cases
+    - e.g. complete-pooling and no-pooling can be combined into a hierarchical model
+  4. expanding a model to include new data
+
+#### Practical advice for model checking and expansion
+
+- examine posterior distributions of substantively important parameters and predicted quantities
+  - e.g. number of zeros in a count model
+  - maximum and minimum predicted values
+- compare posterior distributions and posterior predictions with substantive knowledge
+  - this includes the observed data

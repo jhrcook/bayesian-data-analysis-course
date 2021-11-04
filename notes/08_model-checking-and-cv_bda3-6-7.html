@@ -2617,7 +2617,7 @@ distill-header .nav a {
 <li>External validation
 <ul>
 <li>compare predictions to completely new observations</li>
-<li>compare to theorectical values
+<li>compare to theoretical values
 <ul>
 <li>e.g., relativity theory predictions on the speed of light (not based on model optimized to data)</li>
 </ul></li>
@@ -2675,7 +2675,7 @@ generated_quantities {
 </ul></li>
 <li>extra material
 <ul>
-<li><a href="https://mc-stan.org/loo/reference/loo-glossary.html">LOO package glossary</a> summarises many important terms used in the assignments<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li><a href="https://mc-stan.org/loo/reference/loo-glossary.html">LOO package glossary</a> summarizes many important terms used in the assignments<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
 <li>article discussing “How should I evaluate my modelling choices?”: <em>Between the devil and the deep blue sea: Tensions between scientific judgement and statistical model selection.</em><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
 <li>website about model selection by Vehtari: <a href="https://avehtari.github.io/modelselection/">Model assesment, selection and inference after selection</a></li>
 <li>sections 1 &amp; 5 of <em>Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> clarify how to interpret standard error in model comparison</li>
@@ -2712,7 +2712,7 @@ generated_quantities {
 <ul>
 <li>for a new <em>dataset</em> (instead of a single point) of <span class="math inline">\(n\)</span> data points
 <ul>
-<li>kept as pointwise so can be related to cross-validtion</li>
+<li>kept as pointwise so can be related to cross-validation</li>
 </ul></li>
 </ul>
 <p><span class="math display">\[
@@ -2749,6 +2749,104 @@ generated_quantities {
 <li>historically, measures of predictive accuracy are referred to as <em>information criteria</em>
 <ul>
 <li>are typically defined based on the deviance</li>
+</ul></li>
+</ul>
+<h5 id="estimating-out-of-sample-predictive-accuracy-using-available-data">Estimating out-of-sample predictive accuracy using available data</h5>
+<ul>
+<li>estimate the expected predictive accuracy without waiting for new data</li>
+<li>some reasonable approximations for out-of-sample predictive accuracy
+<ul>
+<li><em>within-sample predictive accuracy</em>: “naive estimate of the expected log predictive density for new data is the log predictive density for existing data” (pg 170)</li>
+<li><em>adjusted within-sample predictive accuracy</em>: information criteria such as WAIC</li>
+<li><em>cross-validation</em>: estimate out-of-sample prediction error by fitting to training data and evaluating predictive accuracy on the held-out data</li>
+</ul></li>
+<li>descriptions of Akaike information criterion (AIC), deviance information criterion (DIC), and Watanabe-Akaike information criterion (or widely applicable information criterion; WAIC)
+<ul>
+<li>DIC and WAIC try to adjust for the <em>effective</em> number of parameters</li>
+<li>WAIC is the best for Bayesian because it uses the full posterior distributions, not point estimates
+<ul>
+<li>there are actually two formulations for WAIC, and Gelman <em>et al.</em> recommend the second form they describe</li>
+</ul></li>
+</ul></li>
+</ul>
+<h5 id="effective-number-of-parameters-as-a-random-variable">Effective number of parameters as a random variable</h5>
+<ul>
+<li>DIC and WAIC adjust the effective number of parameters according to the model structure and the data
+<ul>
+<li>the latter seems unintuitive</li>
+</ul></li>
+<li>example: image a simple model: <span class="math inline">\(y_i, \dots, y_n \sim N(\theta, 1)\)</span> with <span class="math inline">\(n\)</span> large and <span class="math inline">\(\theta \sim U(0, \infty)\)</span>
+<ul>
+<li><span class="math inline">\(\theta\)</span> is constrained to be positive but is otherwise uninformed</li>
+<li>if the measure of <span class="math inline">\(y\)</span> is near 0, then the effective number of parameters <span class="math inline">\(p\)</span> is effectively <span class="math inline">\(\frac{1}{2}\)</span> because the prior removed all negative values</li>
+<li>if the measure of <span class="math inline">\(y\)</span> is a large positive value, then the constraint by the prior is unimportant and the effective number of parameters <span class="math inline">\(p\)</span> is essentially 1</li>
+</ul></li>
+<li>Bayesian information criterion (BIC) is not comparable to AIC, DIC, and WAIC as it serves a different purpose
+<ul>
+<li>more discussion on pg. 175</li>
+</ul></li>
+</ul>
+<h4 id="model-comparison-based-on-predictive-performance">7.3 Model comparison based on predictive performance</h4>
+<ul>
+<li>in comparing “nested” models, the large model is often better fit, but is more difficult to understand and compute
+<ul>
+<li>“nested” models are where one contains the structure of the other and a little more
+<ul>
+<li>either broader priors or additional parameters</li>
+</ul></li>
+<li>key questions of model comparison:
+<ol type="1">
+<li>Is the improvement in fit large enough to justify the additional difficulty of fitting?</li>
+<li>Is the prior distribution on the additional parameters reasonable?</li>
+</ol></li>
+</ul></li>
+<li>for non-nested models, not typically interested in <em>choosing</em> one over the other, but more interested in seeing the differences between them
+<ul>
+<li>ideally, could construct a single model containing both of the non-nested models</li>
+</ul></li>
+<li>authors recommend using LOO-=CV where possible and WAIC, otherwise (pg. 182)</li>
+</ul>
+<h4 id="model-comparison-using-bayes-factor">7.4 Model comparison using Bayes factor</h4>
+<ul>
+<li>generally not recommended (pg. 182 for reasons why)</li>
+</ul>
+<h4 id="continuous-model-expansion">7.5 Continuous model expansion</h4>
+<ul>
+<li>posterior distributions of model parameters can either overestimate or underestimate different aspects of the “true” posterior uncertainty
+<ul>
+<li>overestimate uncertainty because the model usually does not contain <em>all</em> of one’s substantive knowledge</li>
+<li>underestimate uncertainty by
+<ul>
+<li>the model is almost always wrong (i.e. imperfect) - the reason for posterior predictive checking</li>
+<li>other reasonable models could have fit the data equally well - the reason for sensitivity analysis</li>
+</ul></li>
+</ul></li>
+</ul>
+<h5 id="adding-parameters-to-a-model">Adding parameters to a model</h5>
+<ul>
+<li>reasons to expand a model:
+<ol type="1">
+<li>add knew parameters if the model does not fit the data or prior knowledge in some important way</li>
+<li>the class of models can be broadened if some modeling assumption was unfounded</li>
+<li>if two different models are under consideration, they can be combined into a larger model with a continuous parameterization that includes both models as special cases</li>
+</ol>
+<ul>
+<li>e.g. complete-pooling and no-pooling can be combined into a hierarchical model</li>
+</ul>
+<ol start="4" type="1">
+<li>expanding a model to include new data</li>
+</ol></li>
+</ul>
+<h4 id="practical-advice-for-model-checking-and-expansion">Practical advice for model checking and expansion</h4>
+<ul>
+<li>examine posterior distributions of substantively important parameters and predicted quantities
+<ul>
+<li>e.g. number of zeros in a count model</li>
+<li>maximum and minimum predicted values</li>
+</ul></li>
+<li>compare posterior distributions and posterior predictions with substantive knowledge
+<ul>
+<li>this includes the observed data</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
 </ul>
