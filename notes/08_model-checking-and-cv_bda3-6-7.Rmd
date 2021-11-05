@@ -134,10 +134,6 @@ generated_quantities {
 
 ### Chapter 7 reading instructions
 
-- notes from the reading instructions
-
-### Chapter 7. Evaluating, comparing, and expanding models
-
 - reading
   - 7.1 Measures of predictive accuracy
   - 7.2 Information criteria and cross-validation
@@ -163,7 +159,7 @@ generated_quantities {
 [^5]: Aki Vehtari, Janne Ojanen "A survey of Bayesian predictive methods for model assessment, selection and comparison," Statistics Surveys, Statist. Surv. 6(none), 142-228, (2012)
 [^6]: Piironen, J., Vehtari, A. Comparison of Bayesian predictive methods for model selection. Stat Comput 27, 711–735 (2017). https://doi.org/10.1007/s11222-016-9649-y
 
-### Chapter 7. Lecture notes
+### Chapter 7. Evaluating, comparing, and expanding models
 
 - goal of this chapter is not to check model fit but to compare models and explore directions for improvement
 
@@ -288,3 +284,68 @@ $$
   - maximum and minimum predicted values
 - compare posterior distributions and posterior predictions with substantive knowledge
   - this includes the observed data
+
+### Additional Reading
+
+#### *Visualization in Bayesian workflow*
+
+([pdf](additional-reading/Visualization-in-Bayesian-workflow.pdf), [link](https://doi.org/10.1111/rssa.12378))
+
+- the phases of statistical workflow:
+  a. exploratory data analysis
+    - aid in setting up an initial model
+  b. computational model checks using fake-data simulation and the prior predictive distribution
+  c. computational checks to ensure the inference algorithm works reliably
+  d. posterior predictive checks and other juxtapositions of data and predictions under the fitted model
+  e. model comparison via tools such as cross-validation
+
+##### 3. Fake data can be almost as valuable as real data for building your model
+
+- visualize simulations from the prior marginal distribution of the data to assess the consistency of the chosen priors with domain knowledge
+- *weakly informative  prior*: if draws from the prior data generating distribution $p(y)$ could represent any dataset that could plausibly be observed
+  - this prior predictive distribution for the data has at least some mass around extreme but plausible data sets
+  - there should be no mass on completely implausible data sets
+  - generate a “flip book” of simulated datasets that can be used to investigate the variability and multivariate structure of the distribution
+
+##### 4. Graphical Markov chain Monte Carlo diagnostics: moving beyond trace plots
+
+- catching divergent draws heuristically is a powerful feature of HMC
+  - sometimes get falsely flagged, so must check that the divergences were infact outside of the typical set
+  - two additional plots for diagnosing troublesome areas of the parameter space
+    1. bivariate scatterplots that highlight divergent transitions
+      - bad sign: if the divergences were clustered
+    2. parallel coordinate plot
+      - bad sign: the divergences would have similar structure
+
+![mcmc-diagnositcs-fig](assets/08_model-checking-and-cv_bda3-6-7/gabry_2007_fig5.png)
+
+#### 5. How did we do? Posterior predictive checks are vital for model evaluation
+
+- "The idea behind posterior predictive checking is simple: if a model is a good fit we should be able to use it to generate data that resemble the data we observed"
+  - "can also perform similar checks within levels of a grouping variable"
+- check that predictions are calibrated using LOO-CV predictive cumulative density function values which should be uniform (for continuous data)
+
+#### 6. Pointwise plots for predictive model comparison
+
+- identify unusual points in the data
+  - are other either outliers or points with high leverage
+  - indicate how the model can be modified to better fut the data
+- main tool for this analysis is the LOO predictive distribution $p(y_i|y_{-i})$
+  - examine LOO log-predictive density values to find observations that are difficult to predict
+  - can be used for model comparison by checking which model best captures each held-out data point
+- also compare the full data log-posterior predictive density against each LOO log-predictive density to see which data points are difficult to model but not very influential
+  - this is automatically calculated in PSIS-LOO as the parameter $\hat{k}$
+
+#### *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC*
+
+([pdf](additional-reading/Practical-Bayesian-model-evaluation-using-leave-one-out-cross-validation-and-WAIC.pdf), [link](https://arxiv.org/abs/1507.04544))
+
+#### Model assesment, selection and inference after selection
+
+([link](https://avehtari.github.io/modelselection/))
+
+#### Cross-validation FAQ
+
+([link](https://avehtari.github.io/modelselection/CV-FAQ.html))
+
+### Chapter 7. Lecture notes
