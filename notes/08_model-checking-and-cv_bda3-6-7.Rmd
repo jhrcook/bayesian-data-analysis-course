@@ -340,6 +340,60 @@ $$
 
 ([pdf](additional-reading/Practical-Bayesian-model-evaluation-using-leave-one-out-cross-validation-and-WAIC.pdf), [link](https://arxiv.org/abs/1507.04544))
 
+> Here we lay out fast and stable computations for LOO and WAIC that can be performed usingexisting simulation draws.
+> We introduce an efficient computation of LOO using Pareto-smoothed importance sampling (PSIS), a new procedure for regularizing importance weights.
+> Although WAIC is asymptotically equal to LOO, we demonstrate that PSIS-LOO is more robust in thefinite case with weak priors or influential observations.
+
+##### Introduction
+
+- exact CV requires re-fitting the model with every new training set
+- can approximate this with LOO-CV using importance sampling, but results can be very noisy
+- use *Pareto smoothed importance sampling* (PSIS) to calculate a more accurate and stable estimate
+   - fit a Pareto distribution to the upper tail of the distribution of the importance weights
+- this paper demonstrates that PSIS-LOO is better than WAIC in the finite case
+  - also provide diagnostics for which method, WAIC or PSIS-LOO, is better or whether *k*-fold CV should be used instead
+
+##### Estimating out-of-sample pointwise predictive accuracy using posterior simulations
+
+- posterior predictive distribution: $p(\tilde{y}|y) = \int p(\tilde{y}_i|\theta) p(\theta|y) d\theta$
+- expected log pointwise predictive density (ELPD)
+  - measure of predictive accuracy for the $n$ data points in a dataset
+  - $p_t(\tilde{y}_i)$: distribution of the true data-generating process for $\tilde{y}_i$
+  - $p_t(\tilde{y}_i)$ is usually unknown so CV and WAIC are used to approximate ELPD
+
+$$
+\text{elpd} = \sum_{i=1}^n \int p_t(\tilde{y}_i) \log p(\tilde{y}_i|y) d\tilde{y}_i
+$$
+
+- useful quantity is the log pointwise predictive density (LPD)
+  - "The LPD of observed data $y$ is an overestimate of the ELPD for future data."
+
+$$
+\text{lpd} = \sum_{i=1}^n \log p(y_i|y) = \sum_{i=1}^n \int p(y_i|\theta) p(\theta|y) d\theta
+$$
+
+- to compute LPD in practice, evaluate the expectation using draws for the posteior $p_\text{post}(\theta)$, $\theta^s$ for $s = 1, \dots, S$
+  - $\widehat{lpd}$: computed log pointwise predictive density
+
+$$
+\widehat{lpd} = \sum_{i=1}^n \lgroup \frac{1}{S} \sum_{s=1}^S p(y_i|\theta^s) \rgroup
+$$
+##### Pareto smoothed importance sampling
+
+- fit the right tail of importance weights to smooth the values
+- The estimated shape parameter $\hat{k}$ of the generalized Pareto distribution can be used to assessthe reliability of the estimate:
+  - $k < \frac{1}{2}$: the variance of the raw importance ratios is finite, the central limit theorem holds, and the estimate converges quickly
+  - $\frac{1}{2} < k < 1$: the variance of the raw importance ratios is infinite but the mean exists, the generalized central limit theorem for stable distributions holds, and the convergence of the estimate is slower
+    - the variance of the PSIS estimate is finite but may be large
+  - $k > 1$: the variance and the mean of the raw ratios distribution do not exist
+    - the variance of the PSIS estimate is finite but may be large
+- "If the estimated tail shape parameter $\hat{k}$ exceeds 0.5, the user should be warned, although in practice we have observed good performance for values of$\hat{k}$ up to 0.7."
+- if the PSIS estimate has a finite variance, when $\hat{k} > 0.7$ the user should consider:
+  1. sampling directly from $p(\theta^s|y_{−i})$ for the problematic $i$,
+  2. use *k*-fold CV, or
+  3. use a more robust model
+
+
 #### Model assesment, selection and inference after selection
 
 ([link](https://avehtari.github.io/modelselection/))
@@ -349,3 +403,15 @@ $$
 ([link](https://avehtari.github.io/modelselection/CV-FAQ.html))
 
 ### Chapter 7. Lecture notes
+
+#### Lecture 8.2. Cross-Validation (part 1)
+
+- predictive performance
+  - true predictive performance can be found by making predictions on new data and comparing to true observation
+     - *external validation*
+  - *expected* predictive performance as an approximation
+- calculating the posterior predictive density for a data point:
+  - generate a posterior predictive distribution for the data point
+  - find the density of the distribution at the actual observed value
+
+**paused: 12:30**
