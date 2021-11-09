@@ -2923,12 +2923,102 @@ generated_quantities {
 </ul>
 <h4 id="practical-bayesian-model-evaluation-using-leave-one-out-cross-validation-and-waic"><em>Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC</em></h4>
 <p>(<a href="additional-reading/Practical-Bayesian-model-evaluation-using-leave-one-out-cross-validation-and-WAIC.pdf">pdf</a>, <a href="https://arxiv.org/abs/1507.04544">link</a>)</p>
+<blockquote>
+<p>Here we lay out fast and stable computations for LOO and WAIC that can be performed usingexisting simulation draws. We introduce an efficient computation of LOO using Pareto-smoothed importance sampling (PSIS), a new procedure for regularizing importance weights. Although WAIC is asymptotically equal to LOO, we demonstrate that PSIS-LOO is more robust in thefinite case with weak priors or influential observations.</p>
+</blockquote>
+<h5 id="introduction">Introduction</h5>
+<ul>
+<li>exact CV requires re-fitting the model with every new training set</li>
+<li>can approximate this with LOO-CV using importance sampling, but results can be very noisy</li>
+<li>use <em>Pareto smoothed importance sampling</em> (PSIS) to calculate a more accurate and stable estimate
+<ul>
+<li>fit a Pareto distribution to the upper tail of the distribution of the importance weights</li>
+</ul></li>
+<li>this paper demonstrates that PSIS-LOO is better than WAIC in the finite case
+<ul>
+<li>also provide diagnostics for which method, WAIC or PSIS-LOO, is better or whether <em>k</em>-fold CV should be used instead</li>
+</ul></li>
+</ul>
+<h5 id="estimating-out-of-sample-pointwise-predictive-accuracy-using-posterior-simulations">Estimating out-of-sample pointwise predictive accuracy using posterior simulations</h5>
+<ul>
+<li>posterior predictive distribution: <span class="math inline">\(p(\tilde{y}|y) = \int p(\tilde{y}_i|\theta) p(\theta|y) d\theta\)</span></li>
+<li>expected log pointwise predictive density (ELPD)
+<ul>
+<li>measure of predictive accuracy for the <span class="math inline">\(n\)</span> data points in a dataset</li>
+<li><span class="math inline">\(p_t(\tilde{y}_i)\)</span>: distribution of the true data-generating process for <span class="math inline">\(\tilde{y}_i\)</span></li>
+<li><span class="math inline">\(p_t(\tilde{y}_i)\)</span> is usually unknown so CV and WAIC are used to approximate ELPD</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+\text{elpd} = \sum_{i=1}^n \int p_t(\tilde{y}_i) \log p(\tilde{y}_i|y) d\tilde{y}_i
+\]</span></p>
+<ul>
+<li>useful quantity is the log pointwise predictive density (LPD)
+<ul>
+<li>“The LPD of observed data <span class="math inline">\(y\)</span> is an overestimate of the ELPD for future data.”</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+\text{lpd} = \sum_{i=1}^n \log p(y_i|y) = \sum_{i=1}^n \int p(y_i|\theta) p(\theta|y) d\theta
+\]</span></p>
+<ul>
+<li>to compute LPD in practice, evaluate the expectation using draws for the posteior <span class="math inline">\(p_\text{post}(\theta)\)</span>, <span class="math inline">\(\theta^s\)</span> for <span class="math inline">\(s = 1, \dots, S\)</span>
+<ul>
+<li><span class="math inline">\(\widehat{lpd}\)</span>: computed log pointwise predictive density</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+\widehat{lpd} = \sum_{i=1}^n \lgroup \frac{1}{S} \sum_{s=1}^S p(y_i|\theta^s) \rgroup
+\]</span> ##### Pareto smoothed importance sampling</p>
+<ul>
+<li>fit the right tail of importance weights to smooth the values</li>
+<li>The estimated shape parameter <span class="math inline">\(\hat{k}\)</span> of the generalized Pareto distribution can be used to assessthe reliability of the estimate:
+<ul>
+<li><span class="math inline">\(k &lt; \frac{1}{2}\)</span>: the variance of the raw importance ratios is finite, the central limit theorem holds, and the estimate converges quickly</li>
+<li><span class="math inline">\(\frac{1}{2} &lt; k &lt; 1\)</span>: the variance of the raw importance ratios is infinite but the mean exists, the generalized central limit theorem for stable distributions holds, and the convergence of the estimate is slower
+<ul>
+<li>the variance of the PSIS estimate is finite but may be large</li>
+</ul></li>
+<li><span class="math inline">\(k &gt; 1\)</span>: the variance and the mean of the raw ratios distribution do not exist
+<ul>
+<li>the variance of the PSIS estimate is finite but may be large</li>
+</ul></li>
+</ul></li>
+<li>“If the estimated tail shape parameter <span class="math inline">\(\hat{k}\)</span> exceeds 0.5, the user should be warned, although in practice we have observed good performance for values of<span class="math inline">\(\hat{k}\)</span> up to 0.7.”</li>
+<li>if the PSIS estimate has a finite variance, when <span class="math inline">\(\hat{k} &gt; 0.7\)</span> the user should consider:
+<ol type="1">
+<li>sampling directly from <span class="math inline">\(p(\theta^s|y_{−i})\)</span> for the problematic <span class="math inline">\(i\)</span>,</li>
+<li>use <em>k</em>-fold CV, or</li>
+<li>use a more robust model</li>
+</ol></li>
+</ul>
 <h4 id="model-assesment-selection-and-inference-after-selection">Model assesment, selection and inference after selection</h4>
 <p>(<a href="https://avehtari.github.io/modelselection/">link</a>)</p>
 <h4 id="cross-validation-faq">Cross-validation FAQ</h4>
 <p>(<a href="https://avehtari.github.io/modelselection/CV-FAQ.html">link</a>)</p>
 <h3 id="chapter-7.-lecture-notes">Chapter 7. Lecture notes</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h4 id="lecture-8.2.-cross-validation-part-1">Lecture 8.2. Cross-Validation (part 1)</h4>
+<ul>
+<li>predictive performance
+<ul>
+<li>true predictive performance can be found by making predictions on new data and comparing to true observation
+<ul>
+<li><em>external validation</em></li>
+</ul></li>
+<li><em>expected</em> predictive performance as an approximation</li>
+</ul></li>
+<li>calculating the posterior predictive density for a data point:
+<ul>
+<li>generate a posterior predictive distribution for the data point</li>
+<li>find the density of the distribution at the actual observed value</li>
+</ul></li>
+<li>good walk-through of calculating posterior predictive distributions and LOO analyses</li>
+<li>some discussion of making predictions in parts of <span class="math inline">\(x\)</span> not in the data set
+<ul>
+<li>e.g. predictions in the future of time series models</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+</ul>
 <section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>

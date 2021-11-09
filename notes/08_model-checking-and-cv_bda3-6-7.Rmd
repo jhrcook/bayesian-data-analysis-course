@@ -413,5 +413,6 @@ $$
 - calculating the posterior predictive density for a data point:
   - generate a posterior predictive distribution for the data point
   - find the density of the distribution at the actual observed value
-
-**paused: 12:30**
+- good walk-through of calculating posterior predictive distributions and LOO analyses
+- some discussion of making predictions in parts of $x$ not in the data set
+  - e.g. predictions in the future of time series models
