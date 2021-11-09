@@ -6,7 +6,7 @@
       "description": "Some additional details about the website",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-10-31T11:18:20-04:00"
+      "last_modified": "2021-11-09T06:40:53-05:00"
     },
     {
       "path": "index.html",
@@ -18,8 +18,8 @@
           "url": "https://joshuacook.netlify.app"
         }
       ],
-      "contents": "\nResources\nCourse website\n2021 Schedule\nGitHub repo (my fork)\nBayesian Data Analysis (3e) (BDA3) (exercise solutions)\nChapter Notes\nVideo lectures or individually lists here\nLecture slides\nHow to study\n\nThe following are recommendations from the course creators on how to take the course.\n\nThe recommended way to go through the material is:\nRead the reading instructions for a chapter in the chapter notes.\nRead the chapter in BDA3 and check that you find the terms listed in the reading instructions.\nWatch the corresponding video lecture to get explanations for most important parts.\nRead corresponding additional information in the chapter notes.\nRun the corresponding demos in R demos or Python demos.\nRead the exercise instructions and make the corresponding assignments. Demo codes in R demos and Python demos have a lot of useful examples for handling data and plotting figures. If you have problems, visit TA sessions or ask in course slack channel.\nIf you want to learn more, make also self study exercises listed below.\nSections\nSection\nNotes\nBook exercises\nAssignments\n1. Course Introduction\nnotes\nexercises\nassignment\n2. Basics of Bayesian Inference\nnotes\nexercises\nassignment\n3. Multidimensional Posterior\nnotes\nexercises\nassignment\n4. Monte Carlo\nnotes\nexercises\nassignment\n5. Markov chain Monte Carlo\nnotes\nexercises\nassignment\n6. HMC, NUTS, and Stan\nnotes\nexercises\nassignment\n7. Hierarchical models and exchangeability\nnotes\nexercises\nassignment\nStan models\nDrug bioassay model for Assignment 6\n8 school SAT model\n\n\n\n",
-      "last_modified": "2021-10-31T11:18:21-04:00"
+      "contents": "\nResources\nCourse website\n2021 Schedule\nGitHub repo (my fork)\nBayesian Data Analysis (3e) (BDA3) (exercise solutions)\nChapter Notes\nVideo lectures or individually lists here\nLecture slides\nHow to study\n\nThe following are recommendations from the course creators on how to take the course.\n\nThe recommended way to go through the material is:\nRead the reading instructions for a chapter in the chapter notes.\nRead the chapter in BDA3 and check that you find the terms listed in the reading instructions.\nWatch the corresponding video lecture to get explanations for most important parts.\nRead corresponding additional information in the chapter notes.\nRun the corresponding demos in R demos or Python demos.\nRead the exercise instructions and make the corresponding assignments. Demo codes in R demos and Python demos have a lot of useful examples for handling data and plotting figures. If you have problems, visit TA sessions or ask in course slack channel.\nIf you want to learn more, make also self study exercises listed below.\nSections\nSection\nNotes\nBook exercises\nAssignments\n1. Course Introduction\nnotes\nexercises\nassignment\n2. Basics of Bayesian Inference\nnotes\nexercises\nassignment\n3. Multidimensional Posterior\nnotes\nexercises\nassignment\n4. Monte Carlo\nnotes\nexercises\nassignment\n5. Markov chain Monte Carlo\nnotes\nexercises\nassignment\n6. HMC, NUTS, and Stan\nnotes\nexercises\nassignment\n7. Hierarchical models and exchangeability\nnotes\nexercises\nassignment\n8. Model checking & Cross-validation\nnotes\n(none)\n(none)\nStan models\nDrug bioassay model for Assignment 6\n8 school SAT model\nDrownings for Assignment 7\nFactory machine measurements: pooled, separate, hierarchical for Assignment 7\n\n\n\n",
+      "last_modified": "2021-11-09T06:40:55-05:00"
     }
   ],
   "collections": []
