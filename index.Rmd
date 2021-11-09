@@ -44,14 +44,15 @@ The recommended way to go through the material is:
 
 | Section | Notes | Book exercises | Assignments |
 |---------|-------|----------------|-------------|
-| **1. Course Introduction** | [notes](notes/01_introduction_bda3-01.html) | [exercises](book-exercises/bda-exercises-01.html) | [assignment](assignments/jhcook-assignment-01.html) |
-| **2. Basics of Bayesian Inference** | [notes](notes/02_basics-of-Bayesian-inference_bda3-02.html) | [exercises](book-exercises/bda-exercises-02.html) | [assignment](assignments/jhcook-assignment-02.html) |
-| **3. Multidimensional Posterior** | [notes](notes/03_multidimensional-posterior_bda3-03.html) | exercises | [assignment](assignments/jhcook-assignment-03.html) |
-| **4. Monte Carlo** | [notes](notes/04_monte-carlo_bda3-10.html) | exercises | [assignment](assignments/jhcook-assignment-04.html) |
-| **5. Markov chain Monte Carlo** | [notes](notes/05_mcmc_bda3-11.html) | exercises | [assignment](assignments/jhcook-assignment-05.html) |
-| **6. HMC, NUTS, and Stan** | [notes](notes/06_hmc-nuts-stan_bda3-12.html) | exercises | [assignment](assignments/jhcook-assignment-06.html) |
-| **7. Hierarchical models and exchangeability** | [notes](notes/07_hierarchical-models_bda3-5.html) | [exercises](book-exercises/bda-exercises-07.html) | [assignment](assignments/jhcook-assignment-07.html) |
+| **1. Course Introduction** | [notes](notes/01_introduction_bda3-01.html) | [exercises](book-exercises/bda-exercises-01.html) | [assignment 1](assignments/jhcook-assignment-01.html) |
+| **2. Basics of Bayesian Inference** | [notes](notes/02_basics-of-Bayesian-inference_bda3-02.html) | [exercises](book-exercises/bda-exercises-02.html) | [assignment 2](assignments/jhcook-assignment-02.html) |
+| **3. Multidimensional Posterior** | [notes](notes/03_multidimensional-posterior_bda3-03.html) | exercises | [assignment 3](assignments/jhcook-assignment-03.html) |
+| **4. Monte Carlo** | [notes](notes/04_monte-carlo_bda3-10.html) | exercises | [assignment 4](assignments/jhcook-assignment-04.html) |
+| **5. Markov chain Monte Carlo** | [notes](notes/05_mcmc_bda3-11.html) | exercises | [assignment 5](assignments/jhcook-assignment-05.html) |
+| **6. HMC, NUTS, and Stan** | [notes](notes/06_hmc-nuts-stan_bda3-12.html) | exercises | [assignment 6](assignments/jhcook-assignment-06.html) |
+| **7. Hierarchical models and exchangeability** | [notes](notes/07_hierarchical-models_bda3-5.html) | [exercises](book-exercises/bda-exercises-07.html) | [assignment 7](assignments/jhcook-assignment-07.html) |
 | **8. Model checking & Cross-validation** | [notes](notes/08_model-checking-and-cv_bda3-6-7.html) | (none) | (none) |
+| **9. Model comparison and selection** | [notes](notes/09_model-selection_bda3-7.html) | (none) | [assignment 8](assignments/jhcook-assignment-08.html) |
 
 ## Stan models
 
