@@ -2569,8 +2569,130 @@ distill-header .nav a {
 </ul></li>
 </ul>
 <h4 id="model-comparison-and-selection">9.2 Model comparison and selection</h4>
+<ul>
+<li>CV for model assessment
+<ul>
+<li>CV is good for model assessment when application specific utility/cost functions are used</li>
+<li>also useful for PPC
+<ul>
+<li>model mis-specification diagnostics using Pareto-<span class="math inline">\(\hat{k}\)</span> and <span class="math inline">\(p_\text{LOO}\)</span> (effective number of parameters)</li>
+<li>checking model calibration and LOO predictive error</li>
+</ul></li>
+</ul></li>
+<li>sometimes do not need CV
+<ul>
+<li>sometimes comparing predictive distribution to observed is enough to compare models</li>
+</ul></li>
+<li>can compare LLPD between models to see which data points are best modeled by each</li>
+<li>can compare models using ELPD
+<ul>
+<li>standard error of the difference in ELPD <code>se_diff</code> only works for normally-distributed error
+<ul>
+<li>not always a good assumption</li>
+<li>only when the models are properly specific and the number of observations is large (&gt;100 data points)</li>
+</ul></li>
+</ul></li>
+<li>What is one is not clearly better than others?
+<ul>
+<li>recommend “continuous expansion including all models”
+<ul>
+<li>make a model that contains both of the others as special cases
+<ul>
+<li>instead of a pooled model vs. separate model, use a hierarchical model</li>
+<li>use a negative binomial instead of a poisson</li>
+</ul></li>
+<li>sparse priors like regularized horseshoe prior instead of variable selection</li>
+</ul></li>
+<li>model averaging with Bayesian Model Averaging (BMA) or Bayesian stacking
+<ul>
+<li>when continuous expansion is not an option</li>
+</ul></li>
+<li>if nested
+<ul>
+<li>(e.g. use the model with 2 variables instead of the 10 variable model that contains those 2 variables)</li>
+<li>use the simpler model assuming some cost for extra variables</li>
+<li>or use the more complex model if you want to take into account all the uncertainties</li>
+</ul></li>
+</ul></li>
+<li>CV and model selection
+<ul>
+<li>can use CV for model selection if
+<ol type="1">
+<li>small number of models</li>
+<li>the difference between models is clear</li>
+</ol></li>
+<li>do <em>not</em> use CV to choose from a large set of models
+<ul>
+<li>selection process leads to overfitting</li>
+<li>more likely to chose the model that just happens to best fit the data</li>
+</ul></li>
+<li><em>overfitting in selection process is not unique for CV</em></li>
+</ul></li>
+<li><strong>Take-home messages:</strong>
+<ul>
+<li>it is good to think about predictions of observables, because observables are the only ones we can observe</li>
+<li>CV can simulate predicting and observing new data</li>
+<li>CV is good if you do not trust your model</li>
+<li>different variants of CV are useful in different scenarios</li>
+<li>CV has high variance, and <strong>if</strong> you trust your model you can beat CV in accuracy</li>
+</ul></li>
+</ul>
 <h4 id="variable-selection-with-projection-predictive-variable-selection">9.3 Variable selection with projection predictive variable selection</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<ul>
+<li>Rich model vs feature selection?
+<ul>
+<li>If we care only about the predictive performance:
+<ul>
+<li>include all available prior information</li>
+<li>integrate over all uncertainties</li>
+<li>no need for feature selection</li>
+</ul></li>
+<li>Variable selection can be useful if:
+<ul>
+<li>need to reduce measurement or computation cost in the future</li>
+<li>improve explainability</li>
+</ul></li>
+<li>Two options for variable selection:
+<ol type="1">
+<li>find a minimal subset of features that yield a good predictive model</li>
+<li>identify all features that have predictive information</li>
+</ol></li>
+</ul></li>
+<li>shrinkage priors alone do not solve the problem
+<ul>
+<li>common strategy to fit a model with shrinkage prior and select variable my their marginal posteriors
+<ul>
+<li>(marginal posteriors = regression coefficients)</li>
+</ul></li>
+<li>issues:
+<ol type="1">
+<li>marginal posteriors are difficult to interpret if features are correlated</li>
+</ol>
+<ul>
+<li>their posteriors will be correlated</li>
+<li>may each have a posterior around 0, but their <em>joint distribution</em> is not</li>
+</ul>
+<ol start="2" type="1">
+<li>how to do post-selection inference correctly?</li>
+</ol>
+<ul>
+<li>add average cumulative effect</li>
+<li>set to zero and re-fit</li>
+<li>etc…</li>
+</ul></li>
+</ul></li>
+<li>different approach: focus on predictive performance
+<ul>
+<li>two-step process:
+<ol type="1">
+<li>construct the best predictive model we can <span class="math inline">\(\rightarrow\)</span> <em>reference model</em></li>
+<li>variable selection and post-selection inference <span class="math inline">\(\rightarrow\)</span> <em>projection</em></li>
+</ol></li>
+<li>instead of focusing on marginal posteriors, find the subset of features with closest predictive performance to the reference model</li>
+<li>(watch lecture for description with the example)</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+</ul>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
