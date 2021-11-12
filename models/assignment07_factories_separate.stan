@@ -25,5 +25,14 @@ model {
 generated quantities {
   // Compute the predictive distribution for the sixth machine.
   real y6pred;
+  vector[J] log_lik[N];
+
   y6pred = normal_rng(mu[6], sigma[6]);
+
+  for (j in 1:J) {
+    for (n in 1:N) {
+      log_lik[j][n] = normal_lpdf(y[j][n] | mu[j], sigma[j]);
+    }
+  }
+
 }
