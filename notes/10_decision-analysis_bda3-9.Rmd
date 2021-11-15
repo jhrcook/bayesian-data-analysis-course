@@ -1,0 +1,32 @@
+---
+title: "10. Decision analysis"
+date: "2021-11-15"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
+
+## Resources
+
+- reading
+  - BDA3 chapter 9
+  - [reading instructions](../reading-instructions/BDA3_ch09_reading-instructions.pdf)
+- lectures:
+  - ['10.1 Decision analysis'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=82943720-de0f-4195-8639-ab0900ca2085)
+- slides:
+  - [Lecture 10.1](../slides/slides_ch9.pdf)
+- [Assignment 9](assignments/assignment-09.pdf)
+
+## Notes
+
+### Reading instructions
+
+- notes from the reading instructions
+
+### Chapter 9. Decision analysis
+
+- notes from the book
+
+### Lecture notes

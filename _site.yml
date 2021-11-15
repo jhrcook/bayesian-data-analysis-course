@@ -33,6 +33,8 @@ navbar:
           href: notes/08_model-checking-and-cv_bda3-6-7.html
         - text: "Section 9. Model comparison and selection"
           href: notes/09_model-selection_bda3-7.html
+        - text: "Section 10. Decision analysis"
+          href: notes/10_decision-analysis_bda3-9.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
@@ -59,6 +61,8 @@ navbar:
           href: assignments/jhcook-assignment-07.html
         - text: "Assignment 8"
           href: assignments/jhcook-assignment-08.html
+        - text: "Assignment 9"
+          href: assignments/jhcook-assignment-09.html
     - text: "About"
       href: about.html
 output: distill::distill_article
