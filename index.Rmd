@@ -59,4 +59,7 @@ The recommended way to go through the material is:
 - [Drug bioassay model](models/assignment06-bioassay.stan) for Assignment 6
 - [8 school SAT model](models/8-schools.stan)
 - [Drownings](models/assignment07-drownings.stan) for Assignment 7
-- Factory machine measurements: [pooled](models/assignment07_factories_pooled.stan), [separate](models/assignment07_factories_separate.stan), [hierarchical](models/assignment07_factories_hierarchical.stan) for Assignment 7
+- Factory machine measurements for Assignments 7 & 8:
+  - [pooled](models/assignment07_factories_pooled.stan)
+  - [separate](models/assignment07_factories_separate.stan)
+  - [hierarchical](models/assignment07_factories_hierarchical.stan)
