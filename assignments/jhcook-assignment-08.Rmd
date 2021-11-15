@@ -102,10 +102,7 @@ hierarchical_model <- rstan::stan(
   refresh = 0
 )
 
-knitr::kable(
-  bayestestR::describe_posterior(hierarchical_model, ci = 0.89, test = NULL),
-  digits = 3
-)
+print(hierarchical_model, pars = c("alpha", "tau", "mu", "sigma"))
 ```
 
 **b) Compute the PSIS-LOO elpd values and the $\hat{k}$-values for each of the three models.**
@@ -128,7 +125,6 @@ separate_loo <- calc_loo(separate_model)
 print(separate_loo)
 ```
 
-
 *Pooled model*
 
 ```{r}
@@ -138,7 +134,10 @@ print(pooled_loo)
 
 *Hierarchical model*
 
-
+```{r}
+hierarchical_loo <- calc_loo(hierarchical_model)
+print(hierarchical_loo)
+```
 
 **c) Compute the effective number of parameters $p_\text{eff} for each of the three models.**
 **Hint! The estimated effective number of parameters in the model can be computed from equation (7.15) in the book, where elpdloo-cv is the PSIS-LOO value (sum of the LOO log densities) and lpd is given by equation (7.5) in the book.**
@@ -147,12 +146,13 @@ print(pooled_loo)
 extract_p_eff <- function(loo_res) {
   loo_res$estimates[2, ]
 }
-```
 
-
-```{r}
-extract_p_eff(separate_loo)
-extract_p_eff(pooled_loo)
+bind_rows(
+  extract_p_eff(separate_loo),
+  extract_p_eff(pooled_loo),
+  extract_p_eff(hierarchical_loo)
+) %>%
+  add_column(model = c("separate", "pooled", "hierarchical"))
 ```
 
 **d) Assess how reliable the PSIS-LOO estimates are for the three models based on the $\hat{k}$-values.**
@@ -178,30 +178,35 @@ plot_khat <- function(loo_res, factory_data) {
 ```
 
 ```{r}
-plot_khat(separate_loo, factory)
-```
-```{r}
-plot_khat(pooled_loo, factory)
+plot_khat(separate_loo, factory) + labs(title = "Separate model")
 ```
 
 ```{r}
-
+plot_khat(pooled_loo, factory) + labs(title = "Pooled model")
 ```
 
-
+```{r}
+plot_khat(hierarchical_loo, factory) + labs(title = "Hierarchical model")
+```
 
 **e) An assessment of whether there are differences between the models with regard to the elpdloo-cv, and if so, which model should be selected according to PSIS-LOO.**
 
-
 ```{r}
-extract_p_eff <- function(loo_res) {
+extract_elpd <- function(loo_res) {
   loo_res$estimates[1, ]
 }
 ```
 
 ```{r}
-extract_p_eff(pooled_loo)
+bind_rows(
+  extract_elpd(separate_loo),
+  extract_elpd(pooled_loo),
+  extract_elpd(hierarchical_loo)
+) %>%
+  add_column(model = c("separate", "pooled", "hierarchical"))
 ```
+
+From the ELPD and $\hat{k}$ values, the hierarchical model is superior to the seaprate and pooled models.
 
 **f) Both the Stan and R code should be included in your report.**
 
