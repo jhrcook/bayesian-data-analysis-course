@@ -27,12 +27,20 @@ navbar:
           href: notes/05_mcmc_bda3-11.html
         - text: "Section 6. HMC, NUTS, and Stan"
           href: notes/06_hmc-nuts-stan_bda3-12.html
+        - text: "Section 7. Hierarchical models and exchangeability"
+          href: notes/07_hierarchical-models_bda3-5.html
+        - text: "Section 8. Model checking & Cross-validation"
+          href: notes/08_model-checking-and-cv_bda3-6-7.html
+        - text: "Section 9. Model comparison and selection"
+          href: notes/09_model-selection_bda3-7.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
           href: book-exercises/bda-exercises-01.html
         - text: "Chapter 2"
           href: book-exercises/bda-exercises-02.html
+        - text: "Chapter 7"
+          href: book-exercises/bda-exercises-07.html
     - text: "Assignments"
       menu:
         - text: "Assignment 1"
@@ -47,6 +55,10 @@ navbar:
           href: assignments/jhcook-assignment-05.html
         - text: "Assignment 6"
           href: assignments/jhcook-assignment-06.html
+        - text: "Assignment 7"
+          href: assignments/jhcook-assignment-07.html
+        - text: "Assignment 8"
+          href: assignments/jhcook-assignment-08.html
     - text: "About"
       href: about.html
 output: distill::distill_article
