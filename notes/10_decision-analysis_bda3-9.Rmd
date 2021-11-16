@@ -23,10 +23,41 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 ### Reading instructions
 
-- notes from the reading instructions
+- outline of chapter 9
+  - 9.1 Context and basic steps (most important part)
+  - 9.2 Example
+  - 9.3 Multistage decision analysis (you may skip this example)
+  - 9.4 Hierarchical decision analysis (you may skip this example)
+  - 9.5 Personal vs. institutional decision analysis (important)
+- the lectures have simpler examples and discuss  some challenges in selecting utilities or costs
+- ch 7 discusses how model selection con be considered as a decision problem
 
 ### Chapter 9. Decision analysis
 
-- notes from the book
+- how can inferences be used in decision making?
+- examples in this chapter:
+  1. section 9.2: simple example with hierarchical model on how incentives affect survey response rates
+    - compare expected response rates of various incentive structures to their expected cost
+  2. section 9.3: option of performing a diagnostic test before deciding on a treatment for cancer
+    - example of "value of information" and balancing risks of the screening test against the information it would provide
+  3. section 9.4: decision and utility analysis of the risk of radon exposure
+    - cost of measurement and fixing high exposure
+    - example of a full integration if inference with decision analysis
+
+#### 9.1 Bayesian decision theory in difference contexts
+
+- use Bayesian inference in two ways when balancing costs and benefits of decision options under uncertainty:
+  1. a decision depends on the predicted quantities which depend on the parameters of the model and type of data
+  2. use Bayesian inference within a decisions analysis to estimate outcomes conditional on information from previous decisions
+
+##### Bayesian inference and decision trees
+
+- decision analysis involves optimization over decisions and uncertainties
+- **Bayesian decision analysis** is defined as the following steps:
+  1. Enumerate the space of all possible decisions $d$ and outcomes $x$.
+  2. Determine the probability distribution of $x$ for each decision option $d$.
+  3. Define a *utility function* $U(x)$ mapping outcomes onto real numbers (values of interest).
+  4. Compute the expected utility $\text{E}(U(x)|d)$ as a function of the decision $d$ and choose the decision with the highest expected utility.
+- often, we only do the first two steps and the rest is left to the "decision makers"
 
 ### Lecture notes
