@@ -61,3 +61,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 - often, we only do the first two steps and the rest is left to the "decision makers"
 
 ### Lecture notes
+
+#### 10.1 Decision analysis
+
+(no new notes)
