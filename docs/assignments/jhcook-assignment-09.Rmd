@@ -1,0 +1,200 @@
+---
+title: "Assignment 9"
+date: "2021-11-18"
+output: distill::distill_article
+---
+
+## Setup
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
+library(glue)
+library(rstan)
+library(tidybayes)
+library(tidyverse)
+
+for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
+  source(f)
+}
+
+rstan_options(auto_write = TRUE)
+options(mc.cores = 2)
+
+theme_set(theme_classic() + theme(strip.background = element_blank()))
+
+factory <- aaltobda::factory
+set.seed(678)
+```
+
+**[Assignment 9](assignments/assignment-09.pdf)**
+
+## Exercise 1. Decision analysis for the factory data
+
+**Your task is to decide whether or not to buy a new (7th) machine for the company.**
+**The decision should be based on our best knowledge about the machines.**
+
+**The following is known about the production process:**
+
+- **The given data contains quality measurements of single products from the six machines that are ordered from the same seller. (columns: different machines, rows: measurements)**
+- **Customers pay 200 euros for each product.**
+  – **If the quality of the product is below 85, the product cannot be sold**
+  – **All the products that have sufficient quality are sold.**
+- **Raw-materials, the salary of the machine user and the usage cost of the machine for each product cost 106 euros in total.**
+  – **Usage cost of the machine also involves all investment and repair costs divided by the number of products a machine can create. So there is no need to take the investment cost into account as a separate factor.**
+- **The only thing the company owner cares about is money. Thus, as a utility function, use the profit of a new product from a machine.**
+
+**a) For each of the six machines, compute and report the expected utility of one product of that machine.**
+
+```{r}
+PURCHASE_RPICE <- 200
+MIN_QUALITY_TO_SELL <- 85
+COST_TO_PRODUCE <- 106
+
+utility <- function(draws) {
+  purchased <- PURCHASE_RPICE * sum(draws >= MIN_QUALITY_TO_SELL)
+  cost_to_produce <- -1 * COST_TO_PRODUCE * length(draws)
+  u <- (purchased + cost_to_produce) / length(draws)
+  return(u)
+}
+
+# Test case given in the assignment.
+test_y_pred <- c(123.80, 85.23, 70.16, 80.57, 84.91)
+test_res <- utility(draws = test_y_pred)
+stop_if_not_close_to(test_res, -26)
+```
+
+Fit the hierarchical model and gather posterior predictions from each machine.
+
+```{r}
+hierarchical_model_code <- here::here(
+  "models", "assignment07_factories_hierarchical.stan"
+)
+
+hierarchical_model_data <- list(
+  y = factory,
+  N = nrow(factory),
+  J = ncol(factory)
+)
+
+hierarchical_model <- rstan::stan(
+  hierarchical_model_code,
+  data = hierarchical_model_data,
+  verbose = FALSE,
+  refresh = 0
+)
+
+print(hierarchical_model, pars = c("alpha", "tau", "mu", "sigma"))
+```
+
+Extract the posterior predictions for each machine and compare them to the observations.
+
+```{r}
+factory_ypred <- rstan::extract(hierarchical_model, pars = "ypred")$ypred
+
+tidy_factory_measure_matrix <- function(factory_mat) {
+  as.data.frame(factory_mat) %>%
+    set_names(glue("machine {seq(ncol(factory_mat))}")) %>%
+    pivot_longer(-c(), names_to = "machine", values_to = "quality_measurement")
+}
+
+factory_long <- tidy_factory_measure_matrix(factory)
+
+tidy_factory_measure_matrix(factory_ypred) %>%
+  ggplot(aes(x = quality_measurement)) +
+  facet_wrap(vars(machine), nrow = 2, scales = "free") +
+  geom_density(fill = "black", alpha = 0.1) +
+  geom_rug(data = factory_long, color = "blue") +
+  scale_x_continuous(expand = expansion(c(0, 0))) +
+  scale_y_continuous(expand = expansion(c(0, 0.02))) +
+  labs(
+    x = "quality measurements",
+    y = "density",
+    title = "Posterior predictions on current machines"
+  )
+```
+
+Calculate the expected utility for each current machine.
+
+```{r}
+machine_utilities <- apply(factory_ypred, 2, utility)
+tibble(
+  machine = glue("machine {seq(length(machine_utilities))}"),
+  expected_utility = machine_utilities
+) %>%
+  kableExtra::kbl()
+```
+
+**b) Rank the machines based on the expected utilities.**
+**In other words order the machines from worst to best.**
+**Also briefly explain what the utility values tell about the quality of these machines.**
+**E.g. Tell which machines are profitable and which are not (if any).**
+
+Based on their expected utility, the rankings of the machines from worst to best is: 1, 6, 3, 5, 2, 4.
+Machine 1 has a negative utility, indicating that it is expected to be unprofitable.
+
+**c) Compute and report the expected utility of the products of a new (7th) machine.**
+
+```{r}
+machine7_pred <- rstan::extract(hierarchical_model, pars = "y7pred")$y7pred
+
+ggplot(tibble(x = unlist(machine7_pred)), aes(x = x)) +
+  geom_density(fill = "black", alpha = 0.1) +
+  scale_x_continuous(expand = expansion(c(0, 0))) +
+  scale_y_continuous(expand = expansion(c(0, 0.02))) +
+  labs(
+    x = "quality measurements",
+    y = "density",
+    title = "Posterior predictions on hypothetical machine 7"
+  )
+```
+
+```{r}
+# Expected utility from machine 7.
+utility(machine7_pred)
+```
+
+The expected utility of hypothetical machine 7 is **`r utility(machine7_pred)`**.
+
+**d) Based on your analysis, discuss briefly whether the company owner should buy a new (7th) machine.**
+
+Based on this analysis, purchasing another machine would be expected to be profitable.
+It might be worth replacing machine 1 with this new machine.
+
+**e) As usual, remember to include the source code for both Stan and R (or Python).**
+
+The model is available here ["assignment07_factories_hierarchical.stan"](../models/assignment07_factories_hierarchical.stan).
+
+The only changes were made in the `generated quantities` block:
+
+```
+...
+generated quantities {
+  // Compute the predictive distribution for the sixth machine.
+  real y6pred;  // Leave for compatibility with earlier assignments.
+  vector[J] ypred;
+  real mu7pred;
+  real y7pred;
+  vector[J] log_lik[N];
+
+  y6pred = normal_rng(mu[6], sigma);
+  for (j in 1:J) {
+    ypred[j] = normal_rng(mu[j], sigma);
+  }
+
+  mu7pred = normal_rng(alpha, tau);
+  y7pred = normal_rng(mu7pred, sigma);
+
+  for (j in 1:J) {
+    for (n in 1:N) {
+      log_lik[n,j] = normal_lpdf(y[n,j] | mu[j], sigma);
+    }
+  }
+}
+```
+
+---
+
+```{r}
+sessionInfo()
+```
