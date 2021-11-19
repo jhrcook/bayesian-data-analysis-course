@@ -54,6 +54,7 @@ The recommended way to go through the material is:
 | **8. Model checking & Cross-validation** | [notes](notes/08_model-checking-and-cv_bda3-6-7.html) | (none) | (none) |
 | **9. Model comparison and selection** | [notes](notes/09_model-selection_bda3-7.html) | (none) | [assignment 8](assignments/jhcook-assignment-08.html) |
 | **10. Decision analysis** | [notes](notes/10_decision-analysis_bda3-9.html) | (none) | [assignment 9](assignments/jhcook-assignment-09.html) |
+| **11. Normal approximation & Frequency properties** | [notes](notes/11_normal-approx-freq-properties_bda3-04.html) | (none) | (none) |
 
 ## Stan models
 
