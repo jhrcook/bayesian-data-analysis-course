@@ -80,6 +80,15 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 #### Lecture 11.1. 'Normal approximation (Laplace approximation)'
 
-
+(no additional notes)
 
 #### Lecture 11.2. 'Large sample theory and counter examples'
+
+- *large sample theory*:
+  - *consistency*: if the true distribution is included in the parametric family then the posterior converges to a point $\theta_0$ when $n \rightarrow \infty$
+    - "included in the parametric family": $f(y) = p(y|\theta_0)$ for some $\theta_0$
+    - the point does not have uncertainty
+    - same result as MLE
+  - if the true distribution is not included in the parameteric family, then there is no true $\theta_0$, so replace it with the $\theta_0$ that minimized the KL divergence
+
+**paused at 26:32**
