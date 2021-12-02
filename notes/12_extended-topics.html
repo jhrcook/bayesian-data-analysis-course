@@ -86,28 +86,28 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>00. Title</title>
+  <title>12. Extended topics</title>
 
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-10-01" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-10-01" />
+  <meta property="article:published" itemprop="datePublished" content="2021-12-02" />
+  <meta property="article:created" itemprop="dateCreated" content="2021-12-02" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="00. Title" />
+  <meta property="og:title" content="12. Extended topics" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_US" />
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary" />
-  <meta property="twitter:title" content="00. Title" />
+  <meta property="twitter:title" content="12. Extended topics" />
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["00. Title"]},{"type":"character","attributes":{},"value":["2021-10-01"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["12. Extended topics"]},{"type":"character","attributes":{},"value":["2021-12-02"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
 
@@ -2469,7 +2469,7 @@ distill-header .nav a {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"00. Title","authors":[],"publishedDate":"2021-10-01T00:00:00.000+00:00"}
+{"title":"12. Extended topics","authors":[],"publishedDate":"2021-12-02T00:00:00.000+00:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2479,7 +2479,7 @@ distill-header .nav a {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>00. Title</h1>
+<h1>12. Extended topics</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2502,15 +2502,73 @@ distill-header .nav a {
 <li><a href="../slides/slides_extra.pdf">slides</a></li>
 </ul>
 <h2 id="notes">Notes</h2>
-<h3 id="reading-instructions">Reading instructions</h3>
+<h3 id="lecture-12.1-frequency-evaluation-hypothesis-testing-and-variable-selection">Lecture 12.1 Frequency evaluation, hypothesis testing and variable selection</h3>
 <ul>
-<li>notes from the reading instructions</li>
-</ul>
-<h3 id="chapter-n.-chapter-title">Chapter N. Chapter title</h3>
+<li>Bayesian vs. Frequentist
 <ul>
-<li>notes from the book</li>
+<li>Bayesian theory has epistemic and aleatory probabilities</li>
+<li>Frequency evaluations focus on frequency properties given aleatoric repetition of an observation and modeling</li>
+</ul></li>
+<li>on “null hypothesis testing”:
+<ul>
+<li>often inappropriate to test the probability that a value is 0
+<ul>
+<li>for continuous data, the probability of a single value is always 0</li>
+<li>“region of practical equivalence” (ROPE) is another option</li>
+</ul></li>
+<li>best to focus on describing the full posterior
+<ul>
+<li>e.g. amount of the posterior greater than or less than an important value</li>
+<li>e.g. where most of the posterior density is (89% or 95% HDI)</li>
+</ul></li>
+</ul></li>
+<li>be careful about only looking at marginal posteriors, too
+<ul>
+<li>joint posterior distributions may be informative</li>
+<li>e.g. height and weight variables in beta-blocker model are highly correlated; both marginals overlap 0, but joint does not</li>
+</ul></li>
+<li>most common statistical tests are linear models
+<ul>
+<li>longer list with more illustrations: <a href="https://lindeloev.github.io/tests-as-linear" class="uri">https://lindeloev.github.io/tests-as-linear</a></li>
+</ul></li>
 </ul>
-<h3 id="lecture-notes">Lecture notes</h3>
+<table>
+<thead>
+<tr class="header">
+<th>classical test</th>
+<th>Bayesian equivalent</th>
+<th>in ‘rstanarm’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>t-test</td>
+<td>mean of data</td>
+<td><code>stan_glm(y ~ 1)</code></td>
+</tr>
+<tr class="even">
+<td>paired t-test</td>
+<td>mean of diffs</td>
+<td><code>stan_glm((y1 - y2) ~ 1)</code></td>
+</tr>
+<tr class="odd">
+<td>Pearson correlation</td>
+<td>linear model</td>
+<td><code>stan_glm(y ~ 1 + x)</code></td>
+</tr>
+<tr class="even">
+<td>two-sample t-test</td>
+<td>group means</td>
+<td><code>stan_glm(y ~ 1 + gid)</code></td>
+</tr>
+<tr class="odd">
+<td>ANOVA</td>
+<td>hierarchical model</td>
+<td><code>stan_glm(y ~ 1 + (1|gid))</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="lecture-12.2-overview-of-modeling-data-collection-bda3-ch-8-linear-models-bda-ch-14-18-lasso-horseshoe-and-gaussian-processes-bda3-ch-21">Lecture 12.2 Overview of modeling data collection, BDA3 Ch 8, linear models, BDA Ch 14-18, lasso, horseshoe and Gaussian processes, BDA3 Ch 21</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
