@@ -15,7 +15,6 @@ site: distill::distill_website
 knitr::opts_chunk$set(echo = FALSE, dpi = 300)
 ```
 
-
 ## Resources
 
 - [Course website](https://avehtari.github.io/BDA_course_Aalto/)
