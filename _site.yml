@@ -37,6 +37,8 @@ navbar:
           href: notes/10_decision-analysis_bda3-9.html
         - text: "Section 11. Normal approximation & Frequency properties"
           href: notes/11_normal-approx-freq-properties_bda3-04.html
+        - text: "Section 12. Extended topics"
+          href: notes/12_extended-topics.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
