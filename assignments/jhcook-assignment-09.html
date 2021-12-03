@@ -3619,7 +3619,7 @@ distill-header .nav a {
 #&gt; mu[6]    1
 #&gt; sigma    1
 #&gt;
-#&gt; Samples were drawn using NUTS(diag_e) at Thu Nov 18 07:08:39 2021.
+#&gt; Samples were drawn using NUTS(diag_e) at Fri Dec  3 07:32:59 2021.
 #&gt; For each parameter, n_eff is a crude measure of effective sample size,
 #&gt; and Rhat is the potential scale reduction factor on split chains (at
 #&gt; convergence, Rhat=1).</code></pre>
@@ -3631,7 +3631,7 @@ distill-header .nav a {
 
 <span class="va">tidy_factory_measure_matrix</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">factory_mat</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">factory_mat</span><span class="op">)</span> <span class="op">%&gt;%</span>
-    <span class="fu">set_names</span><span class="op">(</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">&quot;machine {seq(ncol(factory_mat))}&quot;</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">&quot;machine {seq(ncol(factory_mat))}&quot;</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu">pivot_longer</span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">&quot;machine&quot;</span>, values_to <span class="op">=</span> <span class="st">&quot;quality_measurement&quot;</span><span class="op">)</span>
 <span class="op">}</span>
 
@@ -3639,7 +3639,7 @@ distill-header .nav a {
 
 <span class="fu">tidy_factory_measure_matrix</span><span class="op">(</span><span class="va">factory_ypred</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">quality_measurement</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">machine</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, scales <span class="op">=</span> <span class="st">&quot;free&quot;</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">machine</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, scales <span class="op">=</span> <span class="st">&quot;free&quot;</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_density</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">&quot;black&quot;</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_rug</span><span class="op">(</span>data <span class="op">=</span> <span class="va">factory_long</span>, color <span class="op">=</span> <span class="st">&quot;blue&quot;</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_x_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu">expansion</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -3792,10 +3792,9 @@ generated quantities {
 </div>
 <pre><code>#&gt; R version 4.1.2 (2021-11-01)
 #&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
-#&gt; Running under: macOS Big Sur 10.16
+#&gt; Running under: macOS Big Sur 11.6
 #&gt;
 #&gt; Matrix products: default
-#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
 #&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
 #&gt;
 #&gt; locale:
@@ -3806,44 +3805,50 @@ generated quantities {
 #&gt; [7] base
 #&gt;
 #&gt; other attached packages:
-#&gt;  [1] forcats_0.5.1        stringr_1.4.0        dplyr_1.0.7
-#&gt;  [4] purrr_0.3.4          readr_2.0.1          tidyr_1.1.3
-#&gt;  [7] tibble_3.1.3         tidyverse_1.3.1      tidybayes_3.0.1
-#&gt; [10] rstan_2.21.2         ggplot2_3.3.5        StanHeaders_2.21.0-7
-#&gt; [13] glue_1.4.2
+#&gt;  [1] loo_2.4.1            bayestestR_0.11.0    magrittr_2.0.1
+#&gt;  [4] bayesplot_1.8.1      aaltobda_0.3.1       tidybayes_3.0.1
+#&gt;  [7] rstan_2.21.2         StanHeaders_2.21.0-7 forcats_0.5.1
+#&gt; [10] stringr_1.4.0        dplyr_1.0.7          purrr_0.3.4
+#&gt; [13] readr_2.0.1          tidyr_1.1.3          tibble_3.1.3
+#&gt; [16] ggplot2_3.3.5        tidyverse_1.3.1      patchwork_1.1.1
+#&gt; [19] ggtext_0.1.1         glue_1.4.2
 #&gt;
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] matrixStats_0.61.0   fs_1.5.0             lubridate_1.7.10
-#&gt;  [4] webshot_0.5.2        httr_1.4.2           rprojroot_2.0.2
-#&gt;  [7] tensorA_0.36.2       tools_4.1.2          backports_1.2.1
-#&gt; [10] bslib_0.2.5.1        utf8_1.2.2           R6_2.5.0
-#&gt; [13] DBI_1.1.1            colorspace_2.0-2     ggdist_3.0.0
-#&gt; [16] withr_2.4.2          tidyselect_1.1.1     gridExtra_2.3
-#&gt; [19] prettyunits_1.1.1    processx_3.5.2       downlit_0.2.1
-#&gt; [22] curl_4.3.2           compiler_4.1.2       cli_3.0.1
-#&gt; [25] rvest_1.0.1          arrayhelpers_1.1-0   xml2_1.3.2
-#&gt; [28] labeling_0.4.2       posterior_1.1.0      sass_0.4.0
-#&gt; [31] scales_1.1.1         checkmate_2.0.0      aaltobda_0.3.1
-#&gt; [34] callr_3.7.0          systemfonts_1.0.3    digest_0.6.27
-#&gt; [37] svglite_2.0.0        rmarkdown_2.10       pkgconfig_2.0.3
-#&gt; [40] htmltools_0.5.1.1    highr_0.9            dbplyr_2.1.1
-#&gt; [43] rlang_0.4.11         readxl_1.3.1         rstudioapi_0.13
-#&gt; [46] jquerylib_0.1.4      farver_2.1.0         generics_0.1.0
-#&gt; [49] svUnit_1.0.6         jsonlite_1.7.2       distill_1.2
-#&gt; [52] distributional_0.2.2 inline_0.3.19        magrittr_2.0.1
-#&gt; [55] kableExtra_1.3.4     loo_2.4.1            Rcpp_1.0.7
-#&gt; [58] munsell_0.5.0        fansi_0.5.0          abind_1.4-5
-#&gt; [61] lifecycle_1.0.0      stringi_1.7.3        yaml_2.2.1
-#&gt; [64] pkgbuild_1.2.0       grid_4.1.2           parallel_4.1.2
-#&gt; [67] crayon_1.4.1         lattice_0.20-45      haven_2.4.3
-#&gt; [70] hms_1.1.0            knitr_1.33           ps_1.6.0
-#&gt; [73] pillar_1.6.2         codetools_0.2-18     clisymbols_1.2.0
-#&gt; [76] stats4_4.1.2         reprex_2.0.1         evaluate_0.14
-#&gt; [79] V8_3.4.2             renv_0.14.0          RcppParallel_5.1.4
-#&gt; [82] modelr_0.1.8         vctrs_0.3.8          tzdb_0.1.2
-#&gt; [85] cellranger_1.1.0     gtable_0.3.0         assertthat_0.2.1
-#&gt; [88] xfun_0.25            broom_0.7.9          coda_0.19-4
-#&gt; [91] viridisLite_0.4.0    ellipsis_0.3.2       here_1.0.1</code></pre>
+#&gt;   [1] colorspace_2.0-2     ggridges_0.5.3       ellipsis_0.3.2
+#&gt;   [4] rsconnect_0.8.24     rprojroot_2.0.2      snakecase_0.11.0
+#&gt;   [7] markdown_1.1         fs_1.5.0             gridtext_0.1.4
+#&gt;  [10] rstudioapi_0.13      farver_2.1.0         bit64_4.0.5
+#&gt;  [13] svUnit_1.0.6         fansi_0.5.0          mvtnorm_1.1-2
+#&gt;  [16] lubridate_1.7.10     xml2_1.3.2           codetools_0.2-18
+#&gt;  [19] splines_4.1.2        downlit_0.2.1        knitr_1.33
+#&gt;  [22] jsonlite_1.7.2       LaplacesDemon_16.1.6 broom_0.7.9
+#&gt;  [25] dbplyr_2.1.1         ggdist_3.0.0         compiler_4.1.2
+#&gt;  [28] httr_1.4.2           backports_1.2.1      assertthat_0.2.1
+#&gt;  [31] Matrix_1.3-4         cli_3.0.1            htmltools_0.5.1.1
+#&gt;  [34] prettyunits_1.1.1    tools_4.1.2          coda_0.19-4
+#&gt;  [37] gtable_0.3.0         posterior_1.1.0      V8_3.4.2
+#&gt;  [40] Rcpp_1.0.7           cellranger_1.1.0     jquerylib_0.1.4
+#&gt;  [43] vctrs_0.3.8          svglite_2.0.0        nlme_3.1-153
+#&gt;  [46] insight_0.14.4       tensorA_0.36.2       xfun_0.25
+#&gt;  [49] ps_1.6.0             rvest_1.0.1          lifecycle_1.0.0
+#&gt;  [52] renv_0.14.0          MASS_7.3-54          scales_1.1.1
+#&gt;  [55] vroom_1.5.4          clisymbols_1.2.0     hms_1.1.0
+#&gt;  [58] parallel_4.1.2       inline_0.3.19        RColorBrewer_1.1-2
+#&gt;  [61] yaml_2.2.1           curl_4.3.2           gridExtra_2.3
+#&gt;  [64] sass_0.4.0           distill_1.2          stringi_1.7.3
+#&gt;  [67] highr_0.9            checkmate_2.0.0      pkgbuild_1.2.0
+#&gt;  [70] systemfonts_1.0.3    rlang_0.4.11         pkgconfig_2.0.3
+#&gt;  [73] matrixStats_0.61.0   distributional_0.2.2 evaluate_0.14
+#&gt;  [76] lattice_0.20-45      labeling_0.4.2       bit_4.0.4
+#&gt;  [79] processx_3.5.2       tidyselect_1.1.1     here_1.0.1
+#&gt;  [82] plyr_1.8.6           bookdown_0.23        R6_2.5.0
+#&gt;  [85] generics_0.1.0       DBI_1.1.1            pillar_1.6.2
+#&gt;  [88] haven_2.4.3          withr_2.4.2          mgcv_1.8-38
+#&gt;  [91] datawizard_0.2.1     abind_1.4-5          janitor_2.1.0
+#&gt;  [94] modelr_0.1.8         crayon_1.4.1         arrayhelpers_1.1-0
+#&gt;  [97] utf8_1.2.2           tzdb_0.1.2           rmarkdown_2.10
+#&gt; [100] isoband_0.2.5
+#&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 12 entries ]</code></pre>
 </div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
