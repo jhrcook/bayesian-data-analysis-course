@@ -56,6 +56,20 @@ The recommended way to go through the material is:
 | **11. Normal approximation & Frequency properties** | [notes](notes/11_normal-approx-freq-properties_bda3-04.html) | (none) | (none) |
 | **12. Extended topics** | [notes](notes/12_extended-topics.html) | (none) | (none) |
 
+## Additional notes
+
+| Chapter | Title                                 | Notes                                                    |
+|--------:|---------------------------------------|:--------------------------------------------------------:|
+|      14 | **Introduction to regression models** | [notes](notes/13_intro-to-regression-models_bda3-14.Rmd) |
+|      15 | **Hierarchical linear models**        |  |
+|      16 | **Generalized linear models**         |  |
+|      18 | **Models for missing data**           |  |
+|      19 | **Parametric nonlinear models**       |  |
+|      20 | **Basis function models**             |  |
+|      21 | **Gaussian process models**           |  |
+|      22 | **Finite mixture models**             |  |
+|      23 | **Dirichlet process models**          |  |
+
 ## Stan models
 
 - [Drug bioassay model](models/assignment06-bioassay.stan) for Assignment 6

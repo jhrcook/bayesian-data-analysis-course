@@ -39,6 +39,8 @@ navbar:
           href: notes/11_normal-approx-freq-properties_bda3-04.html
         - text: "Section 12. Extended topics"
           href: notes/12_extended-topics.html
+        - text: "13. Notes on 'Ch 14. Introduction to regression models'"
+          href: notes/13_intro-to-regression-models_bda3-14.Rmd
     - text: "Exercises"
       menu:
         - text: "Chapter 1"

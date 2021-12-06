@@ -1,0 +1,13 @@
+---
+title: "13. Notes on 'Ch 14. Introduction to regression models'"
+date: "2021-12-06"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
+
+> These are just notes on a single chapter of *BDA3* that were not part ofthe course.
+
+## Chapter 14. Introduction to regression models
