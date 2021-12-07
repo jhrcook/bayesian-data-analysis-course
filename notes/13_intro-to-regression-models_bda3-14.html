@@ -2491,7 +2491,92 @@ distill-header .nav a {
 <p>These are just notes on a single chapter of <em>BDA3</em> that were not part ofthe course.</p>
 </blockquote>
 <h2 id="chapter-14.-introduction-to-regression-models">Chapter 14. Introduction to regression models</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h3 id="conditional-modeling">14.1 Conditional modeling</h3>
+<ul>
+<li>question: how does one quantity <span class="math inline">\(y\)</span> vary as a function of another quantity or vector of quantities <span class="math inline">\(x\)</span>?
+<ul>
+<li>conditional distribution of <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span> parameterized as <span class="math inline">\(p(y|\theta,x)\)</span></li>
+</ul></li>
+<li>key statistical modeling issues:
+<ol type="1">
+<li>defining <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> so that <span class="math inline">\(y\)</span> is reasonably linear as a function of the columns of <span class="math inline">\(X\)</span></li>
+</ol>
+<ul>
+<li>may need to transform <span class="math inline">\(x\)</span></li>
+</ul>
+<ol start="2" type="1">
+<li>set priors on the model parameters</li>
+</ol></li>
+</ul>
+<h3 id="bayesian-analysis-of-classical-regression">14.2 Bayesian analysis of classical regression</h3>
+<ul>
+<li>simplest case: <em>ordinary linear regression</em>
+<ul>
+<li>observation errors are independent and have equal variance</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+y | \beta, \sigma, X \sim \text{N}(X \beta, \sigma^2 I)
+\]</span></p>
+<h4 id="posterior-predictive-distribution-for-new-data">Posterior predictive distribution for new data</h4>
+<ul>
+<li>posterior predictive distribution has two sources of uncertainty:
+<ol type="1">
+<li>the inherent variability in the model represented by <span class="math inline">\(\sigma\)</span> in <span class="math inline">\(y\)</span></li>
+<li>posterior uncertainty in <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma\)</span></li>
+</ol></li>
+<li>draw a random sample <span class="math inline">\(\tilde{y}\)</span> from the posterior predictive distribution:
+<ul>
+<li>draw <span class="math inline">\((\beta, \sigma)\)</span> from their posteriors</li>
+<li>draw <span class="math inline">\(\tilde{y} \sim \text{N}(\tilde{X} \beta, \sigma^2 I)\)</span></li>
+</ul></li>
+</ul>
+<h2 id="goals-of-regression-analysis">14.4 Goals of regression analysis</h2>
+<ul>
+<li>at least three goals:
+<ol type="1">
+<li>understand the behavior of <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span></li>
+<li>predict <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span></li>
+<li>causal inference; predict how <span class="math inline">\(y\)</span> would change if <span class="math inline">\(x\)</span> were changed</li>
+</ol></li>
+</ul>
+<h2 id="assembling-the-matrix-of-explanitory-variables">14.5 Assembling the matrix of explanitory variables</h2>
+<h3 id="identifiability-and-collinearity">Identifiability and collinearity</h3>
+<ul>
+<li>“the parameters in a classical regression cannot be uniquely estimated if there are more parameters than data points or, more generally, if the columns of the matrix <span class="math inline">\(X\)</span> of explanatory variables are not linearly independent” (pg 365)</li>
+</ul>
+<h3 id="nonlinear-relations">Nonlinear relations</h3>
+<ul>
+<li>may need to transform variables</li>
+<li>can include more than one transformation in the model as separate covariates</li>
+<li>GLMs and non-linear models are discussed in later chapters</li>
+</ul>
+<h3 id="indicator-variables">Indicator variables</h3>
+<ul>
+<li>include a categorical variable in a regression using a indicator variable
+<ul>
+<li>separate effect for each category</li>
+<li>or model as related with a hierarchical model</li>
+</ul></li>
+</ul>
+<h3 id="interactions">Interactions</h3>
+<ul>
+<li>“If the response to a unit change in <span class="math inline">\(x_i\)</span> depends in what value another predictor <span class="math inline">\(x_j\)</span> has been fixed at, then it is necessary to include <em>interaction</em> terms in the model” (pg 367)
+<ul>
+<li><span class="math inline">\((x_i - \bar{x_i})(x_j - \bar{x_j})\)</span></li>
+</ul></li>
+</ul>
+<h2 id="regularization-and-dimension-reduction">14.6 Regularization and dimension reduction</h2>
+<ul>
+<li>see lecture notes on regularization for more updated recommendations</li>
+<li>“Bayesian regularization”:
+<ul>
+<li>location and scale of the prior</li>
+<li>analytic form of the prior (e.g. normal vs. Laplacian vs. Cauchy)</li>
+<li>how the posterior inference is summarized</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+</ul>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2499,6 +2584,15 @@ distill-header .nav a {
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
