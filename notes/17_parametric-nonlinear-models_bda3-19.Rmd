@@ -1,0 +1,23 @@
+---
+title: "17. Notes on 'Ch 19. Parametric nonlinear models'"
+date: "2021-12-09"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
+
+> These are just notes on a single chapter of *BDA3* that were not part ofthe course.
+
+## Chapter 19. Parametric nonlinear models
+
+- examples:
+  - a ratio; $\text{E}(y = \frac{a_1 + b_1 x_1}{a_2 + b_2 x_2}$
+  - sum of nonlinear functions: $\text{E}(y) = A_1 e^{-\alpha_1x} + A_2 e^{-\alpha_2x}$
+- parameters of a nonlinear model are often harder to interpret
+  - often requires custom visualization techniques
+- **"Generally each new modeling problem must be tackled afresh."** (pg 471)
+  - these models are less systematic than linear modeling
+
+### 19.1 Example: serial dilution assay

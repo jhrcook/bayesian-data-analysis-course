@@ -58,17 +58,17 @@ The recommended way to go through the material is:
 
 ## Additional notes
 
-| Chapter | Title                                 | Notes                                                    |
-|--------:|---------------------------------------|:--------------------------------------------------------:|
-|      14 | **Introduction to regression models** | [notes](notes/13_intro-to-regression-models_bda3-14.Rmd) |
-|      15 | **Hierarchical linear models**        |  |
-|      16 | **Generalized linear models**         |  |
-|      18 | **Models for missing data**           |  |
-|      19 | **Parametric nonlinear models**       |  |
-|      20 | **Basis function models**             |  |
-|      21 | **Gaussian process models**           |  |
-|      22 | **Finite mixture models**             |  |
-|      23 | **Dirichlet process models**          |  |
+| Chapter | Title                                 | Notes                                                      |
+|--------:|---------------------------------------|:----------------------------------------------------------:|
+|      14 | **Introduction to regression models** | [notes](notes/13_intro-to-regression-models_bda3-14.html)  |
+|      15 | **Hierarchical linear models**        | [notes](notes/14_hierarchical-linear-models_bda3-15.html)  |
+|      16 | **Generalized linear models**         |                                                            |
+|      18 | **Models for missing data**           |                                                            |
+|      19 | **Parametric nonlinear models**       | [notes](notes/17_parametric-nonlinear-models_bda3-19.html) |
+|      20 | **Basis function models**             |                                                            |
+|      21 | **Gaussian process models**           |                                                            |
+|      22 | **Finite mixture models**             |                                                            |
+|      23 | **Dirichlet process models**          |                                                            |
 
 ## Stan models
 
