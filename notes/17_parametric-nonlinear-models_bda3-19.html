@@ -2507,6 +2507,91 @@ distill-header .nav a {
 </ul></li>
 </ul>
 <h3 id="example-serial-dilution-assay">19.1 Example: serial dilution assay</h3>
+<ul>
+<li>estimate 10 unknown concentrations of an allergen based off of serial dilutions of a known standard</li>
+</ul>
+<h4 id="the-model">The model</h4>
+<ul>
+<li><strong>Notation</strong>:
+<ul>
+<li>parameters of interest: concentrations of unknown samples <span class="math inline">\(\theta_1, \dots, \theta_10\)</span></li>
+<li>known concentration of the standard <span class="math inline">\(\theta_0\)</span></li>
+<li>dilution of measure <span class="math inline">\(i\)</span> as <span class="math inline">\(x_i\)</span> and color intensity (measurement) as <span class="math inline">\(y_i\)</span></li>
+</ul></li>
+<li><strong>Curve of expected measurements given the concentration</strong>
+<ul>
+<li>use the following equation that is standard in the field</li>
+<li>parameters:
+<ul>
+<li><span class="math inline">\(\beta_1\)</span>: color intensity at the limit of 0 concentration</li>
+<li><span class="math inline">\(\beta_2\)</span>: the increase to saturation</li>
+<li><span class="math inline">\(\beta_3\)</span>: concentration at which the gradient of the curve turns</li>
+<li><span class="math inline">\(\beta_4\)</span>: rate at which saturation occurs</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+\text{E}(y | x, \beta) =
+  g(x, \beta) =
+  \beta_1 + \frac{\beta_2}{1 + (x / \beta_3)^{-\beta_4}}
+\]</span></p>
+<ul>
+<li><strong>Measurement error</strong>
+<ul>
+<li>modeled as normally distributed with unequal variances</li>
+<li>parameters:
+<ul>
+<li><span class="math inline">\(\alpha\)</span>: models the pattern that variances are higher for larger measurements
+<ul>
+<li>restricted <span class="math inline">\([0, 1]\)</span></li>
+</ul></li>
+<li><span class="math inline">\(A\)</span> is a arbitrary constant to scale the data so <span class="math inline">\(\sigma\)</span> can be interpreted as the deviation from “typical” values</li>
+<li><span class="math inline">\(\sigma\)</span>: deviation of a measure from the “typical”</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+y_i \sim \text{N}(g(x_i, \beta), (\frac{g(x_i, \beta)}{A})^{2\alpha} \sigma_y^2)
+\]</span></p>
+<ul>
+<li><strong>Dilution errors</strong>
+<ul>
+<li>two possible sources:
+<ol type="1">
+<li><em>initial dilution</em>: the accuracy of the creation of the initial standard concentration</li>
+<li><em>serial dilutions</em>: error in creation of the subsequent dilutions (low enough to ignore for this analysis)</li>
+</ol></li>
+<li>use a normal model on the log scale of the initial dilution error</li>
+<li>parameters:
+<ul>
+<li><span class="math inline">\(\theta_0\)</span>: known concentration of the standard solution</li>
+<li><span class="math inline">\(d_0^\text{init}\)</span>: known initial dilution of the standard that is called for
+<ul>
+<li>without error, the concentration of the initial solution would be <span class="math inline">\(d_0^\text{init} \theta_0\)</span></li>
+</ul></li>
+<li><span class="math inline">\(x_0^\text{init}\)</span>: the <em>actual</em> (unknown) concentration of the initial dilution</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+\log(x_0^\text{init}) \sim \text{N}(\log(d_0^\text{init} \cdot \theta_0), (\sigma^\text{init})^2)
+\]</span> - <strong>Dilution errors</strong> (cont) - there is no initial dilution for the unknown samples being tested - therefore, the unknown initial concentration for sample <span class="math inline">\(j\)</span> is <span class="math inline">\(x^\text{init} = \theta_j\)</span> for <span class="math inline">\(j = 1, \dots, 10\)</span> - for the dilutions of the unknown samples, set <span class="math inline">\(x_i = d_i \cdot x_{j(i)}^\text{init}\)</span> - <span class="math inline">\(j(i)\)</span> is the sample <span class="math inline">\(j\)</span> corresponding to measurement <span class="math inline">\(i\)</span> - <span class="math inline">\(d_i\)</span> is the dilution of measurement <span class="math inline">\(i\)</span> relative to the initial concentration</p>
+<h4 id="prior-distributions">Prior distributions</h4>
+<ul>
+<li>priors used as described by book (are likely different than what would be recommended now):
+<ul>
+<li><span class="math inline">\(\log(\beta) \sim U(-\infty, \infty)\)</span></li>
+<li><span class="math inline">\(\sigma_y \sim U(0, \infty)\)</span></li>
+<li><span class="math inline">\(\alpha \sim U(0,1)\)</span></li>
+<li><span class="math inline">\(p(\log \theta_j) \propto 1\)</span> for each unknown <span class="math inline">\(j = 1, \dots, 10\)</span></li>
+</ul></li>
+<li>cannot estimate <span class="math inline">\(\sigma^\text{init}\)</span> because we only have a single standard
+<ul>
+<li>use a fixed value of 0.02 based on a previous analysis of different plates</li>
+</ul></li>
+</ul>
+<h3 id="example-population-toxicokinetics">19.2 Example: population toxicokinetics</h3>
+<p>…</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
