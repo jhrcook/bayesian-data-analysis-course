@@ -1,5 +1,5 @@
 ---
-title: "Chapter 17 Exercises"
+title: "Chapter 17 Exercises - Reproducing the the 'serial dilution assay'"
 date: "2021-12-10"
 output: distill::distill_article
 ---
@@ -13,7 +13,10 @@ for (rfile in rfiles) {
 }
 ```
 
-> Reproduce the serial dilution example from chapter 17.
+My goal here is to fit the serial dilution model model and perform basic inferential analysis as demonstrated in Chapter 17.
+The original publication by Gelman *et al.* is also available[^1].
+
+[^1]: Gelman A, Chew GL, Shnaidman M. Bayesian analysis of serial dilution assays. Biometrics. 2004 Jun;60(2):407-17. doi: 10.1111/j.0006-341X.2004.00185.x. PMID: 15180666. https://pubmed.ncbi.nlm.nih.gov/15180666/
 
 ## Setup
 
@@ -21,6 +24,11 @@ for (rfile in rfiles) {
 library(rstan)
 library(tidybayes)
 library(tidyverse)
+
+options(mc.cores = parallel::detectCores())
+rstan_options(auto_write = TRUE)
+
+theme_set(theme_classic())
 ```
 
 Data copied from the book Figure 19.3 on page 473.
@@ -42,6 +50,26 @@ head(dilution_standards_data)
 
 ```{r}
 dilution_standards_data %>%
-  ggplot(aes(x = dilution, y = y)) +
-  geom_point()
+  ggplot(aes(x = conc, y = y)) +
+  geom_point(alpha = 0.8)
 ```
+
+```{r}
+model_data <- list(
+  N = nrow(dilution_standards_data),
+  A = 30,
+  x = dilution_standards_data$conc,
+  y = dilution_standards_data$y
+)
+stan_mdl_file <- here::here("models", "serial-dilution.stan")
+dilution_mdl <- stan(stan_mdl_file, data = model_data, refresh = 0)
+```
+
+```{r}
+dilution_mdl
+```
+
+TODO: analysis of posterior distributions
+TODO: posterior predictions on data
+TODO: predictions on new data across more dilutions $x$
+TODO: required components for LOO

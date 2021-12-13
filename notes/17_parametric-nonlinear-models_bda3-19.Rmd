@@ -89,4 +89,6 @@ $$
 
 ### 19.2 Example: population toxicokinetics
 
-...
+- this is a more complex model
+- uses a physiological model with parameters that cannot be solely determined using the data
+  - requires informative priors based on previous studies

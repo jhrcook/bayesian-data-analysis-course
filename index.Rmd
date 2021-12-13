@@ -79,3 +79,4 @@ The recommended way to go through the material is:
   - [pooled](models/assignment07_factories_pooled.stan)
   - [separate](models/assignment07_factories_separate.stan)
   - [hierarchical](models/assignment07_factories_hierarchical.stan) (also used in Assignment 9)
+- [serial dilution assay](models/serial-dilution.stan) for chapter 17 exercises
