@@ -28,7 +28,7 @@ library(tidyverse)
 options(mc.cores = parallel::detectCores())
 rstan_options(auto_write = TRUE)
 
-theme_set(theme_classic())
+theme_set(theme_classic() + theme(panel.grid.major = element_line(), strip.background = element_blank()))
 ```
 
 Data copied from the book Figure 19.3 on page 473.
@@ -44,14 +44,20 @@ dilution_standards_data <- tibble::tribble(
   0.02, 1 / 32, c(38.5, 35.1),
   0.01, 1 / 64, c(26.6, 25.0),
   0, 0, c(14.7, 14.2),
-) %>% unnest(y)
+) %>%
+  mutate(rep = purrr::map(conc, ~ c("a", "b"))) %>%
+  unnest(c(y, rep))
 head(dilution_standards_data)
 ```
 
 ```{r}
 dilution_standards_data %>%
-  ggplot(aes(x = conc, y = y)) +
-  geom_point(alpha = 0.8)
+  ggplot(aes(x = conc, y = y, color = rep)) +
+  geom_line(alpha = 0.5, linetype = 2) +
+  geom_point(alpha = 0.8) +
+  scale_x_continuous(expand = expansion(c(0, 0.02)), limits = c(0, NA)) +
+  scale_y_continuous(expand = expansion(c(0, 0.02)), limits = c(0, NA)) +
+  scale_color_brewer(type = "qual", palette = "Set1")
 ```
 
 ```{r}
@@ -66,10 +72,48 @@ dilution_mdl <- stan(stan_mdl_file, data = model_data, refresh = 0)
 ```
 
 ```{r}
-dilution_mdl
+print(dilution_mdl, pars = c("beta", "alpha", "sigma"))
 ```
 
-TODO: analysis of posterior distributions
-TODO: posterior predictions on data
+```{r}
+rstan::stan_trace(dilution_mdl, pars = c("beta", "alpha", "sigma"), alpha = 0.4)
+```
+
+```{r, message=FALSE, warning=FALSE}
+for (p in c("beta", "alpha", "sigma")) {
+  p <- rstan::stan_plot(dilution_mdl, pars = "beta", ci_level = 0.89, outer_level = 0.95)
+  print(p)
+  p <- rstan::stan_dens(dilution_mdl, pars = "beta", alpha = 0.4) +
+    scale_x_continuous(expand = expansion(c(0, 0))) +
+    scale_y_continuous(expand = expansion(c(0, 0.02)))
+  print(p)
+}
+```
+
+```{r}
+dilution_mdl_ppc <- rstan::extract(dilution_mdl)$ypred %>%
+  as.data.frame() %>%
+  as_tibble() %>%
+  mutate(iteration = row_number()) %>%
+  pivot_longer(-iteration, names_to = "data_pt_idx", values_to = "draw") %>%
+  mutate(data_pt_idx = as.integer(str_remove(data_pt_idx, "V"))) %>%
+  left_join(dilution_standards_data %>% mutate(data_pt_idx = row_number()), by = "data_pt_idx")
+
+head(dilution_mdl_ppc)
+```
+
+```{r}
+iters <- sample(seq(min(dilution_mdl_ppc$iteration), max(dilution_mdl_ppc$iteration)), 100)
+dilution_mdl_ppc %>%
+  filter(iteration %in% iters) %>%
+  mutate(grp = glue::glue("{iteration}-{rep}")) %>%
+  ggplot(aes(x = conc, y = draw, group = grp)) +
+  geom_line(alpha = 0.1) +
+  geom_line(aes(x = conc, y = y, group = rep), data = dilution_standards_data, color = "blue") +
+  geom_point(aes(x = conc, y = y), data = dilution_standards_data, color = "blue", inherit.aes = FALSE) +
+  scale_x_continuous(expand = expansion(c(0, 0.02))) +
+  scale_y_continuous(expand = expansion(c(0, 0.02)))
+```
+
+
 TODO: predictions on new data across more dilutions $x$
-TODO: required components for LOO
