@@ -1,8 +1,8 @@
 data {
-  int<lower=0> N;
-  int<lower=0> A;
-  vector<lower=0>[N] x;
-  vector<lower=0>[N] y;
+  int<lower=0> N;  // number of data points
+  int<lower=0> A;  // constant used in model of measurement error
+  vector<lower=0>[N] x;  // concentration values
+  vector<lower=0>[N] y;  // observed color intensity
 }
 
 parameters {
@@ -12,18 +12,18 @@ parameters {
 }
 
 transformed parameters {
-  vector[N] g;
-  vector[N] tau;
+  vector<lower=0>[N] g;
+  vector<lower=0>[N] tau;
 
   for (i in 1:N) {
-    g[i] = beta[1] + (beta[2] / (1 + (x[i] / beta[3])^(-1 * beta[4])));
-    tau[i] = ((g[i] / A)^(2.0 * alpha)) * (sigma^2.0);
+    g[i] = beta[1] + (beta[2] / (1 + (x[i] / beta[3]) ^ (-1 * beta[4])));
+    tau[i] = ((g[i] / A) ^ (2.0 * alpha)) * (sigma ^ 2.0);
   }
 }
 
 model {
   // Priors
-  alpha ~ beta(1, 1);
+  alpha ~ beta(2, 2);
   beta ~ normal(0, 5);
   sigma ~ normal(0, 5);
   // Likelihood
