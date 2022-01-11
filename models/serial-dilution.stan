@@ -6,7 +6,7 @@ data {
 }
 
 parameters {
-  real<lower=0> beta[4];
+  vector<lower=0>[4] beta;
   real<lower=0,upper=1> alpha;
   real<lower=0> sigma;
 }
@@ -16,18 +16,24 @@ transformed parameters {
   vector<lower=0>[N] tau;
 
   for (i in 1:N) {
-    g[i] = beta[1] + (beta[2] / (1 + (x[i] / beta[3]) ^ (-1 * beta[4])));
+    g[i] = beta[1] + beta[2] / (1 + (x[i] / beta[3]) ^ (-beta[4]));
     tau[i] = ((g[i] / A) ^ (2.0 * alpha)) * (sigma ^ 2.0);
   }
 }
 
 model {
   // Priors
-  alpha ~ beta(2, 2);
-  beta ~ normal(0, 5);
-  sigma ~ normal(0, 5);
+  alpha ~ beta(1, 1);
+  beta[1] ~ normal(10, 2.5);
+  beta[2] ~ normal(100, 5);
+  beta[3] ~ normal(0, 1);
+  beta[4] ~ normal(0, 2.5);
+  sigma ~ normal(0, 2.5);
+
   // Likelihood
-  y ~ normal(g, tau);
+  for (i in 1:N) {
+    y[i] ~ normal(g[i], tau[i]);
+  }
 }
 
 generated quantities {

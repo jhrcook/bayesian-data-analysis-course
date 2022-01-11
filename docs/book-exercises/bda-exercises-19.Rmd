@@ -1,0 +1,177 @@
+---
+title: "Chapter 17 Exercises - Reproducing the the 'serial dilution assay'"
+date: "2021-12-10"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
+rfiles <- list.files(here::here("src"), full.names = TRUE, pattern = "R$")
+for (rfile in rfiles) {
+  source(rfile)
+}
+
+set.seed(0)
+```
+
+My goal here is to fit the serial dilution model model and perform basic inferential analysis as demonstrated in Chapter 17.
+The original publication by Gelman *et al.* is also available[^1].
+Unfortunately, I could not find the original data analyzed and was only able to copy the standards data from the book.
+
+[^1]: Gelman A, Chew GL, Shnaidman M. Bayesian analysis of serial dilution assays. Biometrics. 2004 Jun;60(2):407-17. doi: 10.1111/j.0006-341X.2004.00185.x. PMID: 15180666. https://pubmed.ncbi.nlm.nih.gov/15180666/
+
+## Setup
+
+```{r setup-show, message=FALSE, warning=FALSE}
+library(rstan)
+library(tidybayes)
+library(tidyverse)
+
+options(mc.cores = parallel::detectCores())
+rstan_options(auto_write = TRUE)
+
+theme_set(
+  theme_classic() +
+    theme(
+      panel.grid.major = element_line(),
+      strip.background = element_blank()
+    )
+)
+
+STAN_RED <- "#B2171D"
+```
+
+Data copied from the book Figure 19.3 on page 473.
+
+```{r}
+dilution_standards_data <- tibble::tribble(
+  ~conc, ~dilution, ~y,
+  0.64, 1, c(101.8, 121.4),
+  0.32, 1 / 2, c(105.2, 114.1),
+  0.16, 1 / 4, c(92.7, 93.3),
+  0.08, 1 / 8, c(72.4, 61.1),
+  0.04, 1 / 16, c(57.6, 50.0),
+  0.02, 1 / 32, c(38.5, 35.1),
+  0.01, 1 / 64, c(26.6, 25.0),
+  0, 0, c(14.7, 14.2),
+) %>%
+  mutate(rep = purrr::map(conc, ~ c("a", "b"))) %>%
+  unnest(c(y, rep))
+head(dilution_standards_data)
+```
+
+The following plot shows the two standard dilution curves.
+They are quite similar.
+
+```{r}
+dilution_standards_data %>%
+  ggplot(aes(x = conc, y = y, color = rep)) +
+  geom_line(alpha = 0.5, linetype = 2) +
+  geom_point(alpha = 0.8) +
+  scale_x_continuous(expand = expansion(c(0, 0.02)), limits = c(0, NA)) +
+  scale_y_continuous(expand = expansion(c(0, 0.02)), limits = c(0, NA)) +
+  scale_color_brewer(type = "qual", palette = "Set1")
+```
+
+## Modeling
+
+### Model specification
+
+The Stan model is quite simple, but I ran into some problems fitting it, discussed below.
+The centrality and variance of the likelihood are calculated separately as `g` and `tau` so they can be used in the `model` and `generated quantities` block without duplicating the code.
+The `log_lik` is calculated so that PSIS-LOO cross validation could be conducted if desired.
+
+```{r}
+dilution_model_file <- here::here("models", "serial-dilution.stan")
+writeLines(readLines(dilution_model_file))
+```
+
+### Sampling
+
+As mentioned above, there were some problems with fitting the model.
+The main problem was that the $\beta$ parameters are on *wildly* different scales, such as $\beta_2$ is around 100 while $\beta_3$ is less than 0.1.
+Therefore, in order for the model to fit correctly, I needed to assign different prior distributions for each parameter.
+
+```{r}
+model_data <- list(
+  N = nrow(dilution_standards_data),
+  A = 30,
+  x = dilution_standards_data$conc,
+  y = dilution_standards_data$y
+)
+
+
+dilution_model <- stan(
+  dilution_model_file,
+  model_name = "serial-dilution",
+  data = model_data
+)
+```
+
+### Posterior distributions
+
+```{r}
+rstan::stan_trace(dilution_model, pars = "beta", ncol=1) +
+  scale_x_continuous(expand = expansion(c(0, 0))) +
+  scale_y_continuous(expand = expansion(c(0.02, 0.02)))
+```
+
+```{r}
+print(dilution_model, pars=c("beta", "sigma", "alpha"))
+```
+
+
+```{r}
+rstan::stan_dens(
+  dilution_model, pars = c("beta", "sigma", "alpha"), 
+  separate_chains=TRUE
+) +
+  scale_x_continuous(expand = expansion(c(0, 0))) +
+  scale_y_continuous(expand = expansion(c(0, 0.02)))
+```
+
+### Posterior predictive check
+
+Below is a plot of the posterior predictive distributions of the model on the original data.
+The simulated curves visually appear to correspond well with the observed data indicating the model has good fit.
+
+```{r}
+dilution_post_pred <- rstan::extract(dilution_model, "ypred")$ypred %>%
+  as.data.frame() %>%
+  as_tibble() %>%
+  set_names(seq(1, ncol(.))) %>%
+  mutate(draw = 1:n()) %>%
+  pivot_longer(-c(draw), names_to = "idx") %>%
+  left_join(
+    dilution_standards_data %>% mutate(idx = as.character(1:n())),
+    by = "idx"
+  )
+```
+
+```{r}
+plt_n_draws <- 100
+plt_draws <- sample(1:max(dilution_post_pred$draw), plt_n_draws)
+dilution_post_pred %>%
+  filter(draw %in% !!plt_draws) %>%
+  ggplot(aes(x = conc, y = value)) +
+  facet_wrap(vars(rep), nrow = 1) +
+  geom_line(aes(group = draw), alpha = 0.1) +
+  geom_line(
+    aes(y = y, group = rep),
+    data = dilution_standards_data,
+    color = STAN_RED
+  ) +
+  geom_point(aes(y = y), data = dilution_standards_data, color = STAN_RED) +
+  scale_x_continuous(expand = expansion(c(0, 0))) +
+  scale_y_continuous(expand = expansion(c(0.02, 0.02)))
+```
+
+---
+
+## Session info
+
+```{r}
+sessionInfo()
+```
+
