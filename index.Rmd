@@ -65,7 +65,7 @@ The recommended way to go through the material is:
 |      16 | **Generalized linear models**         |                                                            |                                                               |
 |      18 | **Models for missing data**           |                                                            |                                                               |
 |      19 | **Parametric nonlinear models**       | [notes](notes/17_parametric-nonlinear-models_bda3-19.html) | [serial dilution model](book-exercises/bda-exercises-19.html) |
-|      20 | **Basis function models**             |                                                            |                                                               |
+|      20 | **Basis function models**             | [notes](notes/18_basis-function-models_bda3-20.html)       |                                                               |
 |      21 | **Gaussian process models**           |                                                            |                                                               |
 |      22 | **Finite mixture models**             |                                                            |                                                               |
 |      23 | **Dirichlet process models**          |                                                            |                                                               |

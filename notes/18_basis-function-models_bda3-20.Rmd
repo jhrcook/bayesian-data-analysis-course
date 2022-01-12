@@ -1,0 +1,40 @@
+---
+title: "18. Notes on 'Ch 20. Basis function models'"
+date: "2022-01-12"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
+
+> These are just notes on a single chapter of *BDA3* that were not part of the course.
+
+## Chapter 20. Basis function models
+
+- chapter 19 focused on nonlinear models with $\text{E}(y|X,\beta) = \mu(X_i,\phi)$ where $\mu$ is a parametric nonlinear function of unknowns $\phi$
+- in this and following chapters, consider models where $\mu$ is also unknown
+
+### 20.1 Splines and weighted sums of basis functions
+
+- replace $X_i \beta$ with $\mu(X_i)$ where $\mu(\cdot)$ is some class of nonlinear functions
+  - different options for modeling $\mu$ including with basis function expansions or Gaussian processes (next chapter)
+- basis function approach: $\mu(x) = \sum_{h=1}^{H} \beta_h b_h(x)$
+  - $b_h$: set of basis functions
+  - $\beta_h$: vector of basis coefficients
+- common choices for basis functions are:
+  - **Gaussian radial basis functions**: multiple centers of the basis functions with a width parameter controlling a set of Gaussian functions
+  - **B-spline**: a piecewise continuous function based on a set of knots
+    - knots locations control the flexibility of the basis
+    - knots cn be placed uniformly or non-uniformly (e.g. based on the density of the data)
+    - can use a "free knot approach" with a prior on the number and location of knots, but is computationally demanding
+    - instead can use priors on the coefficients $\beta$ to shrink values to near 0
+
+## 20.2 Basis selection and shrinkage coefficients
+
+- common to not know which basis functions are really needed
+- can use a variable selection approach to allow the model to estimate the "importance" of each basis function
+  - can then either select the best model from the posterior or average over all possible models by weighting each basis by its importance
+- possible for some bias based on initial choice of the basis functions
+  - implied prior information on the smoothness and shape of the model
+  - can include multiple types of basis functions in the initial collection

@@ -86,28 +86,28 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>17. Notes on &#39;Ch 19. Parametric nonlinear models&#39;</title>
+  <title>18. Notes on &#39;Ch 20. Basis function models&#39;</title>
 
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-12-09" />
-  <meta property="article:created" itemprop="dateCreated" content="2021-12-09" />
+  <meta property="article:published" itemprop="datePublished" content="2022-01-12" />
+  <meta property="article:created" itemprop="dateCreated" content="2022-01-12" />
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="17. Notes on &#39;Ch 19. Parametric nonlinear models&#39;" />
+  <meta property="og:title" content="18. Notes on &#39;Ch 20. Basis function models&#39;" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_US" />
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary" />
-  <meta property="twitter:title" content="17. Notes on &#39;Ch 19. Parametric nonlinear models&#39;" />
+  <meta property="twitter:title" content="18. Notes on &#39;Ch 20. Basis function models&#39;" />
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["17. Notes on 'Ch 19. Parametric nonlinear models'"]},{"type":"character","attributes":{},"value":["2021-12-09"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["18. Notes on 'Ch 20. Basis function models'"]},{"type":"character","attributes":{},"value":["2022-01-12"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
 
@@ -2469,7 +2469,7 @@ distill-header .nav a {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"17. Notes on 'Ch 19. Parametric nonlinear models'","authors":[],"publishedDate":"2021-12-09T00:00:00.000+00:00"}
+{"title":"18. Notes on 'Ch 20. Basis function models'","authors":[],"publishedDate":"2022-01-12T00:00:00.000+00:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2479,7 +2479,7 @@ distill-header .nav a {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>17. Notes on ‘Ch 19. Parametric nonlinear models’</h1>
+<h1>18. Notes on ‘Ch 20. Basis function models’</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2490,115 +2490,48 @@ distill-header .nav a {
 <blockquote>
 <p>These are just notes on a single chapter of <em>BDA3</em> that were not part of the course.</p>
 </blockquote>
-<h2 id="chapter-19.-parametric-nonlinear-models">Chapter 19. Parametric nonlinear models</h2>
+<h2 id="chapter-20.-basis-function-models">Chapter 20. Basis function models</h2>
 <ul>
-<li>examples:
-<ul>
-<li>a ratio; <span class="math inline">\(\text{E}(y = \frac{a_1 + b_1 x_1}{a_2 + b_2 x_2}\)</span></li>
-<li>sum of nonlinear functions: <span class="math inline">\(\text{E}(y) = A_1 e^{-\alpha_1x} + A_2 e^{-\alpha_2x}\)</span></li>
-</ul></li>
-<li>parameters of a nonlinear model are often harder to interpret
-<ul>
-<li>often requires custom visualization techniques</li>
-</ul></li>
-<li><strong>“Generally each new modeling problem must be tackled afresh.”</strong> (pg 471)
-<ul>
-<li>these models are less systematic than linear modeling</li>
-</ul></li>
+<li>chapter 19 focused on nonlinear models with <span class="math inline">\(\text{E}(y|X,\beta) = \mu(X_i,\phi)\)</span> where <span class="math inline">\(\mu\)</span> is a parametric nonlinear function of unknowns <span class="math inline">\(\phi\)</span></li>
+<li>in this and following chapters, consider models where <span class="math inline">\(\mu\)</span> is also unknown</li>
 </ul>
-<h3 id="example-serial-dilution-assay">19.1 Example: serial dilution assay</h3>
+<h3 id="splines-and-weighted-sums-of-basis-functions">20.1 Splines and weighted sums of basis functions</h3>
 <ul>
-<li>estimate 10 unknown concentrations of an allergen based off of serial dilutions of a known standard</li>
-</ul>
-<h4 id="the-model">The model</h4>
+<li>replace <span class="math inline">\(X_i \beta\)</span> with <span class="math inline">\(\mu(X_i)\)</span> where <span class="math inline">\(\mu(\cdot)\)</span> is some class of nonlinear functions
 <ul>
-<li><strong>Notation</strong>:
-<ul>
-<li>parameters of interest: concentrations of unknown samples <span class="math inline">\(\theta_1, \dots, \theta_10\)</span></li>
-<li>known concentration of the standard <span class="math inline">\(\theta_0\)</span></li>
-<li>dilution of measure <span class="math inline">\(i\)</span> as <span class="math inline">\(x_i\)</span> and color intensity (measurement) as <span class="math inline">\(y_i\)</span></li>
+<li>different options for modeling <span class="math inline">\(\mu\)</span> including with basis function expansions or Gaussian processes (next chapter)</li>
 </ul></li>
-<li><strong>Curve of expected measurements given the concentration</strong>
+<li>basis function approach: <span class="math inline">\(\mu(x) = \sum_{h=1}^{H} \beta_h b_h(x)\)</span>
 <ul>
-<li>use the following equation that is standard in the field</li>
-<li>parameters:
+<li><span class="math inline">\(b_h\)</span>: set of basis functions</li>
+<li><span class="math inline">\(\beta_h\)</span>: vector of basis coefficients</li>
+</ul></li>
+<li>common choices for basis functions are:
 <ul>
-<li><span class="math inline">\(\beta_1\)</span>: color intensity at the limit of 0 concentration</li>
-<li><span class="math inline">\(\beta_2\)</span>: the increase to saturation</li>
-<li><span class="math inline">\(\beta_3\)</span>: concentration at which the gradient of the curve turns</li>
-<li><span class="math inline">\(\beta_4\)</span>: rate at which saturation occurs</li>
+<li><strong>Gaussian radial basis functions</strong>: multiple centers of the basis functions with a width parameter controlling a set of Gaussian functions</li>
+<li><strong>B-spline</strong>: a piecewise continuous function based on a set of knots
+<ul>
+<li>knots locations control the flexibility of the basis</li>
+<li>knots cn be placed uniformly or non-uniformly (e.g. based on the density of the data)</li>
+<li>can use a “free knot approach” with a prior on the number and location of knots, but is computationally demanding</li>
+<li>instead can use priors on the coefficients <span class="math inline">\(\beta\)</span> to shrink values to near 0</li>
 </ul></li>
 </ul></li>
 </ul>
-<p><span class="math display">\[
-\text{E}(y | x, \beta) =
-  g(x, \beta) =
-  \beta_1 + \frac{\beta_2}{1 + (x / \beta_3)^{-\beta_4}}
-\]</span></p>
+<h2 id="basis-selection-and-shrinkage-coefficients">20.2 Basis selection and shrinkage coefficients</h2>
 <ul>
-<li><strong>Measurement error</strong>
+<li>common to not know which basis functions are really needed</li>
+<li>can use a variable selection approach to allow the model to estimate the “importance” of each basis function
 <ul>
-<li>modeled as normally distributed with unequal variances</li>
-<li>parameters:
-<ul>
-<li><span class="math inline">\(\alpha\)</span>: models the pattern that variances are higher for larger measurements
-<ul>
-<li>restricted <span class="math inline">\([0, 1]\)</span></li>
+<li>can then either select the best model from the posterior or average over all possible models by weighting each basis by its importance</li>
 </ul></li>
-<li><span class="math inline">\(A\)</span> is a arbitrary constant to scale the data so <span class="math inline">\(\sigma\)</span> can be interpreted as the deviation from “typical” values</li>
-<li><span class="math inline">\(\sigma\)</span>: deviation of a measure from the “typical”</li>
-</ul></li>
+<li>possible for some bias based on initial choice of the basis functions
+<ul>
+<li>implied prior information on the smoothness and shape of the model</li>
+<li>can include multiple types of basis functions in the initial collection</li>
 </ul></li>
 </ul>
-<p><span class="math display">\[
-y_i \sim \text{N}(g(x_i, \beta), (\frac{g(x_i, \beta)}{A})^{2\alpha} \sigma_y^2)
-\]</span></p>
-<ul>
-<li><strong>Dilution errors</strong>
-<ul>
-<li>two possible sources:
-<ol type="1">
-<li><em>initial dilution</em>: the accuracy of the creation of the initial standard concentration</li>
-<li><em>serial dilutions</em>: error in creation of the subsequent dilutions (low enough to ignore for this analysis)</li>
-</ol></li>
-<li>use a normal model on the log scale of the initial dilution error</li>
-<li>parameters:
-<ul>
-<li><span class="math inline">\(\theta_0\)</span>: known concentration of the standard solution</li>
-<li><span class="math inline">\(d_0^\text{init}\)</span>: known initial dilution of the standard that is called for
-<ul>
-<li>without error, the concentration of the initial solution would be <span class="math inline">\(d_0^\text{init} \theta_0\)</span></li>
-</ul></li>
-<li><span class="math inline">\(x_0^\text{init}\)</span>: the <em>actual</em> (unknown) concentration of the initial dilution</li>
-</ul></li>
-</ul></li>
-</ul>
-<p><span class="math display">\[
-\log(x_0^\text{init}) \sim \text{N}(\log(d_0^\text{init} \cdot \theta_0), (\sigma^\text{init})^2)
-\]</span> - <strong>Dilution errors</strong> (cont) - there is no initial dilution for the unknown samples being tested - therefore, the unknown initial concentration for sample <span class="math inline">\(j\)</span> is <span class="math inline">\(x^\text{init} = \theta_j\)</span> for <span class="math inline">\(j = 1, \dots, 10\)</span> - for the dilutions of the unknown samples, set <span class="math inline">\(x_i = d_i \cdot x_{j(i)}^\text{init}\)</span> - <span class="math inline">\(j(i)\)</span> is the sample <span class="math inline">\(j\)</span> corresponding to measurement <span class="math inline">\(i\)</span> - <span class="math inline">\(d_i\)</span> is the dilution of measurement <span class="math inline">\(i\)</span> relative to the initial concentration</p>
-<h4 id="prior-distributions">Prior distributions</h4>
-<ul>
-<li>priors used as described by book (are likely different than what would be recommended now):
-<ul>
-<li><span class="math inline">\(\log(\beta) \sim U(-\infty, \infty)\)</span></li>
-<li><span class="math inline">\(\sigma_y \sim U(0, \infty)\)</span></li>
-<li><span class="math inline">\(\alpha \sim U(0,1)\)</span></li>
-<li><span class="math inline">\(p(\log \theta_j) \propto 1\)</span> for each unknown <span class="math inline">\(j = 1, \dots, 10\)</span></li>
-</ul></li>
-<li>cannot estimate <span class="math inline">\(\sigma^\text{init}\)</span> because we only have a single standard
-<ul>
-<li>use a fixed value of 0.02 based on a previous analysis of different plates</li>
-</ul></li>
-</ul>
-<h3 id="example-population-toxicokinetics">19.2 Example: population toxicokinetics</h3>
-<ul>
-<li>this is a more complex model</li>
-<li>uses a physiological model with parameters that cannot be solely determined using the data
-<ul>
-<li>requires informative priors based on previous studies</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
-</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

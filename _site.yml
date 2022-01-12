@@ -41,6 +41,12 @@ navbar:
           href: notes/12_extended-topics.html
         - text: "13. Notes on 'Ch 14. Introduction to regression models'"
           href: notes/13_intro-to-regression-models_bda3-14.Rmd
+        - text: "14. Notes on 'Ch 15. Hierarchical linear models'"
+          href: notes/14_hierarchical-linear-models_bda3-15.html
+        - text: "17. Notes on 'Ch 19. Parametric nonlinear models'"
+          href: notes/17_parametric-nonlinear-models_bda3-19.html
+        - text: "18. Notes on 'Ch 20. Basis function models'"
+          href: notes/18_basis-function-models_bda3-20.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
@@ -49,6 +55,8 @@ navbar:
           href: book-exercises/bda-exercises-02.html
         - text: "Chapter 7"
           href: book-exercises/bda-exercises-07.html
+        - text: "Chapter 19"
+          href: book-exercises/bda-exercises-19.html
     - text: "Assignments"
       menu:
         - text: "Assignment 1"
