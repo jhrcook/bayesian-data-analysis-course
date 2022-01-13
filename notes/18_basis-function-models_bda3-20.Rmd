@@ -38,3 +38,27 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 - possible for some bias based on initial choice of the basis functions
   - implied prior information on the smoothness and shape of the model
   - can include multiple types of basis functions in the initial collection
+
+### Shrinkage priors
+
+- allowing basis function coefficients to be zero with positive probability represents a challenge for sampling from the posterior
+  - with many basis functions, it is computationally infeasible to visit all possible states
+- may be better to use shrinkage priors instead
+  - there are various options discussed in the book and there are likely others recommended now
+
+## 20.3 Non-normal models and regression surfaces
+
+### Other error distributions
+
+- may want to model data that is not a continuous output variable $y$ or does not have Gaussian residuals
+  - can modify the residual densities with different prior distributions to accommodate outliers
+  - can use the basis function and its coefficients $\eta_i = w_i \beta$ as the linear component in a GLM
+
+### Multivariate regression surfaces
+
+- careful with *curse of dimensionality*
+- one option is to assume additive of the covariates so can model as the sum of univariate regression functions
+  - this does not always make sense and a different approach using a tensor product is described at the end of the section
+- can use informative priors to help restrict the search space
+  - is a form of including prior information, so still proper Bayesian results and measures of uncertainty
+  - e.g. if we know *a priori* that the mean response variable is non-decreasing, restrict the coefficients $\beta$ to be non-negative

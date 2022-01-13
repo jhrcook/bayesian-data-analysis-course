@@ -2531,7 +2531,40 @@ distill-header .nav a {
 <li>can include multiple types of basis functions in the initial collection</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h3 id="shrinkage-priors">Shrinkage priors</h3>
+<ul>
+<li>allowing basis function coefficients to be zero with positive probability represents a challenge for sampling from the posterior
+<ul>
+<li>with many basis functions, it is computationally infeasible to visit all possible states</li>
+</ul></li>
+<li>may be better to use shrinkage priors instead
+<ul>
+<li>there are various options discussed in the book and there are likely others recommended now</li>
+</ul></li>
+</ul>
+<h2 id="non-normal-models-and-regression-surfaces">20.3 Non-normal models and regression surfaces</h2>
+<h3 id="other-error-distributions">Other error distributions</h3>
+<ul>
+<li>may want to model data that is not a continuous output variable <span class="math inline">\(y\)</span> or does not have Gaussian residuals
+<ul>
+<li>can modify the residual densities with different prior distributions to accommodate outliers</li>
+<li>can use the basis function and its coefficients <span class="math inline">\(\eta_i = w_i \beta\)</span> as the linear component in a GLM</li>
+</ul></li>
+</ul>
+<h3 id="multivariate-regression-surfaces">Multivariate regression surfaces</h3>
+<ul>
+<li>careful with <em>curse of dimensionality</em></li>
+<li>one option is to assume additive of the covariates so can model as the sum of univariate regression functions
+<ul>
+<li>this does not always make sense and a different approach using a tensor product is described at the end of the section</li>
+</ul></li>
+<li>can use informative priors to help restrict the search space
+<ul>
+<li>is a form of including prior information, so still proper Bayesian results and measures of uncertainty</li>
+<li>e.g. if we know <em>a priori</em> that the mean response variable is non-decreasing, restrict the coefficients <span class="math inline">\(\beta\)</span> to be non-negative</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+</ul>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
