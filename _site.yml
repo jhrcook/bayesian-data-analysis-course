@@ -47,6 +47,8 @@ navbar:
           href: notes/17_parametric-nonlinear-models_bda3-19.html
         - text: "18. Notes on 'Ch 20. Basis function models'"
           href: notes/18_basis-function-models_bda3-20.html
+        - text: "18. Notes on 'Ch 21. Gaussian process models'"
+          href: notes/19_gaussian-processes_bda3-21.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
