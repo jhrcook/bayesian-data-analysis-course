@@ -13,7 +13,7 @@ library(tidyverse)
 
 theme_set(
   theme_bw() +
-    theme(axis.ticks = element_blank())
+    theme(axis.ticks = element_blank(), strip.background = element_blank())
 )
 ```
 
@@ -71,28 +71,33 @@ my_gaussian_process <- function(x, tau, l, n = 3) {
   return(gp_samples)
 }
 
+tidy_gp <- function(x, tau, l, n = 3) {
+  my_gaussian_process(x = x, tau = tau, l = l, n = n) %>%
+    as.data.frame() %>%
+    as_tibble() %>%
+    set_names(x) %>%
+    mutate(sample_idx = as.character(1:n())) %>%
+    pivot_longer(-sample_idx, names_to = "x", values_to = "y") %>%
+    mutate(x = as.numeric(x))
+}
+
 set.seed(0)
 x <- seq(0, 10, by = 0.1)
-gp_samples <- my_gaussian_process(x, tau = 0.5, l = 2)
+gp_samples <- tibble(tau = c(0.25, 0.5, 0.25, 0.5), l = c(0.5, 0.5, 2, 2)) %>%
+  mutate(samples = purrr::map2(tau, l, ~ tidy_gp(x = x, tau = .x, l = .y, n = 3))) %>%
+  unnest(samples)
 
-# TODO: scale to use multiple values for tau and l and then plot all together,
-#       faceting by these parameters
-
-as.data.frame(gp_samples) %>%
-  as_tibble() %>%
-  set_names(x) %>%
-  mutate(sample_idx = as.character(1:n())) %>%
-  pivot_longer(-sample_idx, names_to = "x", values_to = "y") %>%
-  mutate(x = as.numeric(x)) %>%
+gp_samples %>%
+  mutate(grp = glue("\u03C4 = {tau}, \u2113 = {l}")) %>%
   ggplot(aes(x = x, y = y)) +
+  facet_wrap(vars(grp), nrow = 2) +
   geom_line(aes(color = sample_idx)) +
   scale_x_continuous(expand = expansion(c(0, 0))) +
   scale_y_continuous(expand = expansion(c(0.02, 0.02))) +
+  scale_color_brewer(type = "qual", palette = "Set1") +
   theme(legend.position = "none", axis.text.y = element_markdown()) +
   labs(x = "x", y = "\u03BC(x)")
 ```
-
-
 
 #### Covariance functions
 
