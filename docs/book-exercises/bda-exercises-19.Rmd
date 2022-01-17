@@ -124,7 +124,7 @@ print(dilution_model, pars=c("beta", "sigma", "alpha"))
 
 ```{r}
 rstan::stan_dens(
-  dilution_model, pars = c("beta", "sigma", "alpha"), 
+  dilution_model, pars = c("beta", "sigma", "alpha"),
   separate_chains=TRUE
 ) +
   scale_x_continuous(expand = expansion(c(0, 0))) +
@@ -174,4 +174,3 @@ dilution_post_pred %>%
 ```{r}
 sessionInfo()
 ```
-

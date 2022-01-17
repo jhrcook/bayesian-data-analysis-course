@@ -8,7 +8,7 @@ output: distill::distill_article
 knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 ```
 
-> These are just notes on a single chapter of *BDA3* that were not part ofthe course.
+> These are just notes on a single chapter of *BDA3* that were not part of the course.
 
 ## Chapter 19. Parametric nonlinear models
 
