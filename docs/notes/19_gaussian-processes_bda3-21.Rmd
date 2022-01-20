@@ -1,5 +1,5 @@
 ---
-title: "18. Notes on 'Ch 21. Gaussian process models'"
+title: "19. Notes on 'Ch 21. Gaussian process models'"
 date: "2022-01-13"
 output: distill::distill_article
 ---
