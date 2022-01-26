@@ -1,0 +1,82 @@
+---
+title: "21. Notes on 'Ch 23. Dirichlet process models'"
+date: "2022-01-20"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
+
+> These are just notes on a single chapter of *BDA3* that were not part of the course.
+
+## Chapter 23. Dirichlet process models
+
+- **Dirichlet process**: an infinite-dimensional generalization of the Dirichlet distribution
+  - used as a prior on unknown distributions
+  - can extend finite component mixture models to inifinte mixture models
+
+### 23.1 Bayesian histograms
+
+- the histogram as a simple form of density estimation
+  - demonstrate a flexible parametric version that motivates the non-parametric in the following section
+- prespecified knots: $\xi = (\xi_0, \dots, \xi_k)$ with $\xi_{n-1} < \xi_n$
+- probability model for the density (a histogram):
+  - where $\pi = (\pi_1, \dots, \pi_k)$ is an unknown probability vector
+
+$$
+f(y) = \sum_{h=1}^k 1_{\xi_{h-1} < y \le \xi_h} \frac{\pi_h}{(\xi_h - \xi_{h-1})}
+$$
+
+- prior for the probabilities $\pi$ as a Dirichlet distribution:
+
+$$
+p(\pi|a) = \frac{\Gamma(\sum_{h=1}^k a_h)}{\prod_{h=1}^k \Gamma(a_h)} \prod_{h=1}^k \pi _h^{a_h - 1}
+$$
+
+- replace the hyperparameter vector: $a = \alpha \pi_0$ where $\pi_0$ is:
+
+$$
+\text{E}(\pi|a) = \pi_0 = \left( \frac{a_1}{\sum_h a_h}, \dots, \frac{a_k}{\sum_h a_h} \right)
+$$
+
+- the posterior for $\pi$ becomes:
+  - where $n_i$ is the number of observations $y$ in the $i$th bin
+
+$$
+p(\pi | y) \propto \prod_{h=1}^k \pi_h^{a_h + n_h - 1} = \text{Dirichlet}(a_1 + n_1, \dots, a_k + n_k)
+$$
+
+- this histogram estimator does well but is sensitive to the specification of the knots
+
+### 23.2 Dirichlet process prior distributions
+
+#### Definition and basic properties
+
+- goal is to not need to prespecify the bins of the histogram
+- let:
+  - $\Omega$: sample space
+  - $B_1, \dots, B_k$: measure subsets of $\Omega$
+- if $\Omega = \Re$, then $B_1, \dots, B_k$ are non-overlapping intervals that partition the real line into a finite number of bins
+- $P$: unknown probability measure of $(\Omega, \mathcal{B})$
+  - $\mathcal{B}$: "collection of all possible subsets of the sample space $\Omega$"
+  - $P$ assigns probabilities to the subsets $\mathcal{B}$
+  - probability for a set of bins $B_1, \dots, B_k$ partitioning $\Omega$:
+
+$$
+P(B_1), \dots, P(B_k) = \left( \int_{B_1} f(y) dy, \dots, \int_{B_k} f(y) dy \right)
+$$
+- $P$ is a *random probability measure (RPM), so the bin probabilities are random variables
+- a good prior for the bin probabilities is the Dirichlet distribution:
+  - where $P_0$ is a base probability measure providing the initial guess at $P$
+  - where $\alpha$ is a prior concentration parameter
+    - controls shrinkage of $P$ towards $P_0$
+
+$$
+P(B_1), \dots, P(B_k) \sim \text{Dirichlet}(\alpha P_0(B_1), \dots, \alpha P_0(B_k))
+$$
+
+- difference with previous Bayesian histogram: only specifies that bin $B_k$ is assigned probability $P(B_k)$ and not how probability mass is distributed across the bin $B_k$
+   - thus, for a fixed set s of bins, this equation does not full specify the prior for $P$
+  - need to eliminate the sensitivity to the choice of bins by assuming the prior holds for all possible partitions $B_1, \dots, B_k$ for all $k$
+    - then it is a fully specified prior for $P$

@@ -51,6 +51,8 @@ navbar:
           href: notes/19_gaussian-processes_bda3-21.html
         - text: "20. Notes on 'Ch 22. Finite mixture models'"
           href: notes/20_finite-mixture-models_bda3-22.html
+        - text: "21. Notes on 'Ch 23. Dirichlet process models'"
+          href: notes/21_Dirichlet-process-models_bda3-23.html
     - text: "Exercises"
       menu:
         - text: "Chapter 1"
