@@ -2498,7 +2498,7 @@ process models</h2>
 generalization of the Dirichlet distribution
 <ul>
 <li>used as a prior on unknown distributions</li>
-<li>can extend finite component mixture models to inifinte mixture
+<li>can extend finite component mixture models to infinite mixture
 models</li>
 </ul></li>
 </ul>
@@ -2630,7 +2630,7 @@ P_0)\)</span></li>
 <li><span class="math inline">\(\alpha &gt; 0\)</span>: a scalar
 precision parameter</li>
 <li><span class="math inline">\(P_0\)</span>: baseline probability
-measure alos on <span class="math inline">\((\Omega,
+measure also on <span class="math inline">\((\Omega,
 \mathcal{B})\)</span></li>
 </ul></li>
 </ul></li>
@@ -2858,13 +2858,22 @@ for each <span class="math inline">\(h=1, \dots, \infty\)</span></li>
 <p><span class="math display" id="eq:dp-kernel">\[
 f(y) = \sum_{h=1}^\infty \pi_h \mathcal{K}(y | \theta_h^*)
 \tag{4}
-\]</span> - equation <a href="#eq:dp-kernel">(4)</a> resembles a finite mixture model
-except the number of mixture components in set to infinity - does not
-mean there will be infinite number of components - instead the model is
-just flexible to add more mixture components if necessary - consider the
-following specification - issue of how to conduct posterior computation
-with a DP mixture (DPM) because <span class="math inline">\(P\)</span>
-has infinitely many parameters</p>
+\]</span></p>
+<ul>
+<li>equation <a href="#eq:dp-kernel">(4)</a> resembles a finite mixture model except
+the number of mixture components in set to infinity
+<ul>
+<li>does not mean there will be infinite number of components</li>
+<li>instead the model is just flexible to add more mixture components if
+necessary</li>
+</ul></li>
+<li>consider the following specification
+<ul>
+<li>issue of how to conduct posterior computation with a DP mixture
+(DPM) because <span class="math inline">\(P\)</span> has infinitely many
+parameters</li>
+</ul></li>
+</ul>
 <p><span class="math display">\[
 y_i \sim \mathcal{K}(\theta_i) \text{,} \quad
 \theta_i \sim P \text{,}  \quad
@@ -2883,7 +2892,192 @@ p(\theta_i | \theta_1, \dots, \theta_{i-1}) \sim \left(
 \delta_{\theta_j}
 \tag{5}
 \]</span></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<ul>
+<li><em>Chinese restaurant process</em> as a metaphor for the Polya urn
+predictive rule <a href="#eq:polya-urn">(5)</a>:
+<ul>
+<li>consider a restaurant with infinitely many tables</li>
+<li>the first customers sits at a table with dish <span class="math inline">\(\theta_1^*\)</span></li>
+<li>the second customer sits at the first table with probability <span class="math inline">\(\frac{1}{1+\alpha}\)</span> or a new table with
+probability <span class="math inline">\(\frac{\alpha}{1+\alpha}\)</span></li>
+<li>repeat this process for the <span class="math inline">\(i\)</span>th
+customer:
+<ul>
+<li>sit at an occupied table with probability <span class="math inline">\(\frac{c_j}{1 - i + \alpha}\)</span> where <span class="math inline">\(c_j\)</span> is the number of customers already at
+the table -sit at a new table with probability <span class="math inline">\(\frac{\alpha}{n-i+\alpha}\)</span></li>
+</ul></li>
+<li>interpretation:</li>
+<li>each table represents a cluster of subjects</li>
+<li>the number of clusters depends on the number of subjects</li>
+<li>makes sense to have the possibility of more clusters with more
+subjects (instead of a fixed number of clusters as in a finite mixture
+model)</li>
+</ul></li>
+<li>there is a description of the sampling process for the posterior of
+<span class="math inline">\(\theta_i | \theta_{-i}\)</span></li>
+</ul>
+<h4 id="hyperprior-distribution">Hyperprior distribution</h4>
+<ul>
+<li><span class="math inline">\(\alpha\)</span>: the DP precision
+parameter
+<ul>
+<li>plays a role in controlling the prior on the number of clusters</li>
+<li>small, fixed <span class="math inline">\(\alpha\)</span> favors
+allocation to few clusters (relative to sample size)
+<ul>
+<li>if <span class="math inline">\(\alpha=1\)</span>, the prior
+indicates that two randomly selected subjects have a 50/50 chance of
+belonging to the same cluster</li>
+</ul></li>
+<li>alternatively can set a hyperprior on <span class="math inline">\(\alpha\)</span> and let the data inform the value
+<ul>
+<li>common to use a Gamma distribution: <span class="math inline">\(\Gamma(a_\alpha, b_\alpha)\)</span></li>
+<li>authors indicate that setting a hyperprior on <span class="math inline">\(\alpha\)</span> tends to work well in
+practice</li>
+</ul></li>
+</ul></li>
+<li><span class="math inline">\(P_0\)</span>: base probability for the
+DP
+<ul>
+<li>can think of <span class="math inline">\(P_0\)</span> as setting the
+prior for the cluster locations</li>
+<li>can put hyperpriors on <span class="math inline">\(P_0\)</span>
+parameters</li>
+</ul></li>
+</ul>
+<h3 id="beyond-density-estimation">23.4 Beyond density estimation</h3>
+<h4 id="nonparametric-residual-distributions">Nonparametric residual
+distributions</h4>
+<ul>
+<li>“The real attraction of Dirichlet process mixture (DPM) models is
+that they can be used much more broadly for relaxing parametric
+assumptions in hierarchical models.” (pg 557)</li>
+<li>consider the linear regression with a nonparametric error
+distribution <a href="#eq:linreg-nonparam-error">(6)</a>
+<ul>
+<li><span class="math inline">\(X_i = (X_{i1}, \dots, X_{ip})\)</span>:
+vector of predictors</li>
+<li><span class="math inline">\(\epsilon_i\)</span>: error term with
+distribution <span class="math inline">\(f\)</span></li>
+</ul></li>
+</ul>
+<p><span class="math display" id="eq:linreg-nonparam-error">\[
+y_i = X_i \beta + \epsilon_i \text{,} \quad \epsilon_i \sim f
+\tag{6}
+\]</span></p>
+<ul>
+<li>can relax the assumption that <span class="math inline">\(f\)</span>
+has parametric form</li>
+</ul>
+<p><span class="math display">\[
+\epsilon_i \sim N(0, \phi_i^{-1}) \text{,} \quad \phi \sim P \text{,}
+\quad P \sim \text{DP}(\alpha P_0)
+\]</span></p>
+<h4 id="nonparametric-models-for-parameters-that-vary-by-group">Nonparametric
+models for parameters that vary by group</h4>
+<ul>
+<li>consider hierarchical linear models with varying coefficients
+<ul>
+<li>can account for uncertainty about the distribution of coefficients
+by placing a DP or DPM priors on them</li>
+<li>where:
+<ul>
+<li><span class="math inline">\(y_i = (y_{i1}, \dots,
+y_{in_i})\)</span>: repeated measurements for item <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\mu_i\)</span>: subject-specific
+mean</li>
+<li><span class="math inline">\(\epsilon_{ij}\)</span>: observation
+specific residual</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math display" id="eq:hier-linreg-dp">\[
+y_{ij} = \mu_i + \epsilon_{ij} \text{,} \quad \mu_i \sim f \text{,}
+\quad \epsilon_{ij} \sim g
+\tag{7}
+\]</span></p>
+<ul>
+<li>typically for <a href="#eq:hier-linreg-dp">(7)</a>:
+<ul>
+<li><span class="math inline">\(f \equiv N(\mu, \phi^{-1})\)</span></li>
+<li><span class="math inline">\(g \equiv N(0, \sigma^2)\)</span></li>
+</ul></li>
+<li>can let more flexibility in characterizing variability among
+subjects:
+<ul>
+<li><span class="math inline">\(\mu_i \sim P \text{,} \quad P \sim
+\text{DP}(\alpha P_0)\)</span></li>
+<li>the DP prior induces a <em>latent class</em> model
+<ul>
+<li>the subjects are grouped into an unknown number of clusters
+<a href="#eq:latent-class-model">(8)</a></li>
+<li><span class="math inline">\(S_i \in \{1, \dots, \infty\}\)</span>:
+latent class index</li>
+<li><span class="math inline">\(\pi_h\)</span>: probability of
+allocation to latent class <span class="math inline">\(h\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math display" id="eq:latent-class-model">\[
+\mu_i = \mu^*_{S_i} \text{,} \quad \Pr(S_i = h) = \pi_h \text{,} \quad h
+= 1, 2, \dots
+\tag{8}
+\]</span></p>
+<blockquote>
+<p>There is more to this chapter, but it is currently beyond my
+understanding. I hope to return to this chapter later with a better
+understanding of Dirichlet processes in the future.</p>
+</blockquote>
+<hr />
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
+#&gt; Running under: macOS Big Sur 10.16
+#&gt;
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#&gt;
+#&gt; locale:
+#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt;
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices datasets  utils     methods
+#&gt; [7] base
+#&gt;
+#&gt; other attached packages:
+#&gt; [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4
+#&gt; [5] readr_2.0.1     tidyr_1.1.3     tibble_3.1.3    ggplot2_3.3.5
+#&gt; [9] tidyverse_1.3.1
+#&gt;
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] Rcpp_1.0.7        lubridate_1.7.10  clisymbols_1.2.0
+#&gt;  [4] assertthat_0.2.1  digest_0.6.27     utf8_1.2.2
+#&gt;  [7] R6_2.5.0          cellranger_1.1.0  backports_1.2.1
+#&gt; [10] reprex_2.0.1      evaluate_0.14     highr_0.9
+#&gt; [13] httr_1.4.2        pillar_1.6.2      rlang_0.4.11
+#&gt; [16] readxl_1.3.1      rstudioapi_0.13   jquerylib_0.1.4
+#&gt; [19] rmarkdown_2.10    labeling_0.4.2    munsell_0.5.0
+#&gt; [22] broom_0.7.9       compiler_4.1.2    modelr_0.1.8
+#&gt; [25] xfun_0.25         pkgconfig_2.0.3   htmltools_0.5.1.1
+#&gt; [28] downlit_0.2.1     tidyselect_1.1.1  fansi_0.5.0
+#&gt; [31] crayon_1.4.1      tzdb_0.1.2        dbplyr_2.1.1
+#&gt; [34] withr_2.4.2       grid_4.1.2        jsonlite_1.7.2
+#&gt; [37] gtable_0.3.0      lifecycle_1.0.0   DBI_1.1.1
+#&gt; [40] magrittr_2.0.1    scales_1.1.1      cli_3.0.1
+#&gt; [43] stringi_1.7.3     farver_2.1.0      renv_0.14.0
+#&gt; [46] fs_1.5.0          xml2_1.3.2        bslib_0.2.5.1
+#&gt; [49] ellipsis_0.3.2    generics_0.1.0    vctrs_0.3.8
+#&gt; [52] distill_1.2       tools_4.1.2       glue_1.4.2
+#&gt; [55] hms_1.1.0         yaml_2.2.1        colorspace_2.0-2
+#&gt; [58] rvest_1.0.1       knitr_1.33        haven_2.4.3
+#&gt; [61] sass_0.4.0</code></pre>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

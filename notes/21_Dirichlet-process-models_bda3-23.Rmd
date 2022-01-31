@@ -24,7 +24,7 @@ theme_set(
 
 - **Dirichlet process**: an infinite-dimensional generalization of the Dirichlet distribution
   - used as a prior on unknown distributions
-  - can extend finite component mixture models to inifinte mixture models
+  - can extend finite component mixture models to infinite mixture models
 
 ### 23.1 Bayesian histograms
 
@@ -96,7 +96,7 @@ $$
   - the resulting $P$ is a Dirichlet process:
     - $P \sim \text{DP}(\alpha P_0)$
     - $\alpha > 0$: a scalar precision parameter
-    - $P_0$: baseline probability measure alos on $(\Omega, \mathcal{B})$
+    - $P_0$: baseline probability measure also on $(\Omega, \mathcal{B})$
 - implications of DP:
   - the marginal random probability assigned to any subset $B$ is a beta distribution
     - $P(B) \sim \text{Beta}(\alpha PP_0(B), \alpha (1-P_0(B)))$ for all $B \in \mathcal{B}$
@@ -243,6 +243,7 @@ $$
 f(y) = \sum_{h=1}^\infty \pi_h \mathcal{K}(y | \theta_h^*)
 (\#eq:dp-kernel)
 $$
+
 - equation \@ref(eq:dp-kernel) resembles a finite mixture model except the number of mixture components in set to infinity
   - does not mean there will be infinite number of components
   - instead the model is just flexible to add more mixture components if necessary
@@ -264,4 +265,86 @@ p(\theta_i | \theta_1, \dots, \theta_{i-1}) \sim \left( \frac{\alpha}{\alpha + i
 (\#eq:polya-urn)
 $$
 
-(describe Chinese restaurant process metaphor)
+- *Chinese restaurant process* as a metaphor for the Polya urn predictive rule \@ref(eq:polya-urn):
+  - consider a restaurant with infinitely many tables
+  - the first customers sits at a table with dish $\theta_1^*$
+  - the second customer sits at the first table with probability $\frac{1}{1+\alpha}$ or a new table with probability $\frac{\alpha}{1+\alpha}$
+  - repeat this process for the $i$th customer:
+    - sit at an occupied table with probability $\frac{c_j}{1 - i + \alpha}$ where $c_j$ is the number of customers already at the table
+     -sit at a new table with probability $\frac{\alpha}{n-i+\alpha}$
+   - interpretation:
+    - each table represents a cluster of subjects
+    - the number of clusters depends on the number of subjects
+    - makes sense to have the possibility of more clusters with more subjects (instead of a fixed number of clusters as in a finite mixture model)
+- there is a description of the sampling process for the posterior of $\theta_i | \theta_{-i}$
+
+#### Hyperprior distribution
+
+- $\alpha$: the DP precision parameter
+  - plays a role in controlling the prior on the number of clusters
+  - small, fixed $\alpha$ favors allocation to few clusters (relative to sample size)
+    - if $\alpha=1$, the prior indicates that two randomly selected subjects have a 50/50 chance of belonging to the same cluster
+  - alternatively can set a hyperprior on $\alpha$ and let the data inform the value
+    - common to use a Gamma distribution: $\Gamma(a_\alpha, b_\alpha)$
+    - authors indicate that setting a hyperprior on $\alpha$ tends to work well in practice
+- $P_0$: base probability for the DP
+  - can think of $P_0$ as setting the prior for the cluster locations
+  - can put hyperpriors on $P_0$ parameters
+
+### 23.4 Beyond density estimation
+
+#### Nonparametric residual distributions
+
+- "The real attraction of Dirichlet process mixture (DPM) models is that they can be used much more broadly for relaxing parametric assumptions in hierarchical models." (pg 557)
+- consider the linear regression with a nonparametric error distribution \@ref(eq:linreg-nonparam-error)
+  - $X_i = (X_{i1}, \dots, X_{ip})$: vector of predictors
+  - $\epsilon_i$: error term with distribution $f$
+
+$$
+y_i = X_i \beta + \epsilon_i \text{,} \quad \epsilon_i \sim f
+(\#eq:linreg-nonparam-error)
+$$
+
+- can relax the assumption that $f$ has parametric form
+
+$$
+\epsilon_i \sim N(0, \phi_i^{-1}) \text{,} \quad \phi \sim P \text{,} \quad P \sim \text{DP}(\alpha P_0)
+$$
+
+#### Nonparametric models for parameters that vary by group
+
+- consider hierarchical linear models with varying coefficients
+  - can account for uncertainty about the distribution of coefficients by placing a DP or DPM priors on them
+  - where:
+    - $y_i = (y_{i1}, \dots, y_{in_i})$: repeated measurements for item $i$
+    - $\mu_i$: subject-specific mean
+    - $\epsilon_{ij}$: observation specific residual
+
+$$
+y_{ij} = \mu_i + \epsilon_{ij} \text{,} \quad \mu_i \sim f \text{,} \quad \epsilon_{ij} \sim g
+(\#eq:hier-linreg-dp)
+$$
+
+- typically for \@ref(eq:hier-linreg-dp):
+  - $f \equiv N(\mu, \phi^{-1})$
+  - $g \equiv N(0, \sigma^2)$
+- can let more flexibility in characterizing variability among subjects:
+  - $\mu_i \sim P \text{,} \quad P \sim \text{DP}(\alpha P_0)$
+  - the DP prior induces a *latent class* model
+    - the subjects are grouped into an unknown number of clusters \@ref(eq:latent-class-model)
+    - $S_i \in \{1, \dots, \infty\}$: latent class index
+    - $\pi_h$: probability of allocation to latent class $h$
+
+$$
+\mu_i = \mu^*_{S_i} \text{,} \quad \Pr(S_i = h) = \pi_h \text{,} \quad h = 1, 2, \dots
+(\#eq:latent-class-model)
+$$
+
+> There is more to this chapter, but it is currently beyond my understanding.
+> I hope to return to this chapter later with a better understanding of Dirichlet processes in the future.
+
+---
+
+```{r}
+sessionInfo()
+```
