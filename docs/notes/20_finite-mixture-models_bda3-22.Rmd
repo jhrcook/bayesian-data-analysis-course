@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 - where the data contains multiple subpopulations where each has a different, relatively simple model
 - basic mixture modeling principle is to introduce *unobserved indicators* $z$ to specify the mixture component for an observation
   - can think of a mixture indicator as missing data
-  
+
 ### 22.1 Setting up and interpreting mixture models
 
 #### Finite mixtures
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
     - $\sum_{h=1}^{H} \lambda_h = 1$
   - common to assume all mixture components have the same parametric form
   - thus, the sampling distribution of $y$ is:
-  
+
 $$
 p(y_i | \theta, \lambda) = \lambda_1 f(y_i | \theta_1) + \dots + \lambda_H f(y_i | \theta_H)
 $$
@@ -89,5 +89,3 @@ $$
   - more common to just fit the model with different $H$ and compare with some statistic and a penalty for model complexity
     - WAIC is theoretically justified, but ignores the uncertainty over $H$
     - LOO-CV may be even better
-
-  
