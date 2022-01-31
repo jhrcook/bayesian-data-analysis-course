@@ -39,22 +39,36 @@ The recommended way to go through the material is:
 6. Read the exercise instructions and make the corresponding assignments. Demo codes in R demos and Python demos have a lot of useful examples for handling data and plotting figures. If you have problems, visit TA sessions or ask in course slack channel.
 7. If you want to learn more, make also self study exercises listed below.
 
-## Sections
+## Course sections
 
-| Section | Notes | Book exercises | Assignments |
-|---------|-------|----------------|-------------|
-| **1. Course Introduction** | [notes](notes/01_introduction_bda3-01.html) | [exercises](book-exercises/bda-exercises-01.html) | [assignment 1](assignments/jhcook-assignment-01.html) |
-| **2. Basics of Bayesian Inference** | [notes](notes/02_basics-of-Bayesian-inference_bda3-02.html) | [exercises](book-exercises/bda-exercises-02.html) | [assignment 2](assignments/jhcook-assignment-02.html) |
-| **3. Multidimensional Posterior** | [notes](notes/03_multidimensional-posterior_bda3-03.html) | exercises | [assignment 3](assignments/jhcook-assignment-03.html) |
-| **4. Monte Carlo** | [notes](notes/04_monte-carlo_bda3-10.html) | exercises | [assignment 4](assignments/jhcook-assignment-04.html) |
-| **5. Markov chain Monte Carlo** | [notes](notes/05_mcmc_bda3-11.html) | exercises | [assignment 5](assignments/jhcook-assignment-05.html) |
-| **6. HMC, NUTS, and Stan** | [notes](notes/06_hmc-nuts-stan_bda3-12.html) | exercises | [assignment 6](assignments/jhcook-assignment-06.html) |
-| **7. Hierarchical models and exchangeability** | [notes](notes/07_hierarchical-models_bda3-5.html) | [exercises](book-exercises/bda-exercises-07.html) | [assignment 7](assignments/jhcook-assignment-07.html) |
-| **8. Model checking & Cross-validation** | [notes](notes/08_model-checking-and-cv_bda3-6-7.html) | (none) | (none) |
-| **9. Model comparison and selection** | [notes](notes/09_model-selection_bda3-7.html) | (none) | [assignment 8](assignments/jhcook-assignment-08.html) |
-| **10. Decision analysis** | [notes](notes/10_decision-analysis_bda3-9.html) | (none) | [assignment 9](assignments/jhcook-assignment-09.html) |
-| **11. Normal approximation & Frequency properties** | [notes](notes/11_normal-approx-freq-properties_bda3-04.html) | (none) | (none) |
-| **12. Extended topics** | [notes](notes/12_extended-topics.html) | (none) | (none) |
+| Section                                             | Notes                                                        | Book exercises                                    | Assignments                                           |
+|----------------------------------------------------:|:------------------------------------------------------------:|:-------------------------------------------------:|:-----------------------------------------------------:|
+| **1. Course Introduction**                          | [notes](notes/01_introduction_bda3-01.html)                  | [exercises](book-exercises/bda-exercises-01.html) | [assignment 1](assignments/jhcook-assignment-01.html) |
+| **2. Basics of Bayesian Inference**                 | [notes](notes/02_basics-of-Bayesian-inference_bda3-02.html)  | [exercises](book-exercises/bda-exercises-02.html) | [assignment 2](assignments/jhcook-assignment-02.html) |
+| **3. Multidimensional Posterior**                   | [notes](notes/03_multidimensional-posterior_bda3-03.html)    | (none)                                            | [assignment 3](assignments/jhcook-assignment-03.html) |
+| **4. Monte Carlo**                                  | [notes](notes/04_monte-carlo_bda3-10.html)                   | (none)                                            | [assignment 4](assignments/jhcook-assignment-04.html) |
+| **5. Markov chain Monte Carlo**                     | [notes](notes/05_mcmc_bda3-11.html)                          | (none)                                            | [assignment 5](assignments/jhcook-assignment-05.html) |
+| **6. HMC, NUTS, and Stan**                          | [notes](notes/06_hmc-nuts-stan_bda3-12.html)                 | (none)                                            | [assignment 6](assignments/jhcook-assignment-06.html) |
+| **7. Hierarchical models and exchangeability**      | [notes](notes/07_hierarchical-models_bda3-5.html)            | [exercises](book-exercises/bda-exercises-07.html) | [assignment 7](assignments/jhcook-assignment-07.html) |
+| **8. Model checking & Cross-validation**            | [notes](notes/08_model-checking-and-cv_bda3-6-7.html)        | (none)                                            | (none)                                                |
+| **9. Model comparison and selection**               | [notes](notes/09_model-selection_bda3-7.html)                | (none)                                            | [assignment 8](assignments/jhcook-assignment-08.html) |
+| **10. Decision analysis**                           | [notes](notes/10_decision-analysis_bda3-9.html)              | (none)                                            | [assignment 9](assignments/jhcook-assignment-09.html) |
+| **11. Normal approximation & Frequency properties** | [notes](notes/11_normal-approx-freq-properties_bda3-04.html) | (none)                                            | (none)                                                |
+| **12. Extended topics**                             | [notes](notes/12_extended-topics.html)                       | (none)                                            | (none)                                                |
+
+## Additional notes
+
+| Chapter | Title                                 | Notes                                                      | Additional work                                               |
+|--------:|---------------------------------------|:----------------------------------------------------------:|:-------------------------------------------------------------:|
+|      14 | **Introduction to regression models** | [notes](notes/13_intro-to-regression-models_bda3-14.html)  |                                                               |
+|      15 | **Hierarchical linear models**        | [notes](notes/14_hierarchical-linear-models_bda3-15.html)  |                                                               |
+|      16 | **Generalized linear models**         |                                                            |                                                               |
+|      18 | **Models for missing data**           |                                                            |                                                               |
+|      19 | **Parametric nonlinear models**       | [notes](notes/17_parametric-nonlinear-models_bda3-19.html) | [serial dilution model](book-exercises/bda-exercises-19.html) |
+|      20 | **Basis function models**             | [notes](notes/18_basis-function-models_bda3-20.html)       |                                                               |
+|      21 | **Gaussian process models**           | [notes](notes/19_gaussian-processes_bda3-21.html)          |                                                               |
+|      22 | **Finite mixture models**             | [notes](notes/20_finite-mixture-models_bda3-22.html)       |                                                               |
+|      23 | **Dirichlet process models**          | [notes](notes/21_Dirichlet-process-models_bda3-23.html)    |                                                               |
 
 ## Stan models
 
@@ -65,3 +79,4 @@ The recommended way to go through the material is:
   - [pooled](models/assignment07_factories_pooled.stan)
   - [separate](models/assignment07_factories_separate.stan)
   - [hierarchical](models/assignment07_factories_hierarchical.stan) (also used in Assignment 9)
+- [serial dilution assay](models/serial-dilution.stan) for chapter 19 exercises

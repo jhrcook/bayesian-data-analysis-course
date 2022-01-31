@@ -2397,6 +2397,13 @@ Notes
 <a href="notes/10_decision-analysis_bda3-9.html">Section 10. Decision analysis</a>
 <a href="notes/11_normal-approx-freq-properties_bda3-04.html">Section 11. Normal approximation &amp; Frequency properties</a>
 <a href="notes/12_extended-topics.html">Section 12. Extended topics</a>
+<a href="notes/13_intro-to-regression-models_bda3-14.Rmd">13. Notes on 'Ch 14. Introduction to regression models'</a>
+<a href="notes/14_hierarchical-linear-models_bda3-15.html">14. Notes on 'Ch 15. Hierarchical linear models'</a>
+<a href="notes/17_parametric-nonlinear-models_bda3-19.html">17. Notes on 'Ch 19. Parametric nonlinear models'</a>
+<a href="notes/18_basis-function-models_bda3-20.html">18. Notes on 'Ch 20. Basis function models'</a>
+<a href="notes/19_gaussian-processes_bda3-21.html">19. Notes on 'Ch 21. Gaussian process models'</a>
+<a href="notes/20_finite-mixture-models_bda3-22.html">20. Notes on 'Ch 22. Finite mixture models'</a>
+<a href="notes/21_Dirichlet-process-models_bda3-23.html">21. Notes on 'Ch 23. Dirichlet process models'</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2409,6 +2416,7 @@ Exercises
 <a href="book-exercises/bda-exercises-01.html">Chapter 1</a>
 <a href="book-exercises/bda-exercises-02.html">Chapter 2</a>
 <a href="book-exercises/bda-exercises-07.html">Chapter 7</a>
+<a href="book-exercises/bda-exercises-19.html">Chapter 19</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2445,7 +2453,8 @@ Assignments
 <h1>Bayesian Data Analysis course</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>My notes and work for the Bayesian Data Analysis course taught by Aki Vehtari.</p></p>
+<p><p>My notes and work for the Bayesian Data Analysis course taught by
+Aki Vehtari.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2458,126 +2467,282 @@ Assignments
 <div class="d-article">
 <h2 id="resources">Resources</h2>
 <ul>
-<li><a href="https://avehtari.github.io/BDA_course_Aalto/">Course website</a></li>
-<li><a href="https://avehtari.github.io/BDA_course_Aalto/Aalto2021.html#Schedule_2021">2021 Schedule</a></li>
-<li><a href="https://github.com/avehtari/BDA_course_Aalto">GitHub repo</a> (<a href="https://github.com/jhrcook/BDA_course_Aalto">my fork</a>)</li>
-<li><a href="https://users.aalto.fi/~ave/BDA3.pdf"><em>Bayesian Data Analysis</em> (3e)</a> (BDA3) (<a href="book/bda-exercise-solutions3.pdf">exercise solutions</a>)</li>
-<li><a href="https://avehtari.github.io/BDA_course_Aalto/chapter_notes/BDA_notes.pdf">Chapter Notes</a></li>
-<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f0ec3a25-9e23-4935-873b-a9f401646812%22">Video lectures</a> or individually lists <a href="https://avehtari.github.io/BDA_course_Aalto/#videos">here</a></li>
-<li><a href="https://github.com/avehtari/BDA_course_Aalto/tree/master/slides">Lecture slides</a></li>
+<li><a href="https://avehtari.github.io/BDA_course_Aalto/">Course
+website</a></li>
+<li><a
+href="https://avehtari.github.io/BDA_course_Aalto/Aalto2021.html#Schedule_2021">2021
+Schedule</a></li>
+<li><a href="https://github.com/avehtari/BDA_course_Aalto">GitHub
+repo</a> (<a href="https://github.com/jhrcook/BDA_course_Aalto">my
+fork</a>)</li>
+<li><a href="https://users.aalto.fi/~ave/BDA3.pdf"><em>Bayesian Data
+Analysis</em> (3e)</a> (BDA3) (<a
+href="book/bda-exercise-solutions3.pdf">exercise solutions</a>)</li>
+<li><a
+href="https://avehtari.github.io/BDA_course_Aalto/chapter_notes/BDA_notes.pdf">Chapter
+Notes</a></li>
+<li><a
+href="https://aalto.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f0ec3a25-9e23-4935-873b-a9f401646812%22">Video
+lectures</a> or individually lists <a
+href="https://avehtari.github.io/BDA_course_Aalto/#videos">here</a></li>
+<li><a
+href="https://github.com/avehtari/BDA_course_Aalto/tree/master/slides">Lecture
+slides</a></li>
 </ul>
 <h2 id="how-to-study">How to study</h2>
 <blockquote>
-<p>The following are recommendations from the course creators on how to take the course.</p>
+<p>The following are recommendations from the course creators on how to
+take the course.</p>
 </blockquote>
 <p>The recommended way to go through the material is:</p>
 <ol type="1">
-<li>Read the reading instructions for a chapter in the <a href="https://avehtari.github.io/BDA_course_Aalto/chapter_notes/BDA_notes.pdf">chapter notes</a>.</li>
-<li>Read the chapter in BDA3 and check that you find the terms listed in the reading instructions.</li>
-<li>Watch the corresponding <a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f0ec3a25-9e23-4935-873b-a9f401646812%22">video lecture</a> to get explanations for most important parts.</li>
+<li>Read the reading instructions for a chapter in the <a
+href="https://avehtari.github.io/BDA_course_Aalto/chapter_notes/BDA_notes.pdf">chapter
+notes</a>.</li>
+<li>Read the chapter in BDA3 and check that you find the terms listed in
+the reading instructions.</li>
+<li>Watch the corresponding <a
+href="https://aalto.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f0ec3a25-9e23-4935-873b-a9f401646812%22">video
+lecture</a> to get explanations for most important parts.</li>
 <li>Read corresponding additional information in the chapter notes.</li>
-<li>Run the corresponding demos in <a href="https://github.com/avehtari/BDA_R_demos">R demos</a> or <a href="https://github.com/avehtari/BDA_py_demos">Python demos</a>.</li>
-<li>Read the exercise instructions and make the corresponding assignments. Demo codes in R demos and Python demos have a lot of useful examples for handling data and plotting figures. If you have problems, visit TA sessions or ask in course slack channel.</li>
-<li>If you want to learn more, make also self study exercises listed below.</li>
+<li>Run the corresponding demos in <a
+href="https://github.com/avehtari/BDA_R_demos">R demos</a> or <a
+href="https://github.com/avehtari/BDA_py_demos">Python demos</a>.</li>
+<li>Read the exercise instructions and make the corresponding
+assignments. Demo codes in R demos and Python demos have a lot of useful
+examples for handling data and plotting figures. If you have problems,
+visit TA sessions or ask in course slack channel.</li>
+<li>If you want to learn more, make also self study exercises listed
+below.</li>
 </ol>
-<h2 id="sections">Sections</h2>
+<h2 id="course-sections">Course sections</h2>
 <table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 28%" />
+<col style="width: 23%" />
+<col style="width: 24%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th>Section</th>
-<th>Notes</th>
-<th>Book exercises</th>
-<th>Assignments</th>
+<th style="text-align: right;">Section</th>
+<th style="text-align: center;">Notes</th>
+<th style="text-align: center;">Book exercises</th>
+<th style="text-align: center;">Assignments</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>1. Course Introduction</strong></td>
-<td><a href="notes/01_introduction_bda3-01.html">notes</a></td>
-<td><a href="book-exercises/bda-exercises-01.html">exercises</a></td>
-<td><a href="assignments/jhcook-assignment-01.html">assignment 1</a></td>
+<td style="text-align: right;"><strong>1. Course
+Introduction</strong></td>
+<td style="text-align: center;"><a
+href="notes/01_introduction_bda3-01.html">notes</a></td>
+<td style="text-align: center;"><a
+href="book-exercises/bda-exercises-01.html">exercises</a></td>
+<td style="text-align: center;"><a
+href="assignments/jhcook-assignment-01.html">assignment 1</a></td>
 </tr>
 <tr class="even">
-<td><strong>2. Basics of Bayesian Inference</strong></td>
-<td><a href="notes/02_basics-of-Bayesian-inference_bda3-02.html">notes</a></td>
-<td><a href="book-exercises/bda-exercises-02.html">exercises</a></td>
-<td><a href="assignments/jhcook-assignment-02.html">assignment 2</a></td>
+<td style="text-align: right;"><strong>2. Basics of Bayesian
+Inference</strong></td>
+<td style="text-align: center;"><a
+href="notes/02_basics-of-Bayesian-inference_bda3-02.html">notes</a></td>
+<td style="text-align: center;"><a
+href="book-exercises/bda-exercises-02.html">exercises</a></td>
+<td style="text-align: center;"><a
+href="assignments/jhcook-assignment-02.html">assignment 2</a></td>
 </tr>
 <tr class="odd">
-<td><strong>3. Multidimensional Posterior</strong></td>
-<td><a href="notes/03_multidimensional-posterior_bda3-03.html">notes</a></td>
-<td>exercises</td>
-<td><a href="assignments/jhcook-assignment-03.html">assignment 3</a></td>
+<td style="text-align: right;"><strong>3. Multidimensional
+Posterior</strong></td>
+<td style="text-align: center;"><a
+href="notes/03_multidimensional-posterior_bda3-03.html">notes</a></td>
+<td style="text-align: center;">(none)</td>
+<td style="text-align: center;"><a
+href="assignments/jhcook-assignment-03.html">assignment 3</a></td>
 </tr>
 <tr class="even">
-<td><strong>4. Monte Carlo</strong></td>
-<td><a href="notes/04_monte-carlo_bda3-10.html">notes</a></td>
-<td>exercises</td>
-<td><a href="assignments/jhcook-assignment-04.html">assignment 4</a></td>
+<td style="text-align: right;"><strong>4. Monte Carlo</strong></td>
+<td style="text-align: center;"><a
+href="notes/04_monte-carlo_bda3-10.html">notes</a></td>
+<td style="text-align: center;">(none)</td>
+<td style="text-align: center;"><a
+href="assignments/jhcook-assignment-04.html">assignment 4</a></td>
 </tr>
 <tr class="odd">
-<td><strong>5. Markov chain Monte Carlo</strong></td>
-<td><a href="notes/05_mcmc_bda3-11.html">notes</a></td>
-<td>exercises</td>
-<td><a href="assignments/jhcook-assignment-05.html">assignment 5</a></td>
+<td style="text-align: right;"><strong>5. Markov chain Monte
+Carlo</strong></td>
+<td style="text-align: center;"><a
+href="notes/05_mcmc_bda3-11.html">notes</a></td>
+<td style="text-align: center;">(none)</td>
+<td style="text-align: center;"><a
+href="assignments/jhcook-assignment-05.html">assignment 5</a></td>
 </tr>
 <tr class="even">
-<td><strong>6. HMC, NUTS, and Stan</strong></td>
-<td><a href="notes/06_hmc-nuts-stan_bda3-12.html">notes</a></td>
-<td>exercises</td>
-<td><a href="assignments/jhcook-assignment-06.html">assignment 6</a></td>
+<td style="text-align: right;"><strong>6. HMC, NUTS, and
+Stan</strong></td>
+<td style="text-align: center;"><a
+href="notes/06_hmc-nuts-stan_bda3-12.html">notes</a></td>
+<td style="text-align: center;">(none)</td>
+<td style="text-align: center;"><a
+href="assignments/jhcook-assignment-06.html">assignment 6</a></td>
 </tr>
 <tr class="odd">
-<td><strong>7. Hierarchical models and exchangeability</strong></td>
-<td><a href="notes/07_hierarchical-models_bda3-5.html">notes</a></td>
-<td><a href="book-exercises/bda-exercises-07.html">exercises</a></td>
-<td><a href="assignments/jhcook-assignment-07.html">assignment 7</a></td>
+<td style="text-align: right;"><strong>7. Hierarchical models and
+exchangeability</strong></td>
+<td style="text-align: center;"><a
+href="notes/07_hierarchical-models_bda3-5.html">notes</a></td>
+<td style="text-align: center;"><a
+href="book-exercises/bda-exercises-07.html">exercises</a></td>
+<td style="text-align: center;"><a
+href="assignments/jhcook-assignment-07.html">assignment 7</a></td>
 </tr>
 <tr class="even">
-<td><strong>8. Model checking &amp; Cross-validation</strong></td>
-<td><a href="notes/08_model-checking-and-cv_bda3-6-7.html">notes</a></td>
-<td>(none)</td>
-<td>(none)</td>
+<td style="text-align: right;"><strong>8. Model checking &amp;
+Cross-validation</strong></td>
+<td style="text-align: center;"><a
+href="notes/08_model-checking-and-cv_bda3-6-7.html">notes</a></td>
+<td style="text-align: center;">(none)</td>
+<td style="text-align: center;">(none)</td>
 </tr>
 <tr class="odd">
-<td><strong>9. Model comparison and selection</strong></td>
-<td><a href="notes/09_model-selection_bda3-7.html">notes</a></td>
-<td>(none)</td>
-<td><a href="assignments/jhcook-assignment-08.html">assignment 8</a></td>
+<td style="text-align: right;"><strong>9. Model comparison and
+selection</strong></td>
+<td style="text-align: center;"><a
+href="notes/09_model-selection_bda3-7.html">notes</a></td>
+<td style="text-align: center;">(none)</td>
+<td style="text-align: center;"><a
+href="assignments/jhcook-assignment-08.html">assignment 8</a></td>
 </tr>
 <tr class="even">
-<td><strong>10. Decision analysis</strong></td>
-<td><a href="notes/10_decision-analysis_bda3-9.html">notes</a></td>
-<td>(none)</td>
-<td><a href="assignments/jhcook-assignment-09.html">assignment 9</a></td>
+<td style="text-align: right;"><strong>10. Decision
+analysis</strong></td>
+<td style="text-align: center;"><a
+href="notes/10_decision-analysis_bda3-9.html">notes</a></td>
+<td style="text-align: center;">(none)</td>
+<td style="text-align: center;"><a
+href="assignments/jhcook-assignment-09.html">assignment 9</a></td>
 </tr>
 <tr class="odd">
-<td><strong>11. Normal approximation &amp; Frequency properties</strong></td>
-<td><a href="notes/11_normal-approx-freq-properties_bda3-04.html">notes</a></td>
-<td>(none)</td>
-<td>(none)</td>
+<td style="text-align: right;"><strong>11. Normal approximation &amp;
+Frequency properties</strong></td>
+<td style="text-align: center;"><a
+href="notes/11_normal-approx-freq-properties_bda3-04.html">notes</a></td>
+<td style="text-align: center;">(none)</td>
+<td style="text-align: center;">(none)</td>
 </tr>
 <tr class="even">
-<td><strong>12. Extended topics</strong></td>
-<td><a href="notes/12_extended-topics.html">notes</a></td>
-<td>(none)</td>
-<td>(none)</td>
+<td style="text-align: right;"><strong>12. Extended topics</strong></td>
+<td style="text-align: center;"><a
+href="notes/12_extended-topics.html">notes</a></td>
+<td style="text-align: center;">(none)</td>
+<td style="text-align: center;">(none)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-notes">Additional notes</h2>
+<table>
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 22%" />
+<col style="width: 35%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Chapter</th>
+<th>Title</th>
+<th style="text-align: center;">Notes</th>
+<th style="text-align: center;">Additional work</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">14</td>
+<td><strong>Introduction to regression models</strong></td>
+<td style="text-align: center;"><a
+href="notes/13_intro-to-regression-models_bda3-14.html">notes</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">15</td>
+<td><strong>Hierarchical linear models</strong></td>
+<td style="text-align: center;"><a
+href="notes/14_hierarchical-linear-models_bda3-15.html">notes</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">16</td>
+<td><strong>Generalized linear models</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18</td>
+<td><strong>Models for missing data</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td><strong>Parametric nonlinear models</strong></td>
+<td style="text-align: center;"><a
+href="notes/17_parametric-nonlinear-models_bda3-19.html">notes</a></td>
+<td style="text-align: center;"><a
+href="book-exercises/bda-exercises-19.html">serial dilution
+model</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td><strong>Basis function models</strong></td>
+<td style="text-align: center;"><a
+href="notes/18_basis-function-models_bda3-20.html">notes</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">21</td>
+<td><strong>Gaussian process models</strong></td>
+<td style="text-align: center;"><a
+href="notes/19_gaussian-processes_bda3-21.html">notes</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">22</td>
+<td><strong>Finite mixture models</strong></td>
+<td style="text-align: center;"><a
+href="notes/20_finite-mixture-models_bda3-22.html">notes</a></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">23</td>
+<td><strong>Dirichlet process models</strong></td>
+<td style="text-align: center;"><a
+href="notes/21_Dirichlet-process-models_bda3-23.html">notes</a></td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
 <h2 id="stan-models">Stan models</h2>
 <ul>
-<li><a href="models/assignment06-bioassay.stan">Drug bioassay model</a> for Assignment 6</li>
+<li><a href="models/assignment06-bioassay.stan">Drug bioassay model</a>
+for Assignment 6</li>
 <li><a href="models/8-schools.stan">8 school SAT model</a></li>
-<li><a href="models/assignment07-drownings.stan">Drownings</a> for Assignment 7</li>
+<li><a href="models/assignment07-drownings.stan">Drownings</a> for
+Assignment 7</li>
 <li>Factory machine measurements for Assignments 7 &amp; 8:
 <ul>
 <li><a href="models/assignment07_factories_pooled.stan">pooled</a></li>
-<li><a href="models/assignment07_factories_separate.stan">separate</a></li>
-<li><a href="models/assignment07_factories_hierarchical.stan">hierarchical</a> (also used in Assignment 9)</li>
+<li><a
+href="models/assignment07_factories_separate.stan">separate</a></li>
+<li><a
+href="models/assignment07_factories_hierarchical.stan">hierarchical</a>
+(also used in Assignment 9)</li>
+</ul></li>
+<li><a href="models/serial-dilution.stan">serial dilution assay</a> for
+chapter 19 exercises</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
-</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
