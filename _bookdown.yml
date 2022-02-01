@@ -1,0 +1,28 @@
+title: "Notes for the Bayesian Data Analysis course"
+author: "Joshua Cook"
+description: "My notes and work for the Bayesian Data Analysis course taught by Aki Vehtari."
+
+url: 'https://jhrcook.github.io/bayesian-data-analysis-course/'
+repo: 'https://github.com/jhrcook/bayesian-data-analysis-course'
+twitter-handle: joshdoesa
+
+date: "`r Sys.Date()`"
+
+documentclass: book
+new_session: yes
+delete_merged_file: true
+edit: https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/%s
+view: https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/%s
+
+output_dir: "docs"
+
+rmd_files: [
+  "index.Rmd",
+
+  "notes-intro.Rmd",
+  "01_introduction_bda3-01.Rmd",
+  "02_basics-of-Bayesian-inference_bda3-02.Rmd",
+  "03_multidimensional-posterior_bda3-03.Rmd",
+
+  "about.Rmd"
+]
