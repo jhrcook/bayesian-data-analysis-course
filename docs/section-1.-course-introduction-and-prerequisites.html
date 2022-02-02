@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Section 1. Course introduction and prerequisites | _main</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Section 1. Course introduction and prerequisites | _main" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Section 1. Course introduction and prerequisites | _main" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="section-2.-basics-of-bayesian-inferences.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Notes for BDA3</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Bayesian Data Analysis course</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>1.1</b> Resources</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#how-to-study"><i class="fa fa-check"></i><b>1.2</b> How to study</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#course-sections"><i class="fa fa-check"></i><b>1.3</b> Course sections</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#additional-notes"><i class="fa fa-check"></i><b>1.4</b> Additional notes</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#stan-models"><i class="fa fa-check"></i><b>1.5</b> Stan models</a></li>
+</ul></li>
+<li class="part"><span><b>I Notes</b></span></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html"><i class="fa fa-check"></i><b>2</b> Section 1. Course introduction and prerequisites</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#resources-1"><i class="fa fa-check"></i><b>2.1</b> Resources</a></li>
+<li class="chapter" data-level="2.2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#notes"><i class="fa fa-check"></i><b>2.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#reading-instructions"><i class="fa fa-check"></i><b>2.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#lecture-notes"><i class="fa fa-check"></i><b>2.2.2</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html"><i class="fa fa-check"></i><b>3</b> Section 2. Basics of Bayesian inferences</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#resources-2"><i class="fa fa-check"></i><b>3.1</b> Resources</a></li>
+<li class="chapter" data-level="3.2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#notes-1"><i class="fa fa-check"></i><b>3.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#chapter-instructions"><i class="fa fa-check"></i><b>3.2.1</b> Chapter instructions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#chapter-2.-single-parameter-models"><i class="fa fa-check"></i><b>3.2.2</b> Chapter 2. Single-parameter models</a></li>
+<li class="chapter" data-level="3.2.3" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#lecture-notes-1"><i class="fa fa-check"></i><b>3.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html"><i class="fa fa-check"></i><b>4</b> Section 3. Multidimensional Posterior</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#resources-3"><i class="fa fa-check"></i><b>4.1</b> Resources</a></li>
+<li class="chapter" data-level="4.2" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#notes-2"><i class="fa fa-check"></i><b>4.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#reading-instructions-1"><i class="fa fa-check"></i><b>4.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="4.2.2" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#chapter-3.-introduction-to-multiparameter-models"><i class="fa fa-check"></i><b>4.2.2</b> Chapter 3. Introduction to multiparameter models</a></li>
+<li class="chapter" data-level="4.2.3" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#lecture-notes-2"><i class="fa fa-check"></i><b>4.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Assignments</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="5" data-path="assignment-1.html"><a href="assignment-1.html"><i class="fa fa-check"></i><b>5</b> Assignment 1</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="assignment-1.html"><a href="assignment-1.html#setup"><i class="fa fa-check"></i><b>5.1</b> Setup</a></li>
+<li class="chapter" data-level="5.2" data-path="assignment-1.html"><a href="assignment-1.html#exercise-1"><i class="fa fa-check"></i><b>5.2</b> Exercise 1</a></li>
+<li class="chapter" data-level="5.3" data-path="assignment-1.html"><a href="assignment-1.html#exercise-3"><i class="fa fa-check"></i><b>5.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="5.4" data-path="assignment-1.html"><a href="assignment-1.html#exercise-4"><i class="fa fa-check"></i><b>5.4</b> Exercise 4</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="assignment-1.html"><a href="assignment-1.html#a"><i class="fa fa-check"></i><b>5.4.1</b> 4.a</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="assignment-1.html"><a href="assignment-1.html#exercise-5"><i class="fa fa-check"></i><b>5.5</b> Exercise 5</a></li>
+</ul></li>
+<li class="part"><span><b>III Book Exercises</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="6" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html"><i class="fa fa-check"></i><b>6</b> Chapter 1 Exercises</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-1"><i class="fa fa-check"></i><b>6.1</b> Question 1</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-2"><i class="fa fa-check"></i><b>6.2</b> Question 2</a></li>
+<li class="chapter" data-level="6.3" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-6"><i class="fa fa-check"></i><b>6.3</b> Question 6</a></li>
+<li class="chapter" data-level="6.4" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-8"><i class="fa fa-check"></i><b>6.4</b> Question 8</a></li>
+</ul></li>
+<li class="part"><span><b>IV About</b></span></li>
+<li class="chapter" data-level="" data-path="the-website.html"><a href="the-website.html"><i class="fa fa-check"></i>The website</a></li>
+<li class="chapter" data-level="" data-path="about-me.html"><a href="about-me.html"><i class="fa fa-check"></i>About me</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-1.-course-introduction-and-prerequisites" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Section 1. Course introduction and prerequisites</h1>
+<p>2021-08-17</p>
+<div id="resources-1" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Resources</h2>
+<ul>
+<li>BDA chapter 1 and <a href="../reading-instructions/BDA3_ch01_reading-instructions.pdf">reading instructions</a></li>
+<li>lectures:
+<ul>
+<li><a href="https://www.youtube.com/watch?v=ukE5aqdoLZI">‘Computational probabilistic modeling’</a></li>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d841f429-9c3d-4d24-8228-a9f400efda7b">‘Introduction to uncertainty and modelling’</a></li>
+</ul></li>
+<li>video: <a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=13fc7889-cfd1-4d99-996c-a9f400f6e5a2">‘Introduction to the course contents’</a></li>
+<li><a href="../slides/bayes_intro.pdf">slides</a></li>
+<li><a href="assignments/assignment1.pdf">Assignment 1</a></li>
+</ul>
+</div>
+<div id="notes" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Notes</h2>
+<div id="reading-instructions" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Reading instructions</h3>
+<ul>
+<li>model vs. likelihood for <span class="math inline">\(p(y|\theta, M)\)</span>
+<ul>
+<li><em>model</em> when the function is in terms of <span class="math inline">\(y\)</span>
+<ul>
+<li>should be written as <span class="math inline">\(p_y(y|\theta, M)\)</span>
+used to describe uncertainty about <span class="math inline">\(y\)</span> given values of <span class="math inline">\(\theta\)</span> and <span class="math inline">\(M\)</span></li>
+</ul></li>
+<li><em>likelihood</em> when in the function is in terms of <span class="math inline">\(\theta\)</span>
+<ul>
+<li>should be written as <span class="math inline">\(p_\theta(y|\theta, M)\)</span></li>
+<li>the posterior distribution describes the probability for different values of <span class="math inline">\(\theta\)</span> given fixed values for <span class="math inline">\(y\)</span></li>
+<li>“The likelihood function is unnormalized probability distribution describing uncertainty related to <span class="math inline">\(\theta\)</span> (and that’s why Bayes rule has the normalization term to get the posterior distribution).”</li>
+</ul></li>
+</ul></li>
+<li><em>exchangeability</em>
+<ol style="list-style-type: decimal">
+<li>independence is stronger condition than exchangeability</li>
+<li>independence implies exchangeability</li>
+<li>exchangeability does not imply independence</li>
+<li>exchangeability is related to what information is available instead of the properties of unknown underlying data generating mechanism</li>
+</ol></li>
+</ul>
+</div>
+<div id="lecture-notes" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Lecture notes</h3>
+<div id="introduction-to-uncertainty-and-modelling" class="section level4" number="2.2.2.1">
+<h4><span class="header-section-number">2.2.2.1</span> Introduction to uncertainty and modelling</h4>
+<ul>
+<li>two types of uncertainty:
+<ul>
+<li><em>aleatoric</em>: due to randomness</li>
+<li><em>epistemic</em>: due to lack of knowledge</li>
+</ul></li>
+<li>model vs. likelihood:
+<ul>
+<li>model
+<ul>
+<li><span class="math inline">\(p_y(y|\theta, M)\)</span></li>
+<li>a function of <span class="math inline">\(y\)</span> given fixed values of <span class="math inline">\(\theta\)</span></li>
+<li>describes <em>aleatoric</em> uncertainty</li>
+</ul></li>
+<li>likelihood
+<ul>
+<li><span class="math inline">\(p_\theta(y|\theta, M)\)</span></li>
+<li>function of <span class="math inline">\(\theta\)</span> given fixed values of <span class="math inline">\(y\)</span></li>
+<li>provides information about the <em>epistemic</em> uncertainty</li>
+<li>is <em>not</em> a probability distribution</li>
+</ul></li>
+<li>Bayes rule combines the likelihood with prior uncertainty to update the posterior uncertainty</li>
+<li>example with a bag containing red and yellow chips:
+<ul>
+<li>probability of red = #red / #red + #yellow = <span class="math inline">\(\theta\)</span></li>
+<li><span class="math inline">\(p(y = \text{red} | \theta)\)</span>: aleatoric uncertainty
+<ul>
+<li>predicting the probability of pulling a red chip has uncertainty due to randomness even if we new <span class="math inline">\(\theta\)</span> exactly</li>
+</ul></li>
+<li><span class="math inline">\(p(\theta)\)</span>: epistemic uncertainty
+<ul>
+<li>we don’t know <span class="math inline">\(\theta\)</span> but could compute it exactly if we knew the contents of the bag</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="introduction-to-the-course-contents" class="section level4" number="2.2.2.2">
+<h4><span class="header-section-number">2.2.2.2</span> Introduction to the course contents</h4>
+<ul>
+<li>benefits of Bayesian approach
+<ol style="list-style-type: decimal">
+<li>integrate over uncertainties to focus on interesting parts</li>
+<li>use relevant prior information</li>
+<li>hierarchical models</li>
+<li>model checking and evaluation</li>
+</ol></li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-2.-basics-of-bayesian-inferences.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/hadley/r4ds/edit/master/notes-01_introduction_bda3-01.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/notes-01_introduction_bda3-01.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

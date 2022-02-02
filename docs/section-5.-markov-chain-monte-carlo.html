@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Section 5. Markov chain Monte Carlo | _main</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Section 5. Markov chain Monte Carlo | _main" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Section 5. Markov chain Monte Carlo | _main" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="section-4.-monte-carlo.html"/>
+<link rel="next" href="section-6.-hmc-nuts-and-stan.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Notes for BDA3</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Bayesian Data Analysis course</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>1.1</b> Resources</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#how-to-study"><i class="fa fa-check"></i><b>1.2</b> How to study</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#course-sections"><i class="fa fa-check"></i><b>1.3</b> Course sections</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#additional-notes"><i class="fa fa-check"></i><b>1.4</b> Additional notes</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#stan-models"><i class="fa fa-check"></i><b>1.5</b> Stan models</a></li>
+</ul></li>
+<li class="part"><span><b>I Notes</b></span></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html"><i class="fa fa-check"></i><b>2</b> Section 1. Course introduction and prerequisites</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#resources-1"><i class="fa fa-check"></i><b>2.1</b> Resources</a></li>
+<li class="chapter" data-level="2.2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#notes"><i class="fa fa-check"></i><b>2.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#reading-instructions"><i class="fa fa-check"></i><b>2.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#lecture-notes"><i class="fa fa-check"></i><b>2.2.2</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html"><i class="fa fa-check"></i><b>3</b> Section 2. Basics of Bayesian inferences</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#resources-2"><i class="fa fa-check"></i><b>3.1</b> Resources</a></li>
+<li class="chapter" data-level="3.2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#notes-1"><i class="fa fa-check"></i><b>3.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#chapter-instructions"><i class="fa fa-check"></i><b>3.2.1</b> Chapter instructions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#chapter-2.-single-parameter-models"><i class="fa fa-check"></i><b>3.2.2</b> Chapter 2. Single-parameter models</a></li>
+<li class="chapter" data-level="3.2.3" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#lecture-notes-1"><i class="fa fa-check"></i><b>3.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html"><i class="fa fa-check"></i><b>4</b> Section 3. Multidimensional Posterior</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#resources-3"><i class="fa fa-check"></i><b>4.1</b> Resources</a></li>
+<li class="chapter" data-level="4.2" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#notes-2"><i class="fa fa-check"></i><b>4.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#reading-instructions-1"><i class="fa fa-check"></i><b>4.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="4.2.2" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#chapter-3.-introduction-to-multiparameter-models"><i class="fa fa-check"></i><b>4.2.2</b> Chapter 3. Introduction to multiparameter models</a></li>
+<li class="chapter" data-level="4.2.3" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#lecture-notes-2"><i class="fa fa-check"></i><b>4.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html"><i class="fa fa-check"></i><b>5</b> Section 4. Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#resources-4"><i class="fa fa-check"></i><b>5.1</b> Resources</a></li>
+<li class="chapter" data-level="5.2" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#notes-3"><i class="fa fa-check"></i><b>5.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#reading-instructions-2"><i class="fa fa-check"></i><b>5.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="5.2.2" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#chapter-10.-introduction-to-bayesian-computation"><i class="fa fa-check"></i><b>5.2.2</b> Chapter 10. Introduction to Bayesian computation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#lecture-notes-3"><i class="fa fa-check"></i><b>5.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html"><i class="fa fa-check"></i><b>6</b> Section 5. Markov chain Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#resources-5"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
+<li class="chapter" data-level="6.2" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#notes-4"><i class="fa fa-check"></i><b>6.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#reading-instructions-3"><i class="fa fa-check"></i><b>6.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="6.2.2" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#chapter-11.-basics-of-markov-chain-simulation"><i class="fa fa-check"></i><b>6.2.2</b> Chapter 11. Basics of Markov chain simulation</a></li>
+<li class="chapter" data-level="6.2.3" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#lecture-notes-4"><i class="fa fa-check"></i><b>6.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html"><i class="fa fa-check"></i><b>7</b> Section 6. HMC, NUTS, and Stan</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#resources-6"><i class="fa fa-check"></i><b>7.1</b> Resources</a></li>
+<li class="chapter" data-level="7.2" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#notes-5"><i class="fa fa-check"></i><b>7.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#reading-instructions-4"><i class="fa fa-check"></i><b>7.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="7.2.2" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#chapter-12.-computationally-efficient-markov-chain-simulation"><i class="fa fa-check"></i><b>7.2.2</b> Chapter 12. Computationally efficient Markov chain simulation</a></li>
+<li class="chapter" data-level="7.2.3" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#lecture-notes-5"><i class="fa fa-check"></i><b>7.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html"><i class="fa fa-check"></i><b>8</b> Section 7. Hierarchical models and exchangeability</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#resources-7"><i class="fa fa-check"></i><b>8.1</b> Resources</a></li>
+<li class="chapter" data-level="8.2" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#notes-6"><i class="fa fa-check"></i><b>8.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#reading-instructions-5"><i class="fa fa-check"></i><b>8.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="8.2.2" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#chapter-5.-hierarchical-models"><i class="fa fa-check"></i><b>8.2.2</b> Chapter 5. Hierarchical models</a></li>
+<li class="chapter" data-level="8.2.3" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#lecture-notes-6"><i class="fa fa-check"></i><b>8.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html"><i class="fa fa-check"></i><b>9</b> Section 8. Model checking &amp; Cross-validation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#resources-8"><i class="fa fa-check"></i><b>9.1</b> Resources</a></li>
+<li class="chapter" data-level="9.2" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#notes-7"><i class="fa fa-check"></i><b>9.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6-reading-instructions"><i class="fa fa-check"></i><b>9.2.1</b> Chapter 6 reading instructions</a></li>
+<li class="chapter" data-level="9.2.2" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6.-model-checking"><i class="fa fa-check"></i><b>9.2.2</b> Chapter 6. Model checking</a></li>
+<li class="chapter" data-level="9.2.3" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6.-lecture-notes"><i class="fa fa-check"></i><b>9.2.3</b> Chapter 6. Lecture notes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7-reading-instructions"><i class="fa fa-check"></i><b>9.2.4</b> Chapter 7 reading instructions</a></li>
+<li class="chapter" data-level="9.2.5" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7.-evaluating-comparing-and-expanding-models"><i class="fa fa-check"></i><b>9.2.5</b> Chapter 7. Evaluating, comparing, and expanding models</a></li>
+<li class="chapter" data-level="9.2.6" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#additional-reading"><i class="fa fa-check"></i><b>9.2.6</b> Additional Reading</a></li>
+<li class="chapter" data-level="9.2.7" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7.-lecture-notes"><i class="fa fa-check"></i><b>9.2.7</b> Chapter 7. Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html"><i class="fa fa-check"></i><b>10</b> Section 9. Model comparison and selection</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#resources-9"><i class="fa fa-check"></i><b>10.1</b> Resources</a></li>
+<li class="chapter" data-level="10.2" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#notes-8"><i class="fa fa-check"></i><b>10.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#lecture-notes-7"><i class="fa fa-check"></i><b>10.2.1</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html"><i class="fa fa-check"></i><b>11</b> Section 10. Decision analysis</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#resources-10"><i class="fa fa-check"></i><b>11.1</b> Resources</a></li>
+<li class="chapter" data-level="11.2" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#notes-9"><i class="fa fa-check"></i><b>11.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#reading-instructions-6"><i class="fa fa-check"></i><b>11.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="11.2.2" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#chapter-9.-decision-analysis"><i class="fa fa-check"></i><b>11.2.2</b> Chapter 9. Decision analysis</a></li>
+<li class="chapter" data-level="11.2.3" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#lecture-notes-8"><i class="fa fa-check"></i><b>11.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html"><i class="fa fa-check"></i><b>12</b> Section 11. Normal approximation &amp; Frequency properties</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#resources-11"><i class="fa fa-check"></i><b>12.1</b> Resources</a></li>
+<li class="chapter" data-level="12.2" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#notes-10"><i class="fa fa-check"></i><b>12.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#reading-instructions-7"><i class="fa fa-check"></i><b>12.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="12.2.2" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#chapter-4.-asymptotics-and-connections-to-non-bayesian-approaches"><i class="fa fa-check"></i><b>12.2.2</b> Chapter 4. Asymptotics and connections to non-Bayesian approaches</a></li>
+<li class="chapter" data-level="12.2.3" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#lecture-notes-9"><i class="fa fa-check"></i><b>12.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html"><i class="fa fa-check"></i><b>13</b> Section 12. Extended topics</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#resources-12"><i class="fa fa-check"></i><b>13.1</b> Resources</a></li>
+<li class="chapter" data-level="13.2" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#notes-11"><i class="fa fa-check"></i><b>13.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#lecture-12.1-frequency-evaluation-hypothesis-testing-and-variable-selection"><i class="fa fa-check"></i><b>13.2.1</b> Lecture 12.1 Frequency evaluation, hypothesis testing and variable selection</a></li>
+<li class="chapter" data-level="13.2.2" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#lecture-12.2-overview-of-modeling-data-collection-bda3-ch-8-linear-models-bda-ch-14-18-lasso-horseshoe-and-gaussian-processes-bda3-ch-21"><i class="fa fa-check"></i><b>13.2.2</b> Lecture 12.2 Overview of modeling data collection, BDA3 Ch 8, linear models, BDA Ch 14-18, lasso, horseshoe and Gaussian processes, BDA3 Ch 21</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><i class="fa fa-check"></i><b>14</b> Section 13. Notes on ‘Ch 14. Introduction to regression models’</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#chapter-14.-introduction-to-regression-models"><i class="fa fa-check"></i><b>14.1</b> Chapter 14. Introduction to regression models</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#conditional-modeling"><i class="fa fa-check"></i><b>14.1.1</b> 14.1 Conditional modeling</a></li>
+<li class="chapter" data-level="14.1.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#bayesian-analysis-of-classical-regression"><i class="fa fa-check"></i><b>14.1.2</b> 14.2 Bayesian analysis of classical regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#goals-of-regression-analysis"><i class="fa fa-check"></i><b>14.2</b> 14.4 Goals of regression analysis</a></li>
+<li class="chapter" data-level="14.3" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#assembling-the-matrix-of-explanitory-variables"><i class="fa fa-check"></i><b>14.3</b> 14.5 Assembling the matrix of explanitory variables</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#identifiability-and-collinearity"><i class="fa fa-check"></i><b>14.3.1</b> Identifiability and collinearity</a></li>
+<li class="chapter" data-level="14.3.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#nonlinear-relations"><i class="fa fa-check"></i><b>14.3.2</b> Nonlinear relations</a></li>
+<li class="chapter" data-level="14.3.3" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#indicator-variables"><i class="fa fa-check"></i><b>14.3.3</b> Indicator variables</a></li>
+<li class="chapter" data-level="14.3.4" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#interactions"><i class="fa fa-check"></i><b>14.3.4</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#regularization-and-dimension-reduction"><i class="fa fa-check"></i><b>14.4</b> 14.6 Regularization and dimension reduction</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><a href="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><i class="fa fa-check"></i><b>15</b> Section 14. Notes on ‘Ch 15. Hierarchical linear models’</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><a href="section-14.-notes-on-ch-15.-hierarchical-linear-models.html#chapter-15.-hierarchical-linear-models"><i class="fa fa-check"></i><b>15.1</b> Chapter 15. Hierarchical linear models</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><i class="fa fa-check"></i><b>16</b> Section 17. Notes on ‘Ch 19. Parametric nonlinear models’</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#chapter-19.-parametric-nonlinear-models"><i class="fa fa-check"></i><b>16.1</b> Chapter 19. Parametric nonlinear models</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#example-serial-dilution-assay"><i class="fa fa-check"></i><b>16.1.1</b> 19.1 Example: serial dilution assay</a></li>
+<li class="chapter" data-level="16.1.2" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#example-population-toxicokinetics"><i class="fa fa-check"></i><b>16.1.2</b> 19.2 Example: population toxicokinetics</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html"><i class="fa fa-check"></i><b>17</b> Section 18. Notes on ‘Ch 20. Basis function models’</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#chapter-20.-basis-function-models"><i class="fa fa-check"></i><b>17.1</b> Chapter 20. Basis function models</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#splines-and-weighted-sums-of-basis-functions"><i class="fa fa-check"></i><b>17.1.1</b> 20.1 Splines and weighted sums of basis functions</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#basis-selection-and-shrinkage-coefficients"><i class="fa fa-check"></i><b>17.2</b> 20.2 Basis selection and shrinkage coefficients</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#shrinkage-priors"><i class="fa fa-check"></i><b>17.2.1</b> Shrinkage priors</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#non-normal-models-and-regression-surfaces"><i class="fa fa-check"></i><b>17.3</b> 20.3 Non-normal models and regression surfaces</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#other-error-distributions"><i class="fa fa-check"></i><b>17.3.1</b> Other error distributions</a></li>
+<li class="chapter" data-level="17.3.2" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#multivariate-regression-surfaces"><i class="fa fa-check"></i><b>17.3.2</b> Multivariate regression surfaces</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html"><i class="fa fa-check"></i><b>18</b> Section 19. Notes on ‘Ch 21. Gaussian process models’</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#chapter-21.-gaussian-process-models"><i class="fa fa-check"></i><b>18.1</b> Chapter 21. Gaussian process models</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#gaussian-process-regression"><i class="fa fa-check"></i><b>18.1.1</b> 21.1 Gaussian process regression</a></li>
+<li class="chapter" data-level="18.1.2" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#latent-gaussian-process-models"><i class="fa fa-check"></i><b>18.1.2</b> 21.3 Latent Gaussian process models</a></li>
+<li class="chapter" data-level="18.1.3" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#functional-data-analysis"><i class="fa fa-check"></i><b>18.1.3</b> 21.4 Functional data analysis</a></li>
+<li class="chapter" data-level="18.1.4" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#density-estimation-and-regression"><i class="fa fa-check"></i><b>18.1.4</b> 21.5 Density estimation and regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html"><i class="fa fa-check"></i><b>19</b> Section 20. Notes on ‘Ch 22. Finite mixture models’</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#chapter-22.-finite-mixture-models"><i class="fa fa-check"></i><b>19.1</b> Chapter 22. Finite mixture models</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#setting-up-and-interpreting-mixture-models"><i class="fa fa-check"></i><b>19.1.1</b> 22.1 Setting up and interpreting mixture models</a></li>
+<li class="chapter" data-level="19.1.2" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#unspecifed-number-of-mixture-components"><i class="fa fa-check"></i><b>19.1.2</b> 22.4 Unspecifed number of mixture components</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><i class="fa fa-check"></i><b>20</b> Section 21. Notes on ‘Ch 23. Dirichlet process models’</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#chapter-23.-dirichlet-process-models"><i class="fa fa-check"></i><b>20.1</b> Chapter 23. Dirichlet process models</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#bayesian-histograms"><i class="fa fa-check"></i><b>20.1.1</b> 23.1 Bayesian histograms</a></li>
+<li class="chapter" data-level="20.1.2" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#dirichlet-process-prior-distributions"><i class="fa fa-check"></i><b>20.1.2</b> 23.2 Dirichlet process prior distributions</a></li>
+<li class="chapter" data-level="20.1.3" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#dirichlet-process-mixtures"><i class="fa fa-check"></i><b>20.1.3</b> 23.3 Dirichlet process mixtures</a></li>
+<li class="chapter" data-level="20.1.4" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#beyond-density-estimation"><i class="fa fa-check"></i><b>20.1.4</b> 23.4 Beyond density estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Assignments</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-3.html"><a href="introduction-3.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="21" data-path="assignment-1.html"><a href="assignment-1.html"><i class="fa fa-check"></i><b>21</b> Assignment 1</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="assignment-1.html"><a href="assignment-1.html#setup"><i class="fa fa-check"></i><b>21.1</b> Setup</a></li>
+<li class="chapter" data-level="21.2" data-path="assignment-1.html"><a href="assignment-1.html#exercise-1"><i class="fa fa-check"></i><b>21.2</b> Exercise 1</a></li>
+<li class="chapter" data-level="21.3" data-path="assignment-1.html"><a href="assignment-1.html#exercise-3"><i class="fa fa-check"></i><b>21.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="21.4" data-path="assignment-1.html"><a href="assignment-1.html#exercise-4"><i class="fa fa-check"></i><b>21.4</b> Exercise 4</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="assignment-1.html"><a href="assignment-1.html#a"><i class="fa fa-check"></i><b>21.4.1</b> 4.a</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="assignment-1.html"><a href="assignment-1.html#exercise-5"><i class="fa fa-check"></i><b>21.5</b> Exercise 5</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="assignment-2.html"><a href="assignment-2.html"><i class="fa fa-check"></i><b>22</b> Assignment 2</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="assignment-2.html"><a href="assignment-2.html#setup-1"><i class="fa fa-check"></i><b>22.1</b> Setup</a></li>
+<li class="chapter" data-level="22.2" data-path="assignment-2.html"><a href="assignment-2.html#exercise-1.-inference-for-binomial-proportion"><i class="fa fa-check"></i><b>22.2</b> Exercise 1. Inference for binomial proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="assignment-3.html"><a href="assignment-3.html"><i class="fa fa-check"></i><b>23</b> Assignment 3</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="assignment-3.html"><a href="assignment-3.html#setup-2"><i class="fa fa-check"></i><b>23.1</b> Setup</a></li>
+<li class="chapter" data-level="23.2" data-path="assignment-3.html"><a href="assignment-3.html#exercise-1.-inference-for-normal-mean-and-deviation"><i class="fa fa-check"></i><b>23.2</b> Exercise 1. Inference for normal mean and deviation</a></li>
+<li class="chapter" data-level="23.3" data-path="assignment-3.html"><a href="assignment-3.html#exercise-2.-inference-for-the-difference-between-proportions"><i class="fa fa-check"></i><b>23.3</b> Exercise 2. Inference for the difference between proportions</a></li>
+<li class="chapter" data-level="23.4" data-path="assignment-3.html"><a href="assignment-3.html#exercise-3.-inference-for-the-difference-between-normal-means"><i class="fa fa-check"></i><b>23.4</b> Exercise 3. Inference for the difference between normal means</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="assignment-4.html"><a href="assignment-4.html"><i class="fa fa-check"></i><b>24</b> Assignment 4</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="assignment-4.html"><a href="assignment-4.html#setup-3"><i class="fa fa-check"></i><b>24.1</b> Setup</a></li>
+<li class="chapter" data-level="24.2" data-path="assignment-4.html"><a href="assignment-4.html#exercise-1.-bioassay-model"><i class="fa fa-check"></i><b>24.2</b> Exercise 1. Bioassay model</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="assignment-5.html"><a href="assignment-5.html"><i class="fa fa-check"></i><b>25</b> Assignment 5</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="assignment-5.html"><a href="assignment-5.html#setup-4"><i class="fa fa-check"></i><b>25.1</b> Setup</a></li>
+<li class="chapter" data-level="25.2" data-path="assignment-5.html"><a href="assignment-5.html#generalized-linear-model-bioassay-with-metropolis"><i class="fa fa-check"></i><b>25.2</b> Generalized linear model: Bioassay with Metropolis</a>
+<ul>
+<li class="chapter" data-level="25.2.1" data-path="assignment-5.html"><a href="assignment-5.html#exercise-1."><i class="fa fa-check"></i><b>25.2.1</b> Exercise 1.</a></li>
+<li class="chapter" data-level="25.2.2" data-path="assignment-5.html"><a href="assignment-5.html#exercise-2."><i class="fa fa-check"></i><b>25.2.2</b> Exercise 2.</a></li>
+<li class="chapter" data-level="25.2.3" data-path="assignment-5.html"><a href="assignment-5.html#exercise-3-1"><i class="fa fa-check"></i><b>25.2.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="25.2.4" data-path="assignment-5.html"><a href="assignment-5.html#exercise-4-1"><i class="fa fa-check"></i><b>25.2.4</b> Exercise 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="assignment-6.html"><a href="assignment-6.html"><i class="fa fa-check"></i><b>26</b> Assignment 6</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="assignment-6.html"><a href="assignment-6.html#setup-5"><i class="fa fa-check"></i><b>26.1</b> Setup</a></li>
+<li class="chapter" data-level="26.2" data-path="assignment-6.html"><a href="assignment-6.html#exercise-1.-generalized-linear-model-bioassay-with-stan"><i class="fa fa-check"></i><b>26.2</b> Exercise 1. Generalized linear model: Bioassay with Stan</a>
+<ul>
+<li class="chapter" data-level="26.2.1" data-path="assignment-6.html"><a href="assignment-6.html#write-down-the-model-for-the-bioassay-data-in-stan-syntax."><i class="fa fa-check"></i><b>26.2.1</b> 1. Write down the model for the bioassay data in Stan syntax.</a></li>
+<li class="chapter" data-level="26.2.2" data-path="assignment-6.html"><a href="assignment-6.html#use-widehatr-for-convergence-analysis."><i class="fa fa-check"></i><b>26.2.2</b> 2. Use <span class="math inline">\(\widehat{R}\)</span> for convergence analysis.</a></li>
+<li class="chapter" data-level="26.2.3" data-path="assignment-6.html"><a href="assignment-6.html#plot-the-draws-for-alpha-and-beta-scatter-plot-and-include-this-plot-in-your-report"><i class="fa fa-check"></i><b>26.2.3</b> 3. Plot the draws for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> (scatter plot) and include this plot in your report</a></li>
+<li class="chapter" data-level="26.2.4" data-path="assignment-6.html"><a href="assignment-6.html#to-develop-the-course-and-provide-feedback-to-stan-developers-we-collect-information-on-which-stan-setup-you-used-and-whether-you-had-any-problems-in-setting-it-up-or-using-it."><i class="fa fa-check"></i><b>26.2.4</b> 4. To develop the course and provide feedback to Stan developers, we collect information on which Stan setup you used and whether you had any problems in setting it up or using it.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="assignment-7.html"><a href="assignment-7.html"><i class="fa fa-check"></i><b>27</b> Assignment 7</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="assignment-7.html"><a href="assignment-7.html#setup-6"><i class="fa fa-check"></i><b>27.1</b> Setup</a></li>
+<li class="chapter" data-level="27.2" data-path="assignment-7.html"><a href="assignment-7.html#linear-model-drowning-data-with-stan"><i class="fa fa-check"></i><b>27.2</b> 1. Linear model: drowning data with Stan</a></li>
+<li class="chapter" data-level="27.3" data-path="assignment-7.html"><a href="assignment-7.html#hierarchical-model-factory-data-with-stan"><i class="fa fa-check"></i><b>27.3</b> 2. Hierarchical model: factory data with Stan</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="assignment-8.html"><a href="assignment-8.html"><i class="fa fa-check"></i><b>28</b> Assignment 8</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="assignment-8.html"><a href="assignment-8.html#setup-7"><i class="fa fa-check"></i><b>28.1</b> Setup</a></li>
+<li class="chapter" data-level="28.2" data-path="assignment-8.html"><a href="assignment-8.html#exercise-1.-model-assessment-loo-cv-for-factory-data-with-stan"><i class="fa fa-check"></i><b>28.2</b> Exercise 1. Model assessment: LOO-CV for factory data with Stan</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="assignment-9.html"><a href="assignment-9.html"><i class="fa fa-check"></i><b>29</b> Assignment 9</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="assignment-9.html"><a href="assignment-9.html#setup-8"><i class="fa fa-check"></i><b>29.1</b> Setup</a></li>
+<li class="chapter" data-level="29.2" data-path="assignment-9.html"><a href="assignment-9.html#exercise-1.-decision-analysis-for-the-factory-data"><i class="fa fa-check"></i><b>29.2</b> Exercise 1. Decision analysis for the factory data</a></li>
+</ul></li>
+<li class="part"><span><b>III Book Exercises</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-4.html"><a href="introduction-4.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="30" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html"><i class="fa fa-check"></i><b>30</b> Chapter 1 Exercises</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-1"><i class="fa fa-check"></i><b>30.1</b> Question 1</a></li>
+<li class="chapter" data-level="30.2" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-2"><i class="fa fa-check"></i><b>30.2</b> Question 2</a></li>
+<li class="chapter" data-level="30.3" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-6"><i class="fa fa-check"></i><b>30.3</b> Question 6</a></li>
+<li class="chapter" data-level="30.4" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-8"><i class="fa fa-check"></i><b>30.4</b> Question 8</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html"><i class="fa fa-check"></i><b>31</b> Chapter 2 Exercises</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#setup-9"><i class="fa fa-check"></i><b>31.1</b> Setup</a></li>
+<li class="chapter" data-level="31.2" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-1-1"><i class="fa fa-check"></i><b>31.2</b> Question 1</a></li>
+<li class="chapter" data-level="31.3" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-2-1"><i class="fa fa-check"></i><b>31.3</b> Question 2</a></li>
+<li class="chapter" data-level="31.4" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-3"><i class="fa fa-check"></i><b>31.4</b> Question 3</a></li>
+<li class="chapter" data-level="31.5" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-4"><i class="fa fa-check"></i><b>31.5</b> Question 4</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="chapter-5-exercises.html"><a href="chapter-5-exercises.html"><i class="fa fa-check"></i><b>32</b> Chapter 5 Exercises</a>
+<ul>
+<li class="chapter" data-level="32.1" data-path="chapter-5-exercises.html"><a href="chapter-5-exercises.html#question-1-2"><i class="fa fa-check"></i><b>32.1</b> Question 1</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><i class="fa fa-check"></i><b>33</b> Chapter 19 Exercises - Reproducing the the ‘serial dilution assay’</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#setup-10"><i class="fa fa-check"></i><b>33.1</b> Setup</a></li>
+<li class="chapter" data-level="33.2" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#modeling"><i class="fa fa-check"></i><b>33.2</b> Modeling</a>
+<ul>
+<li class="chapter" data-level="33.2.1" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#model-specification"><i class="fa fa-check"></i><b>33.2.1</b> Model specification</a></li>
+<li class="chapter" data-level="33.2.2" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#in-stan"><i class="fa fa-check"></i><b>33.2.2</b> In Stan</a></li>
+<li class="chapter" data-level="33.2.3" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#sampling"><i class="fa fa-check"></i><b>33.2.3</b> Sampling</a></li>
+<li class="chapter" data-level="33.2.4" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#posterior-distributions"><i class="fa fa-check"></i><b>33.2.4</b> Posterior distributions</a></li>
+<li class="chapter" data-level="33.2.5" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#posterior-predictive-check"><i class="fa fa-check"></i><b>33.2.5</b> Posterior predictive check</a></li>
+</ul></li>
+<li class="chapter" data-level="33.3" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#session-info"><i class="fa fa-check"></i><b>33.3</b> Session info</a></li>
+</ul></li>
+<li class="part"><span><b>IV About</b></span></li>
+<li class="chapter" data-level="" data-path="the-website.html"><a href="the-website.html"><i class="fa fa-check"></i>The website</a></li>
+<li class="chapter" data-level="" data-path="about-me.html"><a href="about-me.html"><i class="fa fa-check"></i>About me</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-5.-markov-chain-monte-carlo" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Section 5. Markov chain Monte Carlo</h1>
+<p>2021-09-26</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="section-5.-markov-chain-monte-carlo.html#cb5-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>)</span>
+<span id="cb5-2"><a href="section-5.-markov-chain-monte-carlo.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="section-5.-markov-chain-monte-carlo.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb5-4"><a href="section-5.-markov-chain-monte-carlo.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb5-5"><a href="section-5.-markov-chain-monte-carlo.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb5-6"><a href="section-5.-markov-chain-monte-carlo.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(tidyverse))</span>
+<span id="cb5-7"><a href="section-5.-markov-chain-monte-carlo.html#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="section-5.-markov-chain-monte-carlo.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div id="resources-5" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Resources</h2>
+<ul>
+<li>BDA3 chapter 11 and <a href="../reading-instructions/BDA3_ch11_reading-instructions.pdf">reading instructions</a></li>
+<li>lectures:
+<ul>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=098dfdb4-f3b8-46aa-b988-aadf00bd3177">‘5.1. Markov chain Monte Carlo, Gibbs sampling, Metropolis algorithm’</a></li>
+<li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9f657178-d8cf-4cb8-af62-aadf00cd9423">‘5.2. Warm-up, convergence diagnostics, R-hat, and effective sample size’</a></li>
+</ul></li>
+<li><a href="../slides/slides_ch11.pdf">slides</a></li>
+<li><a href="assignments/assignment-05.pdf">Assignment 5</a></li>
+</ul>
+</div>
+<div id="notes-4" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Notes</h2>
+<div id="reading-instructions-3" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Reading instructions</h3>
+<ul>
+<li>Outline of the chapter 11
+<ul>
+<li>Markov chain simulation: before section 11.1, pages 275-276</li>
+<li>11.1 Gibbs sampler (an example of simple MCMC method)</li>
+<li>11.2 Metropolis and Metropolis-Hastings (an example of simple MCMC method) • 11.3 Using Gibbs and Metropolis as building blocks (can be skipped)</li>
+<li>11.4 Inference and assessing convergence (important)</li>
+<li>11.5 Effective number of simulation draws (important)</li>
+<li>11.6 Example: hierarchical normal model (skip this)</li>
+</ul></li>
+<li>Animations
+<ul>
+<li>Nice animations with discussion: (Markov Chains: Why Walk When You Can Flow?)[<a href="http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/" class="uri">http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/</a>]</li>
+<li>And just the animations with more options to experiment: (The Markov-chain Monte Carlo Interactive Gallery)[<a href="https://chi-feng.github.io/mcmc-demo/" class="uri">https://chi-feng.github.io/mcmc-demo/</a>]</li>
+</ul></li>
+<li>Convergence
+<ul>
+<li>theoretical convergence in an infinite time is different than practical convergence in a finite time</li>
+<li>no exact moment when chain has converged
+<ul>
+<li>convergence diagnostics can help to find out if the chain is unlikely to be representative of the target distribution</li>
+</ul></li>
+</ul></li>
+<li><span class="math inline">\(\widehat{R}\)</span> effective sample size (ESS, previously <span class="math inline">\(n_\text{eff}\)</span>)
+<ul>
+<li>there are many versions of <span class="math inline">\(\widehat{R}\)</span> and effective sample size
+<ul>
+<li>some software packages compute these using old inferior approaches</li>
+<li>updated version in <a href="https://projecteuclid.org/euclid.ba/1593828229"><em>Rank-normalization, folding, and localization: An improved $ for assessing convergence of MCMC</em></a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="chapter-11.-basics-of-markov-chain-simulation" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Chapter 11. Basics of Markov chain simulation</h3>
+<div id="introduction-1" class="section level4" number="6.2.2.1">
+<h4><span class="header-section-number">6.2.2.1</span> Introduction</h4>
+<ul>
+<li><strong>MCMC</strong>: general method based on drawing values of <span class="math inline">\(\theta\)</span> from approximate distributions and then correcting those draws to better approximate the target posterior distribution <span class="math inline">\(p(\theta, y)\)</span>
+<ul>
+<li><strong>Markov chain</strong>: a sequence of random variables <span class="math inline">\(\theta^1, \theta^2, \dots\)</span> for which, for any <span class="math inline">\(t\)</span>, the distribution of <span class="math inline">\(\theta^t\)</span> given all previous <span class="math inline">\(\theta\)</span>’s depends only on the previous value <span class="math inline">\(\theta^{t-1}\)</span></li>
+</ul></li>
+<li>general process:
+<ol style="list-style-type: decimal">
+<li>create several independent sequences</li>
+<li>each sequence <span class="math inline">\(\theta^1, \theta^2, \dots\)</span> starts from some point <span class="math inline">\(\theta^0\)</span></li>
+<li>for each <span class="math inline">\(t\)</span>, draws <span class="math inline">\(\theta^t\)</span> from the *transition distribution <span class="math inline">\(T_t (\theta^t | \theta^{t-1})\)</span></li>
+</ol></li>
+<li>essential to check convergence of chains</li>
+<li>this chapter introduces the <em>Gibbs sampler</em> and <em>Metropolis-Hastings algorithm</em></li>
+</ul>
+</div>
+<div id="gibbs-sampler" class="section level4" number="6.2.2.2">
+<h4><span class="header-section-number">6.2.2.2</span> 11.1 Gibbs sampler</h4>
+<ul>
+<li>algorithm:
+<ol style="list-style-type: decimal">
+<li>separate the parameter vector <span class="math inline">\(\theta\)</span> into <span class="math inline">\(d\)</span> components (also called subvectors) <span class="math inline">\(\theta = (\theta_1, \dots, \theta_d)\)</span></li>
+<li>for each iteration <span class="math inline">\(t\)</span>, each component is cycled through (thus, there are <span class="math inline">\(d\)</span> steps for each iteration)</li>
+<li>for each iteration <span class="math inline">\(t\)</span>, for each <span class="math inline">\(j\)</span> component of <span class="math inline">\(\theta\)</span>, each <span class="math inline">\(\theta_j^t\)</span> is sampled from the conditional distribution given all the other current values of <span class="math inline">\(\theta\)</span>: <span class="math inline">\(p(\theta_j | \theta_{-j}^{t-1})\)</span></li>
+</ol>
+<ul>
+<li>where <span class="math inline">\(\theta_{-j}^{t-1} = (\theta_1^t, \dots, \theta_{j-1}^t, \theta_{j+1}^{t-1}, \dots, \theta_d^{t-1})\)</span></li>
+<li>is just all of the current values of <span class="math inline">\(\theta\)</span> where some have yet to be update in iteration <span class="math inline">\(t\)</span></li>
+</ul></li>
+<li>ex: bivariate normal distribution
+<ul>
+<li>a bivariate normally distribution population with mean <span class="math inline">\(\theta = (\theta_1, \theta_2)\)</span> (so <span class="math inline">\(d = 2\)</span> for this example) and covariance matrix <span class="math inline">\(\begin{pmatrix} 1 &amp; \rho \\ \rho &amp; 1 \\ \end{pmatrix}\)</span></li>
+<li>given single observation <span class="math inline">\((y_1, y_2)\)</span></li>
+<li>uniform prior on <span class="math inline">\(\theta\)</span></li>
+<li>posterior distribution defined in <a href="section-5.-markov-chain-monte-carlo.html#eq:gibbs-posterior">(6.1)</a></li>
+<li>need conditional posterior distribution for each <span class="math inline">\(\theta_j\)</span> on the other components of <span class="math inline">\(\theta\)</span>
+<ul>
+<li>here, use equations A.1 from appendix A (pg. 582): <a href="section-5.-markov-chain-monte-carlo.html#eq:gibbs-conditional-posterior">(6.2)</a></li>
+</ul></li>
+<li>Gibbs sampler just alternatively samples from these two conditional distributions</li>
+</ul></li>
+</ul>
+<p><span class="math display" id="eq:gibbs-posterior">\[\begin{equation}
+  \begin{pmatrix}
+    \theta_1 \\ \theta_2 \end{pmatrix} | y
+    \sim \text{N}
+    \begin{pmatrix}
+    \begin{pmatrix} y_1 \\ y_2 \end{pmatrix},
+    \begin{pmatrix} 1 &amp; \rho \\ \rho  &amp; 1 \\ \end{pmatrix}
+  \end{pmatrix}
+  \tag{6.1}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:gibbs-conditional-posterior">\[\begin{align}
+  \begin{split}
+  \theta_1 | \theta_2, y &amp;\sim \text{N}(y_1 + \rho (\theta_2 - y_2), 1 - \rho^2) \\
+  \theta_2 | \theta_1, y &amp;\sim \text{N}(y_2 + \rho (\theta_1 - y_1), 1 - \rho^2)
+  \end{split}
+  \tag{6.2}
+\end{align}\]</span></p>
+<ul>
+<li>below is the code for the example described above</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="section-5.-markov-chain-monte-carlo.html#cb6-1" aria-hidden="true" tabindex="-1"></a>chain_to_df <span class="ot">&lt;-</span> <span class="cf">function</span>(chain, names) {</span>
+<span id="cb6-2"><a href="section-5.-markov-chain-monte-carlo.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_dfr</span>(chain, <span class="sc">~</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(.x))) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="section-5.-markov-chain-monte-carlo.html#cb6-3" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="section-5.-markov-chain-monte-carlo.html#cb6-4" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">set_names</span>(names)</span>
+<span id="cb6-5"><a href="section-5.-markov-chain-monte-carlo.html#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-6"><a href="section-5.-markov-chain-monte-carlo.html#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="section-5.-markov-chain-monte-carlo.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a single chain of a Gibbs sampler for a bivariate normal distribution.</span></span>
+<span id="cb6-8"><a href="section-5.-markov-chain-monte-carlo.html#cb6-8" aria-hidden="true" tabindex="-1"></a>gibbs_sample_demo <span class="ot">&lt;-</span> <span class="cf">function</span>(data, rho, theta_t0, <span class="at">N =</span> <span class="dv">100</span>) {</span>
+<span id="cb6-9"><a href="section-5.-markov-chain-monte-carlo.html#cb6-9" aria-hidden="true" tabindex="-1"></a>  theta_1 <span class="ot">&lt;-</span> theta_t0[[<span class="dv">1</span>]]</span>
+<span id="cb6-10"><a href="section-5.-markov-chain-monte-carlo.html#cb6-10" aria-hidden="true" tabindex="-1"></a>  theta_2 <span class="ot">&lt;-</span> theta_t0[[<span class="dv">2</span>]]</span>
+<span id="cb6-11"><a href="section-5.-markov-chain-monte-carlo.html#cb6-11" aria-hidden="true" tabindex="-1"></a>  y1 <span class="ot">&lt;-</span> data[[<span class="dv">1</span>]]</span>
+<span id="cb6-12"><a href="section-5.-markov-chain-monte-carlo.html#cb6-12" aria-hidden="true" tabindex="-1"></a>  y2 <span class="ot">&lt;-</span> data[[<span class="dv">2</span>]]</span>
+<span id="cb6-13"><a href="section-5.-markov-chain-monte-carlo.html#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="section-5.-markov-chain-monte-carlo.html#cb6-14" aria-hidden="true" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(theta_t0, <span class="at">n =</span> (<span class="dv">2</span> <span class="sc">*</span> N) <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb6-15"><a href="section-5.-markov-chain-monte-carlo.html#cb6-15" aria-hidden="true" tabindex="-1"></a>  chain[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">c</span>(theta_1, theta_2, <span class="dv">1</span>)</span>
+<span id="cb6-16"><a href="section-5.-markov-chain-monte-carlo.html#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="section-5.-markov-chain-monte-carlo.html#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, N)) {</span>
+<span id="cb6-18"><a href="section-5.-markov-chain-monte-carlo.html#cb6-18" aria-hidden="true" tabindex="-1"></a>    theta_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, y1 <span class="sc">+</span> rho <span class="sc">*</span> (theta_2 <span class="sc">-</span> y2), <span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb6-19"><a href="section-5.-markov-chain-monte-carlo.html#cb6-19" aria-hidden="true" tabindex="-1"></a>    chain[[<span class="dv">2</span> <span class="sc">*</span> (t <span class="sc">-</span> <span class="dv">1</span>)]] <span class="ot">&lt;-</span> <span class="fu">c</span>(theta_1, theta_2, t)</span>
+<span id="cb6-20"><a href="section-5.-markov-chain-monte-carlo.html#cb6-20" aria-hidden="true" tabindex="-1"></a>    theta_2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, y2 <span class="sc">+</span> rho <span class="sc">*</span> (theta_1 <span class="sc">-</span> y1), <span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb6-21"><a href="section-5.-markov-chain-monte-carlo.html#cb6-21" aria-hidden="true" tabindex="-1"></a>    chain[[<span class="dv">2</span> <span class="sc">*</span> (t <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">c</span>(theta_1, theta_2, t)</span>
+<span id="cb6-22"><a href="section-5.-markov-chain-monte-carlo.html#cb6-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-23"><a href="section-5.-markov-chain-monte-carlo.html#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="section-5.-markov-chain-monte-carlo.html#cb6-24" aria-hidden="true" tabindex="-1"></a>  chain_df <span class="ot">&lt;-</span> <span class="fu">chain_to_df</span>(chain, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;theta_1&quot;</span>, <span class="st">&quot;theta_2&quot;</span>, <span class="st">&quot;t&quot;</span>))</span>
+<span id="cb6-25"><a href="section-5.-markov-chain-monte-carlo.html#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(chain_df)</span>
+<span id="cb6-26"><a href="section-5.-markov-chain-monte-carlo.html#cb6-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-27"><a href="section-5.-markov-chain-monte-carlo.html#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="section-5.-markov-chain-monte-carlo.html#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="section-5.-markov-chain-monte-carlo.html#cb6-29" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
+<span id="cb6-30"><a href="section-5.-markov-chain-monte-carlo.html#cb6-30" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb6-31"><a href="section-5.-markov-chain-monte-carlo.html#cb6-31" aria-hidden="true" tabindex="-1"></a>starting_points <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb6-32"><a href="section-5.-markov-chain-monte-carlo.html#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb6-33"><a href="section-5.-markov-chain-monte-carlo.html#cb6-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-34"><a href="section-5.-markov-chain-monte-carlo.html#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="section-5.-markov-chain-monte-carlo.html#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb6-36"><a href="section-5.-markov-chain-monte-carlo.html#cb6-36" aria-hidden="true" tabindex="-1"></a>gibbs_demo_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb6-37"><a href="section-5.-markov-chain-monte-carlo.html#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb6-38"><a href="section-5.-markov-chain-monte-carlo.html#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">gibbs_sample_demo</span>(y, rho, starting_points[[.x]]) <span class="sc">%&gt;%</span></span>
+<span id="cb6-39"><a href="section-5.-markov-chain-monte-carlo.html#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
+<span id="cb6-40"><a href="section-5.-markov-chain-monte-carlo.html#cb6-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-41"><a href="section-5.-markov-chain-monte-carlo.html#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="section-5.-markov-chain-monte-carlo.html#cb6-42" aria-hidden="true" tabindex="-1"></a>plot_chains <span class="ot">&lt;-</span> <span class="cf">function</span>(chain_df, <span class="at">x =</span> theta_1, <span class="at">y =</span> theta_2, <span class="at">color =</span> chain) {</span>
+<span id="cb6-43"><a href="section-5.-markov-chain-monte-carlo.html#cb6-43" aria-hidden="true" tabindex="-1"></a>  chain_df <span class="sc">%&gt;%</span></span>
+<span id="cb6-44"><a href="section-5.-markov-chain-monte-carlo.html#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">y =</span> {{ y }}, <span class="at">color =</span> {{ color }})) <span class="sc">+</span></span>
+<span id="cb6-45"><a href="section-5.-markov-chain-monte-carlo.html#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-46"><a href="section-5.-markov-chain-monte-carlo.html#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span>
+<span id="cb6-47"><a href="section-5.-markov-chain-monte-carlo.html#cb6-47" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-48"><a href="section-5.-markov-chain-monte-carlo.html#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="section-5.-markov-chain-monte-carlo.html#cb6-49" aria-hidden="true" tabindex="-1"></a>plot_points <span class="ot">&lt;-</span> <span class="cf">function</span>(chain_df, <span class="at">x =</span> theta_1, <span class="at">y =</span> theta_2, <span class="at">color =</span> chain) {</span>
+<span id="cb6-50"><a href="section-5.-markov-chain-monte-carlo.html#cb6-50" aria-hidden="true" tabindex="-1"></a>  chain_df <span class="sc">%&gt;%</span></span>
+<span id="cb6-51"><a href="section-5.-markov-chain-monte-carlo.html#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">y =</span> {{ y }}, <span class="at">color =</span> {{ color }})) <span class="sc">+</span></span>
+<span id="cb6-52"><a href="section-5.-markov-chain-monte-carlo.html#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.75</span>, <span class="at">alpha =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb6-53"><a href="section-5.-markov-chain-monte-carlo.html#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span>
+<span id="cb6-54"><a href="section-5.-markov-chain-monte-carlo.html#cb6-54" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-55"><a href="section-5.-markov-chain-monte-carlo.html#cb6-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-56"><a href="section-5.-markov-chain-monte-carlo.html#cb6-56" aria-hidden="true" tabindex="-1"></a>theta_axis_labs <span class="ot">&lt;-</span> <span class="cf">function</span>(p) {</span>
+<span id="cb6-57"><a href="section-5.-markov-chain-monte-carlo.html#cb6-57" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span></span>
+<span id="cb6-58"><a href="section-5.-markov-chain-monte-carlo.html#cb6-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb6-59"><a href="section-5.-markov-chain-monte-carlo.html#cb6-59" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb6-60"><a href="section-5.-markov-chain-monte-carlo.html#cb6-60" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>()</span>
+<span id="cb6-61"><a href="section-5.-markov-chain-monte-carlo.html#cb6-61" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb6-62"><a href="section-5.-markov-chain-monte-carlo.html#cb6-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;θ&lt;sub&gt;1&lt;/sub&gt;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;θ&lt;sub&gt;2&lt;/sub&gt;&quot;</span>)</span>
+<span id="cb6-63"><a href="section-5.-markov-chain-monte-carlo.html#cb6-63" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-64"><a href="section-5.-markov-chain-monte-carlo.html#cb6-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-65"><a href="section-5.-markov-chain-monte-carlo.html#cb6-65" aria-hidden="true" tabindex="-1"></a>gibbs_plot_chains <span class="ot">&lt;-</span> <span class="fu">plot_chains</span>(gibbs_demo_chains) <span class="sc">%&gt;%</span></span>
+<span id="cb6-66"><a href="section-5.-markov-chain-monte-carlo.html#cb6-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
+<span id="cb6-67"><a href="section-5.-markov-chain-monte-carlo.html#cb6-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-68"><a href="section-5.-markov-chain-monte-carlo.html#cb6-68" aria-hidden="true" tabindex="-1"></a>gibbs_plot_points <span class="ot">&lt;-</span> gibbs_demo_chains <span class="sc">%&gt;%</span></span>
+<span id="cb6-69"><a href="section-5.-markov-chain-monte-carlo.html#cb6-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chain, t) <span class="sc">%&gt;%</span></span>
+<span id="cb6-70"><a href="section-5.-markov-chain-monte-carlo.html#cb6-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-71"><a href="section-5.-markov-chain-monte-carlo.html#cb6-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-72"><a href="section-5.-markov-chain-monte-carlo.html#cb6-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_points</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-73"><a href="section-5.-markov-chain-monte-carlo.html#cb6-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
+<span id="cb6-74"><a href="section-5.-markov-chain-monte-carlo.html#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-75"><a href="section-5.-markov-chain-monte-carlo.html#cb6-75" aria-hidden="true" tabindex="-1"></a>(gibbs_plot_chains <span class="sc">|</span> gibbs_plot_points) <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&quot;Gibbs sampler&quot;</span>)</span></code></pre></div>
+<p><img src="notes-05_mcmc_bda3-11_files/figure-html/unnamed-chunk-1-1.png" width="2100" /></p>
+</div>
+<div id="metropolis-and-metropolis-hastings-algorithms" class="section level4" number="6.2.2.3">
+<h4><span class="header-section-number">6.2.2.3</span> 11.2 Metropolis and Metropolis-Hastings algorithms</h4>
+<ul>
+<li>the Metropolis-Hastings algorithm is a generalized version of the Metropolis algorithm</li>
+</ul>
+<div id="the-metropolis-algorithm" class="section level5" number="6.2.2.3.1">
+<h5><span class="header-section-number">6.2.2.3.1</span> The Metropolis algorithm</h5>
+<ul>
+<li>is a random walk with an acceptance and rejection rule to converge to the target distribution</li>
+<li>steps:
+<ol style="list-style-type: decimal">
+<li>draws a starting point <span class="math inline">\(\theta^0\)</span> from a <em>starting distribution</em> <span class="math inline">\(p_0(\theta)\)</span> such that <span class="math inline">\(p(\theta^0|y) &gt; 0\)</span></li>
+<li>for time <span class="math inline">\(t = 1, 2, \dots\)</span>:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>sample a <em>proposal</em> <span class="math inline">\(\theta^*\)</span> from a <em>jumping/proposal distribution</em> <span class="math inline">\(J_t(\theta^*|\theta^{t-1})\)</span></li>
+<li>calculate the ratio of the densities: <span class="math inline">\(r = \frac{p(\theta^*|y)}{p(\theta^{t-1}|y)}\)</span></li>
+<li>set <span class="math inline">\(\theta^t = \theta^*\)</span> with probability <span class="math inline">\(\min(r, 1)\)</span>, else <span class="math inline">\(\theta^t = \theta^{t-1}\)</span>
+- if the proposal is more likely, it is always accepted, otherwise the ratio <span class="math inline">\(r\)</span> is used as the probability of acceptance</li>
+</ol></li>
+<li>the jumping distribution <span class="math inline">\(J_t\)</span> must be symmetric such that <span class="math inline">\(J_t(\theta_a|\theta_b) = J_t(\theta_b|\theta_a)\)</span></li>
+<li>the iteration still counts even if the proposal <span class="math inline">\(\theta^*\)</span> is rejected</li>
+<li>ex: bivariate normal distribution (same as before):
+<ul>
+<li>target density as bivariate normal: <span class="math inline">\(p(\theta|y) = \text{N}(\theta | 0, I)\)</span></li>
+<li>jumping distribution as a bivariate normal with smaller deviations and centered around the previous iteration’s <span class="math inline">\(\theta^{t-1}\)</span>: <span class="math inline">\(J_t(\theta^*|\theta^{t-1}) = \text{N}(\theta^* | \theta^{t-1}, 0.2^2I)\)</span></li>
+<li>thus, the density ratio: <span class="math inline">\(r = \text{N}(\theta^*|0, I) / \text{N}(\theta^{t-1}|0, I)\)</span></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="section-5.-markov-chain-monte-carlo.html#cb7-1" aria-hidden="true" tabindex="-1"></a>calc_metropolis_density_ratio <span class="ot">&lt;-</span> <span class="cf">function</span>(t_star, t_m1, data, prior_cov_mat) {</span>
+<span id="cb7-2"><a href="section-5.-markov-chain-monte-carlo.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  numerator <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(t_star, data, prior_cov_mat)</span>
+<span id="cb7-3"><a href="section-5.-markov-chain-monte-carlo.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  denominator <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(t_m1, data, prior_cov_mat)</span>
+<span id="cb7-4"><a href="section-5.-markov-chain-monte-carlo.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(numerator <span class="sc">/</span> denominator)</span>
+<span id="cb7-5"><a href="section-5.-markov-chain-monte-carlo.html#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-6"><a href="section-5.-markov-chain-monte-carlo.html#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="section-5.-markov-chain-monte-carlo.html#cb7-7" aria-hidden="true" tabindex="-1"></a>metropolis_algorithm_demo <span class="ot">&lt;-</span> <span class="cf">function</span>(data, theta_t0, <span class="at">N =</span> <span class="dv">1000</span>, <span class="at">quiet =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb7-8"><a href="section-5.-markov-chain-monte-carlo.html#cb7-8" aria-hidden="true" tabindex="-1"></a>  theta_t <span class="ot">&lt;-</span> <span class="fu">unlist</span>(theta_t0)</span>
+<span id="cb7-9"><a href="section-5.-markov-chain-monte-carlo.html#cb7-9" aria-hidden="true" tabindex="-1"></a>  prior_dist_mu <span class="ot">&lt;-</span> data</span>
+<span id="cb7-10"><a href="section-5.-markov-chain-monte-carlo.html#cb7-10" aria-hidden="true" tabindex="-1"></a>  prior_dist_cov_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb7-11"><a href="section-5.-markov-chain-monte-carlo.html#cb7-11" aria-hidden="true" tabindex="-1"></a>  jumping_dist_cov_mat <span class="ot">&lt;-</span> prior_dist_cov_mat <span class="sc">*</span> <span class="fl">0.2</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb7-12"><a href="section-5.-markov-chain-monte-carlo.html#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="section-5.-markov-chain-monte-carlo.html#cb7-13" aria-hidden="true" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(<span class="cn">NA_real_</span>, <span class="at">n =</span> N <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb7-14"><a href="section-5.-markov-chain-monte-carlo.html#cb7-14" aria-hidden="true" tabindex="-1"></a>  chain[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> theta_t</span>
+<span id="cb7-15"><a href="section-5.-markov-chain-monte-carlo.html#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="section-5.-markov-chain-monte-carlo.html#cb7-16" aria-hidden="true" tabindex="-1"></a>  n_accepts <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb7-17"><a href="section-5.-markov-chain-monte-carlo.html#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="section-5.-markov-chain-monte-carlo.html#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, N <span class="sc">+</span> <span class="dv">1</span>)) {</span>
+<span id="cb7-19"><a href="section-5.-markov-chain-monte-carlo.html#cb7-19" aria-hidden="true" tabindex="-1"></a>    theta_star <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">rmvnorm</span>(</span>
+<span id="cb7-20"><a href="section-5.-markov-chain-monte-carlo.html#cb7-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> theta_t, <span class="at">sigma =</span> jumping_dist_cov_mat</span>
+<span id="cb7-21"><a href="section-5.-markov-chain-monte-carlo.html#cb7-21" aria-hidden="true" tabindex="-1"></a>    )[<span class="dv">1</span>, ]</span>
+<span id="cb7-22"><a href="section-5.-markov-chain-monte-carlo.html#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="section-5.-markov-chain-monte-carlo.html#cb7-23" aria-hidden="true" tabindex="-1"></a>    density_ratio <span class="ot">&lt;-</span> <span class="fu">calc_metropolis_density_ratio</span>(</span>
+<span id="cb7-24"><a href="section-5.-markov-chain-monte-carlo.html#cb7-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">t_star =</span> theta_star,</span>
+<span id="cb7-25"><a href="section-5.-markov-chain-monte-carlo.html#cb7-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">t_m1 =</span> theta_t,</span>
+<span id="cb7-26"><a href="section-5.-markov-chain-monte-carlo.html#cb7-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> data,</span>
+<span id="cb7-27"><a href="section-5.-markov-chain-monte-carlo.html#cb7-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">prior_cov_mat =</span> prior_dist_cov_mat</span>
+<span id="cb7-28"><a href="section-5.-markov-chain-monte-carlo.html#cb7-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-29"><a href="section-5.-markov-chain-monte-carlo.html#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="section-5.-markov-chain-monte-carlo.html#cb7-30" aria-hidden="true" tabindex="-1"></a>    accept <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fu">min</span>(<span class="fu">c</span>(<span class="dv">1</span>, density_ratio))</span>
+<span id="cb7-31"><a href="section-5.-markov-chain-monte-carlo.html#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (accept) {</span>
+<span id="cb7-32"><a href="section-5.-markov-chain-monte-carlo.html#cb7-32" aria-hidden="true" tabindex="-1"></a>      theta_t <span class="ot">&lt;-</span> theta_star</span>
+<span id="cb7-33"><a href="section-5.-markov-chain-monte-carlo.html#cb7-33" aria-hidden="true" tabindex="-1"></a>      n_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb7-34"><a href="section-5.-markov-chain-monte-carlo.html#cb7-34" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-35"><a href="section-5.-markov-chain-monte-carlo.html#cb7-35" aria-hidden="true" tabindex="-1"></a>    chain[[t]] <span class="ot">&lt;-</span> theta_t</span>
+<span id="cb7-36"><a href="section-5.-markov-chain-monte-carlo.html#cb7-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-37"><a href="section-5.-markov-chain-monte-carlo.html#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>quiet) {</span>
+<span id="cb7-38"><a href="section-5.-markov-chain-monte-carlo.html#cb7-38" aria-hidden="true" tabindex="-1"></a>    frac_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">/</span> N</span>
+<span id="cb7-39"><a href="section-5.-markov-chain-monte-carlo.html#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="fu">glue</span>(<span class="st">&quot;fraction of accepted jumps: {frac_accepts}&quot;</span>))</span>
+<span id="cb7-40"><a href="section-5.-markov-chain-monte-carlo.html#cb7-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-41"><a href="section-5.-markov-chain-monte-carlo.html#cb7-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">chain_to_df</span>(chain, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;theta_1&quot;</span>, <span class="st">&quot;theta_2&quot;</span>)))</span>
+<span id="cb7-42"><a href="section-5.-markov-chain-monte-carlo.html#cb7-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-43"><a href="section-5.-markov-chain-monte-carlo.html#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="section-5.-markov-chain-monte-carlo.html#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb7-45"><a href="section-5.-markov-chain-monte-carlo.html#cb7-45" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb7-46"><a href="section-5.-markov-chain-monte-carlo.html#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb7-47"><a href="section-5.-markov-chain-monte-carlo.html#cb7-47" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">metropolis_algorithm_demo</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), starting_points[[.x]]) <span class="sc">%&gt;%</span></span>
+<span id="cb7-48"><a href="section-5.-markov-chain-monte-carlo.html#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
+<span id="cb7-49"><a href="section-5.-markov-chain-monte-carlo.html#cb7-49" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>#&gt; fraction of accepted jumps: 0.888</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.868</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.914</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.869</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="section-5.-markov-chain-monte-carlo.html#cb12-1" aria-hidden="true" tabindex="-1"></a>metropolis_plot_chains <span class="ot">&lt;-</span> <span class="fu">plot_chains</span>(metropolis_chains) <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="section-5.-markov-chain-monte-carlo.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
+<span id="cb12-3"><a href="section-5.-markov-chain-monte-carlo.html#cb12-3" aria-hidden="true" tabindex="-1"></a>metropolis_plot_points <span class="ot">&lt;-</span> metropolis_chains <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="section-5.-markov-chain-monte-carlo.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="section-5.-markov-chain-monte-carlo.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="section-5.-markov-chain-monte-carlo.html#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_points</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="section-5.-markov-chain-monte-carlo.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
+<span id="cb12-8"><a href="section-5.-markov-chain-monte-carlo.html#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="section-5.-markov-chain-monte-carlo.html#cb12-9" aria-hidden="true" tabindex="-1"></a>(metropolis_plot_chains <span class="sc">|</span> metropolis_plot_points) <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&quot;Metropolis algorithm&quot;</span>)</span></code></pre></div>
+<p><img src="notes-05_mcmc_bda3-11_files/figure-html/unnamed-chunk-2-1.png" width="2100" /></p>
+</div>
+<div id="the-metropolis-hastings-algorithm" class="section level5" number="6.2.2.3.2">
+<h5><span class="header-section-number">6.2.2.3.2</span> The Metropolis-Hastings algorithm</h5>
+<ul>
+<li>two changes to generalize the Metropolis algorithm:
+<ol style="list-style-type: decimal">
+<li>the jumping rule <span class="math inline">\(J_t\)</span> need not be symmetric</li>
+</ol>
+<ul>
+<li>generally results in a faster random walk</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>a new ratio <span class="math inline">\(r\)</span> <a href="section-5.-markov-chain-monte-carlo.html#eq:mh-ratio">(6.3)</a></li>
+</ol>
+<ul>
+<li>can interpret at a re-weighting of the numerator and denominator by the probability of accepting or rejecting <span class="math inline">\(\theta^*\)</span></li>
+</ul></li>
+</ul>
+<p><span class="math display" id="eq:mh-ratio">\[\begin{equation}
+  r = \frac{p(\theta^* | y) / J_t(\theta^* | \theta^{t-1})}{p(\theta^{t-1} | y) / J_t(\theta^{t-1} | \theta^*)}
+  \tag{6.3}
+\end{equation}\]</span></p>
+<ul>
+<li>properties of a good jumping rule:
+<ol style="list-style-type: decimal">
+<li>easy to sample <span class="math inline">\(J(\theta^*|\theta)\)</span> for any <span class="math inline">\(\theta\)</span></li>
+<li>easy to compute the ratio <span class="math inline">\(r\)</span></li>
+<li>each jump travels a “reasonable” distance</li>
+<li>the jumpy are not rejected too frequently</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="metropolis-and-metropolis-hastings-algorithms-1" class="section level4" number="6.2.2.4">
+<h4><span class="header-section-number">6.2.2.4</span> 11.2 Metropolis and Metropolis-Hastings algorithms</h4>
+<ul>
+<li>for Bayesian analysis, we want to be able to use the posterior samples for inference, but requires special care when using iterative simulation</li>
+</ul>
+<div id="difficulties-of-inference-from-iterative-simulation" class="section level5" number="6.2.2.4.1">
+<h5><span class="header-section-number">6.2.2.4.1</span> Difficulties of inference from iterative simulation</h5>
+<ul>
+<li>two main challenges:
+<ol style="list-style-type: decimal">
+<li>“if the iterations have not proceeded long enough… the simulations may be grossly unrepresentative of the target distribution” (pg 282)</li>
+<li>correlation between draws: “simulation inference from correlated draws is generally less precise than from the same number of independent draws” (pg 282)</li>
+</ol></li>
+<li>to address these issues:
+<ul>
+<li>design the simulations to enable monitoring of convergence</li>
+<li>compare variation between and within chains</li>
+</ul></li>
+</ul>
+</div>
+<div id="discarding-early-iterations-of-the-simulation-runs" class="section level5" number="6.2.2.4.2">
+<h5><span class="header-section-number">6.2.2.4.2</span> Discarding early iterations of the simulation runs</h5>
+<ul>
+<li><em>warm-up</em>: remove first portion of draws to diminish the influence on the starting location
+<ul>
+<li>how many to drop depends on the specific case, but dropping the first half of the chain is usually good</li>
+</ul></li>
+</ul>
+</div>
+<div id="dependence-of-the-iterations-in-each-sequence" class="section level5" number="6.2.2.4.3">
+<h5><span class="header-section-number">6.2.2.4.3</span> Dependence of the iterations in each sequence</h5>
+<ul>
+<li><em>thinning</em> a chain: keeping every <span class="math inline">\(k\)</span>th simulation draw
+<ul>
+<li>not necessary if the chains have converged</li>
+<li>can help with preserving RAM if many parameters</li>
+</ul></li>
+</ul>
+</div>
+<div id="multiple-sequences-with-overdispersed-starting-points" class="section level5" number="6.2.2.4.4">
+<h5><span class="header-section-number">6.2.2.4.4</span> Multiple sequences with overdispersed starting points</h5>
+<ul>
+<li>use multiple chains to be able to compare with each other
+<ul>
+<li><em>mixing</em> and <em>stationarity</em> discussed below</li>
+</ul></li>
+</ul>
+</div>
+<div id="monitoring-scalar-estimands" class="section level5" number="6.2.2.4.5">
+<h5><span class="header-section-number">6.2.2.4.5</span> Monitoring scalar estimands</h5>
+<ul>
+<li>check estimated parameter values and any other computed values of interest to see if their posterior distributions settle</li>
+</ul>
+</div>
+<div id="challenges-of-monitoring-convergence-missing-and-stationarity" class="section level5" number="6.2.2.4.6">
+<h5><span class="header-section-number">6.2.2.4.6</span> Challenges of monitoring convergence: missing and stationarity</h5>
+<ul>
+<li><em>mixing</em>: when the chains converge to the same distribution</li>
+<li><em>stationarity</em>: when each chains has converged to a consistent distribution of values</li>
+</ul>
+</div>
+<div id="splitting-each-saved-sequence-into-two-parts" class="section level5" number="6.2.2.4.7">
+<h5><span class="header-section-number">6.2.2.4.7</span> Splitting each saved sequence into two parts</h5>
+<ul>
+<li>a method for checking convergence and stationarity of multiple chains:
+<ul>
+<li>(after adjusting for warm-up) split each chain in half and check if all of the halves have mixed</li>
+<li>checks mixing: if all of the chains have mixed, the separate parts of the different chains should also have mixed</li>
+<li>checks stationarity: the first and second half of each sequence should be traversing the same distribution</li>
+</ul></li>
+</ul>
+</div>
+<div id="assessing-mising-using-between--and-within-sequence-variances" class="section level5" number="6.2.2.4.8">
+<h5><span class="header-section-number">6.2.2.4.8</span> Assessing mising using between- and within-sequence variances</h5>
+<ul>
+<li>calculations for mixing of the split chains:
+<ul>
+<li><span class="math inline">\(m\)</span>: number of chains after splitting; <span class="math inline">\(n\)</span>: length of each split chain</li>
+<li><span class="math inline">\(\psi\)</span>: each labeled estimand (parameter or calculated value of interest)
+<ul>
+<li>label the simulations as <span class="math inline">\(\psi_{ij}\)</span> where <span class="math inline">\((i=1, \dots, n; j=1, \dots, m)\)</span></li>
+</ul></li>
+<li>between-sequence variance <span class="math inline">\(B\)</span> <a href="section-5.-markov-chain-monte-carlo.html#eq:Bvar">(6.4)</a> and within-sequence variance <span class="math inline">\(W\)</span> <a href="section-5.-markov-chain-monte-carlo.html#eq:Wvar">(6.5)</a></li>
+<li>estimate <span class="math inline">\(\text{var}(\psi|y)\)</span> as a weighted average of <span class="math inline">\(B\)</span> and <span class="math inline">\(W\)</span> <a href="section-5.-markov-chain-monte-carlo.html#eq:seq-var">(6.6)</a>
+<ul>
+<li>is actually an overestimate</li>
+</ul></li>
+<li>use <span class="math inline">\(\widehat{\text{var}}^+(\psi|y)\)</span> to calculate a factor by which the scale of the current distribution for <span class="math inline">\(\psi\)</span> might be reduced if the simulations were continued <span class="math inline">\(\widehat{R}\)</span>
+<ul>
+<li>the calculation for <span class="math inline">\(\widehat{R}\)</span> has been updated since publishing <em>BDA3</em></li>
+<li>if <span class="math inline">\(\widehat{R}\)</span> is above 1, indicates that letting the chains run longer would improve inference</li>
+</ul></li>
+<li>using these calculations of variance is more reliable than visually checking for mixing, convergence, and stationarity using trace-plots
+<ul>
+<li>is also more practical when there are many parameters (such as is common for hierarchical distributions)</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math display" id="eq:Bvar">\[\begin{equation}
+  B = \frac{n}{m-1} \sum_j^m (\bar{\psi}_{.j} - \bar{\psi}_{..})^2 \\
+  \quad \text{where} \quad
+    \bar{\psi}_{.j} = \frac{1}{n} \sum _i^n \psi_{ij}
+    \quad \text{and} \quad
+    \bar{\psi}_{..} = \frac{1}{m} \sum_j^m \bar{\psi}_{.j}
+  \tag{6.4}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:Wvar">\[\begin{equation}
+  W = \frac{1}{m} \sum_j^m s_j^2
+    \quad \text{where} \quad
+    s_j^2 = \frac{1}{n-1} \sum_i^n (\psi_ij - \bar{\psi}_{.j})^2
+  \tag{6.5}
+\end{equation}\]</span></p>
+<p><span class="math display" id="eq:seq-var">\[\begin{equation}
+  \widehat{\text{var}}^+(\psi|y) = \frac{n-1}{n}W + \frac{1}{n}B
+  \tag{6.6}
+\end{equation}\]</span></p>
+</div>
+</div>
+<div id="effective-number-of-simulation-draws" class="section level4" number="6.2.2.5">
+<h4><span class="header-section-number">6.2.2.5</span> 11.5 Effective number of simulation draws</h4>
+<ul>
+<li>compute an approximate “effective number of independent simulation draws” <span class="math inline">\(n_\text{eff}\)</span>
+<ul>
+<li>if all draws were truly independent, then <span class="math inline">\(B \approx \text{var}(\psi|y)\)</span></li>
+<li>but usually draws of <span class="math inline">\(\psi\)</span> are autocorrelated and <span class="math inline">\(B\)</span> will be larger than <span class="math inline">\(\text{var}(\psi|y)\)</span></li>
+</ul></li>
+<li>with non-normal posterior samples, may need to first transform the draws before calculating <span class="math inline">\(n_\text{eff}\)</span> and <span class="math inline">\(\widehat{R}\)</span></li>
+<li>recommendation is to sample until <span class="math inline">\(\widehat{R} \le 1.1\)</span> and <span class="math inline">\(n_\text{eff} \ge 5m\)</span> where <span class="math inline">\(m\)</span> is the number of split chains (i.e. <span class="math inline">\(\text{number of chains} \times 2\)</span>) (pg. 287)</li>
+</ul>
+</div>
+</div>
+<div id="lecture-notes-4" class="section level3" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Lecture notes</h3>
+<div id="markov-chain-monte-carlo-gibbs-sampling-metropolis-algorithm" class="section level4" number="6.2.3.1">
+<h4><span class="header-section-number">6.2.3.1</span> 5.1. Markov chain Monte Carlo, Gibbs sampling, Metropolis algorithm</h4>
+<ul>
+<li>Gibbs sampler
+<ul>
+<li>with conditionally conjugate priors, the sampling from the conditional distributions is easy for wide range of models
+<ul>
+<li>software: BUGS, WinBUGS, OpenBUGS, JAGS</li>
+</ul></li>
+<li>benefit: no algorithm parameters to tune</li>
+<li>slow if parameters are highly dependent in the posterior
+<ul>
+<li>the high correlation create a narrow region in which the sampler moves, slowing exploration of the posterior</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="warm-up-convergence-diagnostics-r-hat-and-effective-sample-size" class="section level4" number="6.2.3.2">
+<h4><span class="header-section-number">6.2.3.2</span> 5.2. Warm-up, convergence diagnostics, R-hat, and effective sample size</h4>
+<ul>
+<li><span class="math inline">\(\widehat{R}\)</span> with only a few draws and with many draws:</li>
+</ul>
+<div class="figure">
+<img src="assets/05_mcmc_bda3-11/slides_ch11-s28-1.png" alt="" />
+<p class="caption">Rhat-with-few-draws</p>
+</div>
+<p><img src="assets/05_mcmc_bda3-11/slides_ch11-s28-3.png" alt="Rhat-with-many-draws" />
+- update <span class="math inline">\(\widehat{R}\)</span> is <em>rank normalized <span class="math inline">\(\widehat{R}\)</span></em>
+- original <span class="math inline">\(\widehat{R}\)</span> requires that the target distribution has finite mean and variance
+- rank normalized removes this requirement
+- improved detection of different scales between chains
+- the paper also proposes local convergence diagnostics and practical MCSE estimates for quantiles
+- autocorrelation in the chains (think of as a time series analysis)
+- describes the correlation given a certain lag
+- how many steps does it take for the chain to forget a previous step
+- can be used to compare efficiency of MCMC algorithms and parameterizations
+- in the example below, the autocorrelation plot shows that it takes about 40 steps to reach a correlation of 0
+- the x-axis should be “lag”</p>
+<p><img src="assets/05_mcmc_bda3-11/slides_ch11-s36.png" alt="autocorrelation-example" />
+- calculating autocorrelation function
+- <span class="math inline">\(\hat{\rho}_{n,m}\)</span> is the autocorrelation at lag <span class="math inline">\(n\)</span> for chain <span class="math inline">\(m\)</span> of <span class="math inline">\(M\)</span> chains
+- can see the use of <span class="math inline">\(W\)</span> and <span class="math inline">\(\widehat{\text{var}}^+\)</span> from the calculation of <span class="math inline">\(\widehat{R}\)</span> so that is accounts for how well the chains mix</p>
+<p><span class="math display">\[
+\hat{\rho}_n = 1 - \frac{W - \frac{1}{M} \sum_m^M \hat{\rho}_{n,m}}{2 \widehat{\text{var}}^+}
+\]</span></p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="section-4.-monte-carlo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-6.-hmc-nuts-and-stan.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/hadley/r4ds/edit/master/notes-05_mcmc_bda3-11.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/notes-05_mcmc_bda3-11.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
