@@ -234,3 +234,5 @@ po/*~
 /*_files/
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,python,r,jupyternotebooks
+
+_main.rds

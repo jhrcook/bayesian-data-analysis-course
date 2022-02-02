@@ -6,14 +6,7 @@ SHELL=/bin/bash
 help:
 	@echo "available commands"
 	@echo " - help               : information about available commands"
-	@echo " - render             : render the distill website"
-	@echo " - notebooks          : run Notes and Assignment Rmd"
-	@echo " - build              : run all Rmd and render the site"
+	@echo " - build              : run all notebooks and build the gitbook"
 
-render:
-	Rscript -e "rmarkdown::render_site()" && rm -r docs/data
-
-notebooks:
-	Rscript run-all-notebooks.R
-
-build: notebooks render
+build:
+	Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")'
