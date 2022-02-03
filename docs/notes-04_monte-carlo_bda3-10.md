@@ -44,7 +44,7 @@ Other comments:
     - thus, for Bayes theorem, use $p(\theta)p(y|\theta) \propto p(\theta|y)$
 - when possible, use log posterior densities to avoid computational over/underflows
 
-#### 10.1 Numerical integration
+#### 10.1 Numerical integration {-}
 
 - methods where the integral over a continuous function is evaluated by computing the value of the function at a finite number of points
   - included simulation methods (such as Monte Carlo) and deterministic methods
@@ -59,13 +59,13 @@ $$
 - Monte Carlo methods produce independent samples and are described in this chapter
 - Markov chain Monte Carlo methods better adapt to higher-dimensional, complex distributions, but produce dependent samples (discussed in chapter 11 and 12)
 
-#### 10.2 Distributional approximations
+#### 10.2 Distributional approximations {-}
 
 - approx the posterior with a simpler parameter distribution
   - can solve these integrals analytically or use them as starting points for simulation-based methods
   - often useful to create a simpler model that can be solved analytically to get a approx for the original posterior
 
-#### 10.3 Direct simulation and rejection sampling
+#### 10.3 Direct simulation and rejection sampling {-}
 
 - can often draw directly from the posterior distribution for simpler models
   - otherwise, often good to factor the distribution analytically and simulate it in parts
@@ -84,7 +84,7 @@ $$
   - else, the bound for $M$ must be large to ensure the importance ratio in step 2 is $\frac{p(\theta|y)}{g(\theta)} \le M$, causing a lot of rejections in step 2 of the algorithm
   - the function $g(\theta)$ is implicitly dependent on $y$, but that is not of interest so it is not reflected in the notation
 
-#### 10.4 Importance sampling
+#### 10.4 Importance sampling {-}
 
 - *importance sampling*: used for computing expectations using a random sample drawn from an approx to the target dist $p(\theta|y)$
   - related to rejection sampling
@@ -112,7 +112,7 @@ $$
   - obtain a starting point for iterative simulations of the posterior
   - useful for LOO-CV where the original posterior is used as an approximation to the modified posterior dist
 
-#### 10.5 How many simulation draws are needed?
+#### 10.5 How many simulation draws are needed? {-}
 
 - goal: "...enough draws $S$ so that quantities of interest can be estimated with reasonable accuracy"
   - for most examples, $S=100$ *independent* draws are enough
@@ -129,11 +129,11 @@ $$
       - ex: $\mu_\theta$ and $\sum_\theta$ is $\theta$ is described as a normal distribution
     2. use the described distribution to answer further questions
 
-#### 10.6 Computing environments
+#### 10.6 Computing environments {-}
 
 - the *Stan* program is named after the mathematician Stanislaw Ulam
 
-#### 10.7 Debugging Bayesian computing
+#### 10.7 Debugging Bayesian computing {-}
 
 - running multiple chains and checking for convergence and mixing
 - debugging using fake data:
@@ -145,7 +145,7 @@ $$
 
 ### Lecture notes
 
-#### 4.1 Numerical issues, Monte Carlo, how many simulation draws are needed, how many digits to report
+#### 4.1 Numerical issues, Monte Carlo, how many simulation draws are needed, how many digits to report {-}
 
 - numerical accuracy:
   - in R, more accuracy near 0:
@@ -187,7 +187,7 @@ pbeta(0.5, 241945, 251527, lower.tail = FALSE) # 1 - p
 ![uncertatiny-of-intervals](assets/04_monte-carlo_bda3-10/slides_ch10-s15.jpg)
 ![uncertatiny-of-rare-events](assets/04_monte-carlo_bda3-10/slides_ch10-s17.jpg)
 
-#### 4.2 Direct simulation, curse of dimensionality, rejection sampling, and importance sampling
+#### 4.2 Direct simulation, curse of dimensionality, rejection sampling, and importance sampling {-}
 
 - rejection sampling:
   - have proposal $g(\theta)$ and target $q(\theta|y)$ distributions

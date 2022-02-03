@@ -37,22 +37,22 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+## ── Attaching packages ─────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
 ```
 
 ```
-## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
-## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   2.0.1     ✓ forcats 0.5.1
-## ✓ purrr   0.3.4
+## ✔ tibble  3.1.3     ✔ dplyr   1.0.7
+## ✔ tidyr   1.1.3     ✔ stringr 1.4.0
+## ✔ readr   2.0.1     ✔ forcats 0.5.1
+## ✔ purrr   0.3.4
 ```
 
 ```
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::collapse() masks glue::collapse()
-## x tidyr::extract()  masks rstan::extract()
-## x dplyr::filter()   masks stats::filter()
-## x dplyr::lag()      masks stats::lag()
+## ── Conflicts ────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::collapse() masks glue::collapse()
+## ✖ tidyr::extract()  masks rstan::extract()
+## ✖ dplyr::filter()   masks stats::filter()
+## ✖ dplyr::lag()      masks stats::lag()
 ```
 
 ```r
@@ -159,7 +159,7 @@ print(hierarchical_model, pars = c("alpha", "tau", "mu", "sigma"))
 #> mu[6]  88.51    0.10 5.47 78.00  84.76  88.50  92.29  99.23  3143    1
 #> sigma  14.27    0.04 2.08 10.87  12.79  14.02  15.50  18.81  2940    1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Wed Feb  2 06:45:47 2022.
+#> Samples were drawn using NUTS(diag_e) at Thu Feb  3 07:35:00 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).

@@ -17,7 +17,7 @@
 
 ### Reading instructions
 
-#### Outline of the chapter 12
+#### Outline of the chapter 12 {-}
 
 - 12.1 Efficient Gibbs samplers (not part of the course)
 - 12.2 Efficient Metropolis jump rules (not part of the course)
@@ -26,32 +26,27 @@
 - 12.5 Hamiltonian dynamics for a simple hierarchical model (read through)
 - 12.6 Stan: developing a computing environment (read through)
 
-#### Hamiltonian Monte Carlo
-- review of static HMC (the number of steps in dynamic simulation are not adaptively selected) is Radford Neal (2011)[^1].
+#### Hamiltonian Monte Carlo {-}
+
+- review of static HMC (the number of steps in dynamic simulation are not adaptively selected) is @Neal2012-mu
 - Stan uses a variant of dynamic Hamiltonian Monte Carlo (using adaptive number of steps in the dynamic simulation), which has been further developed since BDA3 was published
-- The first dynamic HMC variant was by Hoffman and Gelman (2014)[^2].
-- The No-U-Turn Sampler (NUTS) is often associated with Stan, but the current dynamic HMC variant implemented in Stan has some further developments described (mostly) by Betancourt (2018)[^3]
+- The first dynamic HMC variant was by @Hoffman2011-nx
+- The No-U-Turn Sampler (NUTS) is often associated with Stan, but the current dynamic HMC variant implemented in Stan has some further developments described (mostly) by @Betancourt2017-bp
   - Instead of reading all above, you can also watch a video: [Scalable Bayesian Inference with Hamiltonian Monte Carlo](https://wwwyoutube.com/watch?v=jUSZboSq1zg) by Betancourt
 
-[^1]: Radford Neal (2011). MCMC using Hamiltonian dynamics. In Brooks et al (ed), *Handbook of Markov Chain Monte Carlo*, Chapman & Hall / CRC Press. Preprint https://arxiv.org/pdf/1206.1901.pdf.
-[^2]: Matthew D. Hoffman, Andrew Gelman (2014). The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo. *JMLR*, 15:1593–1623 http://jmlr.org/papers/v15/hoffman14a.html.
-[^3]: Michael Betancourt (2018). A Conceptual Introduction to Hamiltonian Monte Carlo. arXiv preprint arXiv:1701.02434 https://arxiv.org/abs/1701.02434.
-
-#### Divergences and BFMI
+#### Divergences and BFMI {-}
 
 - divergences and Bayesian Fraction of Missing Information (BFMI) are HMC specific convergence diagnostics developed by Betancourt after BDA3 was published
   - Divergence diagnostic checks whether the discretized dynamic simulation has problems due to fast varying density.
     - See more in a [case study](http://mc-stan.org/users/documentation/case-studies/divergences_and_bias.html)
-  - BFMI checks whether momentum resampling in HMC is sufficiently efficient[^4]
+  - BFMI checks whether momentum resampling in HMC is sufficiently efficient [@Betancourt2016-je]
   - [Brief Guide to Stan’s Warnings](https://mc-stan.org/misc/warnings.html) provides summary of available convergence diagnostics in Stan and how to interpret them.
-
-[^4]: Betancourt, Michael. 2016. “Diagnosing Suboptimal Cotangent Disintegrations in Hamiltonian Monte Carlo.” arXiv [stat.ME]. arXiv. http://arxiv.org/abs/1604.00695.
 
 ### Chapter 12. Computationally efficient Markov chain simulation
 
 (skipping sections 12.1-12.3)
 
-#### 12.4 Hamiltonian Monte Carlo
+#### 12.4 Hamiltonian Monte Carlo {-}
 
 - random walk of Gibbs sampler and Metropolis algorithm is inherently inefficient
 - Hamiltonian Monte Carlo (HMC) uses "momentum" to suppress the local random walk behavior of the Metropolis algorithm
@@ -61,13 +56,13 @@
   - to compute the momentum, HMC requires the gradient of the log-posterior density
     - in practice, this is computed analytically
 
-##### The momentum distribution $p(\phi)$
+##### The momentum distribution $p(\phi)$ {-}
 
 - common to use a multivariate normal distribution with mean 0 and a diagonal *mass matrix* $M$
   - $\phi_j \sim \text{N}(0, M_{jj})$ for each $j = 1, \dots, d$
   - ideally, the mass matrix should scale with the inverse covariance matrix of the posterior distribution $(\text{var}(\theta|y))^{-1}$
 
-##### The three steps of an HMC iteration
+##### The three steps of an HMC iteration {-}
 
 1. update $\phi$ by sampling from its posterior (same as its prior): $\phi \sim \text{N}(0, M)$
 2. simultaneously update $\theta$ and $\phi$ using a leapfrog algorithm to simulate physical Hamiltonian dynamics where the position and momentum evolve continuously; for $L$ leapfrog steps with scaling factor $\epsilon$:
@@ -86,17 +81,17 @@
 
 > Pause here and watch video on HMC by Betancourt: [Scalable Bayesian Inference with Hamiltonian Monte Carlo](https://youtu.be/jUSZboSq1zg).
 
-#### 12.5 Hamiltonian Monte Carlo for a hierarchical model
+#### 12.5 Hamiltonian Monte Carlo for a hierarchical model {-}
 
 (Walks through the process of deciding on model and HMC parameters and tuning $\epsilon$ and $L$ for HMC.)
 
-#### 12.6 Stan: developing a computing environment
+#### 12.6 Stan: developing a computing environment {-}
 
 (*Very* briefly describes Stan.)
 
 ### Lecture notes
 
-#### 6.1 HMC, NUTS, dynamic HMC and HMC specific convergence diagnostics
+#### 6.1 HMC, NUTS, dynamic HMC and HMC specific convergence diagnostics {-}
 
 *Definitely worth looking at the visualizations in this blog post: [Markov Chains: Why Walk When You Can Flow?](http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/)*
 
@@ -140,7 +135,7 @@
     - efficiency of exploration is reduced
     - central limit theorem doesn’t hold for mean and variance
 
-#### 6.2 probabilistic programming and Stan
+#### 6.2 probabilistic programming and Stan {-}
 
 example: Binomial model
 

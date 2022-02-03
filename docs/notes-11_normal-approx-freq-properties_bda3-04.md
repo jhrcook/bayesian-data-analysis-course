@@ -30,14 +30,14 @@
 - *asymptotic theory*: as sample size increased, the influence of the prior on the posteior decreases
   - used as the justification of non-informative priors in many cases
 
-#### 4.1 Normal approximations of the posterior distribution
+#### 4.1 Normal approximations of the posterior distribution {-}
 
 - if the posterior distribution $p(\theta|y)$ is unimodal and symmetric, it is useful to approximate it as a normal
   - therefore, the log of the posterior is a quadratic function of $\theta$
 - "For a finite sample size $n$, the normal approximation is typically more accurate for conditional and marginal distributions of components of $\theta$ than for the full joint distribution." (pg. 85)
 - common to use the normal approximations to quickly debug or sanity-check a model's code
 
-#### 4.2 Large-sample theory
+#### 4.2 Large-sample theory {-}
 
 *asymptotic normality of the posterior distribution*: with more data from the same underlying process, the posterior distribution of the parameter vector approaches multivariate normality even if the true distribution of the data is not within the parametric family under consideration (pg. 87)
   - particularly for independent samples from the data-generating process
@@ -45,7 +45,7 @@
   - the posterior mode $\hat\theta$ approaches the true $\theta_0$
   - the likelihood dominates the prior distribution
 
-#### 4.3 Counterexamples to the theorems
+#### 4.3 Counterexamples to the theorems {-}
 
 - there are many instances where large amounts of data do not allow for the normal approximation:
 - **underidentified models and nonidentified parameters**
@@ -74,11 +74,11 @@
 
 ### Lecture notes
 
-#### Lecture 11.1. 'Normal approximation (Laplace approximation)'
+#### Lecture 11.1. 'Normal approximation (Laplace approximation)' {-}
 
 (no additional notes)
 
-#### Lecture 11.2. 'Large sample theory and counter examples'
+#### Lecture 11.2. 'Large sample theory and counter examples' {-}
 
 - *large sample theory*:
   - *consistency*: if the true distribution is included in the parametric family then the posterior converges to a point $\theta_0$ when $n \rightarrow \infty$

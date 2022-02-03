@@ -134,27 +134,19 @@ generated_quantities {
 - reading
   - 7.1 Measures of predictive accuracy
   - 7.2 Information criteria and cross-validation
-    - replace with: *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC*[^1]
+    - replace with: *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC* [@Vehtari2017-st]
   - 7.3 Model comparison based on predictive performance
-    - replace with: *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC*[^1]
+    - replace with: *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC* [@Vehtari2017-st]
   - 7.4 Model comparison using Bayes factors
   - 7.5 Continuous model expansion / sensitivity analysis
   - 7.6 Example (may be skipped)
 - extra material
-  - [LOO package glossary](https://mc-stan.org/loo/reference/loo-glossary.html) summarizes many important terms used in the assignments[^2]
-  - article discussing “How should I evaluate my modelling choices?”: *Between the devil and the deep blue sea: Tensions between scientific judgement and statistical model selection.*[^3]
+  - [LOO package glossary](https://mc-stan.org/loo/reference/loo-glossary.html) summarizes many important terms used in the assignments [@R-loo] [@loo2017a] [@loo2017b]
+  - article discussing “How should I evaluate my modelling choices?”: *Between the devil and the deep blue sea: Tensions between scientific judgement and statistical model selection.* [@Navarro2019-pi]
   - website about model selection by Vehtari: [Model assesment, selection and inference after selection](https://avehtari.github.io/modelselection/)
-  - sections 1 & 5 of *Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison*[^4] clarify how to interpret standard error in model comparison
-  - *A survey of Bayesian predictive methods for model assessment, selection and comparison.*[^5]
-  - *Comparison of Bayesian predictive methods for model selection.*[^6]
-
-
-[^1]: Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. “Practical Bayesian Model Evaluation Using Leave-One-out Cross-Validation and WAIC.” Statistics and Computing 27 (5): 1413–32.
-[^2]: https://CRAN.R-project.org/package=loo
-[^3]: Navarro, D.J. Between the Devil and the Deep Blue Sea: Tensions Between Scientific Judgement and Statistical Model Selection. Comput Brain Behav 2, 28–34 (2019). https://doi.org/10.1007/s42113-018-0019-z
-[^4]: Tuomas Sivula, Måns Magnusson, Aki Vehtari "Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison," arXiv, 2008.10296, (2020)
-[^5]: Aki Vehtari, Janne Ojanen "A survey of Bayesian predictive methods for model assessment, selection and comparison," Statistics Surveys, Statist. Surv. 6(none), 142-228, (2012)
-[^6]: Piironen, J., Vehtari, A. Comparison of Bayesian predictive methods for model selection. Stat Comput 27, 711–735 (2017). https://doi.org/10.1007/s11222-016-9649-y
+  - sections 1 & 5 of *Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison* [@Sivula2020-yw] clarify how to interpret standard error in model comparison
+  - *A survey of Bayesian predictive methods for model assessment, selection and comparison.* [@Vehtari2012-wn]
+  - *Comparison of Bayesian predictive methods for model selection.* [@Piironen2017-sa]
 
 ### Chapter 7. Evaluating, comparing, and expanding models
 

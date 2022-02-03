@@ -1,0 +1,381 @@
+@BOOK{bda3,
+  title     = "Bayesian Data Analysis, Third Edition",
+  author    = "Gelman, Andrew and Carlin, John B and Stern, Hal S and Dunson,
+               David B and Vehtari, Aki and Rubin, Donald B",
+  abstract  = "Now in its third edition, this classic book is widely considered
+               the leading text on Bayesian methods, lauded for its accessible,
+               practical approach to analyzing data and solving research
+               problems. Bayesian Data Analysis, Third Edition continues to
+               take an applied approach to analysis using up-to-date Bayesian
+               methods. The authors---all leaders in the statistics
+               community---introduce basic concepts from a data-analytic
+               perspective before presenting advanced methods. Throughout the
+               text, numerous worked examples drawn from real applications and
+               research emphasize the use of Bayesian inference in practice.
+               New to the Third Edition Four new chapters on nonparametric
+               modeling Coverage of weakly informative priors and
+               boundary-avoiding priors Updated discussion of cross-validation
+               and predictive information criteria Improved convergence
+               monitoring and effective sample size calculations for iterative
+               simulation Presentations of Hamiltonian Monte Carlo, variational
+               Bayes, and expectation propagation New and revised software code
+               The book can be used in three different ways. For undergraduate
+               students, it introduces Bayesian inference starting from first
+               principles. For graduate students, the text presents effective
+               current approaches to Bayesian modeling and computation in
+               statistics and related fields. For researchers, it provides an
+               assortment of Bayesian methods in applied statistics. Additional
+               materials, including data sets used in the examples, solutions
+               to selected exercises, and software instructions, are available
+               on the book's web page.",
+  publisher = "CRC Press",
+  edition   =  3,
+  month     =  nov,
+  year      =  2013,
+  language  = "en",
+  isbn      = "9781439840955"
+}
+
+@ARTICLE{Gelman2004-kh,
+  title    = "Bayesian analysis of serial dilution assays",
+  author   = "Gelman, Andrew and Chew, Ginger L and Shnaidman, Michael",
+  abstract = "In a serial dilution assay, the concentration of a compound is
+              estimated by combining measurements of several different
+              dilutions of an unknown sample. The relation between
+              concentration and measurement is nonlinear and heteroscedastic,
+              and so it is not appropriate to weight these measurements
+              equally. In the standard existing approach for analysis of these
+              data, a large proportion of the measurements are discarded as
+              being above or below detection limits. We present a Bayesian
+              method for jointly estimating the calibration curve and the
+              unknown concentrations using all the data. Compared to the
+              existing method, our estimates have much lower standard errors
+              and give estimates even when all the measurements are outside the
+              ``detection limits.'' We evaluate our method empirically using
+              laboratory data on cockroach allergens measured in house dust
+              samples. Our estimates are much more accurate than those obtained
+              using the usual approach. In addition, we develop a method for
+              determining the ``effective weight'' attached to each
+              measurement, based on a local linearization of the estimated
+              model. The effective weight can give insight into the information
+              conveyed by each data point and suggests potential improvements
+              in design of serial dilution experiments.",
+  journal  = "Biometrics",
+  volume   =  60,
+  number   =  2,
+  pages    = "407--417",
+  month    =  jun,
+  year     =  2004,
+  language = "en",
+  issn     = "0006-341X",
+  pmid     = "15180666",
+  doi      = "10.1111/j.0006-341X.2004.00185.x"
+}
+
+@ARTICLE{Hoffman2011-nx,
+  title         = "The {no-U-Turn} Sampler: Adaptively setting path lengths in
+                   Hamiltonian Monte Carlo",
+  author        = "Hoffman, Matthew D and Gelman, Andrew",
+  abstract      = "Hamiltonian Monte Carlo (HMC) is a Markov chain Monte Carlo
+                   (MCMC) algorithm that avoids the random walk behavior and
+                   sensitivity to correlated parameters that plague many MCMC
+                   methods by taking a series of steps informed by first-order
+                   gradient information. These features allow it to converge to
+                   high-dimensional target distributions much more quickly than
+                   simpler methods such as random walk Metropolis or Gibbs
+                   sampling. However, HMC's performance is highly sensitive to
+                   two user-specified parameters: a step size
+                   \{\textbackslashepsilon\} and a desired number of steps L.
+                   In particular, if L is too small then the algorithm exhibits
+                   undesirable random walk behavior, while if L is too large
+                   the algorithm wastes computation. We introduce the No-U-Turn
+                   Sampler (NUTS), an extension to HMC that eliminates the need
+                   to set a number of steps L. NUTS uses a recursive algorithm
+                   to build a set of likely candidate points that spans a wide
+                   swath of the target distribution, stopping automatically
+                   when it starts to double back and retrace its steps.
+                   Empirically, NUTS perform at least as efficiently as and
+                   sometimes more efficiently than a well tuned standard HMC
+                   method, without requiring user intervention or costly tuning
+                   runs. We also derive a method for adapting the step size
+                   parameter \{\textbackslashepsilon\} on the fly based on
+                   primal-dual averaging. NUTS can thus be used with no
+                   hand-tuning at all. NUTS is also suitable for applications
+                   such as BUGS-style automatic inference engines that require
+                   efficient ``turnkey'' sampling algorithms.",
+  month         =  nov,
+  year          =  2011,
+  copyright     = "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+  archivePrefix = "arXiv",
+  eprint        = "1111.4246",
+  primaryClass  = "stat.CO",
+  arxivid       = "1111.4246"
+}
+
+@ARTICLE{Neal2012-mu,
+  title         = "{MCMC} using Hamiltonian dynamics",
+  author        = "Neal, Radford M",
+  abstract      = "Hamiltonian dynamics can be used to produce distant
+                   proposals for the Metropolis algorithm, thereby avoiding the
+                   slow exploration of the state space that results from the
+                   diffusive behaviour of simple random-walk proposals. Though
+                   originating in physics, Hamiltonian dynamics can be applied
+                   to most problems with continuous state spaces by simply
+                   introducing fictitious ``momentum'' variables. A key to its
+                   usefulness is that Hamiltonian dynamics preserves volume,
+                   and its trajectories can thus be used to define complex
+                   mappings without the need to account for a hard-to-compute
+                   Jacobian factor - a property that can be exactly maintained
+                   even when the dynamics is approximated by discretizing time.
+                   In this review, I discuss theoretical and practical aspects
+                   of Hamiltonian Monte Carlo, and present some of its
+                   variations, including using windows of states for deciding
+                   on acceptance or rejection, computing trajectories using
+                   fast approximations, tempering during the course of a
+                   trajectory to handle isolated modes, and short-cut methods
+                   that prevent useless trajectories from taking much
+                   computation time.",
+  month         =  jun,
+  year          =  2012,
+  archivePrefix = "arXiv",
+  eprint        = "1206.1901",
+  primaryClass  = "stat.CO",
+  arxivid       = "1206.1901"
+}
+
+@ARTICLE{Betancourt2017-bp,
+  title         = "A Conceptual Introduction to Hamiltonian Monte Carlo",
+  author        = "Betancourt, Michael",
+  abstract      = "Hamiltonian Monte Carlo has proven a remarkable empirical
+                   success, but only recently have we begun to develop a
+                   rigorous understanding of why it performs so well on
+                   difficult problems and how it is best applied in practice.
+                   Unfortunately, that understanding is confined within the
+                   mathematics of differential geometry which has limited its
+                   dissemination, especially to the applied communities for
+                   which it is particularly important. In this review I provide
+                   a comprehensive conceptual account of these theoretical
+                   foundations, focusing on developing a principled intuition
+                   behind the method and its optimal implementations rather of
+                   any exhaustive rigor. Whether a practitioner or a
+                   statistician, the dedicated reader will acquire a solid
+                   grasp of how Hamiltonian Monte Carlo works, when it
+                   succeeds, and, perhaps most importantly, when it fails.",
+  month         =  jan,
+  year          =  2017,
+  archivePrefix = "arXiv",
+  eprint        = "1701.02434",
+  primaryClass  = "stat.ME",
+  arxivid       = "1701.02434"
+}
+
+@ARTICLE{Betancourt2016-je,
+  title         = "Diagnosing Suboptimal Cotangent Disintegrations in
+                   Hamiltonian Monte Carlo",
+  author        = "Betancourt, Michael",
+  abstract      = "When properly tuned, Hamiltonian Monte Carlo scales to some
+                   of the most challenging high-dimensional problems at the
+                   frontiers of applied statistics, but when that tuning is
+                   suboptimal the performance leaves much to be desired. In
+                   this paper I show how suboptimal choices of one critical
+                   degree of freedom, the cotangent disintegration, manifest in
+                   readily observed diagnostics that facilitate the robust
+                   application of the algorithm.",
+  month         =  apr,
+  year          =  2016,
+  archivePrefix = "arXiv",
+  eprint        = "1604.00695",
+  primaryClass  = "stat.ME",
+  arxivid       = "1604.00695"
+}
+
+@ARTICLE{Vehtari2017-st,
+  title     = "Practical Bayesian model evaluation using leave-one-out cross-validation and {WAIC}",
+  author    = "Vehtari, Aki and Gelman, Andrew and Gabry, Jonah",
+  abstract  = "Leave-one-out cross-validation (LOO) and the widely applicable
+               information criterion (WAIC) are methods for estimating
+               pointwise out-of-sample prediction accuracy from a fitted
+               Bayesian model using the log-likelihood evaluated at the
+               posterior simulations of the parameter values. LOO and WAIC have
+               various advantages over simpler estimates of predictive error
+               such as AIC and DIC but are less used in practice because they
+               involve additional computational steps. Here we lay out fast and
+               stable computations for LOO and WAIC that can be performed using
+               existing simulation draws. We introduce an efficient computation
+               of LOO using Pareto-smoothed importance sampling (PSIS), a new
+               procedure for regularizing importance weights. Although WAIC is
+               asymptotically equal to LOO, we demonstrate that PSIS-LOO is
+               more robust in the finite case with weak priors or influential
+               observations. As a byproduct of our calculations, we also obtain
+               approximate standard errors for estimated predictive errors and
+               for comparison of predictive errors between two models. We
+               implement the computations in an R package called loo and
+               demonstrate using models fit with the Bayesian inference package
+               Stan.",
+  journal   = "Stat. Comput.",
+  publisher = "Springer Science and Business Media LLC",
+  volume    =  27,
+  number    =  5,
+  pages     = "1413--1432",
+  month     =  sep,
+  year      =  2017,
+  language  = "en",
+  issn      = "0960-3174, 1573-1375",
+  doi       = "10.1007/s11222-016-9696-4"
+}
+
+@Manual{R-loo,
+  title = {loo: Efficient Leave-One-Out Cross-Validation and WAIC for Bayesian Models},
+  author = {Aki Vehtari and Jonah Gabry and Mans Magnusson and Yuling Yao and Paul-Christian Bürkner and Topi Paananen and Andrew Gelman},
+  year = {2020},
+  note = {R package version 2.4.1},
+  url = {https://CRAN.R-project.org/package=loo},
+}
+
+@Article{loo2017a,
+  title = {Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC},
+  author = {Aki Vehtari and Andrew Gelman and Jonah Gabry},
+  year = {2017},
+  journal = {Statistics and Computing},
+  volume = {27},
+  issue = {5},
+  pages = {1413--1432},
+  doi = {10.1007/s11222-016-9696-4},
+}
+
+@Article{loo2017b,
+  title = {Using stacking to average Bayesian predictive distributions},
+  author = {Yuling Yao and Aki Vehtari and Daniel Simpson and Andrew Gelman},
+  year = {2017},
+  journal = {Bayesian Analysis},
+  doi = {10.1214/17-BA1091},
+}
+
+@ARTICLE{Navarro2019-pi,
+  title    = "Between the Devil and the Deep Blue Sea: Tensions Between
+              Scientific Judgement and Statistical Model Selection",
+  author   = "Navarro, Danielle J",
+  abstract = "Discussions of model selection in the psychological literature
+              typically frame the issues as a question of statistical
+              inference, with the goal being to determine which model makes the
+              best predictions about data. Within this setting, advocates of
+              leave-one-out cross-validation and Bayes factors disagree on
+              precisely which prediction problem model selection questions
+              should aim to answer. In this comment, I discuss some of these
+              issues from a scientific perspective. What goal does model
+              selection serve when all models are known to be systematically
+              wrong? How might ``toy problems'' tell a misleading story? How
+              does the scientific goal of explanation align with (or differ
+              from) traditional statistical concerns? I do not offer answers to
+              these questions, but hope to highlight the reasons why
+              psychological researchers cannot avoid asking them.",
+  journal  = "Computational Brain \& Behavior",
+  volume   =  2,
+  number   =  1,
+  pages    = "28--34",
+  month    =  mar,
+  year     =  2019,
+  issn     = "2522-087X",
+  doi      = "10.1007/s42113-018-0019-z"
+}
+
+@ARTICLE{Sivula2020-yw,
+  title         = "Uncertainty in Bayesian {Leave-One-Out} {Cross-Validation}
+                   Based Model Comparison",
+  author        = "Sivula, Tuomas and Magnusson, M{\aa}ns and Vehtari, Aki",
+  abstract      = "Leave-one-out cross-validation (LOO-CV) is a popular method
+                   for comparing Bayesian models based on their estimated
+                   predictive performance on new, unseen, data. Estimating the
+                   uncertainty of the resulting LOO-CV estimate is a complex
+                   task and it is known that the commonly used standard error
+                   estimate is often too small. We analyse the frequency
+                   properties of the LOO-CV estimator and study the uncertainty
+                   related to it. We provide new results of the properties of
+                   the uncertainty both theoretically and empirically and
+                   discuss the challenges of estimating it. We show that
+                   problematic cases include: comparing models with similar
+                   predictions, misspecified models, and small data. In these
+                   cases, there is a weak connection in the skewness of the
+                   sampling distribution and the distribution of the error of
+                   the LOO-CV estimator. We show that it is possible that the
+                   problematic skewness of the error distribution, which occurs
+                   when the models make similar predictions, does not fade away
+                   when the data size grows to infinity in certain situations.",
+  month         =  aug,
+  year          =  2020,
+  archivePrefix = "arXiv",
+  eprint        = "2008.10296",
+  primaryClass  = "stat.ME",
+  arxivid       = "2008.10296"
+}
+
+@ARTICLE{Vehtari2012-wn,
+  title     = "A survey of Bayesian predictive methods for model assessment,
+               selection and comparison",
+  author    = "Vehtari, Aki and Ojanen, Janne",
+  abstract  = "To date, several methods exist in the statistical literature for
+               model assessment, which purport themselves specifically as
+               Bayesian predictive methods. The decision theoretic assumptions
+               on which these methods are based are not always clearly stated
+               in the original articles, however. The aim of this survey is to
+               provide a unified review of Bayesian predictive model assessment
+               and selection methods, and of methods closely related to them.
+               We review the various assumptions that are made in this context
+               and discuss the connections between different approaches, with
+               an emphasis on how each method approximates the expected utility
+               of using a Bayesian model for the purpose of predicting future
+               data.",
+  journal   = "ssu",
+  publisher = "Amer. Statist. Assoc., the Bernoulli Soc., the Inst. Math.
+               Statist., and the Statist. Soc. Canada",
+  volume    =  6,
+  number    = "none",
+  pages     = "142--228",
+  month     =  jan,
+  year      =  2012,
+  keywords  = "62-02; 62C10; Bayesian; cross-validation; decision theory;
+               Expected utility; information criteria; model assessment; Model
+               selection; predictive; ;",
+  language  = "en",
+  issn      = "1935-7516",
+  doi       = "10.1214/12-SS102"
+}
+
+@ARTICLE{Piironen2017-sa,
+  title    = "Comparison of Bayesian predictive methods for model selection",
+  author   = "Piironen, Juho and Vehtari, Aki",
+  abstract = "The goal of this paper is to compare several widely used Bayesian
+              model selection methods in practical model selection problems,
+              highlight their differences and give recommendations about the
+              preferred approaches. We focus on the variable subset selection
+              for regression and classification and perform several numerical
+              experiments using both simulated and real world data. The results
+              show that the optimization of a utility estimate such as the
+              cross-validation (CV) score is liable to finding overfitted
+              models due to relatively high variance in the utility estimates
+              when the data is scarce. This can also lead to substantial
+              selection induced bias and optimism in the performance evaluation
+              for the selected model. From a predictive viewpoint, best results
+              are obtained by accounting for model uncertainty by forming the
+              full encompassing model, such as the Bayesian model averaging
+              solution over the candidate models. If the encompassing model is
+              too complex, it can be robustly simplified by the projection
+              method, in which the information of the full model is projected
+              onto the submodels. This approach is substantially less prone to
+              overfitting than selection based on CV-score. Overall, the
+              projection method appears to outperform also the maximum a
+              posteriori model and the selection of the most probable
+              variables. The study also demonstrates that the model selection
+              can greatly benefit from using cross-validation outside the
+              searching process both for guiding the model size selection and
+              assessing the predictive performance of the finally selected
+              model.",
+  journal  = "Stat. Comput.",
+  volume   =  27,
+  number   =  3,
+  pages    = "711--735",
+  month    =  may,
+  year     =  2017,
+  issn     = "0960-3174",
+  doi      = "10.1007/s11222-016-9649-y"
+}

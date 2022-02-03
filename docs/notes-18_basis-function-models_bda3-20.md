@@ -11,7 +11,7 @@
 - chapter 19 focused on nonlinear models with $\text{E}(y|X,\beta) = \mu(X_i,\phi)$ where $\mu$ is a parametric nonlinear function of unknowns $\phi$
 - in this and following chapters, consider models where $\mu$ is also unknown
 
-### 20.1 Splines and weighted sums of basis functions
+### 20.1 Splines and weighted sums of basis functions {-}
 
 - replace $X_i \beta$ with $\mu(X_i)$ where $\mu(\cdot)$ is some class of nonlinear functions
   - different options for modeling $\mu$ including with basis function expansions or Gaussian processes (next chapter)
@@ -35,7 +35,7 @@
   - implied prior information on the smoothness and shape of the model
   - can include multiple types of basis functions in the initial collection
 
-### Shrinkage priors
+### Shrinkage priors {-}
 
 - allowing basis function coefficients to be zero with positive probability represents a challenge for sampling from the posterior
   - with many basis functions, it is computationally infeasible to visit all possible states
@@ -44,13 +44,13 @@
 
 ## 20.3 Non-normal models and regression surfaces
 
-### Other error distributions
+### Other error distributions {-}
 
 - may want to model data that is not a continuous output variable $y$ or does not have Gaussian residuals
   - can modify the residual densities with different prior distributions to accommodate outliers
   - can use the basis function and its coefficients $\eta_i = w_i \beta$ as the linear component in a GLM
 
-### Multivariate regression surfaces
+### Multivariate regression surfaces {-}
 
 - careful with *curse of dimensionality*
 - one option is to assume additive of the covariates so can model as the sum of univariate regression functions

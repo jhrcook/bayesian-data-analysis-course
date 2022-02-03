@@ -23,8 +23,8 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 - model vs. likelihood for $p(y|\theta, M)$
   - *model* when the function is in terms of $y$
     - should be written as $p_y(y|\theta, M)$
-    used to describe uncertainty about $y$ given values of $\theta$ and $M$
-  - *likelihood* when in the function is in terms of $\theta$
+    - used to describe uncertainty about $y$ given values of $\theta$ and $M$
+  - *likelihood* when the function is in terms of $\theta$
     - should be written as $p_\theta(y|\theta, M)$
     - the posterior distribution describes the probability for different values of $\theta$ given fixed values for $y$
     - "The likelihood function is unnormalized probability distribution describing uncertainty related to $\theta$ (and that’s why Bayes rule has the normalization term to get the posterior distribution)."

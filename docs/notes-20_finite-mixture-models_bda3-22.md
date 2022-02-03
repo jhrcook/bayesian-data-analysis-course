@@ -13,9 +13,9 @@
 - basic mixture modeling principle is to introduce *unobserved indicators* $z$ to specify the mixture component for an observation
   - can think of a mixture indicator as missing data
 
-### 22.1 Setting up and interpreting mixture models
+### 22.1 Setting up and interpreting mixture models {-}
 
-#### Finite mixtures
+#### Finite mixtures {-}
 
 - want to model the distribution of $y = (y_1, \dots, y_n)$ or $y|x$  as a mixture of $H$ components
   - for each component $h \in (1, \dots, H)$, the distribution $f_h(y_i | \theta_h)$ depends on a parameter vector $\theta_h$
@@ -44,19 +44,19 @@ p(y, z | \theta, \lambda) &= p(z | \lambda) p(y | z, \theta) \\
 \end{aligned}
 $$
 
-#### Continuous mixtures
+#### Continuous mixtures {-}
 
 - generalize the finite mixture to allow probability of an observation belongs to a class
 - hierarchical models are a form a continuous mixture model
   - each observed value $y_i$ is modeled as coming from a mixture of models defined by the probability of values for $\theta$
 - in the book, the focus is on finite mixtures and "minor modifications" are generally required to form a continuous distribution
 
-#### Identifiabilitiy of the mxixture likelihood
+#### Identifiabilitiy of the mxixture likelihood {-}
 
 - **all finite mixture models are nonidentifiable: the distribution is unchanged if the group labels are permuted**
 - in many cases, purposeful, informative priors can solve the issue
 
-#### Priors distributions
+#### Priors distributions {-}
 
 - the priors for a finite mixture model's parameters $\theta$ and $\lambda$ are usually the product of the two independent priors on each variable
   - because the vector of mixture indicators $z_i = (z_{i,1}, \dots, z_{i,H})$ is multinomial with parameter $\lambda$, a common prior for $\lambda$ is the Dirichlet
@@ -64,21 +64,19 @@ $$
   - $\theta = (\theta_1, \dots, \theta_H)$ is the vector of parameters for each component's sub-model
     - some can be shared across components (i.e. equal variance for a group of normal distributions)
 
-#### Number of mixture components
+#### Number of mixture components {-}
 
 - can model $H$ as unknown but is computationally expensive
 - usually can just build models with different $H$ and compare their goodness of fit
   - compare the posterior predictive distributions with a "suitably chosen" test quantity
 
-#### Mixtures as true models or approximating distributions
+#### Mixtures as true models or approximating distributions {-}
 
-- two classes of thought[^1]:
+- two classes of thought^[I came up with the names of the two schools of thought as descriptive titles; they do not appear in the book.]:
   1. *theoretical:* a mixture model is "a realistic characterization of the true data-generating mechanism" (pg. 522)
   2. *pragmatic:* "trying to infer latent subpopulations is an intrinsically ill-defined statistical problem, but finite mixture models are nonetheless useful" (pg. 523)
 
-[^1]: I came up with the names of the two schools of thought as descriptive titles; they do not appear in the book.
-
-### 22.4 Unspecifed number of mixture components
+### 22.4 Unspecifed number of mixture components {-}
 
 - can assign a Poisson distribution as a on $H$ (the number of groups/components in the mixture model)
   - computationally intensive

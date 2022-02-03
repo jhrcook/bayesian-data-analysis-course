@@ -40,13 +40,13 @@
     - cost of measurement and fixing high exposure
     - example of a full integration if inference with decision analysis
 
-#### 9.1 Bayesian decision theory in difference contexts
+#### 9.1 Bayesian decision theory in difference contexts {-}
 
 - use Bayesian inference in two ways when balancing costs and benefits of decision options under uncertainty:
   1. a decision depends on the predicted quantities which depend on the parameters of the model and type of data
   2. use Bayesian inference within a decisions analysis to estimate outcomes conditional on information from previous decisions
 
-##### Bayesian inference and decision trees
+##### Bayesian inference and decision trees {-}
 
 - decision analysis involves optimization over decisions and uncertainties
 - **Bayesian decision analysis** is defined as the following steps:
@@ -58,6 +58,6 @@
 
 ### Lecture notes
 
-#### 10.1 Decision analysis
+#### 10.1 Decision analysis {-}
 
 (no new notes)

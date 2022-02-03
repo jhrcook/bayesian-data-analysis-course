@@ -12,7 +12,7 @@
 - *Gaussian process* (GP): "flexible class of models for which any finite-dimensional marginal distribution is Gaussian" (pg. 501)
   - "can be viewed as a potentially infinite-dimensional generalization of Gaussian distribution" (pg. 501)
 
-### 21.1 Gaussian process regression
+### 21.1 Gaussian process regression {-}
 
 - realizations from a GP correspond to random functions
   - good prior for an unknown regression function $\mu(x)$
@@ -89,49 +89,49 @@ gp_samples %>%
 
 <img src="notes-19_gaussian-processes_bda3-21_files/figure-html/unnamed-chunk-1-1.png" width="2100" />
 
-#### Covariance functions
+#### Covariance functions {-}
 
 - "Different covariance functions can be used to add structural prior assumptions like smoothness, nonstationarity, periodicity, and multi-scale or hierarchical structures." (pg. 502)
   - sums and products of GPs are also GPs so can combine them in the same model
 - can also use "anisotropic" GPs covariance functions for multiple predictors
 
-#### Inference
+#### Inference {-}
 
 - computing the mean and covariance in the $n$-variate normal conditional posterior for $\tilde{\mu}$ involves a matrix inversion that requires $O(n^3)$ computation
   - this needs to be repeated for each MCMC step
   - limits the size of the data set and number of covariates in a model
 
-#### Covariance function approximations
+#### Covariance function approximations {-}
 
 - there are approximations to the GP that can speed up computation
   - generally work by reducing the matrix inversion burden
 
-### 21.3 Latent Gaussian process models
+### 21.3 Latent Gaussian process models {-}
 
 - with non-Gaussian likelihoods, the GP prior becomes a latent function $f$ which determines the likelihood $p(y|f,\phi)$ through a link function
 
-### 21.4 Functional data analysis
+### 21.4 Functional data analysis {-}
 
 - *functional data analysis*: considers responses and predictors not a scalar/vector-valued random variables but as random functions with infinitely-many points
   - GPs fit this need well with little modification
 
-### 21.5 Density estimation and regression
+### 21.5 Density estimation and regression {-}
 
 - can get more flexibility by modeling the conditional observation model as a nonparametric GP
   - so far have used a GP as a prior for a function controlling location or shape of a parametric observation model
   - one solution is the *logistic Gaussian process* (LGP) or a Dirichlet process (covered in a later chapter)
 
-#### Density estimation
+#### Density estimation {-}
 
 - LGP generates a random surface from a GP and then transforms the surface to the space of probability densities
   - with 1D, the surface is just a curve
   - use the continuous logistic transformation to constrain to non-negative and integrate to 1
 - there is illustrative example in the book on page 513
 
-#### Density regression
+#### Density regression {-}
 
 - generalize the LPG to density regression by putting a prior on the collection of conditional densities
 
-#### Latent-variable regression
+#### Latent-variable regression {-}
 
 - an alternative to LPG

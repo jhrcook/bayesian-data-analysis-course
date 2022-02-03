@@ -21,9 +21,9 @@
 
 ### Lecture notes
 
-#### 9.1 PSIS-LOO and K-fold CV
+#### 9.1 PSIS-LOO and K-fold CV {-}
 
-##### PSIS-LOO CV
+##### PSIS-LOO CV {-}
 
 - given some data $x$ and observed $y$
 - sample from posterior: $\theta^{(s)} \sim p(\theta | x, y)$
@@ -53,7 +53,7 @@
       - in practice, $\hat{k} < 0.7$ is okay
 - plot the Pareto $\hat{k}$ and $n_\text{eff}$ for each data point (will usually be inversely correlated)
 
-##### K-fold CV
+##### K-fold CV {-}
 
 - varieties
   - can approximate LOO by removing some $n$ number of data points
@@ -61,7 +61,7 @@
   - leave-one-*block*-out for time series
     - remove all data from a certain time point or range
 
-#### 9.2 Model comparison and selection
+#### 9.2 Model comparison and selection {-}
 
 - CV for model assessment
   - CV is good for model assessment when application specific utility/cost functions are used
@@ -106,7 +106,7 @@
   - different variants of CV are useful in different scenarios
   - CV has high variance, and **if** you trust your model you can beat CV in accuracy
 
-#### 9.3 Variable selection with projection predictive variable selection
+#### 9.3 Variable selection with projection predictive variable selection {-}
 
 - Rich model vs feature selection?
   - If we care only about the predictive performance:

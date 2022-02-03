@@ -21,8 +21,8 @@
 - model vs. likelihood for $p(y|\theta, M)$
   - *model* when the function is in terms of $y$
     - should be written as $p_y(y|\theta, M)$
-    used to describe uncertainty about $y$ given values of $\theta$ and $M$
-  - *likelihood* when in the function is in terms of $\theta$
+    - used to describe uncertainty about $y$ given values of $\theta$ and $M$
+  - *likelihood* when the function is in terms of $\theta$
     - should be written as $p_\theta(y|\theta, M)$
     - the posterior distribution describes the probability for different values of $\theta$ given fixed values for $y$
     - "The likelihood function is unnormalized probability distribution describing uncertainty related to $\theta$ (and that’s why Bayes rule has the normalization term to get the posterior distribution)."
@@ -34,7 +34,7 @@
 
 ### Lecture notes
 
-#### Introduction to uncertainty and modelling
+#### Introduction to uncertainty and modelling {-}
 
 - two types of uncertainty:
   - *aleatoric*: due to randomness
@@ -57,7 +57,7 @@
     - $p(\theta)$: epistemic uncertainty
       - we don't know $\theta$ but could compute it exactly if we knew the contents of the bag
 
-#### Introduction to the course contents
+#### Introduction to the course contents {-}
 
 - benefits of Bayesian approach
   1. integrate over uncertainties to focus on interesting parts

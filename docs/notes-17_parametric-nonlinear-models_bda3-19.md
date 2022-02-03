@@ -16,11 +16,11 @@
 - **"Generally each new modeling problem must be tackled afresh."** (pg 471)
   - these models are less systematic than linear modeling
 
-### 19.1 Example: serial dilution assay
+### 19.1 Example: serial dilution assay {-}
 
 - estimate 10 unknown concentrations of an allergen based off of serial dilutions of a known standard
 
-#### The model
+#### The model {-}
 
 - **Notation**:
   - parameters of interest: concentrations of unknown samples $\theta_1, \dots, \theta_10$
@@ -73,7 +73,7 @@ $$
       - $j(i)$ is the sample $j$ corresponding to measurement $i$
       - $d_i$ is the dilution of measurement $i$ relative to the initial concentration
 
-#### Prior distributions
+#### Prior distributions {-}
 
 - priors used as described by book (are likely different than what would be recommended now):
   - $\log(\beta) \sim U(-\infty, \infty)$
@@ -83,7 +83,7 @@ $$
 - cannot estimate $\sigma^\text{init}$ because we only have a single standard
   - use a fixed value of 0.02 based on a previous analysis of different plates
 
-### 19.2 Example: population toxicokinetics
+### 19.2 Example: population toxicokinetics {-}
 
 - this is a more complex model
 - uses a physiological model with parameters that cannot be solely determined using the data

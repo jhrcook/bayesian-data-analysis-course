@@ -6,15 +6,12 @@
 
 > I turned this exercise into a blog post on my [webiste](https://joshuacook.netlify.app).
 
-In chapter 17 "Parametric nonlinear models" of *Bayesian Data Analysis*[^1] by Gelman *et al.*, the authors present an example of fitting a curve to a [serial dilution](https://en.wikipedia.org/wiki/Serial_dilution) standard curve and using it to estimate unknown concentrations.
+In chapter 17 "Parametric nonlinear models" of *Bayesian Data Analysis* by Gelman *et al.* [@bda3], the authors present an example of fitting a curve to a [serial dilution](https://en.wikipedia.org/wiki/Serial_dilution) standard curve and using it to estimate unknown concentrations.
 Below, I build the model with Stan and fit it using MCMC.
-Unfortunately, I was unable to find the original data in Gelman's original publication of the model[^2].
+Unfortunately, I was unable to find the original data in Gelman's original publication of the model [@Gelman2004-kh].
 The best I could do was copy the data for the standard curve from a table in the book and build the model to fit that data.
 
 > The source code for this post is in a [repository](https://github.com/jhrcook/bayesian-data-analysis-course) of my work for Aki Vehtari's Bayesian Data Analysis [course](https://avehtari.github.io/BDA_course_Aalto/index.html).
-
-[^1]: Gelman, Andrew, et al. Bayesian Data Analysis. CRC Press Etc., 2015.
-[^2]: Gelman A, Chew GL, Shnaidman M. Bayesian analysis of serial dilution assays. Biometrics. 2004 Jun;60(2):407-17. doi: 10.1111/j.0006-341X.2004.00185.x. PMID: 15180666. https://pubmed.ncbi.nlm.nih.gov/15180666/
 
 ## Setup
 
@@ -293,7 +290,7 @@ print(dilution_model, pars = model_pars)
 #> alpha     0.72    0.01 0.17  0.33  0.61   0.74   0.85   0.98  1074    1
 #> sigma     1.33    0.01 0.24  0.98  1.16   1.30   1.45   1.92   893    1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Wed Feb  2 06:46:16 2022.
+#> Samples were drawn using NUTS(diag_e) at Thu Feb  3 07:35:28 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).
@@ -464,15 +461,15 @@ sessionInfo()
 #> [13] StanHeaders_2.21.0-7
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] fs_1.5.0             matrixStats_0.61.0   lubridate_1.7.10    
+#>  [1] matrixStats_0.61.0   fs_1.5.0             lubridate_1.7.10    
 #>  [4] insight_0.14.4       RColorBrewer_1.1-2   httr_1.4.2          
 #>  [7] rprojroot_2.0.2      tensorA_0.36.2       tools_4.1.2         
 #> [10] backports_1.2.1      bslib_0.2.5.1        utf8_1.2.2          
 #> [13] R6_2.5.0             DBI_1.1.1            colorspace_2.0-2    
 #> [16] ggdist_3.0.0         withr_2.4.2          tidyselect_1.1.1    
 #> [19] gridExtra_2.3        prettyunits_1.1.1    processx_3.5.2      
-#> [22] curl_4.3.2           compiler_4.1.2       rvest_1.0.1         
-#> [25] cli_3.0.1            arrayhelpers_1.1-0   xml2_1.3.2          
+#> [22] curl_4.3.2           compiler_4.1.2       cli_3.0.1           
+#> [25] rvest_1.0.1          arrayhelpers_1.1-0   xml2_1.3.2          
 #> [28] bayestestR_0.11.0    labeling_0.4.2       bookdown_0.24       
 #> [31] posterior_1.1.0      sass_0.4.0           scales_1.1.1        
 #> [34] checkmate_2.0.0      callr_3.7.0          digest_0.6.27       

@@ -21,7 +21,7 @@
 
 ### Chapter 3. Introduction to multiparameter models
 
-#### Averaging over 'nuisance parameters'
+#### Averaging over 'nuisance parameters' {-}
 
 - suppose the unknown variable $\theta$ is a vector of length two: $\theta= (\theta_1, \theta_2)$
   - may only care about one of the variables, but the other is still required for a good model
@@ -32,7 +32,7 @@
     - by averaging over $\theta_2$: $p(\theta_1|y) = \int p(\theta_1, \theta_2| y) d\theta_2$
       - "integrate over the uncertainty in $\theta_2$"
 
-#### Summary of elementary modeling and computation
+#### Summary of elementary modeling and computation {-}
 
 - the following is an outline of a simple Bayesian analysis
   - it will change when we get to more complex models whose posteriors are estimated by more complex sampling processes

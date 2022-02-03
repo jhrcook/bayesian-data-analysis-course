@@ -1,10 +1,11 @@
 title: "Notes for the Bayesian Data Analysis course"
 author: "Joshua Cook"
 description: "My notes and work for the Bayesian Data Analysis course taught by Aki Vehtari."
+book_filename: bookdown
 
 url: 'https://jhrcook.github.io/bayesian-data-analysis-course/'
-repo: 'https://github.com/jhrcook/bayesian-data-analysis-course'
-twitter-handle: joshdoesa
+github-repo: 'hrcook/bayesian-data-analysis-course'
+twitter-handle: 'joshdoesa'
 
 date: "`r Sys.Date()`"
 
@@ -57,5 +58,6 @@ rmd_files: [
   "exercises-07.Rmd",
   "exercises-19.Rmd",
 
-  "about.Rmd"
+  "about.Rmd",
+  "references.Rmd"
 ]

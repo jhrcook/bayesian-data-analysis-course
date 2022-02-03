@@ -48,7 +48,7 @@ theme_set(theme_bw())
 
 ### Chapter 11. Basics of Markov chain simulation
 
-#### Introduction
+#### Introduction {-}
 
 - **MCMC**: general method based on drawing values of $\theta$ from approximate distributions and then correcting those draws to better approximate the target posterior distribution $p(\theta, y)$
   - **Markov chain**: a sequence of random variables $\theta^1, \theta^2, \dots$ for which, for any $t$, the distribution of $\theta^t$ given all previous $\theta$'s depends only on the previous value $\theta^{t-1}$
@@ -59,7 +59,7 @@ theme_set(theme_bw())
 - essential to check convergence of chains
 - this chapter introduces the *Gibbs sampler* and *Metropolis-Hastings algorithm*
 
-#### 11.1 Gibbs sampler
+#### 11.1 Gibbs sampler {-}
 
 - algorithm:
   1. separate the parameter vector $\theta$ into $d$ components (also called subvectors) $\theta = (\theta_1, \dots, \theta_d)$
@@ -178,11 +178,11 @@ gibbs_plot_points <- gibbs_demo_chains %>%
 
 <img src="notes-05_mcmc_bda3-11_files/figure-html/unnamed-chunk-1-1.png" width="2100" />
 
-#### 11.2 Metropolis and Metropolis-Hastings algorithms
+#### 11.2 Metropolis and Metropolis-Hastings algorithms {-}
 
 - the Metropolis-Hastings algorithm is a generalized version of the Metropolis algorithm
 
-##### The Metropolis algorithm
+##### The Metropolis algorithm {-}
 
 - is a random walk with an acceptance and rejection rule to converge to the target distribution
 - steps:
@@ -282,7 +282,7 @@ metropolis_plot_points <- metropolis_chains %>%
 
 <img src="notes-05_mcmc_bda3-11_files/figure-html/unnamed-chunk-2-1.png" width="2100" />
 
-##### The Metropolis-Hastings algorithm
+##### The Metropolis-Hastings algorithm {-}
 
 - two changes to generalize the Metropolis algorithm:
   1. the jumping rule $J_t$ need not be symmetric
@@ -301,11 +301,11 @@ metropolis_plot_points <- metropolis_chains %>%
   3. each jump travels a "reasonable" distance
   4. the jumpy are not rejected too frequently
 
-#### 11.2 Metropolis and Metropolis-Hastings algorithms
+#### 11.2 Metropolis and Metropolis-Hastings algorithms {-}
 
 - for Bayesian analysis, we want to be able to use the posterior samples for inference, but requires special care when using iterative simulation
 
-##### Difficulties of inference from iterative simulation
+##### Difficulties of inference from iterative simulation {-}
 
 - two main challenges:
   1. "if the iterations have not proceeded long enough... the simulations may be grossly unrepresentative of the target distribution" (pg 282)
@@ -314,39 +314,39 @@ metropolis_plot_points <- metropolis_chains %>%
   - design the simulations to enable monitoring of convergence
   - compare variation between and within chains
 
-##### Discarding early iterations of the simulation runs
+##### Discarding early iterations of the simulation runs {-}
 
 - *warm-up*: remove first portion of draws to diminish the influence on the starting location
   - how many to drop depends on the specific case, but dropping the first half of the chain is usually good
 
-##### Dependence of the iterations in each sequence
+##### Dependence of the iterations in each sequence {-}
 
 - *thinning* a chain: keeping every $k$th simulation draw
   - not necessary if the chains have converged
   - can help with preserving RAM if many parameters
 
-##### Multiple sequences with overdispersed starting points
+##### Multiple sequences with overdispersed starting points {-}
 
 - use multiple chains to be able to compare with each other
   - *mixing* and *stationarity* discussed below
 
-##### Monitoring scalar estimands
+##### Monitoring scalar estimands {-}
 
 - check estimated parameter values and any other computed values of interest to see if their posterior distributions settle
 
-##### Challenges of monitoring convergence: missing and stationarity
+##### Challenges of monitoring convergence: missing and stationarity {-}
 
 - *mixing*: when the chains converge to the same distribution
 - *stationarity*: when each chains has converged to a consistent distribution of values
 
-##### Splitting each saved sequence into two parts
+##### Splitting each saved sequence into two parts {-}
 
 - a method for checking convergence and stationarity of multiple chains:
   - (after adjusting for warm-up) split each chain in half and check if all of the halves have mixed
   - checks mixing: if all of the chains have mixed, the separate parts of the different chains should also have mixed
   - checks stationarity: the first and second half of each sequence should be traversing the same distribution
 
-##### Assessing mising using between- and within-sequence variances
+##### Assessing mising using between- and within-sequence variances {-}
 
 - calculations for mixing of the split chains:
   - $m$: number of chains after splitting; $n$: length of each split chain
@@ -382,7 +382,7 @@ metropolis_plot_points <- metropolis_chains %>%
   (\#eq:seq-var)
 \end{equation}
 
-#### 11.5 Effective number of simulation draws
+#### 11.5 Effective number of simulation draws {-}
 
 - compute an approximate "effective number of independent simulation draws" $n_\text{eff}$
   - if all draws were truly independent, then $B \approx \text{var}(\psi|y)$
@@ -392,7 +392,7 @@ metropolis_plot_points <- metropolis_chains %>%
 
 ### Lecture notes
 
-#### 5.1. Markov chain Monte Carlo, Gibbs sampling, Metropolis algorithm
+#### 5.1. Markov chain Monte Carlo, Gibbs sampling, Metropolis algorithm {-}
 
 - Gibbs sampler
   - with conditionally conjugate priors, the sampling from the conditional distributions is easy for wide range of models
@@ -401,7 +401,7 @@ metropolis_plot_points <- metropolis_chains %>%
   - slow if parameters are highly dependent in the posterior
     - the high correlation create a narrow region in which the sampler moves, slowing exploration of the posterior
 
-#### 5.2. Warm-up, convergence diagnostics, R-hat, and effective sample size
+#### 5.2. Warm-up, convergence diagnostics, R-hat, and effective sample size {-}
 
 - $\widehat{R}$ with only a few draws and with many draws:
 

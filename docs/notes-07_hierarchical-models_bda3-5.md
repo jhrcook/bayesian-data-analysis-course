@@ -19,13 +19,13 @@
 
 - "The hierarchical models in the chapter are simple to keep computation simple. More advanced computational tools are presented in Chapters 10-12 (part of the course) and 13 (not part of the course)."
 
-#### Exchangeability vs. independence
+#### Exchangeability vs. independence {-}
 
 - exchangeability and independence are two separate concepts; neither necessarily implies the other
   - independent identically distributed variables/parameters are exchangeable
   - exchangeability is less strict condition than independence
 
-#### Weakly informative priors for hierarchical variance parameters
+#### Weakly informative priors for hierarchical variance parameters {-}
 
 - suggestions have changed since writing section 5.7
   - section 5.7 recommends use of half-Cauchy as weakly informative prior for hierarchical variance parameters
@@ -42,7 +42,7 @@
   - 5.2: how to construct a hierarchical prior distribution in the context of a fully Bayesian analysis
   - 5.7: weakly informative priors
 
-#### 1. Constructing a parameterized prior distribution
+#### 1. Constructing a parameterized prior distribution {-}
 
 - have historical data to inform our model
   - can use it to construct a prior for our new data or use it as data to inform the posterior
@@ -52,7 +52,7 @@
 
 ![hierarchical structure graph](assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-1.png)
 
-#### 5.2 Exchangeability and hierarchical models
+#### 5.2 Exchangeability and hierarchical models {-}
 
 - if no information (other than $y$) is available to distinguish any of the $\theta_j$'s, and no ordering (time) or grouping can be made, then we must assume symmetry among the parameters in the prior distribution
   - *this symmetry is represented probabilistically by exchangeability*: the parameters $(\theta_1, \dots, \theta_J)$ are *exchangeable* in the join distribution if $p(\theta_1, \dots, \theta_J)$ is invariant to permutations of the indices $(1, \dots, J)$
@@ -84,7 +84,7 @@ $$
 - posterior predictive distributions
   - get predictions on both levels
 
-#### 5.3 Bayesian analysis of conjugate hierarchical models
+#### 5.3 Bayesian analysis of conjugate hierarchical models {-}
 
 - analysis derivation of conditional and marginal distributions
   1. write the (unnormalized) joint posterior density $p(\theta, \phi | y)$ as a product of the hyperprior $p(\phi)$, the population distribution $p(\theta|\phi)$ and the likelihood $p(y|\theta)$
@@ -101,7 +101,7 @@ $$
 
 ![rat tumor model posterior](assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-4.png)
 
-#### 5.4 Normal model with exchangeable parameters
+#### 5.4 Normal model with exchangeable parameters {-}
 
 - drawing posterior predictive samples:
   1. for new data $\tilde{y}$ of existing groups $J$, use the posterior distributions for $(\theta_1, \dots, \theta_j)$
@@ -110,16 +110,16 @@ $$
     2. draw $\tilde{J}$ new parameters $(\tilde{\theta}_1, \dots, \tilde{\theta}_\tilde{J})$ from $p(\tilde{\theta} | \mu, \tau)$
     3. draw $\tilde{y}$ given $\tilde{\theta}$
 
-#### 5.5 Example: parallel experiments in eight schools
+#### 5.5 Example: parallel experiments in eight schools {-}
 
 - a full example of a Bayesian hierarchical modeling process and analysis
 
-#### 5.6 Hierarchical modeling applied to a meta-analysis
+#### 5.6 Hierarchical modeling applied to a meta-analysis {-}
 
 - another good example of analyzing the results of a Bayesian hierarchical model
   - notes the importance of interpreting both the mean and standard error hyperparameters to interpret the distribution of possible parameter values
 
-#### 5.7 Weakly informative priors for variance parameters
+#### 5.7 Weakly informative priors for variance parameters {-}
 
 - "It turns out the the choice of 'noninformative' prior distribution can have a big effect on inferences," (pg. 128)
   - uniform prior distributions will often lead to overly-dispersed posteriors
@@ -129,7 +129,7 @@ $$
 
 ### Lecture notes
 
-#### ['7.1. Hierarchical models'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=79dee6de-afa9-446f-b533-aaf400cabf2b)
+#### ['7.1. Hierarchical models'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=79dee6de-afa9-446f-b533-aaf400cabf2b) {-}
 
 - description of the diagram of a hierarchical model
   - box: known value
@@ -214,7 +214,7 @@ eight_schools
 #> eta[8]     0.05    0.01 0.92  -1.78  -0.54   0.06   0.66   1.87  5721    1
 #>  [ reached getOption("max.print") -- omitted 9 rows ]
 #> 
-#> Samples were drawn using NUTS(diag_e) at Wed Feb  2 06:39:41 2022.
+#> Samples were drawn using NUTS(diag_e) at Thu Feb  3 07:29:38 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).
@@ -241,7 +241,7 @@ theta_tau_post %>%
 
 <img src="notes-07_hierarchical-models_bda3-5_files/figure-html/unnamed-chunk-2-1.png" width="2100" />
 
-#### ['7.2. Exchangeability'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c822561c-f95d-44fc-a1d0-aaf400d9fae3)
+#### ['7.2. Exchangeability'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c822561c-f95d-44fc-a1d0-aaf400d9fae3) {-}
 
 - **exchangeability**: parameters $\theta_1, \dots ,\theta_J$ (or observations $y_1, \dots , y_J$) are exchangeable if the joint distribution $p$ is invariant to the permutation of indices $(1, \dots, J)$
   - e.g.: $p(\theta_1, \theta_2, \theta_3) = p(\theta_2, \theta_3, \theta_1)$

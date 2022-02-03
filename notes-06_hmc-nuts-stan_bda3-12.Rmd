@@ -30,25 +30,19 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 #### Hamiltonian Monte Carlo {-}
 
-- review of static HMC (the number of steps in dynamic simulation are not adaptively selected) is Radford Neal (2011)[^1].
+- review of static HMC (the number of steps in dynamic simulation are not adaptively selected) is @Neal2012-mu
 - Stan uses a variant of dynamic Hamiltonian Monte Carlo (using adaptive number of steps in the dynamic simulation), which has been further developed since BDA3 was published
-- The first dynamic HMC variant was by Hoffman and Gelman (2014)[^2].
-- The No-U-Turn Sampler (NUTS) is often associated with Stan, but the current dynamic HMC variant implemented in Stan has some further developments described (mostly) by Betancourt (2018)[^3]
+- The first dynamic HMC variant was by @Hoffman2011-nx
+- The No-U-Turn Sampler (NUTS) is often associated with Stan, but the current dynamic HMC variant implemented in Stan has some further developments described (mostly) by @Betancourt2017-bp
   - Instead of reading all above, you can also watch a video: [Scalable Bayesian Inference with Hamiltonian Monte Carlo](https://wwwyoutube.com/watch?v=jUSZboSq1zg) by Betancourt
-
-[^1]: Radford Neal (2011). MCMC using Hamiltonian dynamics. In Brooks et al (ed), *Handbook of Markov Chain Monte Carlo*, Chapman & Hall / CRC Press. Preprint https://arxiv.org/pdf/1206.1901.pdf.
-[^2]: Matthew D. Hoffman, Andrew Gelman (2014). The No-U-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo. *JMLR*, 15:1593–1623 http://jmlr.org/papers/v15/hoffman14a.html.
-[^3]: Michael Betancourt (2018). A Conceptual Introduction to Hamiltonian Monte Carlo. arXiv preprint arXiv:1701.02434 https://arxiv.org/abs/1701.02434.
 
 #### Divergences and BFMI {-}
 
 - divergences and Bayesian Fraction of Missing Information (BFMI) are HMC specific convergence diagnostics developed by Betancourt after BDA3 was published
   - Divergence diagnostic checks whether the discretized dynamic simulation has problems due to fast varying density.
     - See more in a [case study](http://mc-stan.org/users/documentation/case-studies/divergences_and_bias.html)
-  - BFMI checks whether momentum resampling in HMC is sufficiently efficient[^4]
+  - BFMI checks whether momentum resampling in HMC is sufficiently efficient [@Betancourt2016-je]
   - [Brief Guide to Stan’s Warnings](https://mc-stan.org/misc/warnings.html) provides summary of available convergence diagnostics in Stan and how to interpret them.
-
-[^4]: Betancourt, Michael. 2016. “Diagnosing Suboptimal Cotangent Disintegrations in Hamiltonian Monte Carlo.” arXiv [stat.ME]. arXiv. http://arxiv.org/abs/1604.00695.
 
 ### Chapter 12. Computationally efficient Markov chain simulation
 

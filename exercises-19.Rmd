@@ -16,15 +16,12 @@ set.seed(0)
 
 > I turned this exercise into a blog post on my [webiste](https://joshuacook.netlify.app).
 
-In chapter 17 "Parametric nonlinear models" of *Bayesian Data Analysis*[^1] by Gelman *et al.*, the authors present an example of fitting a curve to a [serial dilution](https://en.wikipedia.org/wiki/Serial_dilution) standard curve and using it to estimate unknown concentrations.
+In chapter 17 "Parametric nonlinear models" of *Bayesian Data Analysis* by Gelman *et al.* [@bda3], the authors present an example of fitting a curve to a [serial dilution](https://en.wikipedia.org/wiki/Serial_dilution) standard curve and using it to estimate unknown concentrations.
 Below, I build the model with Stan and fit it using MCMC.
-Unfortunately, I was unable to find the original data in Gelman's original publication of the model[^2].
+Unfortunately, I was unable to find the original data in Gelman's original publication of the model [@Gelman2004-kh].
 The best I could do was copy the data for the standard curve from a table in the book and build the model to fit that data.
 
 > The source code for this post is in a [repository](https://github.com/jhrcook/bayesian-data-analysis-course) of my work for Aki Vehtari's Bayesian Data Analysis [course](https://avehtari.github.io/BDA_course_Aalto/index.html).
-
-[^1]: Gelman, Andrew, et al. Bayesian Data Analysis. CRC Press Etc., 2015.
-[^2]: Gelman A, Chew GL, Shnaidman M. Bayesian analysis of serial dilution assays. Biometrics. 2004 Jun;60(2):407-17. doi: 10.1111/j.0006-341X.2004.00185.x. PMID: 15180666. https://pubmed.ncbi.nlm.nih.gov/15180666/
 
 ## Setup
 

@@ -74,11 +74,9 @@ $$
 
 #### Mixtures as true models or approximating distributions {-}
 
-- two classes of thought[^1]:
+- two classes of thought^[I came up with the names of the two schools of thought as descriptive titles; they do not appear in the book.]:
   1. *theoretical:* a mixture model is "a realistic characterization of the true data-generating mechanism" (pg. 522)
   2. *pragmatic:* "trying to infer latent subpopulations is an intrinsically ill-defined statistical problem, but finite mixture models are nonetheless useful" (pg. 523)
-
-[^1]: I came up with the names of the two schools of thought as descriptive titles; they do not appear in the book.
 
 ### 22.4 Unspecifed number of mixture components {-}
 

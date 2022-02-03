@@ -18,21 +18,21 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+## ── Attaching packages ─────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
 ```
 
 ```
-## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
-## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   2.0.1     ✓ forcats 0.5.1
+## ✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+## ✔ tibble  3.1.3     ✔ dplyr   1.0.7
+## ✔ tidyr   1.1.3     ✔ stringr 1.4.0
+## ✔ readr   2.0.1     ✔ forcats 0.5.1
 ```
 
 ```
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::collapse() masks glue::collapse()
-## x dplyr::filter()   masks stats::filter()
-## x dplyr::lag()      masks stats::lag()
+## ── Conflicts ────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::collapse() masks glue::collapse()
+## ✖ dplyr::filter()   masks stats::filter()
+## ✖ dplyr::lag()      masks stats::lag()
 ```
 
 ```r
@@ -186,7 +186,7 @@ bioassay_posterior <- read_data(
 ```
 
 ```
-#> ── Column specification ────────────────────────────────────────────────────────
+#> ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────
 #> Delimiter: "\t"
 #> dbl (2): X1, X2
 ```
@@ -470,11 +470,11 @@ glue("S_eff for prior draws of bioassy model: {round(prior_s_eff, 3)}")
 ```
 
 ```
-#> S_eff for prior draws of bioassy model: 1172.949
+#> S_eff for prior draws of bioassy model: 1133.923
 ```
 
 The $S_\text{eff}$ for the prior draws is calculated above.
-We can see that even though there were 4000 draws, the effective sampling size is about 1173.
+We can see that even though there were 4000 draws, the effective sampling size is about 1134.
 This means that the prior samples do no accurately sample from the target distribution.
 We can see this in the histogram with most importance weights near 0 and a thick tail of higher values.
 This is also shown in the plot below of the prior samples colored by their importance ratios.
@@ -558,7 +558,7 @@ post_means
 
 ```
 #>      alpha       beta 
-#>  0.8957679 10.4117777
+#>  0.9422979 10.5937936
 ```
 
 As stated in the hint with the question, we can calculate the MCSE of $\text{E}[\theta]$ as $\sqrt{\text{Var}[\theta]/S},$, using $S_\text{eff}$ for $S$, and $\text{Var}[\theta]$ as $\text{E}[\theta^2] − \text{E}[\theta]^2$
@@ -581,8 +581,8 @@ mcse
 ```
 
 ```
-#>       alpha        beta 
-#> 0.009676957 0.290599350
+#>      alpha       beta 
+#> 0.00847677 0.30130117
 ```
 
 
@@ -593,7 +593,7 @@ glue("alpha post mean: {a_post_mean}, beta post mean: {b_post_mean}")
 ```
 
 ```
-#> alpha post mean: 0.9, beta post mean: 10
+#> alpha post mean: 0.94, beta post mean: 11
 ```
 
 The posterior means for $\alpha$ and $\beta$ are indicated by the red dot over-layed on the distribution of importance weights from a previous question.

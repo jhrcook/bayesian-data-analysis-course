@@ -26,7 +26,7 @@ $$
 y | \beta, \sigma, X \sim \text{N}(X \beta, \sigma^2 I)
 $$
 
-#### Posterior predictive distribution for new data
+#### Posterior predictive distribution for new data {-}
 
 - posterior predictive distribution has two sources of uncertainty:
   1. the inherent variability in the model represented by $\sigma$ in $y$
@@ -42,7 +42,7 @@ $$
   2. predict $y$ given $x$
   3. causal inference; predict how $y$ would change if $x$ were changed
 
-## 14.5 Assembling the matrix of explanitory variables
+## 14.5 Assembling the matrix of explanatory variables
 
 ### Identifiability and collinearity
 

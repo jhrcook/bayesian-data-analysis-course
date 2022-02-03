@@ -1,12 +1,21 @@
+---
+bibliography: ["citations.bib"]
+biblio-style: "apalike"
+link-citations: true
+---
+
 # Bayesian Data Analysis course
 
 TODO:
 
 - update this page to act as more of an introduction and explain the structure of the book
-- go through each Rmd and mark "unnumbered" subsections
-- footnotes: remove number from foot note so they appear at the bottom of the current page (https://bookdown.org/yihui/bookdown/markdown-syntax.html#inline-formatting)
+- go through each page and update styling
+- figure out where to put Stan models (script to put them all in an Rmd with good code highlighting)
+
+DONE:
+
 - citations: https://bookdown.org/yihui/bookdown/citations.html#citations
-- figure out where to put Stan models
+- footnotes: remove number from foot note so they appear at the bottom of the current page (https://bookdown.org/yihui/bookdown/markdown-syntax.html#inline-formatting)
 
 ## Resources
 

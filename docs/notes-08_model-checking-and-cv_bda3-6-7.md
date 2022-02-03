@@ -35,30 +35,30 @@
 
 ### Chapter 6. Model checking
 
-#### 6.1 The place of model checking in applied Bayesian statistics
+#### 6.1 The place of model checking in applied Bayesian statistics {-}
 
 - must assess the fit of a model to the data and to our substantive domain knowledge
 
-##### Sensitivity analysis and model improvement
+##### Sensitivity analysis and model improvement {-}
 
 - *sensitivity analysis*: "how much do posterior inference change when other reasonable probability models are used in place of the present model?" (pg. 141)
 
-##### Judging model flaws by their practical implications
+##### Judging model flaws by their practical implications {-}
 
 - not interested in if the model is true or false - will likely always be false
 - more interested in the question: "Do the model's deficiencies have a noticeable effect on the substantive inferences?" (pg. 142)
   - keep focus on the more important parts of the model, too
 
-#### 6.2 Do the inferences from the model make sense?
+#### 6.2 Do the inferences from the model make sense? {-}
 
 - there will be knowledge that is not included in the model
   - if the additional information suggests that posterior inferences are false, this suggests an option for improving the model's accuracy
 
-##### External validation
+##### External validation {-}
 
 - *external validation*: "using the model to make predictions about future data, and then collecting those data and comparing to their predictions" (pg. 142)
 
-#### 6.3 Posterior predictive checking
+#### 6.3 Posterior predictive checking {-}
 
 - if the model fits, then generated replicate data should look like the observed data
   - "the observed data should look plausible under the posterior predictive distribution" (pg. 143)
@@ -68,7 +68,7 @@
 - need not worry about adjusting for multiple comparisons:
   - "We are not concerned with 'Type I error' rate... because we use the checks not to accept or reject a model but rather to understand the limits of its applicability in realistic replications." (pg. 150)
 
-#### 6.4 Graphical posterior predictive checks
+#### 6.4 Graphical posterior predictive checks {-}
 
 - three types of graphical display to start a posterior predictive check:
   1. direct display of all the data
@@ -78,7 +78,7 @@
   3. graphs of residuals or other measures of discrepancy between the model and data
     - description of how to do this effectively for discrete data
 
-#### 6.5 Model checking for the educational testing example
+#### 6.5 Model checking for the educational testing example {-}
 
 - check that posterior parameter values and predictions are reasonable
 - compare summary statistics of real data and predictive distributions
@@ -87,7 +87,7 @@
 
 ### Chapter 6. Lecture notes
 
-#### Lecture 8.1. Model Checking
+#### Lecture 8.1. Model Checking {-}
 
 - model checking overview:
   - Sensibility with respect to additional information not used in modeling
@@ -132,40 +132,32 @@ generated_quantities {
 - reading
   - 7.1 Measures of predictive accuracy
   - 7.2 Information criteria and cross-validation
-    - replace with: *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC*[^1]
+    - replace with: *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC* [@Vehtari2017-st]
   - 7.3 Model comparison based on predictive performance
-    - replace with: *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC*[^1]
+    - replace with: *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC* [@Vehtari2017-st]
   - 7.4 Model comparison using Bayes factors
   - 7.5 Continuous model expansion / sensitivity analysis
   - 7.6 Example (may be skipped)
 - extra material
-  - [LOO package glossary](https://mc-stan.org/loo/reference/loo-glossary.html) summarizes many important terms used in the assignments[^2]
-  - article discussing “How should I evaluate my modelling choices?”: *Between the devil and the deep blue sea: Tensions between scientific judgement and statistical model selection.*[^3]
+  - [LOO package glossary](https://mc-stan.org/loo/reference/loo-glossary.html) summarizes many important terms used in the assignments [@R-loo] [@loo2017a] [@loo2017b]
+  - article discussing “How should I evaluate my modelling choices?”: *Between the devil and the deep blue sea: Tensions between scientific judgement and statistical model selection.* [@Navarro2019-pi]
   - website about model selection by Vehtari: [Model assesment, selection and inference after selection](https://avehtari.github.io/modelselection/)
-  - sections 1 & 5 of *Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison*[^4] clarify how to interpret standard error in model comparison
-  - *A survey of Bayesian predictive methods for model assessment, selection and comparison.*[^5]
-  - *Comparison of Bayesian predictive methods for model selection.*[^6]
-
-
-[^1]: Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. “Practical Bayesian Model Evaluation Using Leave-One-out Cross-Validation and WAIC.” Statistics and Computing 27 (5): 1413–32.
-[^2]: https://CRAN.R-project.org/package=loo
-[^3]: Navarro, D.J. Between the Devil and the Deep Blue Sea: Tensions Between Scientific Judgement and Statistical Model Selection. Comput Brain Behav 2, 28–34 (2019). https://doi.org/10.1007/s42113-018-0019-z
-[^4]: Tuomas Sivula, Måns Magnusson, Aki Vehtari "Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison," arXiv, 2008.10296, (2020)
-[^5]: Aki Vehtari, Janne Ojanen "A survey of Bayesian predictive methods for model assessment, selection and comparison," Statistics Surveys, Statist. Surv. 6(none), 142-228, (2012)
-[^6]: Piironen, J., Vehtari, A. Comparison of Bayesian predictive methods for model selection. Stat Comput 27, 711–735 (2017). https://doi.org/10.1007/s11222-016-9649-y
+  - sections 1 & 5 of *Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison* [@Sivula2020-yw] clarify how to interpret standard error in model comparison
+  - *A survey of Bayesian predictive methods for model assessment, selection and comparison.* [@Vehtari2012-wn]
+  - *Comparison of Bayesian predictive methods for model selection.* [@Piironen2017-sa]
 
 ### Chapter 7. Evaluating, comparing, and expanding models
 
 - goal of this chapter is not to check model fit but to compare models and explore directions for improvement
 
-#### 7.1 Measures of predictive accuracy
+#### 7.1 Measures of predictive accuracy {-}
 
 - can use predictive accuracy for comparing models
 - **log predictive density**: the logarithmic score for predictions is the log predictive density $\log p(y|\theta)$
   - expected log predictive density as a measure of overall model fit
 - *external validation*: ideally, would check a model's fit on out-of-sample (new) data
 
-##### Averaging over the distirbution of future data
+##### Averaging over the distirbution of future data {-}
 
 - *expected log predictive density* (*elpd*) for a new data point:
   - where $f$ is the true data-generating process and $p_\text{post}(y)$ is the posterior probability of $y$
@@ -186,7 +178,7 @@ $$
   \sum_{i=1}^{n} \text{E}_f (\log p_\text{post}(\tilde{y}_i))
 $$
 
-##### Evaluating predictive accuracy for a fitted model
+##### Evaluating predictive accuracy for a fitted model {-}
 
 - in practice, we do not know $\theta$ so cannot know the log predictive density $\log p(y|\theta)$
 - want to use the posterior distribution $p_\text{post}(\theta) = p(\theta|y)$ and summarize the predictive accuracy of a fitted model to data:
@@ -209,12 +201,12 @@ $$
 \end{aligned}
 $$
 
-#### 7.2 Information criteria and cross-validation
+#### 7.2 Information criteria and cross-validation {-}
 
 - historically, measures of predictive accuracy are referred to as *information criteria*
   - are typically defined based on the deviance
 
-##### Estimating out-of-sample predictive accuracy using available data
+##### Estimating out-of-sample predictive accuracy using available data {-}
 
 - estimate the expected predictive accuracy without waiting for new data
 - some reasonable approximations for out-of-sample predictive accuracy
@@ -227,7 +219,7 @@ $$
   - WAIC is the best for Bayesian because it uses the full posterior distributions, not point estimates
     - there are actually two formulations for WAIC, and Gelman *et al.* recommend the second form they describe
 
-##### Effective number of parameters as a random variable
+##### Effective number of parameters as a random variable {-}
 
 - DIC and WAIC adjust the effective number of parameters according to the model structure and the data
   - the latter seems unintuitive
@@ -239,7 +231,7 @@ $$
 - Bayesian information criterion (BIC) is not comparable to AIC, DIC, and WAIC as it serves a different purpose
   - more discussion on pg. 175
 
-#### 7.3 Model comparison based on predictive performance
+#### 7.3 Model comparison based on predictive performance {-}
 
 - in comparing "nested" models, the large model is often better fit, but is more difficult to understand and compute
   - "nested" models are where one contains the structure of the other and a little more
@@ -251,11 +243,11 @@ $$
   - ideally, could construct a single model containing both of the non-nested models
 - authors recommend using LOO-=CV where possible and WAIC, otherwise (pg. 182)
 
-#### 7.4 Model comparison using Bayes factor
+#### 7.4 Model comparison using Bayes factor {-}
 
 - generally not recommended (pg. 182 for reasons why)
 
-#### 7.5 Continuous model expansion
+#### 7.5 Continuous model expansion {-}
 
 - posterior distributions of model parameters can either overestimate or underestimate different aspects of the "true" posterior uncertainty
   - overestimate uncertainty because the model usually does not contain *all* of one's substantive knowledge
@@ -263,7 +255,7 @@ $$
     - the model is almost always wrong (i.e. imperfect) - the reason for posterior predictive checking
     - other reasonable models could have fit the data equally well - the reason for sensitivity analysis
 
-##### Adding parameters to a model
+##### Adding parameters to a model {-}
 
 - reasons to expand a model:
   1. add knew parameters if the model does not fit the data or prior knowledge in some important way
@@ -272,7 +264,7 @@ $$
     - e.g. complete-pooling and no-pooling can be combined into a hierarchical model
   4. expanding a model to include new data
 
-#### Practical advice for model checking and expansion
+#### Practical advice for model checking and expansion {-}
 
 - examine posterior distributions of substantively important parameters and predicted quantities
   - e.g. number of zeros in a count model
@@ -282,7 +274,7 @@ $$
 
 ### Additional Reading
 
-#### *Visualization in Bayesian workflow*
+#### *Visualization in Bayesian workflow* {-}
 
 ([pdf](additional-reading/Visualization-in-Bayesian-workflow.pdf), [link](https://doi.org/10.1111/rssa.12378))
 
@@ -294,7 +286,7 @@ $$
   d. posterior predictive checks and other juxtapositions of data and predictions under the fitted model
   e. model comparison via tools such as cross-validation
 
-##### 3. Fake data can be almost as valuable as real data for building your model
+##### 3. Fake data can be almost as valuable as real data for building your model {-}
 
 - visualize simulations from the prior marginal distribution of the data to assess the consistency of the chosen priors with domain knowledge
 - *weakly informative  prior*: if draws from the prior data generating distribution $p(y)$ could represent any dataset that could plausibly be observed
@@ -302,7 +294,7 @@ $$
   - there should be no mass on completely implausible data sets
   - generate a “flip book” of simulated datasets that can be used to investigate the variability and multivariate structure of the distribution
 
-##### 4. Graphical Markov chain Monte Carlo diagnostics: moving beyond trace plots
+##### 4. Graphical Markov chain Monte Carlo diagnostics: moving beyond trace plots {-}
 
 - catching divergent draws heuristically is a powerful feature of HMC
   - sometimes get falsely flagged, so must check that the divergences were infact outside of the typical set
@@ -314,13 +306,13 @@ $$
 
 ![mcmc-diagnositcs-fig](assets/08_model-checking-and-cv_bda3-6-7/gabry_2007_fig5.png)
 
-#### 5. How did we do? Posterior predictive checks are vital for model evaluation
+#### 5. How did we do? Posterior predictive checks are vital for model evaluation {-}
 
 - "The idea behind posterior predictive checking is simple: if a model is a good fit we should be able to use it to generate data that resemble the data we observed"
   - "can also perform similar checks within levels of a grouping variable"
 - check that predictions are calibrated using LOO-CV predictive cumulative density function values which should be uniform (for continuous data)
 
-#### 6. Pointwise plots for predictive model comparison
+#### 6. Pointwise plots for predictive model comparison {-}
 
 - identify unusual points in the data
   - are other either outliers or points with high leverage
@@ -331,7 +323,7 @@ $$
 - also compare the full data log-posterior predictive density against each LOO log-predictive density to see which data points are difficult to model but not very influential
   - this is automatically calculated in PSIS-LOO as the parameter $\hat{k}$
 
-#### *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC*
+#### *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC* {-}
 
 ([pdf](additional-reading/Practical-Bayesian-model-evaluation-using-leave-one-out-cross-validation-and-WAIC.pdf), [link](https://arxiv.org/abs/1507.04544))
 
@@ -339,7 +331,7 @@ $$
 > We introduce an efficient computation of LOO using Pareto-smoothed importance sampling (PSIS), a new procedure for regularizing importance weights.
 > Although WAIC is asymptotically equal to LOO, we demonstrate that PSIS-LOO is more robust in thefinite case with weak priors or influential observations.
 
-##### Introduction
+##### Introduction {-}
 
 - exact CV requires re-fitting the model with every new training set
 - can approximate this with LOO-CV using importance sampling, but results can be very noisy
@@ -348,7 +340,7 @@ $$
 - this paper demonstrates that PSIS-LOO is better than WAIC in the finite case
   - also provide diagnostics for which method, WAIC or PSIS-LOO, is better or whether *k*-fold CV should be used instead
 
-##### Estimating out-of-sample pointwise predictive accuracy using posterior simulations
+##### Estimating out-of-sample pointwise predictive accuracy using posterior simulations {-}
 
 - posterior predictive distribution: $p(\tilde{y}|y) = \int p(\tilde{y}_i|\theta) p(\theta|y) d\theta$
 - expected log pointwise predictive density (ELPD)
@@ -373,7 +365,7 @@ $$
 $$
 \widehat{lpd} = \sum_{i=1}^n \lgroup \frac{1}{S} \sum_{s=1}^S p(y_i|\theta^s) \rgroup
 $$
-##### Pareto smoothed importance sampling
+##### Pareto smoothed importance sampling {-}
 
 - fit the right tail of importance weights to smooth the values
 - The estimated shape parameter $\hat{k}$ of the generalized Pareto distribution can be used to assessthe reliability of the estimate:
@@ -389,17 +381,17 @@ $$
   3. use a more robust model
 
 
-#### Model assesment, selection and inference after selection
+#### Model assesment, selection and inference after selection {-}
 
 ([link](https://avehtari.github.io/modelselection/))
 
-#### Cross-validation FAQ
+#### Cross-validation FAQ {-}
 
 ([link](https://avehtari.github.io/modelselection/CV-FAQ.html))
 
 ### Chapter 7. Lecture notes
 
-#### Lecture 8.2. Cross-Validation (part 1)
+#### Lecture 8.2. Cross-Validation (part 1) {-}
 
 - predictive performance
   - true predictive performance can be found by making predictions on new data and comparing to true observation

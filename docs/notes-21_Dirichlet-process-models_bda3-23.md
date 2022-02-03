@@ -12,7 +12,7 @@
   - used as a prior on unknown distributions
   - can extend finite component mixture models to infinite mixture models
 
-### 23.1 Bayesian histograms
+### 23.1 Bayesian histograms {-}
 
 - the histogram as a simple form of density estimation
   - demonstrate a flexible parametric version that motivates the non-parametric in the following section
@@ -45,9 +45,9 @@ $$
 
 - this histogram estimator does well but is sensitive to the specification of the knots
 
-### 23.2 Dirichlet process prior distributions
+### 23.2 Dirichlet process prior distributions {-}
 
-#### Definition and basic properties
+#### Definition and basic properties {-}
 
 - goal is to not need to prespecify the bins of the histogram
 - let:
@@ -125,7 +125,7 @@ $$
   - realizations from the DP are discrete distributions
     - with $P \sim \text{DP}(\alpha P_0)$, $P$ is atomic and have nonzero weights only on a set of atoms, not a continuous density on the real line
 
-#### Stick-breaking construction
+#### Stick-breaking construction {-}
 
 - more intuitive understanding of DP
 - induce $P \sim \text{DP}(\alpha P_0)$ by letting:
@@ -206,9 +206,9 @@ tibble(alpha = c(0.5, 1, 5, 10)) %>%
 
 <img src="notes-21_Dirichlet-process-models_bda3-23_files/figure-html/unnamed-chunk-2-1.png" width="2100" />
 
-### 23.3 Dirichlet process mixtures
+### 23.3 Dirichlet process mixtures {-}
 
-#### Specification and Polya urns
+#### Specification and Polya urns {-}
 
 - **"the DP is more appropriately used as a prior for an unknown mixture of distributions"** (pg 549)
 - in the case of density estimation, a general kernel mixture model can be specified as \@ref(eq:kernel-density)
@@ -272,7 +272,7 @@ $$
     - makes sense to have the possibility of more clusters with more subjects (instead of a fixed number of clusters as in a finite mixture model)
 - there is a description of the sampling process for the posterior of $\theta_i | \theta_{-i}$
 
-#### Hyperprior distribution
+#### Hyperprior distribution {-}
 
 - $\alpha$: the DP precision parameter
   - plays a role in controlling the prior on the number of clusters
@@ -285,9 +285,9 @@ $$
   - can think of $P_0$ as setting the prior for the cluster locations
   - can put hyperpriors on $P_0$ parameters
 
-### 23.4 Beyond density estimation
+### 23.4 Beyond density estimation {-}
 
-#### Nonparametric residual distributions
+#### Nonparametric residual distributions {-}
 
 - "The real attraction of Dirichlet process mixture (DPM) models is that they can be used much more broadly for relaxing parametric assumptions in hierarchical models." (pg 557)
 - consider the linear regression with a nonparametric error distribution \@ref(eq:linreg-nonparam-error)
@@ -305,7 +305,7 @@ $$
 \epsilon_i \sim N(0, \phi_i^{-1}) \text{,} \quad \phi \sim P \text{,} \quad P \sim \text{DP}(\alpha P_0)
 $$
 
-#### Nonparametric models for parameters that vary by group
+#### Nonparametric models for parameters that vary by group {-}
 
 - consider hierarchical linear models with varying coefficients
   - can account for uncertainty about the distribution of coefficients by placing a DP or DPM priors on them
