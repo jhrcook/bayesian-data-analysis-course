@@ -35,9 +35,9 @@ stan_model_to_markdown <- function(model_file) {
   return(glue(md_txt))
 }
 
-rmd_text <- "# (PART) Stan models {-}
+rmd_text <- "# (PART) Models {-}
 
-# Models
+# Stan models
 
 Below are the Stan models built as a part of this course.
 The original files are available in the GitHub repo in the \"models\" directory.

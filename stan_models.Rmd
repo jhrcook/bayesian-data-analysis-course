@@ -1,6 +1,6 @@
-# (PART) Stan models {-}
+# (PART) Models {-}
 
-# Models
+# Stan models
 
 Below are the Stan models built as a part of this course.
 The original files are available in the GitHub repo in the "models" directory.

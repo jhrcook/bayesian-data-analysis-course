@@ -8,21 +8,30 @@ link-citations: true
 
 TODO:
 
-- update this page to act as more of an introduction and explain the structure of the book
+- update each section's Introduction page
 - go through each page and update styling
-- figure out where to put Stan models (script to put them all in an Rmd with good code highlighting)
 
 DONE:
 
 - citations: https://bookdown.org/yihui/bookdown/citations.html#citations
 - footnotes: remove number from foot note so they appear at the bottom of the current page (https://bookdown.org/yihui/bookdown/markdown-syntax.html#inline-formatting)
+- figure out where to put Stan models (script to put them all in an Rmd with good code highlighting)
+- update About page
+- update this page to act as more of an introduction and explain the structure of the book
+
+
+This book serves as a collection of my notes and exercises completed for the [*Bayesian Data Analysis*](https://avehtari.github.io/BDA_course_Aalto/) course taught by Aki Vehtari.
+It is normally taught as CS-E5710 at Aalto University, but the lectures and assignments have been made freely available online.
+
+The source code for my course work is available on GitHub: [jhrcook/bayesian-data-analysis-course](https://github.com/jhrcook/bayesian-data-analysis-course).
+If you see any problems (big or small), please let me know by opening an [Issue](https://github.com/jhrcook/bayesian-data-analysis-course/issues).
 
 ## Resources
 
 - [Course website](https://avehtari.github.io/BDA_course_Aalto/)
 - [2021 Schedule](https://avehtari.github.io/BDA_course_Aalto/Aalto2021.html#Schedule_2021)
 - [GitHub repo](https://github.com/avehtari/BDA_course_Aalto) ([my fork](https://github.com/jhrcook/BDA_course_Aalto))
-- [*Bayesian Data Analysis* (3e)](https://users.aalto.fi/~ave/BDA3.pdf) (BDA3) ([exercise solutions](book/bda-exercise-solutions3.pdf))
+- [*Bayesian Data Analysis* (3e)](https://users.aalto.fi/~ave/BDA3.pdf) (BDA3) ([exercise solutions](https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/reading/bda3-exercise-solutions.pdf))
 - [Chapter Notes](https://avehtari.github.io/BDA_course_Aalto/chapter_notes/BDA_notes.pdf)
 - [Video lectures](https://aalto.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f0ec3a25-9e23-4935-873b-a9f401646812%22) or individually lists [here](https://avehtari.github.io/BDA_course_Aalto/#videos)
 - [Lecture slides](https://github.com/avehtari/BDA_course_Aalto/tree/master/slides)
@@ -43,36 +52,46 @@ The recommended way to go through the material is:
 
 ## Course sections
 
-| Section                                             | Notes                                                        | Book exercises                                    | Assignments                                           |
-|----------------------------------------------------:|:------------------------------------------------------------:|:-------------------------------------------------:|:-----------------------------------------------------:|
-| **1. Course Introduction**                          | [notes](notes/01_introduction_bda3-01.html)                  | [exercises](book-exercises/bda-exercises-01.html) | [assignment 1](assignments/jhcook-assignment-01.html) |
-| **2. Basics of Bayesian Inference**                 | [notes](notes/02_basics-of-Bayesian-inference_bda3-02.html)  | [exercises](book-exercises/bda-exercises-02.html) | [assignment 2](assignments/jhcook-assignment-02.html) |
-| **3. Multidimensional Posterior**                   | [notes](notes/03_multidimensional-posterior_bda3-03.html)    | (none)                                            | [assignment 3](assignments/jhcook-assignment-03.html) |
-| **4. Monte Carlo**                                  | [notes](notes/04_monte-carlo_bda3-10.html)                   | (none)                                            | [assignment 4](assignments/jhcook-assignment-04.html) |
-| **5. Markov chain Monte Carlo**                     | [notes](notes/05_mcmc_bda3-11.html)                          | (none)                                            | [assignment 5](assignments/jhcook-assignment-05.html) |
-| **6. HMC, NUTS, and Stan**                          | [notes](notes/06_hmc-nuts-stan_bda3-12.html)                 | (none)                                            | [assignment 6](assignments/jhcook-assignment-06.html) |
-| **7. Hierarchical models and exchangeability**      | [notes](notes/07_hierarchical-models_bda3-5.html)            | [exercises](book-exercises/bda-exercises-07.html) | [assignment 7](assignments/jhcook-assignment-07.html) |
-| **8. Model checking & Cross-validation**            | [notes](notes/08_model-checking-and-cv_bda3-6-7.html)        | (none)                                            | (none)                                                |
-| **9. Model comparison and selection**               | [notes](notes/09_model-selection_bda3-7.html)                | (none)                                            | [assignment 8](assignments/jhcook-assignment-08.html) |
-| **10. Decision analysis**                           | [notes](notes/10_decision-analysis_bda3-9.html)              | (none)                                            | [assignment 9](assignments/jhcook-assignment-09.html) |
-| **11. Normal approximation & Frequency properties** | [notes](notes/11_normal-approx-freq-properties_bda3-04.html) | (none)                                            | (none)                                                |
-| **12. Extended topics**                             | [notes](notes/12_extended-topics.html)                       | (none)                                            | (none)                                                |
+Below are the main sections of the course where each section should take about a week to complete.
+
+1. Course Introduction
+2. Basics of Bayesian Inference
+3. Multidimensional Posterior
+4. Monte Carlo
+5. Markov chain Monte Carlo
+6. HMC, NUTS, and Stan
+7. Hierarchical models and exchangeability
+8. Model checking & Cross-validation
+9. Model comparison and selection
+10. Decision analysis
+11. Normal approximation & Frequency properties
+12. Extended topics
 
 ## Additional notes
 
-| Chapter | Title                                 | Notes                                                      | Additional work                                               |
-|--------:|---------------------------------------|:----------------------------------------------------------:|:-------------------------------------------------------------:|
-|      14 | **Introduction to regression models** | [notes](notes/13_intro-to-regression-models_bda3-14.html)  |                                                               |
-|      15 | **Hierarchical linear models**        | [notes](notes/14_hierarchical-linear-models_bda3-15.html)  |                                                               |
-|      16 | **Generalized linear models**         |                                                            |                                                               |
-|      18 | **Models for missing data**           |                                                            |                                                               |
-|      19 | **Parametric nonlinear models**       | [notes](notes/17_parametric-nonlinear-models_bda3-19.html) | [serial dilution model](book-exercises/bda-exercises-19.html) |
-|      20 | **Basis function models**             | [notes](notes/18_basis-function-models_bda3-20.html)       |                                                               |
-|      21 | **Gaussian process models**           | [notes](notes/19_gaussian-processes_bda3-21.html)          |                                                               |
-|      22 | **Finite mixture models**             | [notes](notes/20_finite-mixture-models_bda3-22.html)       |                                                               |
-|      23 | **Dirichlet process models**          | [notes](notes/21_Dirichlet-process-models_bda3-23.html)    |                                                               |
+I took additional notes on other chapters in the book.
+I appended these chapters after the primary course sections.
+
+1. Ch. 14 Introduction to regression models
+1. Ch. 15 Hierarchical linear models
+1. Ch. 19 Parametric nonlinear models
+1. Ch. 20 Basis function models
+1. Ch. 21 Gaussian process models
+1. Ch. 22 Finite mixture models
+1. Ch. 23 Dirichlet process models
+
+I plan to also read through and take notes on chapters 16 and 18 on "Generalized linear models" and "Models for missing data" in the future.
+
+## Assignments and exercises
+
+I completed the assignments that accompany the course and also did some of additional exercises from the book.
+These are available in their own sections of the book: [Assignments](#assignments-intro) and [Exercises](#exercises-intro).
+
 
 ## Stan models
+
+Below is a list of the models built during the course.
+The original code is available in the GitHub repo ["models"](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models) directory and they are also copied in the [Models](#stan-models-1) section of this website.
 
 - [Drug bioassay model](models/assignment06-bioassay.stan) for Assignment 6
 - [8 school SAT model](models/8-schools.stan)

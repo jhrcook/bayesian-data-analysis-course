@@ -1,6 +1,6 @@
 # (PART) Notes {-}
 
-# Introduction {-}
+# Introduction {#notes-introduction .unnumbered}
 
 TODO: add more information here; describe the general structure of the notes.
 
