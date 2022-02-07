@@ -6,7 +6,7 @@ SHELL=/bin/bash
 help:
 	@echo "available commands"
 	@echo " - help               : information about available commands"
-	@echo " - build              : run all notebooks and build the gitbook"
+	@echo " - book              : run all notebooks and build the gitbook"
 
-build:
+book:
 	Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")'
