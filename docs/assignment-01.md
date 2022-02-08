@@ -2,15 +2,14 @@
 
 2021-08-19
 
-
-
-
-**[Assignment 1](assignment-01.pdf)**
+**[Assignment 1](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-01.pdf)**
 
 ## Setup
 
 
 ```r
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
 library(glue)
 ```
 

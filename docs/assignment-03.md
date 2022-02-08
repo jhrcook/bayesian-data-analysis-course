@@ -2,41 +2,25 @@
 
 2021-09-07
 
-
+**[Assignment 3](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-03.pdf)**
 
 ## Setup
 
 
 ```r
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
+for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
+  source(f)
+}
+
 library(glue)
 library(tidyverse)
-```
 
-```
-#> ── Attaching packages ─────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
-#> ✔ ggplot2 3.3.5     ✔ purrr   0.3.4
-#> ✔ tibble  3.1.3     ✔ dplyr   1.0.7
-#> ✔ tidyr   1.1.3     ✔ stringr 1.4.0
-#> ✔ readr   2.0.1     ✔ forcats 0.5.1
-```
-
-```
-#> ── Conflicts ────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::collapse() masks glue::collapse()
-#> ✖ dplyr::filter()   masks stats::filter()
-#> ✖ dplyr::lag()      masks stats::lag()
-```
-
-```r
 theme_set(theme_bw() + theme(plot.title = element_text(hjust = 0.5)))
 
 set.seed(748)
 ```
-
-**[Assignment 3](assignments/assignment-03.pdf)**
 
 ## Exercise 1. Inference for normal mean and deviation
 
@@ -138,7 +122,7 @@ plot_dist(
 )
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-5-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-4-1.png" width="2100" />
 
 The PDF for $\sigma$ can be calculated analytically from equation 3.5 in BDA (pg. 65).
 
@@ -171,7 +155,7 @@ plot_dist(
 )
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-6-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-5-1.png" width="2100" />
 
 **b) What can you say about the hardness of the next windshield coming from the production line before actually measuring the hardness?**
 **Summarize your results using Bayesian point estimate, a predictive interval (95%), and plot the density.**
@@ -236,7 +220,7 @@ tibble(
   )
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-8-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-7-1.png" width="2100" />
 
 The density of the posterior samples for $\mu$ and $\sigma$ is shown in the plot below.
 
@@ -255,7 +239,7 @@ post_pred_df %>%
   labs(title = "Posterior samples for distribution parameters")
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-9-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-8-1.png" width="2100" />
 
 Finally, the following is the posterior predictive distribution.
 
@@ -278,7 +262,7 @@ post_pred_df %>%
   )
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-10-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-9-1.png" width="2100" />
 
 Using the functions created above, I can address the specific tests provided with the question.
 It would be better to provide an analytic solution by integrating over the probability densities of $\sigma$ and $\mu$, but these sampling-based solutions are pretty close.
@@ -364,7 +348,7 @@ plot_dist(
 )
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-14-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-13-1.png" width="2100" />
 
 likelihoods:
 
@@ -462,7 +446,7 @@ plot_two_distributions(p0_post, "p0", p1_post, "p1") +
   )
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-20-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-19-1.png" width="2100" />
 
 The posterior distribution for the odds ratio is plotted below and it is shifted primarily to values less than 1.
 
@@ -472,7 +456,7 @@ plot_single_distribution(post_or) +
   labs(x = "odds ratio", y = "density")
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-21-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-20-1.png" width="2100" />
 
 **b) Discuss the sensitivity of your inference to your choice of prior density with a couple of sentences.**
 
@@ -495,7 +479,7 @@ post_or_noinfo <- posterior_odds_ratio(p0_post_noinfo, p1_post_noinfo)
 plot_single_distribution(post_or_noinfo)
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-22-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-21-1.png" width="2100" />
 
 
 ```r
@@ -503,7 +487,7 @@ plot_two_distributions(post_or, "weakly info.", post_or_noinfo, "non-info.") +
   labs(x = "odds ratio", y = "density", color = "prior", fill = "prior")
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-23-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-22-1.png" width="2100" />
 
 The difference in influence on the posterior inference between a weakly informative prior $\text{Beta}(2, 5)$ and non-informative, uniform prior $\text{Beta}(1, 1)$ is negligible.
 The large number of data points overwhelms the prior's influence.
@@ -530,7 +514,7 @@ plot_two_distributions(post_or, "weakly info.", post_or_strong, "strong") +
   labs(x = "odds ratio", y = "density", color = "prior", fill = "prior")
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-24-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-23-1.png" width="2100" />
 
 ## Exercise 3. Inference for the difference between normal means
 
@@ -577,7 +561,7 @@ tibble(
   labs(x = "windshield hardness", y = "probability", color = "production line")
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-27-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-26-1.png" width="2100" />
 
 As before, I can sample from the posteriors of $\mu_1$ and $\mu_2$ and use these simulated values for further calculations, in this case $\mu_d = \mu_1 - \mu_2$.
 The distribution for $\mu_d$ is plotted below.
@@ -594,7 +578,7 @@ plot_single_distribution(mud_draws) +
   labs(x = "µ<sub>d</sub>", y = "probability density")
 ```
 
-<img src="assignment-03_files/figure-html/unnamed-chunk-28-1.png" width="2100" />
+<img src="assignment-03_files/figure-html/unnamed-chunk-27-1.png" width="2100" />
 
 Using the simulated posterior, I can get an estimate for the expected value of $\mu_d$ as the mean of the posterior distribution.
 

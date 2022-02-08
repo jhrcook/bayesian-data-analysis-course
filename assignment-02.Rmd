@@ -2,15 +2,13 @@
 
 2021-08-30
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
-```
-
-**[Assignment 2](assignment-02.pdf)**
+**[Assignment 2](`r paste0(CM_URL, "assignment-02.pdf")`)**
 
 ## Setup
 
-```{r, warning=FALSE, message=FALSE}
+```{r setup, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
 for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
   source(f)
 }

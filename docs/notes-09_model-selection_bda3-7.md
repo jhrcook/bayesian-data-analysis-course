@@ -6,14 +6,14 @@
 
 ## Resources
 
-- BDA3 chapter 7 and [reading instructions](../reading-instructions/BDA3_ch07_reading-instructions.pdf)
+- BDA3 chapter 7 and [reading instructions](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/BDA3_ch07_reading-instructions.pdf)
 - lectures:
   - ['9.1 PSIS-LOO and K-fold-CV'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=50b2e73f-af0a-4715-b627-ab0200ca7bbd)
   - ['9.2 Model comparison and selection'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=b0299d53-9454-4e33-9086-ab0200db14ee)
   - ['9.3 Variable selection with projection predictive variable selection'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=4b6eeb48-ae64-4860-a8c3-ab0200e40ad8)
 - slides:
-  - [chapter 7b](../slides/slides_ch7b.pdf)
-- [Assignment 8](assignments/assignment-08.pdf)
+  - [chapter 7b](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch7b.pdf)
+- [Assignment 8](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-08.pdf)
 
 ## Notes
 

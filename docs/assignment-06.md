@@ -2,6 +2,8 @@
 
 2021-10-07
 
+**[Assignment 6](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-06.pdf)**
+
 ## Setup
 
 
@@ -13,75 +15,10 @@ for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
 }
 
 library(rstan)
-```
-
-```
-## Loading required package: StanHeaders
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```
-## rstan (Version 2.21.2, GitRev: 2e1f913d3ca3)
-```
-
-```
-## For execution on a local, multicore CPU with excess RAM we recommend calling
-## options(mc.cores = parallel::detectCores()).
-## To avoid recompilation of unchanged Stan programs, we recommend calling
-## rstan_options(auto_write = TRUE)
-```
-
-```r
 library(tidybayes)
 library(bayesplot)
-```
-
-```
-## This is bayesplot version 1.8.1
-```
-
-```
-## - Online documentation and vignettes at mc-stan.org/bayesplot
-```
-
-```
-## - bayesplot theme set to bayesplot::theme_default()
-```
-
-```
-##    * Does _not_ affect other ggplot2 plots
-```
-
-```
-##    * See ?bayesplot_theme_set for details on theme setting
-```
-
-```r
 library(tidyverse)
-```
 
-```
-## ── Attaching packages ─────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
-## ✔ tibble  3.1.3     ✔ dplyr   1.0.7
-## ✔ tidyr   1.1.3     ✔ stringr 1.4.0
-## ✔ readr   2.0.1     ✔ forcats 0.5.1
-## ✔ purrr   0.3.4
-```
-
-```
-## ── Conflicts ────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ tidyr::extract() masks rstan::extract()
-## ✖ dplyr::filter()  masks stats::filter()
-## ✖ dplyr::lag()     masks stats::lag()
-```
-
-```r
 theme_set(
   theme_classic() +
     theme(
@@ -93,13 +30,11 @@ theme_set(
 rstan_options(auto_write = TRUE)
 ```
 
-**[Assignment 6](assignments/assignment-06.pdf)**
-
 ## Exercise 1. Generalized linear model: Bioassay with Stan
 
 **Replicate the computations for the bioassay example of section 3.7 (BDA3) using Stan.**
 
-The model is located in "models/assignment06-bioassay.stan".
+The model is located in "[models/assignment06-bioassay.stan](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/models/assignment06-bioassay.stan).
 I have copied it below:
 
 ```
@@ -158,7 +93,7 @@ bioassay <- read_bioassay_data()
 ```
 
 ```
-#> ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────
+#> ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Delimiter: "\t"
 #> chr (1): x n y
 ```
@@ -187,8 +122,8 @@ bioassay_mdl_posterior <- stan(
 #> 
 #> SAMPLING FOR MODEL 'assignment06-bioassay' NOW (CHAIN 1).
 #> Chain 1: 
-#> Chain 1: Gradient evaluation took 5.6e-05 seconds
-#> Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.56 seconds.
+#> Chain 1: Gradient evaluation took 5.5e-05 seconds
+#> Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.55 seconds.
 #> Chain 1: Adjust your expectations accordingly!
 #> Chain 1: 
 #> Chain 1: 
@@ -205,15 +140,15 @@ bioassay_mdl_posterior <- stan(
 #> Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #> Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #> Chain 1: 
-#> Chain 1:  Elapsed Time: 0.036523 seconds (Warm-up)
-#> Chain 1:                0.04424 seconds (Sampling)
-#> Chain 1:                0.080763 seconds (Total)
+#> Chain 1:  Elapsed Time: 0.03982 seconds (Warm-up)
+#> Chain 1:                0.033487 seconds (Sampling)
+#> Chain 1:                0.073307 seconds (Total)
 #> Chain 1: 
 #> 
 #> SAMPLING FOR MODEL 'assignment06-bioassay' NOW (CHAIN 2).
 #> Chain 2: 
-#> Chain 2: Gradient evaluation took 1.2e-05 seconds
-#> Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+#> Chain 2: Gradient evaluation took 1.3e-05 seconds
+#> Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
 #> Chain 2: Adjust your expectations accordingly!
 #> Chain 2: 
 #> Chain 2: 
@@ -230,15 +165,15 @@ bioassay_mdl_posterior <- stan(
 #> Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #> Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #> Chain 2: 
-#> Chain 2:  Elapsed Time: 0.034958 seconds (Warm-up)
-#> Chain 2:                0.034178 seconds (Sampling)
-#> Chain 2:                0.069136 seconds (Total)
+#> Chain 2:  Elapsed Time: 0.036828 seconds (Warm-up)
+#> Chain 2:                0.034224 seconds (Sampling)
+#> Chain 2:                0.071052 seconds (Total)
 #> Chain 2: 
 #> 
 #> SAMPLING FOR MODEL 'assignment06-bioassay' NOW (CHAIN 3).
 #> Chain 3: 
-#> Chain 3: Gradient evaluation took 1.2e-05 seconds
-#> Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+#> Chain 3: Gradient evaluation took 1.3e-05 seconds
+#> Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
 #> Chain 3: Adjust your expectations accordingly!
 #> Chain 3: 
 #> Chain 3: 
@@ -255,9 +190,9 @@ bioassay_mdl_posterior <- stan(
 #> Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #> Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #> Chain 3: 
-#> Chain 3:  Elapsed Time: 0.035099 seconds (Warm-up)
-#> Chain 3:                0.029276 seconds (Sampling)
-#> Chain 3:                0.064375 seconds (Total)
+#> Chain 3:  Elapsed Time: 0.034739 seconds (Warm-up)
+#> Chain 3:                0.027769 seconds (Sampling)
+#> Chain 3:                0.062508 seconds (Total)
 #> Chain 3: 
 #> 
 #> SAMPLING FOR MODEL 'assignment06-bioassay' NOW (CHAIN 4).
@@ -280,9 +215,9 @@ bioassay_mdl_posterior <- stan(
 #> Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #> Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 #> Chain 4: 
-#> Chain 4:  Elapsed Time: 0.035576 seconds (Warm-up)
-#> Chain 4:                0.026451 seconds (Sampling)
-#> Chain 4:                0.062027 seconds (Total)
+#> Chain 4:  Elapsed Time: 0.033204 seconds (Warm-up)
+#> Chain 4:                0.028264 seconds (Sampling)
+#> Chain 4:                0.061468 seconds (Total)
 #> Chain 4:
 ```
 
@@ -306,15 +241,15 @@ bioassay_mdl_posterior
 #> post-warmup draws per chain=1000, total post-warmup draws=4000.
 #> 
 #>                mean se_mean   sd   2.5%    25%   50%   75% 97.5% n_eff Rhat
-#> mdl_params[1]  0.97    0.03 0.90  -0.71   0.35  0.92  1.56  2.86  1127 1.00
-#> mdl_params[2] 10.68    0.16 4.64   3.67   7.20  9.99 13.49 20.97   897 1.01
-#> theta[1]      -8.22    0.11 3.52 -16.17 -10.24 -7.75 -5.64 -2.84  1028 1.01
-#> theta[2]      -2.24    0.03 1.11  -4.76  -2.89 -2.10 -1.46 -0.40  1667 1.00
-#> theta[3]       0.43    0.02 0.78  -1.10  -0.10  0.40  0.95  2.02  1411 1.00
-#> theta[4]       8.77    0.14 4.00   2.62   5.79  8.26 11.23 17.74   854 1.01
-#> lp__          -7.15    0.03 1.04  -9.96  -7.55 -6.82 -6.40 -6.14   952 1.00
+#> mdl_params[1]  0.96    0.02 0.89  -0.65   0.35  0.91  1.54  2.77  1353    1
+#> mdl_params[2] 10.64    0.13 4.64   3.48   7.13 10.03 13.65 20.83  1331    1
+#> theta[1]      -8.19    0.09 3.52 -16.08 -10.35 -7.70 -5.50 -2.77  1509    1
+#> theta[2]      -2.23    0.02 1.10  -4.67  -2.92 -2.11 -1.44 -0.40  2476    1
+#> theta[3]       0.43    0.02 0.77  -1.01  -0.10  0.41  0.92  2.01  1596    1
+#> theta[4]       8.73    0.11 4.00   2.34   5.74  8.19 11.37 17.39  1236    1
+#> lp__          -7.14    0.03 1.00  -9.88  -7.54 -6.83 -6.42 -6.14  1593    1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Thu Feb  3 07:33:56 2022.
+#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:06:40 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).

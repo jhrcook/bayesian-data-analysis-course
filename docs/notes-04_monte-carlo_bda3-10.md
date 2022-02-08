@@ -6,12 +6,12 @@
 
 ## Resources
 
-- BDA3 chapter 10 and [reading instructions](../reading-instructions/BDA3_ch10_reading-instructions.pdf)
+- BDA3 chapter 10 and [reading instructions](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/BDA3_ch10_reading-instructions.pdf)
 - lectures:
   - ['Numerical issues, Monte Carlo, how many simulation draws are needed, how many digits to report'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=8a3c7bbc-e2b8-4c16-97b2-aad800ba7927)
   - ['Direct simulation, curse of dimensionality, rejection sampling, and importance sampling'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=44446861-eaa2-41b5-bf33-aad800caf18a)
-- [slides](../slides/slides_ch10.pdf)
-- [Assignment 1](assignments/assignment-04.pdf)
+- [slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch10.pdf)
+- [Assignment 1](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-04.pdf)
 
 ## Notes
 
@@ -184,8 +184,8 @@ pbeta(0.5, 241945, 251527, lower.tail = FALSE) # 1 - p
   - estimating the probability of $\theta$ to be in some interval $A$, can estimate uncertainty as a binomial distribution and calculate certainty of a value for a given number of draws $S$ and probability (slide 16)
     - effect gets worse for smaller probabilities because need more samples to get enough draws of the rare event (demonstrated in slide 17, below)
 
-![uncertatiny-of-intervals](assets/04_monte-carlo_bda3-10/slides_ch10-s15.jpg)
-![uncertatiny-of-rare-events](assets/04_monte-carlo_bda3-10/slides_ch10-s17.jpg)
+![uncertatiny-of-intervals](notes-assets/04_monte-carlo_bda3-10/slides_ch10-s15.jpg)
+![uncertatiny-of-rare-events](notes-assets/04_monte-carlo_bda3-10/slides_ch10-s17.jpg)
 
 #### 4.2 Direct simulation, curse of dimensionality, rejection sampling, and importance sampling {-}
 
@@ -194,7 +194,7 @@ pbeta(0.5, 241945, 251527, lower.tail = FALSE) # 1 - p
     - $g(\theta)$ must be greater than $q(\theta|y)$ at all possible $\theta$
   - for a given value of $\theta$, accept with probability $\frac{q(\theta|y)}{M g(\theta)}$
 
-![rejection-sampling](assets/04_monte-carlo_bda3-10/slides_ch10-s26.jpg)
+![rejection-sampling](notes-assets/04_monte-carlo_bda3-10/slides_ch10-s26.jpg)
 
 - importance sampling:
   - unlike rejection sampling, proposal distribution does *not* need to be greater than the target
@@ -203,7 +203,7 @@ pbeta(0.5, 241945, 251527, lower.tail = FALSE) # 1 - p
   - selection of the proposal distribution is difficult in higher dimensions
   - can use the weights to estimate the *effective sample size* $S_{eff}$ and use this for estimates of accuracy of parameter values
 
-![importance-sampling](assets/04_monte-carlo_bda3-10/slides_ch10-s28.jpg)
+![importance-sampling](notes-assets/04_monte-carlo_bda3-10/slides_ch10-s28.jpg)
 
 - leave-one-out cross validation (LOO-CV)
   - can be used for comparing models and how a single point impacts the model

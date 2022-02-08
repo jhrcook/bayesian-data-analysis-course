@@ -6,12 +6,12 @@
 
 ## Resources
 
-- BDA3 chapter 5 and [reading instructions](../reading-instructions/BDA3_ch05_reading-instructions.pdf)
+- BDA3 chapter 5 and [reading instructions](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/BDA3_ch05_reading-instructions.pdf)
 - lectures:
   - ['7.1. Hierarchical models'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=79dee6de-afa9-446f-b533-aaf400cabf2b)
   - ['7.2. Exchangeability'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c822561c-f95d-44fc-a1d0-aaf400d9fae3)
-- [slides](../slides/slides_ch5.pdf)
-- [Assignment 7](assignments/assignment-07.pdf)
+- [slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch5.pdf)
+- [Assignment 7](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-07.pdf)
 
 ## Notes
 
@@ -50,7 +50,7 @@
 - for each experiment $j$, with data $y_j$, estimate the parameter $\theta_j$
   - the parameters $\theta_j$ can come from a *population distribution* parameterized by $\text{Beta}(\alpha, \beta)$
 
-![hierarchical structure graph](assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-1.png)
+![hierarchical structure graph](notes-assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-1.png)
 
 #### 5.2 Exchangeability and hierarchical models {-}
 
@@ -99,7 +99,7 @@ $$
   - can see the shrinkage of the extreme values towards the average
   - the effect is stronger for experiments with fewer rats
 
-![rat tumor model posterior](assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-4.png)
+![rat tumor model posterior](notes-assets/07_hierarchical-models_bda3-05/bda3_ch5_fig5-4.png)
 
 #### 5.4 Normal model with exchangeable parameters {-}
 
@@ -137,12 +137,12 @@ $$
   - circle: unknown parameter
   - box with the subscript $j$: indicates that everything within the box is repeated $J$ times
 
-![hierarchical box diagram](assets/07_hierarchical-models_bda3-05/slides_ch5_s7-crop.jpg)
+![hierarchical box diagram](notes-assets/07_hierarchical-models_bda3-05/slides_ch5_s7-crop.jpg)
 
 - hierarchical model shrinkage effects with sample size
   - below example shows how shrinkage is stronger for data points with smaller sample size (county radon example)
 
-![chrinkage with sample size](assets/07_hierarchical-models_bda3-05/slides_ch5_s17-crop.jpg)
+![chrinkage with sample size](notes-assets/07_hierarchical-models_bda3-05/slides_ch5_s17-crop.jpg)
 
 - below, I replicate the 8-schools model in Stan and try to make the plot of $\theta$ over $\tau$
 
@@ -214,7 +214,7 @@ eight_schools
 #> eta[8]     0.05    0.01 0.92  -1.78  -0.54   0.06   0.66   1.87  5721    1
 #>  [ reached getOption("max.print") -- omitted 9 rows ]
 #> 
-#> Samples were drawn using NUTS(diag_e) at Thu Feb  3 07:29:38 2022.
+#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:01:41 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).

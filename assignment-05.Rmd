@@ -2,9 +2,11 @@
 
 2021-10-01
 
+**[Assignment 5](`r paste0(CM_URL, "assignment-05.pdf")`)**
+
 ## Setup
 
-```{r setup}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 
 for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
@@ -26,8 +28,6 @@ theme_set(
 bioassay <- read_bioassay_data()
 bioassay
 ```
-
-**[Assignment 5](assignments/assignment-05.pdf)**
 
 ## Generalized linear model: Bioassay with Metropolis
 

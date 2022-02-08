@@ -6,11 +6,11 @@
 
 ## Resources
 
-- BDA3 chapter 3 and [reading instructions](../reading-instructions/BDA3_ch03_reading-instructions.pdf)
+- BDA3 chapter 3 and [reading instructions](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/BDA3_ch03_reading-instructions.pdf)
 - lectures:
   - ['Lecture 3. Multiparameter models, joint, marginal and conditional distribution, normal model, bioassay example, grid sampling and grid evaluation'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ab958b4b-e2c4-4534-8305-aad100ba191f)
-- [slides](../slides/slides_ch3.pdf)
-- [Assignment 3](assignments/assignment-03.pdf)
+- [slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch3.pdf)
+- [Assignment 3](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-03.pdf)
 
 ## Notes
 

@@ -2,28 +2,25 @@
 
 2021-08-19
 
-```{r setup, include=FALSE}
+## Setup
+
+```{r setup,  message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 
 rfiles <- list.files(here::here("src"), full.names = TRUE, pattern = "R$")
 for (rfile in rfiles) {
   source(rfile)
 }
-```
 
-> Complete questions 2.1-2.5, 2.8, 2.9, 2.14, 2.17, and 2.22.
-
-## Setup
-
-```{r setup-show, message=FALSE, warning=FALSE}
 library(glue)
 library(tidyverse)
 ```
 
+> Complete questions 2.1-2.5, 2.8, 2.9, 2.14, 2.17, and 2.22.
 
 ## Question 1
 
-**Posterior inference: suppose you have a $\text{Beta}(4,4)$ prior distribution on the probability $\theta$ that a coint will yield a 'head' when spun.**
+**Posterior inference: suppose you have a $\text{Beta}(4,4)$ prior distribution on the probability $\theta$ that a count will yield a 'head' when spun.**
 **The coin is spun 10 times and 'heads' appear *fewer* than 3 times.**
 **Calculate the exact posterior density for $\theta$ and sketch it.**
 

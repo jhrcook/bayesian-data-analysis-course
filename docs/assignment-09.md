@@ -2,6 +2,8 @@
 
 2021-11-18
 
+**[Assignment 9](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-09.pdf)**
+
 ## Setup
 
 
@@ -37,7 +39,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ─────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
 ```
 
 ```
@@ -48,7 +50,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::collapse() masks glue::collapse()
 ## ✖ tidyr::extract()  masks rstan::extract()
 ## ✖ dplyr::filter()   masks stats::filter()
@@ -68,8 +70,6 @@ theme_set(theme_classic() + theme(strip.background = element_blank()))
 factory <- aaltobda::factory
 set.seed(678)
 ```
-
-**[Assignment 9](assignments/assignment-09.pdf)**
 
 ## Exercise 1. Decision analysis for the factory data
 
@@ -159,7 +159,7 @@ print(hierarchical_model, pars = c("alpha", "tau", "mu", "sigma"))
 #> mu[6]  88.51    0.10 5.47 78.00  84.76  88.50  92.29  99.23  3143    1
 #> sigma  14.27    0.04 2.08 10.87  12.79  14.02  15.50  18.81  2940    1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Thu Feb  3 07:35:00 2022.
+#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:07:43 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).
@@ -288,7 +288,7 @@ It might be worth replacing machine 1 with this new machine.
 
 **e) As usual, remember to include the source code for both Stan and R (or Python).**
 
-The model is available here ["assignment07_factories_hierarchical.stan"](../models/assignment07_factories_hierarchical.stan).
+The model is available here ["assignment07_factories_hierarchical.stan"](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_hierarchical.stan).
 
 The only changes were made in the `generated quantities` block:
 

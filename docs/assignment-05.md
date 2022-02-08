@@ -2,6 +2,8 @@
 
 2021-10-01
 
+**[Assignment 5](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-05.pdf)**
+
 ## Setup
 
 
@@ -15,27 +17,7 @@ for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
 library(glue)
 library(patchwork)
 library(tidyverse)
-```
 
-```
-## ── Attaching packages ─────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
-## ✔ ggplot2 3.3.5     ✔ purrr   0.3.4
-## ✔ tibble  3.1.3     ✔ dplyr   1.0.7
-## ✔ tidyr   1.1.3     ✔ stringr 1.4.0
-## ✔ readr   2.0.1     ✔ forcats 0.5.1
-```
-
-```
-## ── Conflicts ────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::collapse() masks glue::collapse()
-## ✖ dplyr::filter()   masks stats::filter()
-## ✖ dplyr::lag()      masks stats::lag()
-```
-
-```r
 theme_set(
   theme_classic() +
     theme(
@@ -45,25 +27,6 @@ theme_set(
 )
 
 bioassay <- read_bioassay_data()
-```
-
-```
-## Rows: 4 Columns: 1
-```
-
-```
-## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────
-## Delimiter: "\t"
-## chr (1): x n y
-```
-
-```
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-```
-
-```r
 bioassay
 ```
 
@@ -76,8 +39,6 @@ bioassay
 ## 3 -0.05     5     3
 ## 4  0.73     5     5
 ```
-
-**[Assignment 5](assignments/assignment-05.pdf)**
 
 ## Generalized linear model: Bioassay with Metropolis
 

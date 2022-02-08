@@ -6,7 +6,7 @@
 
 ## Resources
 
-- BDA3 chapter 2 and [reading instructions](../reading-instructions/BDA3_ch02_reading-instructions.pdf)
+- BDA3 chapter 2 and [reading instructions](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/BDA3_ch02_reading-instructions.pdf)
 - lectures:
   - ['2.1 Basics of Bayesian inference, observation model, likelihood, posterior and binomial model, predictive distribution and benefit of integration'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9c271082-5a8c-4b66-b6c2-aacc00fc683f)
   - ['2.2 Priors and prior information, and one parameter normal model'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=70655a8a-0eb4-4ddd-9f52-aacc00fc67a2)
@@ -14,8 +14,8 @@
   - ['Summary 2.1. Observation model, likelihood, posterior and binomial model'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7a297f7d-bb7b-4dd0-9913-a9f500ec822d) (optional)
   - ['Summary 2.2. Predictive distribution and benefit of integration'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=75b9f18f-e379-4557-a5fa-a9f500f11b40) (optional)
   - ['Summary 2.3. Priors and prior information'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=099659a5-f707-473d-8b03-a9f500f39eb5) (optional)
-- [slides](../slides/slides_ch2.pdf) and [extra slides](../slides/slides_ch2_extra1.pdf)
-- [Assignment 2](../assignments/assignment2.pdf)
+- [slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch2.pdf) and [extra slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch2_extra1.pdf)
+- [Assignment 2](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-02.pdf)
 
 ## Notes
 

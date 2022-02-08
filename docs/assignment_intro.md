@@ -1,7 +1,6 @@
 # (PART) Assignments {-}
 
-# Introduction {-}
+# Introduction {#assignments-intro .unnumbered}
 
-TODO: add more information here; describe the general structure of the notes.
-
-These are the course assignments.
+The sections in this part of the book are for the nine course assignments.
+Some may be missing a question or two because it is a text-based answer that I was confident in my answer, too.

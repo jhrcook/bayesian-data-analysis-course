@@ -2,9 +2,11 @@
 
 2021-10-18
 
+**[Assignment 7](`r paste0(CM_URL, "assignment-07.pdf")`)**
+
 ## Setup
 
-```{r setup}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 
 for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
@@ -24,8 +26,6 @@ rstan_options(auto_write = TRUE)
 drowning <- aaltobda::drowning
 factory <- aaltobda::factory
 ```
-
-**[Assignment 7](assignments/assignment-07.pdf)**
 
 ## 1. Linear model: drowning data with Stan
 
@@ -51,7 +51,7 @@ ii) **What is the prediction for the year 2020? (We would plot the histogram of 
 3. On line 19, the prediction on new data does not use the new data in `xpred`. This has been changed to `real ypred = normal_rng(alpha + beta*xpred, sigma);`.
 
 Below is a copy of the final model.
-The full Stan file is at [models/assignment07-drownings.stan](../models/assignment07-drownings.stan).
+The full Stan file is at [models/assignment07-drownings.stan](`r paste0(MODELS_URL, "assignment07-drownings.stan")`).
 
 ```
 data {

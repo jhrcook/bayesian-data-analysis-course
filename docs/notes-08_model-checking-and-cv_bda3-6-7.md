@@ -7,10 +7,10 @@
 ## Resources
 
 - reading:
-  - BDA3 ch. 6 "Model checking" and [ch. 6 reading instructions](../reading-instructions/BDA3_ch06_reading-instructions.pdf)
+  - BDA3 ch. 6 "Model checking" and [ch. 6 reading instructions](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/BDA3_ch06_reading-instructions.pdf)
   - BDA3 ch. 7 "Evaluating, comparing, and expanding models" and [ch. 7 reading instructions](../reading-instructions/BDA3_ch07_reading-instructions.pdf)
-  - read *Visualization in Bayesian workflow* ([pdf](additional-reading/Visualization-in-Bayesian-workflow.pdf), [link](https://doi.org/10.1111/rssa.12378))
-  - read *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC* ([pdf](additional-reading/Practical-Bayesian-model-evaluation-using-leave-one-out-cross-validation-and-WAIC.pdf), [link](https://arxiv.org/abs/1507.04544))
+  - read *Visualization in Bayesian workflow* ([pdf](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/reading/Visualization-in-Bayesian-workflow.pdf), [link](https://doi.org/10.1111/rssa.12378))
+  - read *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC* ([pdf](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/Practical-Bayesian-model-evaluation-using-leave-one-out-cross-validation-and-WAIC.pdf), [link](https://arxiv.org/abs/1507.04544))
   - additional reading material:
     - [Model assesment, selection and inference after selection](https://avehtari.github.io/modelselection/)
     - [Cross-validation FAQ](https://avehtari.github.io/modelselection/CV-FAQ.html)
@@ -18,8 +18,8 @@
   - ['Lecture 8.1. Model Checking'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7047e366-0df6-453c-867f-aafb00ca2d78)
   - ['Lecture 8.2. Cross-Validation (part 1)'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d7849131-0afd-4ae6-ad64-aafb00da36f4)
 - slides:
-  - [ch 6 slides](../slides/slides_ch6.pdf)
-  - [ch 7 slides](../slides/slides_ch7.pdf)
+  - [ch 6 slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch6.pdf)
+  - [ch 7 slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch7.pdf)
 
 ## Notes
 
@@ -103,7 +103,7 @@
 - examples with binary data and logistic regression
 - get posterior predictive distribution in Stan:
 
-```
+```stan
 data {
   int<lower=1> N;
   int<lower=0> y[N];
@@ -276,7 +276,7 @@ $$
 
 #### *Visualization in Bayesian workflow* {-}
 
-([pdf](additional-reading/Visualization-in-Bayesian-workflow.pdf), [link](https://doi.org/10.1111/rssa.12378))
+([pdf](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/reading/Visualization-in-Bayesian-workflow.pdf), [link](https://doi.org/10.1111/rssa.12378))
 
 - the phases of statistical workflow:
   a. exploratory data analysis
@@ -304,7 +304,7 @@ $$
     2. parallel coordinate plot
       - bad sign: the divergences would have similar structure
 
-![mcmc-diagnositcs-fig](assets/08_model-checking-and-cv_bda3-6-7/gabry_2007_fig5.png)
+![mcmc-diagnositcs-fig](notes-assets/08_model-checking-and-cv_bda3-6-7/gabry_2007_fig5.png)
 
 #### 5. How did we do? Posterior predictive checks are vital for model evaluation {-}
 
@@ -325,7 +325,7 @@ $$
 
 #### *Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC* {-}
 
-([pdf](additional-reading/Practical-Bayesian-model-evaluation-using-leave-one-out-cross-validation-and-WAIC.pdf), [link](https://arxiv.org/abs/1507.04544))
+([pdf](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/reading/Practical-Bayesian-model-evaluation-using-leave-one-out-cross-validation-and-WAIC.pdf), [link](https://arxiv.org/abs/1507.04544))
 
 > Here we lay out fast and stable computations for LOO and WAIC that can be performed usingexisting simulation draws.
 > We introduce an efficient computation of LOO using Pareto-smoothed importance sampling (PSIS), a new procedure for regularizing importance weights.
@@ -379,7 +379,6 @@ $$
   1. sampling directly from $p(\theta^s|y_{−i})$ for the problematic $i$,
   2. use *k*-fold CV, or
   3. use a more robust model
-
 
 #### Model assesment, selection and inference after selection {-}
 

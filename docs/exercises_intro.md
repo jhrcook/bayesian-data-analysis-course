@@ -1,7 +1,6 @@
 # (PART) Book Exercises {-}
 
-# Introduction {-}
+# Introduction {#exercises-intro .unnumbered}
 
-TODO: add more information here; describe the general structure of the notes.
-
-Some exercises from the end of the chapter.
+For a few chapters, I worked through some of the exercises provided at the end.
+My answers are provided in the notebooks in this section.

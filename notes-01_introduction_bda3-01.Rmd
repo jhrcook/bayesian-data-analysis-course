@@ -8,13 +8,13 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 ## Resources
 
-- BDA chapter 1 and [reading instructions](../reading-instructions/BDA3_ch01_reading-instructions.pdf)
+- BDA chapter 1 and [reading instructions](`r paste0(CM_URL, "BDA3_ch01_reading-instructions.pdf")`)
 - lectures:
   - ['Computational probabilistic modeling'](https://www.youtube.com/watch?v=ukE5aqdoLZI)
   - ['Introduction to uncertainty and modelling'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d841f429-9c3d-4d24-8228-a9f400efda7b)
 - video: ['Introduction to the course contents'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=13fc7889-cfd1-4d99-996c-a9f400f6e5a2)
-- [slides](../slides/bayes_intro.pdf)
-- [Assignment 1](assignments/assignment1.pdf)
+- [slides](`r paste0(CM_URL, "bayes_intro.pdf")`)
+- [Assignment 1](`r paste0(CM_URL, "assignment-01.pdf")`)
 
 ## Notes
 

@@ -2,16 +2,17 @@
 
 2021-09-23
 
+**[Assignment 4](`r paste0(CM_URL, "assignment-04.pdf")`)**
+
 ## Setup
 
-```{r setup}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 
 for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
   source(f)
 }
 
-# library(conflicted)
 library(glue)
 library(tidyverse)
 
@@ -20,8 +21,6 @@ theme_set(theme_classic())
 light_blue <- "#7AAED1"
 dark_blue <- "#011F4B"
 ```
-
-**[Assignment 4](assignments/assignment-04.pdf)**
 
 ## Exercise 1. Bioassay model
 

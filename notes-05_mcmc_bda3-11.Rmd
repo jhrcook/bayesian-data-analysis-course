@@ -15,12 +15,12 @@ theme_set(theme_bw())
 
 ## Resources
 
-- BDA3 chapter 11 and [reading instructions](../reading-instructions/BDA3_ch11_reading-instructions.pdf)
+- BDA3 chapter 11 and [reading instructions](`r paste0(CM_URL, "BDA3_ch11_reading-instructions.pdf")`)
 - lectures:
   - ['5.1. Markov chain Monte Carlo, Gibbs sampling, Metropolis algorithm'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=098dfdb4-f3b8-46aa-b988-aadf00bd3177)
   - ['5.2. Warm-up, convergence diagnostics, R-hat, and effective sample size'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9f657178-d8cf-4cb8-af62-aadf00cd9423)
-- [slides](../slides/slides_ch11.pdf)
-- [Assignment 5](assignments/assignment-05.pdf)
+- [slides](`r paste0(CM_URL, "slides_ch11.pdf")`)
+- [Assignment 5](`r paste0(CM_URL, "assignment-05.pdf")`)
 
 ## Notes
 
@@ -29,7 +29,8 @@ theme_set(theme_bw())
 - Outline of the chapter 11
   - Markov chain simulation: before section 11.1, pages 275-276
   - 11.1 Gibbs sampler (an example of simple MCMC method)
-  - 11.2 Metropolis and Metropolis-Hastings (an example of simple MCMC method) • 11.3 Using Gibbs and Metropolis as building blocks (can be skipped)
+  - 11.2 Metropolis and Metropolis-Hastings (an example of simple MCMC method)
+  - 11.3 Using Gibbs and Metropolis as building blocks (can be skipped)
   - 11.4 Inference and assessing convergence (important)
   - 11.5 Effective number of simulation draws (important)
   - 11.6 Example: hierarchical normal model (skip this)
@@ -380,9 +381,9 @@ metropolis_plot_points <- metropolis_chains %>%
 
 - $\widehat{R}$ with only a few draws and with many draws:
 
-![Rhat-with-few-draws](assets/05_mcmc_bda3-11/slides_ch11-s28-1.png)
+![Rhat-with-few-draws](notes-assets/05_mcmc_bda3-11/slides_ch11-s28-1.png)
 
-![Rhat-with-many-draws](assets/05_mcmc_bda3-11/slides_ch11-s28-3.png)
+![Rhat-with-many-draws](notes-assets/05_mcmc_bda3-11/slides_ch11-s28-3.png)
 - update $\widehat{R}$ is *rank normalized $\widehat{R}$*
   - original $\widehat{R}$ requires that the target distribution has finite mean and variance
   - rank normalized removes this requirement
@@ -395,7 +396,7 @@ metropolis_plot_points <- metropolis_chains %>%
   - in the example below, the autocorrelation plot shows that it takes about 40 steps to reach a correlation of 0
     - the x-axis should be "lag"
 
-![autocorrelation-example](assets/05_mcmc_bda3-11/slides_ch11-s36.png)
+![autocorrelation-example](notes-assets/05_mcmc_bda3-11/slides_ch11-s36.png)
 - calculating autocorrelation function
   - $\hat{\rho}_{n,m}$ is the autocorrelation at lag $n$ for chain $m$ of $M$ chains
   - can see the use of $W$ and $\widehat{\text{var}}^+$ from the calculation of $\widehat{R}$ so that is accounts for how well the chains mix

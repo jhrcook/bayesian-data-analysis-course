@@ -290,7 +290,7 @@ print(dilution_model, pars = model_pars)
 #> alpha     0.72    0.01 0.17  0.33  0.61   0.74   0.85   0.98  1074    1
 #> sigma     1.33    0.01 0.24  0.98  1.16   1.30   1.45   1.92   893    1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Thu Feb  3 07:35:28 2022.
+#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:08:13 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).

@@ -13,11 +13,11 @@ eq:polya-urn
 eq:linreg-nonparam-error
 eq:hier-linreg-dp
 eq:latent-class-model
-bayesian-data-analysis-course
 resources
 how-to-study
 course-sections
 additional-notes
+assignments-and-exercises
 stan-models
 section-1.-course-introduction-and-prerequisites
 resources-1
@@ -180,3 +180,13 @@ sampling
 posterior-distributions
 posterior-predictive-check
 session-info
+stan-models-1
+model-8-schools.stan
+model-assignment06-bioassay.stan
+model-assignment07_factories_hierarchical.stan
+model-assignment07_factories_pooled.stan
+model-assignment07_factories_separate.stan
+model-assignment07-drownings.stan
+model-serial-dilution.stan
+the-website
+about-me

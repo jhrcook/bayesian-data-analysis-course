@@ -2,6 +2,8 @@
 
 2021-11-12
 
+**[Assignment 8](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-08.pdf)**
+
 ## Setup
 
 
@@ -13,93 +15,11 @@ for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
 }
 
 library(rstan)
-```
-
-```
-## Loading required package: StanHeaders
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```
-## rstan (Version 2.21.2, GitRev: 2e1f913d3ca3)
-```
-
-```
-## For execution on a local, multicore CPU with excess RAM we recommend calling
-## options(mc.cores = parallel::detectCores()).
-## To avoid recompilation of unchanged Stan programs, we recommend calling
-## rstan_options(auto_write = TRUE)
-```
-
-```r
 library(bayestestR)
 library(loo)
-```
-
-```
-## This is loo version 2.4.1
-```
-
-```
-## - Online documentation and vignettes at mc-stan.org/loo
-```
-
-```
-## - As of v2.0.0 loo defaults to 1 core but we recommend using as many as possible. Use the 'cores' argument or set options(mc.cores = NUM_CORES) for an entire session.
-```
-
-```
-## 
-## Attaching package: 'loo'
-```
-
-```
-## The following object is masked from 'package:rstan':
-## 
-##     loo
-```
-
-```r
 library(tidybayes)
-```
-
-```
-## 
-## Attaching package: 'tidybayes'
-```
-
-```
-## The following object is masked from 'package:bayestestR':
-## 
-##     hdi
-```
-
-```r
 library(tidyverse)
-```
 
-```
-## ── Attaching packages ─────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
-## ✔ tibble  3.1.3     ✔ dplyr   1.0.7
-## ✔ tidyr   1.1.3     ✔ stringr 1.4.0
-## ✔ readr   2.0.1     ✔ forcats 0.5.1
-## ✔ purrr   0.3.4
-```
-
-```
-## ── Conflicts ────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ tidyr::extract() masks rstan::extract()
-## ✖ dplyr::filter()  masks stats::filter()
-## ✖ dplyr::lag()     masks stats::lag()
-```
-
-```r
 rstan_options(auto_write = TRUE)
 options(mc.cores = 2)
 
@@ -108,8 +28,6 @@ theme_set(theme_classic() + theme(strip.background = element_blank()))
 factory <- aaltobda::factory
 set.seed(678)
 ```
-
-**[Assignment 8](assignments/assignment-08.pdf)**
 
 ## Exercise 1. Model assessment: LOO-CV for factory data with Stan
 
@@ -162,7 +80,7 @@ print(separate_model, pars = c("mu", "sigma"))
 #> sigma[4]   6.85    0.06 2.47   3.90   5.26   6.37   7.82  12.71  1640    1
 #>  [ reached getOption("max.print") -- omitted 2 rows ]
 #> 
-#> Samples were drawn using NUTS(diag_e) at Thu Feb  3 07:34:38 2022.
+#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:07:25 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).
@@ -198,7 +116,7 @@ print(pooled_model, pars = c("mu", "sigma"))
 #> mu    93.64    0.06 3.15 87.50 91.56 93.62 95.67 99.94  2906    1
 #> sigma 17.74    0.04 2.33 13.92 16.06 17.47 19.16 22.88  2707    1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Thu Feb  3 07:34:41 2022.
+#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:07:28 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).
@@ -256,7 +174,7 @@ print(hierarchical_model, pars = c("alpha", "tau", "mu", "sigma"))
 #> mu[6]  88.65    0.12 5.69 77.27  84.95  88.75  92.59  99.52  2244 1.00
 #> sigma  14.34    0.05 2.19 10.78  12.78  14.07  15.58  19.52  1980 1.00
 #> 
-#> Samples were drawn using NUTS(diag_e) at Thu Feb  3 07:34:45 2022.
+#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:07:30 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).
@@ -474,12 +392,12 @@ From the ELPD and $\hat{k}$ values, the hierarchical model is superior to the se
 **f) Both the Stan and R code should be included in your report.**
 
 All of the R code is included in this file.
-All of the models are described in [Assignment 7](jhcook-assignment-07.html).
-Below is a list of the Stan code for all of the models (available in the [`models/`](./models/) directory):
+All of the models are described in [Assignment 7](#assignment-7).
+Below is a list of the Stan code for all of the models (available in the [`models/`](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/) directory):
 
-1. [separate models](../models/assignment07_factories_separate.stan)
-2. [pooled model](../models/assignment07_factories_pooled.stan)
-3. [hierarchical model](../models/assignment07_factories_hierarchical.stan)
+1. [separate models](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_separate.stan)
+2. [pooled model](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_pooled.stan)
+3. [hierarchical model](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_hierarchical.stan)
 
 ---
 

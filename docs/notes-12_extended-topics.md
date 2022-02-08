@@ -12,7 +12,7 @@
 - lectures:
   - ['12.1 Frequency evaluation, hypothesis testing and variable selection'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e998b5dd-bf8e-42da-9f7c-ab1700ca2702)
   - ['12.2 Overview of modeling data collection, BDA3 Ch 8, linear models, BDA Ch 14-18, lasso, horseshoe and Gaussian processes, BDA3 Ch 21'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c43c862a-a5a4-45da-9b27-ab1700e12012)
-- [slides](../slides/slides_extra.pdf)
+- [slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_extra.pdf)
 
 ## Notes
 
@@ -51,4 +51,4 @@
   - final thought: best to separate the process of prior selection, posterior inference, and decision analysis
   - **regularized horseshoe prior** a better choice if you have prior information that only some of the covariates are informative
 
-![projpred selection vs LASSO](assets/12_extended-topics/slides-extra_s23.jpg)
+![projpred selection vs LASSO](notes-assets/12_extended-topics/slides-extra_s23.jpg)

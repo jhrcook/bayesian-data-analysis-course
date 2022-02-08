@@ -2,9 +2,11 @@
 
 2021-10-07
 
+**[Assignment 6](`r paste0(CM_URL, "assignment-06.pdf")`)**
+
 ## Setup
 
-```{r setup}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 
 for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
@@ -27,13 +29,11 @@ theme_set(
 rstan_options(auto_write = TRUE)
 ```
 
-**[Assignment 6](assignments/assignment-06.pdf)**
-
 ## Exercise 1. Generalized linear model: Bioassay with Stan
 
 **Replicate the computations for the bioassay example of section 3.7 (BDA3) using Stan.**
 
-The model is located in "models/assignment06-bioassay.stan".
+The model is located in "[models/assignment06-bioassay.stan](`r paste0(CM_URL, "models/assignment06-bioassay.stan")`).
 I have copied it below:
 
 ```

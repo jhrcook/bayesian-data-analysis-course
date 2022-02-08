@@ -2,14 +2,14 @@
 
 2021-08-30
 
-
-
-**[Assignment 2](assignment-02.pdf)**
+**[Assignment 2](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-02.pdf)**
 
 ## Setup
 
 
 ```r
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
 for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
   source(f)
 }
@@ -223,7 +223,7 @@ posteriors %>%
   labs(x = "pi", y = "posterior probability", color = "prior")
 ```
 
-<img src="assignment-02_files/figure-html/unnamed-chunk-8-1.png" width="2100" />
+<img src="assignment-02_files/figure-html/unnamed-chunk-7-1.png" width="2100" />
 
 The posterior is not very sensitive to the prior save for the exception of an overly-confident prior of $\text{Beta}(20, 100)$.
 This is likely due to the large amount of data, meaning that the likelihood dominated the posterior.

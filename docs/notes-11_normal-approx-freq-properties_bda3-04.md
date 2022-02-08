@@ -8,11 +8,11 @@
 
 - reading:
   - BDA3 ch 4. *Asymptotics and connections to non-Bayesian approaches*
-  - [reading instructions](../reading-instructions/BDA3_ch04_reading-instructions.pdf)
+  - [reading instructions](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/BDA3_ch04_reading-instructions.pdf)
 - lectures:
   - [Lecture 11.1. 'Normal approximation (Laplace approximation)'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e22fedc7-9fd3-4d1e-8318-ab1000ca45a4)
   - [Lecture 11.2. 'Large sample theory and counter examples'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a8e38a95-a944-4f3d-bf95-ab1000dbdf73)
-- [slides](../slides/slides_ch04.pdf)
+- [slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch04.pdf)
 
 ## Notes
 

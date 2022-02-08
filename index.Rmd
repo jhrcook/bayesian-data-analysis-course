@@ -9,8 +9,6 @@ link-citations: true
 TODO:
 
 - go through each page and update styling
-- update links in notes to go to github (have these dynamically inserted using Rmd magic)
-  - they may also point to the old directory organization system
 
 DONE:
 
@@ -20,6 +18,7 @@ DONE:
 - update About page
 - update this page to act as more of an introduction and explain the structure of the book
 - update each section's Introduction page
+- update links in notes to go to github (have these dynamically inserted using Rmd magic)
 
 
 This book serves as a collection of my notes and exercises completed for the [*Bayesian Data Analysis*](https://avehtari.github.io/BDA_course_Aalto/) course taught by Aki Vehtari.

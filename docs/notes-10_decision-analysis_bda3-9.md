@@ -8,12 +8,12 @@
 
 - reading
   - BDA3 chapter 9
-  - [reading instructions](../reading-instructions/BDA3_ch09_reading-instructions.pdf)
+  - [reading instructions](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/BDA3_ch09_reading-instructions.pdf)
 - lectures:
   - ['10.1 Decision analysis'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=82943720-de0f-4195-8639-ab0900ca2085)
 - slides:
-  - [Lecture 10.1](../slides/slides_ch9.pdf)
-- [Assignment 9](assignments/assignment-09.pdf)
+  - [Lecture 10.1](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch9.pdf)
+- [Assignment 9](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-09.pdf)
 
 ## Notes
 

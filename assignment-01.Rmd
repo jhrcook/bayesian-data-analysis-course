@@ -2,16 +2,13 @@
 
 2021-08-19
 
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
-```
-
-**[Assignment 1](assignment-01.pdf)**
+**[Assignment 1](`r paste0(CM_URL, "assignment-01.pdf")`)**
 
 ## Setup
 
-```{r}
+```{r setup, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+
 library(glue)
 ```
 

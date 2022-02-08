@@ -8,12 +8,12 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 ## Resources
 
-- BDA3 chapter 12 and [reading instructions](../reading-instructions/BDA3_ch12_reading-instructions.pdf)
+- BDA3 chapter 12 and [reading instructions](`r paste0(CM_URL, "BDA3_ch12_reading-instructions.pdf")`)
 - lectures:
   - ['6.1 HMC, NUTS, dynamic HMC and HMC specific convergence diagnostics'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=1744f6a0-84d3-4218-8a86-aae600ba7e84)
   - ['6.2 probabilistic programming and Stan'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e60ba1a9-f752-4b0a-88c6-aae600caa61a)
-- [slides](../slides/slides_ch12.pdf)
-- [Assignment 6](assignments/assignment-06.pdf)
+- [slides](`r paste0(CM_URL, "slides_ch12.pdf")`)
+- [Assignment 6](`r paste0(CM_URL, "assignment-06.pdf")`)
 
 ## Notes
 

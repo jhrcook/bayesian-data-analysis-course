@@ -6,13 +6,13 @@
 
 ## Resources
 
-- BDA chapter 1 and [reading instructions](../reading-instructions/BDA3_ch01_reading-instructions.pdf)
+- BDA chapter 1 and [reading instructions](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/BDA3_ch01_reading-instructions.pdf)
 - lectures:
   - ['Computational probabilistic modeling'](https://www.youtube.com/watch?v=ukE5aqdoLZI)
   - ['Introduction to uncertainty and modelling'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d841f429-9c3d-4d24-8228-a9f400efda7b)
 - video: ['Introduction to the course contents'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=13fc7889-cfd1-4d99-996c-a9f400f6e5a2)
-- [slides](../slides/bayes_intro.pdf)
-- [Assignment 1](assignments/assignment1.pdf)
+- [slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/bayes_intro.pdf)
+- [Assignment 1](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-01.pdf)
 
 ## Notes
 

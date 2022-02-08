@@ -2,9 +2,11 @@
 
 2021-11-12
 
+**[Assignment 8](`r paste0(CM_URL, "assignment-08.pdf")`)**
+
 ## Setup
 
-```{r setup}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 
 for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
@@ -25,8 +27,6 @@ theme_set(theme_classic() + theme(strip.background = element_blank()))
 factory <- aaltobda::factory
 set.seed(678)
 ```
-
-**[Assignment 8](assignments/assignment-08.pdf)**
 
 ## Exercise 1. Model assessment: LOO-CV for factory data with Stan
 
@@ -209,12 +209,12 @@ From the ELPD and $\hat{k}$ values, the hierarchical model is superior to the se
 **f) Both the Stan and R code should be included in your report.**
 
 All of the R code is included in this file.
-All of the models are described in [Assignment 7](jhcook-assignment-07.html).
-Below is a list of the Stan code for all of the models (available in the [`models/`](./models/) directory):
+All of the models are described in [Assignment 7](#assignment-7).
+Below is a list of the Stan code for all of the models (available in the [`models/`](`r MODELS_URL`) directory):
 
-1. [separate models](../models/assignment07_factories_separate.stan)
-2. [pooled model](../models/assignment07_factories_pooled.stan)
-3. [hierarchical model](../models/assignment07_factories_hierarchical.stan)
+1. [separate models](`r paste0(MODELS_URL, "assignment07_factories_separate.stan")`)
+2. [pooled model](`r paste0(MODELS_URL, "assignment07_factories_pooled.stan")`)
+3. [hierarchical model](`r paste0(MODELS_URL, "assignment07_factories_hierarchical.stan")`)
 
 ---
 

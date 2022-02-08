@@ -6,12 +6,12 @@
 
 ## Resources
 
-- BDA3 chapter 12 and [reading instructions](../reading-instructions/BDA3_ch12_reading-instructions.pdf)
+- BDA3 chapter 12 and [reading instructions](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/BDA3_ch12_reading-instructions.pdf)
 - lectures:
   - ['6.1 HMC, NUTS, dynamic HMC and HMC specific convergence diagnostics'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=1744f6a0-84d3-4218-8a86-aae600ba7e84)
   - ['6.2 probabilistic programming and Stan'](https://aalto.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e60ba1a9-f752-4b0a-88c6-aae600caa61a)
-- [slides](../slides/slides_ch12.pdf)
-- [Assignment 6](assignments/assignment-06.pdf)
+- [slides](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/slides_ch12.pdf)
+- [Assignment 6](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-06.pdf)
 
 ## Notes
 
