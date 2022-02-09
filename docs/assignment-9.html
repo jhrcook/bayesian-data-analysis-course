@@ -508,40 +508,24 @@ div.csl-indent {
 <p><strong><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-09.pdf">Assignment 9</a></strong></p>
 <div id="setup-8" class="section level2" number="28.1">
 <h2><span class="header-section-number">28.1</span> Setup</h2>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="assignment-9.html#cb274-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb274-2"><a href="assignment-9.html#cb274-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb274-3"><a href="assignment-9.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb274-4"><a href="assignment-9.html#cb274-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan)</span></code></pre></div>
-<pre><code>## Loading required package: StanHeaders</code></pre>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre><code>## rstan (Version 2.21.2, GitRev: 2e1f913d3ca3)</code></pre>
-<pre><code>## For execution on a local, multicore CPU with excess RAM we recommend calling
-## options(mc.cores = parallel::detectCores()).
-## To avoid recompilation of unchanged Stan programs, we recommend calling
-## rstan_options(auto_write = TRUE)</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="assignment-9.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
-<span id="cb279-2"><a href="assignment-9.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✔ tibble  3.1.3     ✔ dplyr   1.0.7
-## ✔ tidyr   1.1.3     ✔ stringr 1.4.0
-## ✔ readr   2.0.1     ✔ forcats 0.5.1
-## ✔ purrr   0.3.4</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::collapse() masks glue::collapse()
-## ✖ tidyr::extract()  masks rstan::extract()
-## ✖ dplyr::filter()   masks stats::filter()
-## ✖ dplyr::lag()      masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="assignment-9.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (f <span class="cf">in</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb283-2"><a href="assignment-9.html#cb283-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(f)</span>
-<span id="cb283-3"><a href="assignment-9.html#cb283-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb283-4"><a href="assignment-9.html#cb283-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb283-5"><a href="assignment-9.html#cb283-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb283-6"><a href="assignment-9.html#cb283-6" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> <span class="dv">2</span>)</span>
-<span id="cb283-7"><a href="assignment-9.html#cb283-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb283-8"><a href="assignment-9.html#cb283-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>()))</span>
-<span id="cb283-9"><a href="assignment-9.html#cb283-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb283-10"><a href="assignment-9.html#cb283-10" aria-hidden="true" tabindex="-1"></a>factory <span class="ot">&lt;-</span> aaltobda<span class="sc">::</span>factory</span>
-<span id="cb283-11"><a href="assignment-9.html#cb283-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">678</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="assignment-9.html#cb291-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb291-2"><a href="assignment-9.html#cb291-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb291-3"><a href="assignment-9.html#cb291-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb291-4"><a href="assignment-9.html#cb291-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan)</span>
+<span id="cb291-5"><a href="assignment-9.html#cb291-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
+<span id="cb291-6"><a href="assignment-9.html#cb291-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb291-7"><a href="assignment-9.html#cb291-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb291-8"><a href="assignment-9.html#cb291-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (f <span class="cf">in</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb291-9"><a href="assignment-9.html#cb291-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(f)</span>
+<span id="cb291-10"><a href="assignment-9.html#cb291-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb291-11"><a href="assignment-9.html#cb291-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb291-12"><a href="assignment-9.html#cb291-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb291-13"><a href="assignment-9.html#cb291-13" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> <span class="dv">2</span>)</span>
+<span id="cb291-14"><a href="assignment-9.html#cb291-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb291-15"><a href="assignment-9.html#cb291-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>()))</span>
+<span id="cb291-16"><a href="assignment-9.html#cb291-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb291-17"><a href="assignment-9.html#cb291-17" aria-hidden="true" tabindex="-1"></a>factory <span class="ot">&lt;-</span> aaltobda<span class="sc">::</span>factory</span>
+<span id="cb291-18"><a href="assignment-9.html#cb291-18" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">678</span>)</span></code></pre></div>
 </div>
 <div id="exercise-1.-decision-analysis-for-the-factory-data" class="section level2" number="28.2">
 <h2><span class="header-section-number">28.2</span> Exercise 1. Decision analysis for the factory data</h2>
@@ -558,43 +542,43 @@ div.csl-indent {
 <li><strong>The only thing the company owner cares about is money. Thus, as a utility function, use the profit of a new product from a machine.</strong></li>
 </ul>
 <p><strong>a) For each of the six machines, compute and report the expected utility of one product of that machine.</strong></p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="assignment-9.html#cb284-1" aria-hidden="true" tabindex="-1"></a>PURCHASE_RPICE <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb284-2"><a href="assignment-9.html#cb284-2" aria-hidden="true" tabindex="-1"></a>MIN_QUALITY_TO_SELL <span class="ot">&lt;-</span> <span class="dv">85</span></span>
-<span id="cb284-3"><a href="assignment-9.html#cb284-3" aria-hidden="true" tabindex="-1"></a>COST_TO_PRODUCE <span class="ot">&lt;-</span> <span class="dv">106</span></span>
-<span id="cb284-4"><a href="assignment-9.html#cb284-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-5"><a href="assignment-9.html#cb284-5" aria-hidden="true" tabindex="-1"></a>utility <span class="ot">&lt;-</span> <span class="cf">function</span>(draws) {</span>
-<span id="cb284-6"><a href="assignment-9.html#cb284-6" aria-hidden="true" tabindex="-1"></a>  purchased <span class="ot">&lt;-</span> PURCHASE_RPICE <span class="sc">*</span> <span class="fu">sum</span>(draws <span class="sc">&gt;=</span> MIN_QUALITY_TO_SELL)</span>
-<span id="cb284-7"><a href="assignment-9.html#cb284-7" aria-hidden="true" tabindex="-1"></a>  cost_to_produce <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> COST_TO_PRODUCE <span class="sc">*</span> <span class="fu">length</span>(draws)</span>
-<span id="cb284-8"><a href="assignment-9.html#cb284-8" aria-hidden="true" tabindex="-1"></a>  u <span class="ot">&lt;-</span> (purchased <span class="sc">+</span> cost_to_produce) <span class="sc">/</span> <span class="fu">length</span>(draws)</span>
-<span id="cb284-9"><a href="assignment-9.html#cb284-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(u)</span>
-<span id="cb284-10"><a href="assignment-9.html#cb284-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb284-11"><a href="assignment-9.html#cb284-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-12"><a href="assignment-9.html#cb284-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Test case given in the assignment.</span></span>
-<span id="cb284-13"><a href="assignment-9.html#cb284-13" aria-hidden="true" tabindex="-1"></a>test_y_pred <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">123.80</span>, <span class="fl">85.23</span>, <span class="fl">70.16</span>, <span class="fl">80.57</span>, <span class="fl">84.91</span>)</span>
-<span id="cb284-14"><a href="assignment-9.html#cb284-14" aria-hidden="true" tabindex="-1"></a>test_res <span class="ot">&lt;-</span> <span class="fu">utility</span>(<span class="at">draws =</span> test_y_pred)</span>
-<span id="cb284-15"><a href="assignment-9.html#cb284-15" aria-hidden="true" tabindex="-1"></a><span class="fu">stop_if_not_close_to</span>(test_res, <span class="sc">-</span><span class="dv">26</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="assignment-9.html#cb292-1" aria-hidden="true" tabindex="-1"></a>PURCHASE_RPICE <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb292-2"><a href="assignment-9.html#cb292-2" aria-hidden="true" tabindex="-1"></a>MIN_QUALITY_TO_SELL <span class="ot">&lt;-</span> <span class="dv">85</span></span>
+<span id="cb292-3"><a href="assignment-9.html#cb292-3" aria-hidden="true" tabindex="-1"></a>COST_TO_PRODUCE <span class="ot">&lt;-</span> <span class="dv">106</span></span>
+<span id="cb292-4"><a href="assignment-9.html#cb292-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb292-5"><a href="assignment-9.html#cb292-5" aria-hidden="true" tabindex="-1"></a>utility <span class="ot">&lt;-</span> <span class="cf">function</span>(draws) {</span>
+<span id="cb292-6"><a href="assignment-9.html#cb292-6" aria-hidden="true" tabindex="-1"></a>  purchased <span class="ot">&lt;-</span> PURCHASE_RPICE <span class="sc">*</span> <span class="fu">sum</span>(draws <span class="sc">&gt;=</span> MIN_QUALITY_TO_SELL)</span>
+<span id="cb292-7"><a href="assignment-9.html#cb292-7" aria-hidden="true" tabindex="-1"></a>  cost_to_produce <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> COST_TO_PRODUCE <span class="sc">*</span> <span class="fu">length</span>(draws)</span>
+<span id="cb292-8"><a href="assignment-9.html#cb292-8" aria-hidden="true" tabindex="-1"></a>  u <span class="ot">&lt;-</span> (purchased <span class="sc">+</span> cost_to_produce) <span class="sc">/</span> <span class="fu">length</span>(draws)</span>
+<span id="cb292-9"><a href="assignment-9.html#cb292-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(u)</span>
+<span id="cb292-10"><a href="assignment-9.html#cb292-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb292-11"><a href="assignment-9.html#cb292-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb292-12"><a href="assignment-9.html#cb292-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Test case given in the assignment.</span></span>
+<span id="cb292-13"><a href="assignment-9.html#cb292-13" aria-hidden="true" tabindex="-1"></a>test_y_pred <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">123.80</span>, <span class="fl">85.23</span>, <span class="fl">70.16</span>, <span class="fl">80.57</span>, <span class="fl">84.91</span>)</span>
+<span id="cb292-14"><a href="assignment-9.html#cb292-14" aria-hidden="true" tabindex="-1"></a>test_res <span class="ot">&lt;-</span> <span class="fu">utility</span>(<span class="at">draws =</span> test_y_pred)</span>
+<span id="cb292-15"><a href="assignment-9.html#cb292-15" aria-hidden="true" tabindex="-1"></a><span class="fu">stop_if_not_close_to</span>(test_res, <span class="sc">-</span><span class="dv">26</span>)</span></code></pre></div>
 <p>Fit the hierarchical model and gather posterior predictions from each machine.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="assignment-9.html#cb285-1" aria-hidden="true" tabindex="-1"></a>hierarchical_model_code <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(</span>
-<span id="cb285-2"><a href="assignment-9.html#cb285-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;models&quot;</span>, <span class="st">&quot;assignment07_factories_hierarchical.stan&quot;</span></span>
-<span id="cb285-3"><a href="assignment-9.html#cb285-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb285-4"><a href="assignment-9.html#cb285-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb285-5"><a href="assignment-9.html#cb285-5" aria-hidden="true" tabindex="-1"></a>hierarchical_model_data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb285-6"><a href="assignment-9.html#cb285-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> factory,</span>
-<span id="cb285-7"><a href="assignment-9.html#cb285-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">nrow</span>(factory),</span>
-<span id="cb285-8"><a href="assignment-9.html#cb285-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">J =</span> <span class="fu">ncol</span>(factory)</span>
-<span id="cb285-9"><a href="assignment-9.html#cb285-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb285-10"><a href="assignment-9.html#cb285-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb285-11"><a href="assignment-9.html#cb285-11" aria-hidden="true" tabindex="-1"></a>hierarchical_model <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">stan</span>(</span>
-<span id="cb285-12"><a href="assignment-9.html#cb285-12" aria-hidden="true" tabindex="-1"></a>  hierarchical_model_code,</span>
-<span id="cb285-13"><a href="assignment-9.html#cb285-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> hierarchical_model_data,</span>
-<span id="cb285-14"><a href="assignment-9.html#cb285-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb285-15"><a href="assignment-9.html#cb285-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">0</span></span>
-<span id="cb285-16"><a href="assignment-9.html#cb285-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="assignment-9.html#cb293-1" aria-hidden="true" tabindex="-1"></a>hierarchical_model_code <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb293-2"><a href="assignment-9.html#cb293-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;models&quot;</span>, <span class="st">&quot;assignment07_factories_hierarchical.stan&quot;</span></span>
+<span id="cb293-3"><a href="assignment-9.html#cb293-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb293-4"><a href="assignment-9.html#cb293-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb293-5"><a href="assignment-9.html#cb293-5" aria-hidden="true" tabindex="-1"></a>hierarchical_model_data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb293-6"><a href="assignment-9.html#cb293-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> factory,</span>
+<span id="cb293-7"><a href="assignment-9.html#cb293-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">nrow</span>(factory),</span>
+<span id="cb293-8"><a href="assignment-9.html#cb293-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">J =</span> <span class="fu">ncol</span>(factory)</span>
+<span id="cb293-9"><a href="assignment-9.html#cb293-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb293-10"><a href="assignment-9.html#cb293-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb293-11"><a href="assignment-9.html#cb293-11" aria-hidden="true" tabindex="-1"></a>hierarchical_model <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">stan</span>(</span>
+<span id="cb293-12"><a href="assignment-9.html#cb293-12" aria-hidden="true" tabindex="-1"></a>  hierarchical_model_code,</span>
+<span id="cb293-13"><a href="assignment-9.html#cb293-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> hierarchical_model_data,</span>
+<span id="cb293-14"><a href="assignment-9.html#cb293-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb293-15"><a href="assignment-9.html#cb293-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">0</span></span>
+<span id="cb293-16"><a href="assignment-9.html#cb293-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt; Warning: There were 20 divergent transitions after warmup. See
 #&gt; http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
 #&gt; to find out why this is a problem and how to eliminate them.</code></pre>
 <pre><code>#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</code></pre>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="assignment-9.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hierarchical_model, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;tau&quot;</span>, <span class="st">&quot;mu&quot;</span>, <span class="st">&quot;sigma&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="assignment-9.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hierarchical_model, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;tau&quot;</span>, <span class="st">&quot;mu&quot;</span>, <span class="st">&quot;sigma&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt; Inference for Stan model: assignment07_factories_hierarchical.
 #&gt; 4 chains, each with iter=2000; warmup=1000; thin=1; 
 #&gt; post-warmup draws per chain=1000, total post-warmup draws=4000.
@@ -610,41 +594,41 @@ div.csl-indent {
 #&gt; mu[6]  88.51    0.10 5.47 78.00  84.76  88.50  92.29  99.23  3143    1
 #&gt; sigma  14.27    0.04 2.08 10.87  12.79  14.02  15.50  18.81  2940    1
 #&gt; 
-#&gt; Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:07:43 2022.
+#&gt; Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:43:59 2022.
 #&gt; For each parameter, n_eff is a crude measure of effective sample size,
 #&gt; and Rhat is the potential scale reduction factor on split chains (at 
 #&gt; convergence, Rhat=1).</code></pre>
 <p>Extract the posterior predictions for each machine and compare them to the observations.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="assignment-9.html#cb290-1" aria-hidden="true" tabindex="-1"></a>factory_ypred <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">extract</span>(hierarchical_model, <span class="at">pars =</span> <span class="st">&quot;ypred&quot;</span>)<span class="sc">$</span>ypred</span>
-<span id="cb290-2"><a href="assignment-9.html#cb290-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb290-3"><a href="assignment-9.html#cb290-3" aria-hidden="true" tabindex="-1"></a>tidy_factory_measure_matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(factory_mat) {</span>
-<span id="cb290-4"><a href="assignment-9.html#cb290-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(factory_mat) <span class="sc">%&gt;%</span></span>
-<span id="cb290-5"><a href="assignment-9.html#cb290-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_names</span>(<span class="fu">glue</span>(<span class="st">&quot;machine {seq(ncol(factory_mat))}&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb290-6"><a href="assignment-9.html#cb290-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">-</span><span class="fu">c</span>(), <span class="at">names_to =</span> <span class="st">&quot;machine&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;quality_measurement&quot;</span>)</span>
-<span id="cb290-7"><a href="assignment-9.html#cb290-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb290-8"><a href="assignment-9.html#cb290-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb290-9"><a href="assignment-9.html#cb290-9" aria-hidden="true" tabindex="-1"></a>factory_long <span class="ot">&lt;-</span> <span class="fu">tidy_factory_measure_matrix</span>(factory)</span>
-<span id="cb290-10"><a href="assignment-9.html#cb290-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb290-11"><a href="assignment-9.html#cb290-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_factory_measure_matrix</span>(factory_ypred) <span class="sc">%&gt;%</span></span>
-<span id="cb290-12"><a href="assignment-9.html#cb290-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> quality_measurement)) <span class="sc">+</span></span>
-<span id="cb290-13"><a href="assignment-9.html#cb290-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(machine), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
-<span id="cb290-14"><a href="assignment-9.html#cb290-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb290-15"><a href="assignment-9.html#cb290-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rug</span>(<span class="at">data =</span> factory_long, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb290-16"><a href="assignment-9.html#cb290-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb290-17"><a href="assignment-9.html#cb290-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.02</span>))) <span class="sc">+</span></span>
-<span id="cb290-18"><a href="assignment-9.html#cb290-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb290-19"><a href="assignment-9.html#cb290-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;quality measurements&quot;</span>,</span>
-<span id="cb290-20"><a href="assignment-9.html#cb290-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;density&quot;</span>,</span>
-<span id="cb290-21"><a href="assignment-9.html#cb290-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Posterior predictions on current machines&quot;</span></span>
-<span id="cb290-22"><a href="assignment-9.html#cb290-22" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="assignment-9.html#cb298-1" aria-hidden="true" tabindex="-1"></a>factory_ypred <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">extract</span>(hierarchical_model, <span class="at">pars =</span> <span class="st">&quot;ypred&quot;</span>)<span class="sc">$</span>ypred</span>
+<span id="cb298-2"><a href="assignment-9.html#cb298-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb298-3"><a href="assignment-9.html#cb298-3" aria-hidden="true" tabindex="-1"></a>tidy_factory_measure_matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(factory_mat) {</span>
+<span id="cb298-4"><a href="assignment-9.html#cb298-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(factory_mat) <span class="sc">%&gt;%</span></span>
+<span id="cb298-5"><a href="assignment-9.html#cb298-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_names</span>(<span class="fu">glue</span>(<span class="st">&quot;machine {seq(ncol(factory_mat))}&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb298-6"><a href="assignment-9.html#cb298-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">-</span><span class="fu">c</span>(), <span class="at">names_to =</span> <span class="st">&quot;machine&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;quality_measurement&quot;</span>)</span>
+<span id="cb298-7"><a href="assignment-9.html#cb298-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb298-8"><a href="assignment-9.html#cb298-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb298-9"><a href="assignment-9.html#cb298-9" aria-hidden="true" tabindex="-1"></a>factory_long <span class="ot">&lt;-</span> <span class="fu">tidy_factory_measure_matrix</span>(factory)</span>
+<span id="cb298-10"><a href="assignment-9.html#cb298-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb298-11"><a href="assignment-9.html#cb298-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_factory_measure_matrix</span>(factory_ypred) <span class="sc">%&gt;%</span></span>
+<span id="cb298-12"><a href="assignment-9.html#cb298-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> quality_measurement)) <span class="sc">+</span></span>
+<span id="cb298-13"><a href="assignment-9.html#cb298-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(machine), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb298-14"><a href="assignment-9.html#cb298-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb298-15"><a href="assignment-9.html#cb298-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rug</span>(<span class="at">data =</span> factory_long, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb298-16"><a href="assignment-9.html#cb298-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb298-17"><a href="assignment-9.html#cb298-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.02</span>))) <span class="sc">+</span></span>
+<span id="cb298-18"><a href="assignment-9.html#cb298-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb298-19"><a href="assignment-9.html#cb298-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;quality measurements&quot;</span>,</span>
+<span id="cb298-20"><a href="assignment-9.html#cb298-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;density&quot;</span>,</span>
+<span id="cb298-21"><a href="assignment-9.html#cb298-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Posterior predictions on current machines&quot;</span></span>
+<span id="cb298-22"><a href="assignment-9.html#cb298-22" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="assignment-09_files/figure-html/unnamed-chunk-3-1.png" width="2100" /></p>
 <p>Calculate the expected utility for each current machine.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="assignment-9.html#cb291-1" aria-hidden="true" tabindex="-1"></a>machine_utilities <span class="ot">&lt;-</span> <span class="fu">apply</span>(factory_ypred, <span class="dv">2</span>, utility)</span>
-<span id="cb291-2"><a href="assignment-9.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
-<span id="cb291-3"><a href="assignment-9.html#cb291-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">machine =</span> <span class="fu">glue</span>(<span class="st">&quot;machine {seq(length(machine_utilities))}&quot;</span>),</span>
-<span id="cb291-4"><a href="assignment-9.html#cb291-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">expected_utility =</span> machine_utilities</span>
-<span id="cb291-5"><a href="assignment-9.html#cb291-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb291-6"><a href="assignment-9.html#cb291-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kbl</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="assignment-9.html#cb299-1" aria-hidden="true" tabindex="-1"></a>machine_utilities <span class="ot">&lt;-</span> <span class="fu">apply</span>(factory_ypred, <span class="dv">2</span>, utility)</span>
+<span id="cb299-2"><a href="assignment-9.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb299-3"><a href="assignment-9.html#cb299-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">machine =</span> <span class="fu">glue</span>(<span class="st">&quot;machine {seq(length(machine_utilities))}&quot;</span>),</span>
+<span id="cb299-4"><a href="assignment-9.html#cb299-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">expected_utility =</span> machine_utilities</span>
+<span id="cb299-5"><a href="assignment-9.html#cb299-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb299-6"><a href="assignment-9.html#cb299-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kbl</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -714,20 +698,20 @@ machine 6
 <p>Based on their expected utility, the rankings of the machines from worst to best is: 1, 6, 3, 5, 2, 4.
 Machine 1 has a negative utility, indicating that it is expected to be unprofitable.</p>
 <p><strong>c) Compute and report the expected utility of the products of a new (7th) machine.</strong></p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="assignment-9.html#cb292-1" aria-hidden="true" tabindex="-1"></a>machine7_pred <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">extract</span>(hierarchical_model, <span class="at">pars =</span> <span class="st">&quot;y7pred&quot;</span>)<span class="sc">$</span>y7pred</span>
-<span id="cb292-2"><a href="assignment-9.html#cb292-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb292-3"><a href="assignment-9.html#cb292-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">unlist</span>(machine7_pred)), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
-<span id="cb292-4"><a href="assignment-9.html#cb292-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb292-5"><a href="assignment-9.html#cb292-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb292-6"><a href="assignment-9.html#cb292-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.02</span>))) <span class="sc">+</span></span>
-<span id="cb292-7"><a href="assignment-9.html#cb292-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb292-8"><a href="assignment-9.html#cb292-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;quality measurements&quot;</span>,</span>
-<span id="cb292-9"><a href="assignment-9.html#cb292-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;density&quot;</span>,</span>
-<span id="cb292-10"><a href="assignment-9.html#cb292-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Posterior predictions on hypothetical machine 7&quot;</span></span>
-<span id="cb292-11"><a href="assignment-9.html#cb292-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="assignment-9.html#cb300-1" aria-hidden="true" tabindex="-1"></a>machine7_pred <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">extract</span>(hierarchical_model, <span class="at">pars =</span> <span class="st">&quot;y7pred&quot;</span>)<span class="sc">$</span>y7pred</span>
+<span id="cb300-2"><a href="assignment-9.html#cb300-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb300-3"><a href="assignment-9.html#cb300-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">unlist</span>(machine7_pred)), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb300-4"><a href="assignment-9.html#cb300-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb300-5"><a href="assignment-9.html#cb300-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb300-6"><a href="assignment-9.html#cb300-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.02</span>))) <span class="sc">+</span></span>
+<span id="cb300-7"><a href="assignment-9.html#cb300-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb300-8"><a href="assignment-9.html#cb300-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;quality measurements&quot;</span>,</span>
+<span id="cb300-9"><a href="assignment-9.html#cb300-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;density&quot;</span>,</span>
+<span id="cb300-10"><a href="assignment-9.html#cb300-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Posterior predictions on hypothetical machine 7&quot;</span></span>
+<span id="cb300-11"><a href="assignment-9.html#cb300-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="assignment-09_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="assignment-9.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Expected utility from machine 7.</span></span>
-<span id="cb293-2"><a href="assignment-9.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">utility</span>(machine7_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="assignment-9.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Expected utility from machine 7.</span></span>
+<span id="cb301-2"><a href="assignment-9.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="fu">utility</span>(machine7_pred)</span></code></pre></div>
 <pre><code>#&gt; [1] 30.7</code></pre>
 <p>The expected utility of hypothetical machine 7 is <strong>30.7</strong>.</p>
 <p><strong>d) Based on your analysis, discuss briefly whether the company owner should buy a new (7th) machine.</strong></p>
@@ -736,31 +720,31 @@ It might be worth replacing machine 1 with this new machine.</p>
 <p><strong>e) As usual, remember to include the source code for both Stan and R (or Python).</strong></p>
 <p>The model is available here <a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_hierarchical.stan">“assignment07_factories_hierarchical.stan”</a>.</p>
 <p>The only changes were made in the <code>generated quantities</code> block:</p>
-<pre><code>...
-generated quantities {
-  // Compute the predictive distribution for the sixth machine.
-  real y6pred;  // Leave for compatibility with earlier assignments.
-  vector[J] ypred;
-  real mu7pred;
-  real y7pred;
-  vector[J] log_lik[N];
-
-  y6pred = normal_rng(mu[6], sigma);
-  for (j in 1:J) {
-    ypred[j] = normal_rng(mu[j], sigma);
-  }
-
-  mu7pred = normal_rng(alpha, tau);
-  y7pred = normal_rng(mu7pred, sigma);
-
-  for (j in 1:J) {
-    for (n in 1:N) {
-      log_lik[n,j] = normal_lpdf(y[n,j] | mu[j], sigma);
-    }
-  }
-}</code></pre>
+<div class="sourceCode" id="cb303"><pre class="sourceCode stan"><code class="sourceCode stan"><span id="cb303-1"><a href="assignment-9.html#cb303-1" aria-hidden="true" tabindex="-1"></a>\\...</span>
+<span id="cb303-2"><a href="assignment-9.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="kw">generated quantities</span> {</span>
+<span id="cb303-3"><a href="assignment-9.html#cb303-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Compute the predictive distribution for the sixth machine.</span></span>
+<span id="cb303-4"><a href="assignment-9.html#cb303-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> y6pred;  <span class="co">// Leave for compatibility with earlier assignments.</span></span>
+<span id="cb303-5"><a href="assignment-9.html#cb303-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[J] ypred;</span>
+<span id="cb303-6"><a href="assignment-9.html#cb303-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> mu7pred;</span>
+<span id="cb303-7"><a href="assignment-9.html#cb303-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> y7pred;</span>
+<span id="cb303-8"><a href="assignment-9.html#cb303-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[J] log_lik[N];</span>
+<span id="cb303-9"><a href="assignment-9.html#cb303-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-10"><a href="assignment-9.html#cb303-10" aria-hidden="true" tabindex="-1"></a>  y6pred = normal_rng(mu[<span class="dv">6</span>], sigma);</span>
+<span id="cb303-11"><a href="assignment-9.html#cb303-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span>:J) {</span>
+<span id="cb303-12"><a href="assignment-9.html#cb303-12" aria-hidden="true" tabindex="-1"></a>    ypred[j] = normal_rng(mu[j], sigma);</span>
+<span id="cb303-13"><a href="assignment-9.html#cb303-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb303-14"><a href="assignment-9.html#cb303-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-15"><a href="assignment-9.html#cb303-15" aria-hidden="true" tabindex="-1"></a>  mu7pred = normal_rng(alpha, tau);</span>
+<span id="cb303-16"><a href="assignment-9.html#cb303-16" aria-hidden="true" tabindex="-1"></a>  y7pred = normal_rng(mu7pred, sigma);</span>
+<span id="cb303-17"><a href="assignment-9.html#cb303-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-18"><a href="assignment-9.html#cb303-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span>:J) {</span>
+<span id="cb303-19"><a href="assignment-9.html#cb303-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span>:N) {</span>
+<span id="cb303-20"><a href="assignment-9.html#cb303-20" aria-hidden="true" tabindex="-1"></a>      log_lik[n,j] = normal_lpdf(y[n,j] | mu[j], sigma);</span>
+<span id="cb303-21"><a href="assignment-9.html#cb303-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb303-22"><a href="assignment-9.html#cb303-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb303-23"><a href="assignment-9.html#cb303-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <hr />
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="assignment-9.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="assignment-9.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>#&gt; R version 4.1.2 (2021-11-01)
 #&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
 #&gt; Running under: macOS Big Sur 10.16

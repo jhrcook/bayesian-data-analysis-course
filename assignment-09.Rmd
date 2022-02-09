@@ -6,7 +6,7 @@
 
 ## Setup
 
-```{r setup}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 
 library(glue)
@@ -165,8 +165,8 @@ The model is available here ["assignment07_factories_hierarchical.stan"](`r past
 
 The only changes were made in the `generated quantities` block:
 
-```
-...
+```stan
+\\...
 generated quantities {
   // Compute the predictive distribution for the sixth machine.
   real y6pred;  // Leave for compatibility with earlier assignments.

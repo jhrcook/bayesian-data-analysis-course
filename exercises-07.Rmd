@@ -4,11 +4,6 @@
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
-
-rfiles <- list.files(here::here("src"), full.names = TRUE, pattern = "R$")
-for (rfile in rfiles) {
-  source(rfile)
-}
 ```
 
 > Complete question 5.1.

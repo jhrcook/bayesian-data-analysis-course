@@ -2,13 +2,13 @@
 
 2021-09-26
 
-```{r setup, include=TRUE}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 library(glue)
 library(ggtext)
 library(patchwork)
-suppressPackageStartupMessages(library(tidyverse))
+library(tidyverse)
 
 theme_set(theme_bw())
 ```
@@ -404,3 +404,9 @@ metropolis_plot_points <- metropolis_chains %>%
 $$
 \hat{\rho}_n = 1 - \frac{W - \frac{1}{M} \sum_m^M \hat{\rho}_{n,m}}{2 \widehat{\text{var}}^+}
 $$
+
+---
+
+```{r}
+sessionInfo()
+```

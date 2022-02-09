@@ -208,3 +208,9 @@ pbeta(0.5, 241945, 251527, lower.tail = FALSE) # 1 - p
     - draws are *dependent*
     - computationally heavy
   - we will see Gibbs, Metropolis, and Dynamic Hamiltonian Monte Carlo (HMC; state-of-the-art)
+
+---
+
+```{r}
+sessionInfo()
+```

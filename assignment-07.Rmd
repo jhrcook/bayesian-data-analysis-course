@@ -53,7 +53,7 @@ ii) **What is the prediction for the year 2020? (We would plot the histogram of 
 Below is a copy of the final model.
 The full Stan file is at [models/assignment07-drownings.stan](`r paste0(MODELS_URL, "assignment07-drownings.stan")`).
 
-```
+```stan
 data {
   int<lower=0> N;  // number of data points
   vector[N] x;     // observation year

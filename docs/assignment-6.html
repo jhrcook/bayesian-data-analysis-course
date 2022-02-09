@@ -508,55 +508,55 @@ div.csl-indent {
 <p><strong><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-06.pdf">Assignment 6</a></strong></p>
 <div id="setup-5" class="section level2" number="25.1">
 <h2><span class="header-section-number">25.1</span> Setup</h2>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="assignment-6.html#cb181-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb181-2"><a href="assignment-6.html#cb181-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-3"><a href="assignment-6.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (f <span class="cf">in</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb181-4"><a href="assignment-6.html#cb181-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(f)</span>
-<span id="cb181-5"><a href="assignment-6.html#cb181-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb181-6"><a href="assignment-6.html#cb181-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-7"><a href="assignment-6.html#cb181-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan)</span>
-<span id="cb181-8"><a href="assignment-6.html#cb181-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
-<span id="cb181-9"><a href="assignment-6.html#cb181-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
-<span id="cb181-10"><a href="assignment-6.html#cb181-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb181-11"><a href="assignment-6.html#cb181-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-12"><a href="assignment-6.html#cb181-12" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(</span>
-<span id="cb181-13"><a href="assignment-6.html#cb181-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb181-14"><a href="assignment-6.html#cb181-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb181-15"><a href="assignment-6.html#cb181-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb181-16"><a href="assignment-6.html#cb181-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>()</span>
-<span id="cb181-17"><a href="assignment-6.html#cb181-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb181-18"><a href="assignment-6.html#cb181-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb181-19"><a href="assignment-6.html#cb181-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-20"><a href="assignment-6.html#cb181-20" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="assignment-6.html#cb198-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb198-2"><a href="assignment-6.html#cb198-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb198-3"><a href="assignment-6.html#cb198-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (f <span class="cf">in</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb198-4"><a href="assignment-6.html#cb198-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(f)</span>
+<span id="cb198-5"><a href="assignment-6.html#cb198-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb198-6"><a href="assignment-6.html#cb198-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb198-7"><a href="assignment-6.html#cb198-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan)</span>
+<span id="cb198-8"><a href="assignment-6.html#cb198-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
+<span id="cb198-9"><a href="assignment-6.html#cb198-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
+<span id="cb198-10"><a href="assignment-6.html#cb198-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb198-11"><a href="assignment-6.html#cb198-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb198-12"><a href="assignment-6.html#cb198-12" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(</span>
+<span id="cb198-13"><a href="assignment-6.html#cb198-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb198-14"><a href="assignment-6.html#cb198-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb198-15"><a href="assignment-6.html#cb198-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb198-16"><a href="assignment-6.html#cb198-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>()</span>
+<span id="cb198-17"><a href="assignment-6.html#cb198-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb198-18"><a href="assignment-6.html#cb198-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb198-19"><a href="assignment-6.html#cb198-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb198-20"><a href="assignment-6.html#cb198-20" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="exercise-1.-generalized-linear-model-bioassay-with-stan" class="section level2" number="25.2">
 <h2><span class="header-section-number">25.2</span> Exercise 1. Generalized linear model: Bioassay with Stan</h2>
 <p><strong>Replicate the computations for the bioassay example of section 3.7 (BDA3) using Stan.</strong></p>
-<p>The model is located in “<a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/models/assignment06-bioassay.stan">models/assignment06-bioassay.stan</a>.
+<p>The model is located in <a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/models/assignment06-bioassay.stan">“models/assignment06-bioassay.stan”</a>.
 I have copied it below:</p>
-<pre><code>data {
-  int&lt;lower=0&gt; N;    // number of data points
-  vector[N] x;       // dose
-  int&lt;lower=0&gt; n[N]; // number of animals
-  int&lt;lower=0&gt; y[N]; // number of deaths
-
-  vector[2] mu;                // prior on mean of theta
-  matrix&lt;lower=0&gt;[2, 2] sigma; // prior on covariance matrix of theta
-}
-
-parameters {
-  vector[2] mdl_params;
-}
-
-transformed parameters {
-  vector[N] theta;
-  theta = mdl_params[1] + mdl_params[2] * x;
-}
-
-model {
-  mdl_params ~ multi_normal(mu, sigma);
-  y ~ binomial_logit(n, theta);
-}</code></pre>
+<div class="sourceCode" id="cb199"><pre class="sourceCode stan"><code class="sourceCode stan"><span id="cb199-1"><a href="assignment-6.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
+<span id="cb199-2"><a href="assignment-6.html#cb199-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N;    <span class="co">// number of data points</span></span>
+<span id="cb199-3"><a href="assignment-6.html#cb199-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] x;       <span class="co">// dose</span></span>
+<span id="cb199-4"><a href="assignment-6.html#cb199-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; n[N]; <span class="co">// number of animals</span></span>
+<span id="cb199-5"><a href="assignment-6.html#cb199-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; y[N]; <span class="co">// number of deaths</span></span>
+<span id="cb199-6"><a href="assignment-6.html#cb199-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-7"><a href="assignment-6.html#cb199-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[<span class="dv">2</span>] mu;                <span class="co">// prior on mean of theta</span></span>
+<span id="cb199-8"><a href="assignment-6.html#cb199-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">matrix</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt;[<span class="dv">2</span>, <span class="dv">2</span>] sigma; <span class="co">// prior on covariance matrix of theta</span></span>
+<span id="cb199-9"><a href="assignment-6.html#cb199-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb199-10"><a href="assignment-6.html#cb199-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-11"><a href="assignment-6.html#cb199-11" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
+<span id="cb199-12"><a href="assignment-6.html#cb199-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[<span class="dv">2</span>] mdl_params;</span>
+<span id="cb199-13"><a href="assignment-6.html#cb199-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb199-14"><a href="assignment-6.html#cb199-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-15"><a href="assignment-6.html#cb199-15" aria-hidden="true" tabindex="-1"></a><span class="kw">transformed parameters</span> {</span>
+<span id="cb199-16"><a href="assignment-6.html#cb199-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] theta;</span>
+<span id="cb199-17"><a href="assignment-6.html#cb199-17" aria-hidden="true" tabindex="-1"></a>  theta = mdl_params[<span class="dv">1</span>] + mdl_params[<span class="dv">2</span>] * x;</span>
+<span id="cb199-18"><a href="assignment-6.html#cb199-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb199-19"><a href="assignment-6.html#cb199-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-20"><a href="assignment-6.html#cb199-20" aria-hidden="true" tabindex="-1"></a><span class="kw">model</span> {</span>
+<span id="cb199-21"><a href="assignment-6.html#cb199-21" aria-hidden="true" tabindex="-1"></a>  mdl_params ~ multi_normal(mu, sigma);</span>
+<span id="cb199-22"><a href="assignment-6.html#cb199-22" aria-hidden="true" tabindex="-1"></a>  y ~ binomial_logit(n, theta);</span>
+<span id="cb199-23"><a href="assignment-6.html#cb199-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <div id="write-down-the-model-for-the-bioassay-data-in-stan-syntax." class="section level3" number="25.2.1">
 <h3><span class="header-section-number">25.2.1</span> 1. Write down the model for the bioassay data in Stan syntax.</h3>
 <p><strong>Use the Gaussian prior as in Assignment 4 and 5, that is:</strong></p>
@@ -573,7 +573,7 @@ model {
 <strong>You will need Stan functions <code>multi_normal</code> and <code>binomial_logit</code> for implementing the prior and observation model, respectively.</strong>
 <strong>In Stan code, it is easiest to declare a variable (say <code>theta</code>) which is a two-element vector so that the first value denotes <span class="math inline">\(\alpha\)</span> and latter one <span class="math inline">\(\beta\)</span>.</strong>
 <strong>This is because the <code>multi_normal</code> function that you need for implementing the prior requires a vector as an input.</strong></p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="assignment-6.html#cb183-1" aria-hidden="true" tabindex="-1"></a>bioassay <span class="ot">&lt;-</span> <span class="fu">read_bioassay_data</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="assignment-6.html#cb200-1" aria-hidden="true" tabindex="-1"></a>bioassay <span class="ot">&lt;-</span> <span class="fu">read_bioassay_data</span>()</span></code></pre></div>
 <pre><code>#&gt; Rows: 4 Columns: 1</code></pre>
 <pre><code>#&gt; ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Delimiter: &quot;\t&quot;
@@ -581,22 +581,22 @@ model {
 <pre><code>#&gt; 
 #&gt; ℹ Use `spec()` to retrieve the full column specification for this data.
 #&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="assignment-6.html#cb187-1" aria-hidden="true" tabindex="-1"></a>bioassay_mdl_posterior <span class="ot">&lt;-</span> <span class="fu">stan</span>(</span>
-<span id="cb187-2"><a href="assignment-6.html#cb187-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;models&quot;</span>, <span class="st">&quot;assignment06-bioassay.stan&quot;</span>),</span>
-<span id="cb187-3"><a href="assignment-6.html#cb187-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
-<span id="cb187-4"><a href="assignment-6.html#cb187-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">nrow</span>(bioassay),</span>
-<span id="cb187-5"><a href="assignment-6.html#cb187-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
-<span id="cb187-6"><a href="assignment-6.html#cb187-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n,</span>
-<span id="cb187-7"><a href="assignment-6.html#cb187-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
-<span id="cb187-8"><a href="assignment-6.html#cb187-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>),</span>
-<span id="cb187-9"><a href="assignment-6.html#cb187-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sigma =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">10</span><span class="sc">^</span><span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb187-10"><a href="assignment-6.html#cb187-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb187-11"><a href="assignment-6.html#cb187-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="assignment-6.html#cb204-1" aria-hidden="true" tabindex="-1"></a>bioassay_mdl_posterior <span class="ot">&lt;-</span> <span class="fu">stan</span>(</span>
+<span id="cb204-2"><a href="assignment-6.html#cb204-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;models&quot;</span>, <span class="st">&quot;assignment06-bioassay.stan&quot;</span>),</span>
+<span id="cb204-3"><a href="assignment-6.html#cb204-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
+<span id="cb204-4"><a href="assignment-6.html#cb204-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">nrow</span>(bioassay),</span>
+<span id="cb204-5"><a href="assignment-6.html#cb204-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
+<span id="cb204-6"><a href="assignment-6.html#cb204-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n,</span>
+<span id="cb204-7"><a href="assignment-6.html#cb204-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
+<span id="cb204-8"><a href="assignment-6.html#cb204-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>),</span>
+<span id="cb204-9"><a href="assignment-6.html#cb204-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sigma =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">10</span><span class="sc">^</span><span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb204-10"><a href="assignment-6.html#cb204-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb204-11"><a href="assignment-6.html#cb204-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; SAMPLING FOR MODEL &#39;assignment06-bioassay&#39; NOW (CHAIN 1).
 #&gt; Chain 1: 
-#&gt; Chain 1: Gradient evaluation took 5.5e-05 seconds
-#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.55 seconds.
+#&gt; Chain 1: Gradient evaluation took 5.4e-05 seconds
+#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.54 seconds.
 #&gt; Chain 1: Adjust your expectations accordingly!
 #&gt; Chain 1: 
 #&gt; Chain 1: 
@@ -613,15 +613,15 @@ model {
 #&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 1: 
-#&gt; Chain 1:  Elapsed Time: 0.03982 seconds (Warm-up)
-#&gt; Chain 1:                0.033487 seconds (Sampling)
-#&gt; Chain 1:                0.073307 seconds (Total)
+#&gt; Chain 1:  Elapsed Time: 0.033336 seconds (Warm-up)
+#&gt; Chain 1:                0.029092 seconds (Sampling)
+#&gt; Chain 1:                0.062428 seconds (Total)
 #&gt; Chain 1: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL &#39;assignment06-bioassay&#39; NOW (CHAIN 2).
 #&gt; Chain 2: 
-#&gt; Chain 2: Gradient evaluation took 1.3e-05 seconds
-#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
+#&gt; Chain 2: Gradient evaluation took 1.1e-05 seconds
+#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 #&gt; Chain 2: Adjust your expectations accordingly!
 #&gt; Chain 2: 
 #&gt; Chain 2: 
@@ -638,15 +638,15 @@ model {
 #&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 2: 
-#&gt; Chain 2:  Elapsed Time: 0.036828 seconds (Warm-up)
-#&gt; Chain 2:                0.034224 seconds (Sampling)
-#&gt; Chain 2:                0.071052 seconds (Total)
+#&gt; Chain 2:  Elapsed Time: 0.033188 seconds (Warm-up)
+#&gt; Chain 2:                0.031381 seconds (Sampling)
+#&gt; Chain 2:                0.064569 seconds (Total)
 #&gt; Chain 2: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL &#39;assignment06-bioassay&#39; NOW (CHAIN 3).
 #&gt; Chain 3: 
-#&gt; Chain 3: Gradient evaluation took 1.3e-05 seconds
-#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
+#&gt; Chain 3: Gradient evaluation took 1.2e-05 seconds
+#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
 #&gt; Chain 3: Adjust your expectations accordingly!
 #&gt; Chain 3: 
 #&gt; Chain 3: 
@@ -663,15 +663,15 @@ model {
 #&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 3: 
-#&gt; Chain 3:  Elapsed Time: 0.034739 seconds (Warm-up)
-#&gt; Chain 3:                0.027769 seconds (Sampling)
-#&gt; Chain 3:                0.062508 seconds (Total)
+#&gt; Chain 3:  Elapsed Time: 0.034297 seconds (Warm-up)
+#&gt; Chain 3:                0.027382 seconds (Sampling)
+#&gt; Chain 3:                0.061679 seconds (Total)
 #&gt; Chain 3: 
 #&gt; 
 #&gt; SAMPLING FOR MODEL &#39;assignment06-bioassay&#39; NOW (CHAIN 4).
 #&gt; Chain 4: 
-#&gt; Chain 4: Gradient evaluation took 1.2e-05 seconds
-#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+#&gt; Chain 4: Gradient evaluation took 1.1e-05 seconds
+#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 #&gt; Chain 4: Adjust your expectations accordingly!
 #&gt; Chain 4: 
 #&gt; Chain 4: 
@@ -688,9 +688,9 @@ model {
 #&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 #&gt; Chain 4: 
-#&gt; Chain 4:  Elapsed Time: 0.033204 seconds (Warm-up)
-#&gt; Chain 4:                0.028264 seconds (Sampling)
-#&gt; Chain 4:                0.061468 seconds (Total)
+#&gt; Chain 4:  Elapsed Time: 0.032353 seconds (Warm-up)
+#&gt; Chain 4:                0.030003 seconds (Sampling)
+#&gt; Chain 4:                0.062356 seconds (Total)
 #&gt; Chain 4:</code></pre>
 </div>
 <div id="use-widehatr-for-convergence-analysis." class="section level3" number="25.2.2">
@@ -700,21 +700,21 @@ model {
 <p>Bellow is a table summarizing the results of sampling from the model’s posterior.
 The <span class="math inline">\(\widehat{R}\)</span> is stated in the last column of the table.
 As the values are all around 1.0, this suggests that the chains mixed and converged.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="assignment-6.html#cb189-1" aria-hidden="true" tabindex="-1"></a>bioassay_mdl_posterior</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="assignment-6.html#cb206-1" aria-hidden="true" tabindex="-1"></a>bioassay_mdl_posterior</span></code></pre></div>
 <pre><code>#&gt; Inference for Stan model: assignment06-bioassay.
 #&gt; 4 chains, each with iter=2000; warmup=1000; thin=1; 
 #&gt; post-warmup draws per chain=1000, total post-warmup draws=4000.
 #&gt; 
 #&gt;                mean se_mean   sd   2.5%    25%   50%   75% 97.5% n_eff Rhat
-#&gt; mdl_params[1]  0.96    0.02 0.89  -0.65   0.35  0.91  1.54  2.77  1353    1
-#&gt; mdl_params[2] 10.64    0.13 4.64   3.48   7.13 10.03 13.65 20.83  1331    1
-#&gt; theta[1]      -8.19    0.09 3.52 -16.08 -10.35 -7.70 -5.50 -2.77  1509    1
-#&gt; theta[2]      -2.23    0.02 1.10  -4.67  -2.92 -2.11 -1.44 -0.40  2476    1
-#&gt; theta[3]       0.43    0.02 0.77  -1.01  -0.10  0.41  0.92  2.01  1596    1
-#&gt; theta[4]       8.73    0.11 4.00   2.34   5.74  8.19 11.37 17.39  1236    1
-#&gt; lp__          -7.14    0.03 1.00  -9.88  -7.54 -6.83 -6.42 -6.14  1593    1
+#&gt; mdl_params[1]  0.99    0.02 0.89  -0.62   0.38  0.95  1.54  2.80  1290    1
+#&gt; mdl_params[2] 10.70    0.13 4.55   3.57   7.29 10.22 13.39 21.05  1163    1
+#&gt; theta[1]      -8.21    0.09 3.45 -15.99 -10.24 -7.82 -5.63 -2.86  1354    1
+#&gt; theta[2]      -2.22    0.02 1.09  -4.63  -2.89 -2.12 -1.43 -0.41  2236    1
+#&gt; theta[3]       0.46    0.02 0.77  -1.00  -0.07  0.44  0.94  2.01  1506    1
+#&gt; theta[4]       8.80    0.12 3.91   2.51   5.87  8.46 11.14 17.71  1073    1
+#&gt; lp__          -7.12    0.03 1.01  -9.92  -7.52 -6.80 -6.41 -6.15  1054    1
 #&gt; 
-#&gt; Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:06:40 2022.
+#&gt; Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:43:02 2022.
 #&gt; For each parameter, n_eff is a crude measure of effective sample size,
 #&gt; and Rhat is the potential scale reduction factor on split chains (at 
 #&gt; convergence, Rhat=1).</code></pre>
@@ -724,66 +724,66 @@ It can also be thought of a scaling factor indicating how much greater the estim
 </div>
 <div id="plot-the-draws-for-alpha-and-beta-scatter-plot-and-include-this-plot-in-your-report" class="section level3" number="25.2.3">
 <h3><span class="header-section-number">25.2.3</span> 3. Plot the draws for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> (scatter plot) and include this plot in your report</h3>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="assignment-6.html#cb191-1" aria-hidden="true" tabindex="-1"></a>post_df <span class="ot">&lt;-</span> bioassay_mdl_posterior <span class="sc">%&gt;%</span></span>
-<span id="cb191-2"><a href="assignment-6.html#cb191-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread_draws</span>(mdl_params[param]) <span class="sc">%&gt;%</span></span>
-<span id="cb191-3"><a href="assignment-6.html#cb191-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">param =</span> <span class="fu">ifelse</span>(param <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="assignment-6.html#cb192-1" aria-hidden="true" tabindex="-1"></a>post_df <span class="sc">%&gt;%</span></span>
-<span id="cb192-2"><a href="assignment-6.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_rev</span>(param), <span class="at">x =</span> mdl_params)) <span class="sc">+</span></span>
-<span id="cb192-3"><a href="assignment-6.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_halfeye</span>(<span class="at">.width =</span> <span class="fu">c</span>(<span class="fl">0.50</span>, <span class="fl">0.89</span>)) <span class="sc">+</span></span>
-<span id="cb192-4"><a href="assignment-6.html#cb192-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;posterior value&quot;</span>, <span class="at">y =</span> <span class="st">&quot;model parameter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="assignment-6.html#cb208-1" aria-hidden="true" tabindex="-1"></a>post_df <span class="ot">&lt;-</span> bioassay_mdl_posterior <span class="sc">%&gt;%</span></span>
+<span id="cb208-2"><a href="assignment-6.html#cb208-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread_draws</span>(mdl_params[param]) <span class="sc">%&gt;%</span></span>
+<span id="cb208-3"><a href="assignment-6.html#cb208-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">param =</span> <span class="fu">ifelse</span>(param <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="assignment-6.html#cb209-1" aria-hidden="true" tabindex="-1"></a>post_df <span class="sc">%&gt;%</span></span>
+<span id="cb209-2"><a href="assignment-6.html#cb209-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_rev</span>(param), <span class="at">x =</span> mdl_params)) <span class="sc">+</span></span>
+<span id="cb209-3"><a href="assignment-6.html#cb209-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_halfeye</span>(<span class="at">.width =</span> <span class="fu">c</span>(<span class="fl">0.50</span>, <span class="fl">0.89</span>)) <span class="sc">+</span></span>
+<span id="cb209-4"><a href="assignment-6.html#cb209-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;posterior value&quot;</span>, <span class="at">y =</span> <span class="st">&quot;model parameter&quot;</span>)</span></code></pre></div>
 <p><img src="assignment-06_files/figure-html/unnamed-chunk-4-1.png" width="2100" /></p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="assignment-6.html#cb193-1" aria-hidden="true" tabindex="-1"></a>post_point_est <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(</span>
-<span id="cb193-2"><a href="assignment-6.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  bayestestR<span class="sc">::</span><span class="fu">point_estimate</span>(bioassay_mdl_posterior)</span>
-<span id="cb193-3"><a href="assignment-6.html#cb193-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb193-4"><a href="assignment-6.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">param =</span> Parameter, <span class="at">mean =</span> Mean) <span class="sc">%&gt;%</span></span>
-<span id="cb193-5"><a href="assignment-6.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(param, <span class="st">&quot;mdl_params&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb193-6"><a href="assignment-6.html#cb193-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">param =</span> <span class="fu">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>))</span>
-<span id="cb193-7"><a href="assignment-6.html#cb193-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-8"><a href="assignment-6.html#cb193-8" aria-hidden="true" tabindex="-1"></a>post_hdi <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(bayestestR<span class="sc">::</span><span class="fu">hdi</span>(bioassay_mdl_posterior, <span class="at">ci =</span> <span class="fl">0.89</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb193-9"><a href="assignment-6.html#cb193-9" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb193-10"><a href="assignment-6.html#cb193-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">param =</span> parameter, ci, ci_low, ci_high) <span class="sc">%&gt;%</span></span>
-<span id="cb193-11"><a href="assignment-6.html#cb193-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(param, <span class="st">&quot;mdl_params&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb193-12"><a href="assignment-6.html#cb193-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">param =</span> <span class="fu">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>))</span>
-<span id="cb193-13"><a href="assignment-6.html#cb193-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-14"><a href="assignment-6.html#cb193-14" aria-hidden="true" tabindex="-1"></a>parameter_post_description <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(post_point_est, post_hdi, <span class="at">by =</span> <span class="st">&quot;param&quot;</span>)</span>
-<span id="cb193-15"><a href="assignment-6.html#cb193-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-16"><a href="assignment-6.html#cb193-16" aria-hidden="true" tabindex="-1"></a>ALPHA_COL <span class="ot">&lt;-</span> <span class="st">&quot;#F90039&quot;</span></span>
-<span id="cb193-17"><a href="assignment-6.html#cb193-17" aria-hidden="true" tabindex="-1"></a>BETA_COL <span class="ot">&lt;-</span> <span class="st">&quot;#4E477F&quot;</span></span>
-<span id="cb193-18"><a href="assignment-6.html#cb193-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-19"><a href="assignment-6.html#cb193-19" aria-hidden="true" tabindex="-1"></a>post_df <span class="sc">%&gt;%</span></span>
-<span id="cb193-20"><a href="assignment-6.html#cb193-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> param, <span class="at">values_from =</span> mdl_params) <span class="sc">%&gt;%</span></span>
-<span id="cb193-21"><a href="assignment-6.html#cb193-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha, <span class="at">y =</span> beta)) <span class="sc">+</span></span>
-<span id="cb193-22"><a href="assignment-6.html#cb193-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_2d</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb193-23"><a href="assignment-6.html#cb193-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.4</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb193-24"><a href="assignment-6.html#cb193-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(</span>
-<span id="cb193-25"><a href="assignment-6.html#cb193-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xmin =</span> ci_low, <span class="at">xmax =</span> ci_high),</span>
-<span id="cb193-26"><a href="assignment-6.html#cb193-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> parameter_post_description <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>),</span>
-<span id="cb193-27"><a href="assignment-6.html#cb193-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>,</span>
-<span id="cb193-28"><a href="assignment-6.html#cb193-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> <span class="cn">Inf</span>,</span>
-<span id="cb193-29"><a href="assignment-6.html#cb193-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb193-30"><a href="assignment-6.html#cb193-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> ALPHA_COL,</span>
-<span id="cb193-31"><a href="assignment-6.html#cb193-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span></span>
-<span id="cb193-32"><a href="assignment-6.html#cb193-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb193-33"><a href="assignment-6.html#cb193-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(</span>
-<span id="cb193-34"><a href="assignment-6.html#cb193-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> ci_low, <span class="at">ymax =</span> ci_high),</span>
-<span id="cb193-35"><a href="assignment-6.html#cb193-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> parameter_post_description <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">2</span>),</span>
-<span id="cb193-36"><a href="assignment-6.html#cb193-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>,</span>
-<span id="cb193-37"><a href="assignment-6.html#cb193-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> <span class="cn">Inf</span>,</span>
-<span id="cb193-38"><a href="assignment-6.html#cb193-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
-<span id="cb193-39"><a href="assignment-6.html#cb193-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> BETA_COL,</span>
-<span id="cb193-40"><a href="assignment-6.html#cb193-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span></span>
-<span id="cb193-41"><a href="assignment-6.html#cb193-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb193-42"><a href="assignment-6.html#cb193-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
-<span id="cb193-43"><a href="assignment-6.html#cb193-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> parameter_post_description<span class="sc">$</span>mean[[<span class="dv">1</span>]],</span>
-<span id="cb193-44"><a href="assignment-6.html#cb193-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> ALPHA_COL,</span>
-<span id="cb193-45"><a href="assignment-6.html#cb193-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="dv">2</span></span>
-<span id="cb193-46"><a href="assignment-6.html#cb193-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb193-47"><a href="assignment-6.html#cb193-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
-<span id="cb193-48"><a href="assignment-6.html#cb193-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> parameter_post_description<span class="sc">$</span>mean[[<span class="dv">2</span>]],</span>
-<span id="cb193-49"><a href="assignment-6.html#cb193-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> BETA_COL,</span>
-<span id="cb193-50"><a href="assignment-6.html#cb193-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="dv">2</span></span>
-<span id="cb193-51"><a href="assignment-6.html#cb193-51" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb193-52"><a href="assignment-6.html#cb193-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;alpha&quot;</span>, <span class="at">y =</span> <span class="st">&quot;beta&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Bioassy model posterior&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="assignment-6.html#cb210-1" aria-hidden="true" tabindex="-1"></a>post_point_est <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(</span>
+<span id="cb210-2"><a href="assignment-6.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  bayestestR<span class="sc">::</span><span class="fu">point_estimate</span>(bioassay_mdl_posterior)</span>
+<span id="cb210-3"><a href="assignment-6.html#cb210-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb210-4"><a href="assignment-6.html#cb210-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">param =</span> Parameter, <span class="at">mean =</span> Mean) <span class="sc">%&gt;%</span></span>
+<span id="cb210-5"><a href="assignment-6.html#cb210-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(param, <span class="st">&quot;mdl_params&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb210-6"><a href="assignment-6.html#cb210-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">param =</span> <span class="fu">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>))</span>
+<span id="cb210-7"><a href="assignment-6.html#cb210-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-8"><a href="assignment-6.html#cb210-8" aria-hidden="true" tabindex="-1"></a>post_hdi <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(bayestestR<span class="sc">::</span><span class="fu">hdi</span>(bioassay_mdl_posterior, <span class="at">ci =</span> <span class="fl">0.89</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb210-9"><a href="assignment-6.html#cb210-9" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb210-10"><a href="assignment-6.html#cb210-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">param =</span> parameter, ci, ci_low, ci_high) <span class="sc">%&gt;%</span></span>
+<span id="cb210-11"><a href="assignment-6.html#cb210-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(param, <span class="st">&quot;mdl_params&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb210-12"><a href="assignment-6.html#cb210-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">param =</span> <span class="fu">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>))</span>
+<span id="cb210-13"><a href="assignment-6.html#cb210-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-14"><a href="assignment-6.html#cb210-14" aria-hidden="true" tabindex="-1"></a>parameter_post_description <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(post_point_est, post_hdi, <span class="at">by =</span> <span class="st">&quot;param&quot;</span>)</span>
+<span id="cb210-15"><a href="assignment-6.html#cb210-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-16"><a href="assignment-6.html#cb210-16" aria-hidden="true" tabindex="-1"></a>ALPHA_COL <span class="ot">&lt;-</span> <span class="st">&quot;#F90039&quot;</span></span>
+<span id="cb210-17"><a href="assignment-6.html#cb210-17" aria-hidden="true" tabindex="-1"></a>BETA_COL <span class="ot">&lt;-</span> <span class="st">&quot;#4E477F&quot;</span></span>
+<span id="cb210-18"><a href="assignment-6.html#cb210-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-19"><a href="assignment-6.html#cb210-19" aria-hidden="true" tabindex="-1"></a>post_df <span class="sc">%&gt;%</span></span>
+<span id="cb210-20"><a href="assignment-6.html#cb210-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> param, <span class="at">values_from =</span> mdl_params) <span class="sc">%&gt;%</span></span>
+<span id="cb210-21"><a href="assignment-6.html#cb210-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha, <span class="at">y =</span> beta)) <span class="sc">+</span></span>
+<span id="cb210-22"><a href="assignment-6.html#cb210-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_2d</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb210-23"><a href="assignment-6.html#cb210-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.4</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb210-24"><a href="assignment-6.html#cb210-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb210-25"><a href="assignment-6.html#cb210-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xmin =</span> ci_low, <span class="at">xmax =</span> ci_high),</span>
+<span id="cb210-26"><a href="assignment-6.html#cb210-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> parameter_post_description <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>),</span>
+<span id="cb210-27"><a href="assignment-6.html#cb210-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>,</span>
+<span id="cb210-28"><a href="assignment-6.html#cb210-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> <span class="cn">Inf</span>,</span>
+<span id="cb210-29"><a href="assignment-6.html#cb210-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb210-30"><a href="assignment-6.html#cb210-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> ALPHA_COL,</span>
+<span id="cb210-31"><a href="assignment-6.html#cb210-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span></span>
+<span id="cb210-32"><a href="assignment-6.html#cb210-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb210-33"><a href="assignment-6.html#cb210-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb210-34"><a href="assignment-6.html#cb210-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> ci_low, <span class="at">ymax =</span> ci_high),</span>
+<span id="cb210-35"><a href="assignment-6.html#cb210-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> parameter_post_description <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">2</span>),</span>
+<span id="cb210-36"><a href="assignment-6.html#cb210-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> <span class="sc">-</span><span class="cn">Inf</span>,</span>
+<span id="cb210-37"><a href="assignment-6.html#cb210-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> <span class="cn">Inf</span>,</span>
+<span id="cb210-38"><a href="assignment-6.html#cb210-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb210-39"><a href="assignment-6.html#cb210-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> BETA_COL,</span>
+<span id="cb210-40"><a href="assignment-6.html#cb210-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span></span>
+<span id="cb210-41"><a href="assignment-6.html#cb210-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb210-42"><a href="assignment-6.html#cb210-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb210-43"><a href="assignment-6.html#cb210-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> parameter_post_description<span class="sc">$</span>mean[[<span class="dv">1</span>]],</span>
+<span id="cb210-44"><a href="assignment-6.html#cb210-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> ALPHA_COL,</span>
+<span id="cb210-45"><a href="assignment-6.html#cb210-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="dv">2</span></span>
+<span id="cb210-46"><a href="assignment-6.html#cb210-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb210-47"><a href="assignment-6.html#cb210-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb210-48"><a href="assignment-6.html#cb210-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> parameter_post_description<span class="sc">$</span>mean[[<span class="dv">2</span>]],</span>
+<span id="cb210-49"><a href="assignment-6.html#cb210-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> BETA_COL,</span>
+<span id="cb210-50"><a href="assignment-6.html#cb210-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="dv">2</span></span>
+<span id="cb210-51"><a href="assignment-6.html#cb210-51" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb210-52"><a href="assignment-6.html#cb210-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;alpha&quot;</span>, <span class="at">y =</span> <span class="st">&quot;beta&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Bioassy model posterior&quot;</span>)</span></code></pre></div>
 <p><img src="assignment-06_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
 </div>
 <div id="to-develop-the-course-and-provide-feedback-to-stan-developers-we-collect-information-on-which-stan-setup-you-used-and-whether-you-had-any-problems-in-setting-it-up-or-using-it." class="section level3" number="25.2.4">
@@ -798,7 +798,7 @@ It can also be thought of a scaling factor indicating how much greater the estim
 <li><strong>In addition of these you can write what other things you found out difficult (or even frustrating) when making this assignment with Stan.</strong> No frustrations this time, but I have had some in the past, but the problem was with how I had installed R and not specific to Stan.</li>
 </ol>
 <hr />
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="assignment-6.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="assignment-6.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>#&gt; R version 4.1.2 (2021-11-01)
 #&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
 #&gt; Running under: macOS Big Sur 10.16

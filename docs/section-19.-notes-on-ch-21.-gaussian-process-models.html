@@ -505,6 +505,16 @@ div.csl-indent {
 <div id="section-19.-notes-on-ch-21.-gaussian-process-models" class="section level1" number="17">
 <h1><span class="header-section-number">17</span> Section 19. Notes on ‘Ch 21. Gaussian process models’</h1>
 <p>2022-01-13</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb33-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>)</span>
+<span id="cb33-2"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb33-4"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb33-5"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb33-6"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(</span>
+<span id="cb33-8"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb33-9"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">strip.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb33-10"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb33-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <blockquote>
 <p>These are just notes on a single chapter of <em>BDA3</em> that were not part of the course.</p>
 </blockquote>
@@ -550,53 +560,53 @@ div.csl-indent {
 <p><span class="math display">\[
 k(x, x^\prime) = \tau^2 \exp(-\frac{|x-x^\prime|^2}{2l^2})
 \]</span></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-1" aria-hidden="true" tabindex="-1"></a>squared_exponential_cov <span class="ot">&lt;-</span> <span class="cf">function</span>(x, tau, l) {</span>
-<span id="cb28-2"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb28-3"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> n, <span class="at">ncol =</span> n)</span>
-<span id="cb28-4"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  denom <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (l<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb28-5"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
-<span id="cb28-6"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
-<span id="cb28-7"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-7" aria-hidden="true" tabindex="-1"></a>      a <span class="ot">&lt;-</span> x[i]</span>
-<span id="cb28-8"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-8" aria-hidden="true" tabindex="-1"></a>      b <span class="ot">&lt;-</span> x[j]</span>
-<span id="cb28-9"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-9" aria-hidden="true" tabindex="-1"></a>      k[i, j] <span class="ot">&lt;-</span> tau<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>(<span class="fu">abs</span>(a <span class="sc">-</span> b)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (denom))</span>
-<span id="cb28-10"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb28-11"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb28-12"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(k)</span>
-<span id="cb28-13"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb28-14"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-15"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-15" aria-hidden="true" tabindex="-1"></a>my_gaussian_process <span class="ot">&lt;-</span> <span class="cf">function</span>(x, tau, l, <span class="at">n =</span> <span class="dv">3</span>) {</span>
-<span id="cb28-16"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-16" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(x))</span>
-<span id="cb28-17"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-17" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">squared_exponential_cov</span>(<span class="at">x =</span> x, <span class="at">tau =</span> tau, <span class="at">l =</span> l)</span>
-<span id="cb28-18"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-18" aria-hidden="true" tabindex="-1"></a>  gp_samples <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">rmvnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> m, <span class="at">sigma =</span> k)</span>
-<span id="cb28-19"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(gp_samples)</span>
-<span id="cb28-20"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb28-21"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-22"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-22" aria-hidden="true" tabindex="-1"></a>tidy_gp <span class="ot">&lt;-</span> <span class="cf">function</span>(x, tau, l, <span class="at">n =</span> <span class="dv">3</span>) {</span>
-<span id="cb28-23"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">my_gaussian_process</span>(<span class="at">x =</span> x, <span class="at">tau =</span> tau, <span class="at">l =</span> l, <span class="at">n =</span> n) <span class="sc">%&gt;%</span></span>
-<span id="cb28-24"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb28-25"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb28-26"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_names</span>(x) <span class="sc">%&gt;%</span></span>
-<span id="cb28-27"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sample_idx =</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>())) <span class="sc">%&gt;%</span></span>
-<span id="cb28-28"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">-</span>sample_idx, <span class="at">names_to =</span> <span class="st">&quot;x&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-29"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(x))</span>
-<span id="cb28-30"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-30" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb28-31"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-32"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-32" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb28-33"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-33" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
-<span id="cb28-34"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-34" aria-hidden="true" tabindex="-1"></a>gp_samples <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">tau =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>), <span class="at">l =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">2</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-35"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">samples =</span> purrr<span class="sc">::</span><span class="fu">map2</span>(tau, l, <span class="sc">~</span> <span class="fu">tidy_gp</span>(<span class="at">x =</span> x, <span class="at">tau =</span> .x, <span class="at">l =</span> .y, <span class="at">n =</span> <span class="dv">3</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb28-36"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(samples)</span>
-<span id="cb28-37"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-38"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-38" aria-hidden="true" tabindex="-1"></a>gp_samples <span class="sc">%&gt;%</span></span>
-<span id="cb28-39"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">grp =</span> <span class="fu">glue</span>(<span class="st">&quot;\u03C4 = {tau}, \u2113 = {l}&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-40"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb28-41"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(grp), <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb28-42"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> sample_idx)) <span class="sc">+</span></span>
-<span id="cb28-43"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb28-44"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.02</span>))) <span class="sc">+</span></span>
-<span id="cb28-45"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
-<span id="cb28-46"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="at">axis.text.y =</span> <span class="fu">element_markdown</span>()) <span class="sc">+</span></span>
-<span id="cb28-47"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb28-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>, <span class="at">y =</span> <span class="st">&quot;\u03BC(x)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-1" aria-hidden="true" tabindex="-1"></a>squared_exponential_cov <span class="ot">&lt;-</span> <span class="cf">function</span>(x, tau, l) {</span>
+<span id="cb34-2"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb34-3"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> n, <span class="at">ncol =</span> n)</span>
+<span id="cb34-4"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-4" aria-hidden="true" tabindex="-1"></a>  denom <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (l<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb34-5"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb34-6"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb34-7"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-7" aria-hidden="true" tabindex="-1"></a>      a <span class="ot">&lt;-</span> x[i]</span>
+<span id="cb34-8"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-8" aria-hidden="true" tabindex="-1"></a>      b <span class="ot">&lt;-</span> x[j]</span>
+<span id="cb34-9"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-9" aria-hidden="true" tabindex="-1"></a>      k[i, j] <span class="ot">&lt;-</span> tau<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>(<span class="fu">abs</span>(a <span class="sc">-</span> b)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (denom))</span>
+<span id="cb34-10"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb34-11"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb34-12"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(k)</span>
+<span id="cb34-13"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-14"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-15"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-15" aria-hidden="true" tabindex="-1"></a>my_gaussian_process <span class="ot">&lt;-</span> <span class="cf">function</span>(x, tau, l, <span class="at">n =</span> <span class="dv">3</span>) {</span>
+<span id="cb34-16"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-16" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(x))</span>
+<span id="cb34-17"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-17" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">squared_exponential_cov</span>(<span class="at">x =</span> x, <span class="at">tau =</span> tau, <span class="at">l =</span> l)</span>
+<span id="cb34-18"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-18" aria-hidden="true" tabindex="-1"></a>  gp_samples <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">rmvnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> m, <span class="at">sigma =</span> k)</span>
+<span id="cb34-19"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(gp_samples)</span>
+<span id="cb34-20"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-21"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-22" aria-hidden="true" tabindex="-1"></a>tidy_gp <span class="ot">&lt;-</span> <span class="cf">function</span>(x, tau, l, <span class="at">n =</span> <span class="dv">3</span>) {</span>
+<span id="cb34-23"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">my_gaussian_process</span>(<span class="at">x =</span> x, <span class="at">tau =</span> tau, <span class="at">l =</span> l, <span class="at">n =</span> n) <span class="sc">%&gt;%</span></span>
+<span id="cb34-24"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-25"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-26"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_names</span>(x) <span class="sc">%&gt;%</span></span>
+<span id="cb34-27"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sample_idx =</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>())) <span class="sc">%&gt;%</span></span>
+<span id="cb34-28"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">-</span>sample_idx, <span class="at">names_to =</span> <span class="st">&quot;x&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-29"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(x))</span>
+<span id="cb34-30"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-31"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-32"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb34-33"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-33" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb34-34"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-34" aria-hidden="true" tabindex="-1"></a>gp_samples <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">tau =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>), <span class="at">l =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">2</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-35"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">samples =</span> purrr<span class="sc">::</span><span class="fu">map2</span>(tau, l, <span class="sc">~</span> <span class="fu">tidy_gp</span>(<span class="at">x =</span> x, <span class="at">tau =</span> .x, <span class="at">l =</span> .y, <span class="at">n =</span> <span class="dv">3</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb34-36"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(samples)</span>
+<span id="cb34-37"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-38"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-38" aria-hidden="true" tabindex="-1"></a>gp_samples <span class="sc">%&gt;%</span></span>
+<span id="cb34-39"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">grp =</span> <span class="fu">glue</span>(<span class="st">&quot;\u03C4 = {tau}, \u2113 = {l}&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-40"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb34-41"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(grp), <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb34-42"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> sample_idx)) <span class="sc">+</span></span>
+<span id="cb34-43"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb34-44"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.02</span>))) <span class="sc">+</span></span>
+<span id="cb34-45"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-46"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="at">axis.text.y =</span> <span class="fu">element_markdown</span>()) <span class="sc">+</span></span>
+<span id="cb34-47"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb34-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>, <span class="at">y =</span> <span class="st">&quot;\u03BC(x)&quot;</span>)</span></code></pre></div>
 <p><img src="notes-19_gaussian-processes_bda3-21_files/figure-html/unnamed-chunk-1-1.png" width="2100" /></p>
 <div id="covariance-functions" class="section level4 unnumbered">
 <h4>Covariance functions</h4>
@@ -674,6 +684,44 @@ k(x, x^\prime) = \tau^2 \exp(-\frac{|x-x^\prime|^2}{2l^2})
 <ul>
 <li>an alternative to LPG</li>
 </ul>
+<hr />
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
+#&gt; Running under: macOS Big Sur 10.16
+#&gt; 
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#&gt; 
+#&gt; locale:
+#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#&gt; 
+#&gt; other attached packages:
+#&gt;  [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4    
+#&gt;  [5] readr_2.0.1     tidyr_1.1.3     tibble_3.1.3    ggplot2_3.3.5  
+#&gt;  [9] tidyverse_1.3.1 ggtext_0.1.1    glue_1.4.2     
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] Rcpp_1.0.7         lubridate_1.7.10   mvtnorm_1.1-2      clisymbols_1.2.0  
+#&gt;  [5] assertthat_0.2.1   digest_0.6.27      utf8_1.2.2         R6_2.5.0          
+#&gt;  [9] cellranger_1.1.0   backports_1.2.1    reprex_2.0.1       evaluate_0.14     
+#&gt; [13] highr_0.9          httr_1.4.2         pillar_1.6.2       rlang_0.4.11      
+#&gt; [17] readxl_1.3.1       rstudioapi_0.13    jquerylib_0.1.4    rmarkdown_2.10    
+#&gt; [21] labeling_0.4.2     munsell_0.5.0      gridtext_0.1.4     broom_0.7.9       
+#&gt; [25] compiler_4.1.2     modelr_0.1.8       xfun_0.25          pkgconfig_2.0.3   
+#&gt; [29] htmltools_0.5.1.1  tidyselect_1.1.1   bookdown_0.24      fansi_0.5.0       
+#&gt; [33] crayon_1.4.1       tzdb_0.1.2         dbplyr_2.1.1       withr_2.4.2       
+#&gt; [37] grid_4.1.2         jsonlite_1.7.2     gtable_0.3.0       lifecycle_1.0.0   
+#&gt; [41] DBI_1.1.1          magrittr_2.0.1     scales_1.1.1       cli_3.0.1         
+#&gt; [45] stringi_1.7.3      farver_2.1.0       renv_0.14.0        fs_1.5.0          
+#&gt; [49] xml2_1.3.2         bslib_0.2.5.1      ellipsis_0.3.2     generics_0.1.0    
+#&gt; [53] vctrs_0.3.8        RColorBrewer_1.1-2 tools_4.1.2        markdown_1.1      
+#&gt; [57] hms_1.1.0          yaml_2.2.1         colorspace_2.0-2   rvest_1.0.1       
+#&gt; [61] knitr_1.33         haven_2.4.3        sass_0.4.0</code></pre>
 
 </div>
 </div>

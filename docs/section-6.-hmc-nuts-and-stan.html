@@ -505,6 +505,7 @@ div.csl-indent {
 <div id="section-6.-hmc-nuts-and-stan" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Section 6. HMC, NUTS, and Stan</h1>
 <p>2021-10-04</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="section-6.-hmc-nuts-and-stan.html#cb17-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>)</span></code></pre></div>
 <div id="resources-6" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Resources</h2>
 <ul>
@@ -702,75 +703,75 @@ div.csl-indent {
 <div id="probabilistic-programming-and-stan" class="section level4 unnumbered">
 <h4>6.2 probabilistic programming and Stan</h4>
 <p>example: Binomial model</p>
-<pre><code>data {
-  int &lt;lower=0&gt; N; // number of experiments
-  int&lt;lower=0,upper=N&gt; y; // number of successes
-}
-
-parameters {
-  real &lt;lower=0,upper=1&gt; theta ; // parameter of the binomial
-}
-
-model {
-  theta ~ beta(1,1); //prior
-  y ~ binomial (N, theta ); // observation model
-}</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode stan"><code class="sourceCode stan"><span id="cb18-1"><a href="section-6.-hmc-nuts-and-stan.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
+<span id="cb18-2"><a href="section-6.-hmc-nuts-and-stan.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> &lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N; <span class="co">// number of experiments</span></span>
+<span id="cb18-3"><a href="section-6.-hmc-nuts-and-stan.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>,<span class="kw">upper</span>=N&gt; y; <span class="co">// number of successes</span></span>
+<span id="cb18-4"><a href="section-6.-hmc-nuts-and-stan.html#cb18-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-5"><a href="section-6.-hmc-nuts-and-stan.html#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="section-6.-hmc-nuts-and-stan.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
+<span id="cb18-7"><a href="section-6.-hmc-nuts-and-stan.html#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> &lt;<span class="kw">lower</span>=<span class="dv">0</span>,<span class="kw">upper</span>=<span class="dv">1</span>&gt; theta ; <span class="co">// parameter of the binomial</span></span>
+<span id="cb18-8"><a href="section-6.-hmc-nuts-and-stan.html#cb18-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-9"><a href="section-6.-hmc-nuts-and-stan.html#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="section-6.-hmc-nuts-and-stan.html#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="kw">model</span> {</span>
+<span id="cb18-11"><a href="section-6.-hmc-nuts-and-stan.html#cb18-11" aria-hidden="true" tabindex="-1"></a>  theta ~ beta(<span class="dv">1</span>,<span class="dv">1</span>); <span class="co">//prior</span></span>
+<span id="cb18-12"><a href="section-6.-hmc-nuts-and-stan.html#cb18-12" aria-hidden="true" tabindex="-1"></a>  y ~ binomial (N, theta ); <span class="co">// observation model</span></span>
+<span id="cb18-13"><a href="section-6.-hmc-nuts-and-stan.html#cb18-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>example: running Stan from R</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="section-6.-hmc-nuts-and-stan.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (rstan)</span>
-<span id="cb14-2"><a href="section-6.-hmc-nuts-and-stan.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="section-6.-hmc-nuts-and-stan.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-4"><a href="section-6.-hmc-nuts-and-stan.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> parallel <span class="sc">::</span><span class="fu">detectCores</span>())</span>
-<span id="cb14-5"><a href="section-6.-hmc-nuts-and-stan.html#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="section-6.-hmc-nuts-and-stan.html#cb14-6" aria-hidden="true" tabindex="-1"></a>d_bin <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">N =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="dv">7</span>)</span>
-<span id="cb14-7"><a href="section-6.-hmc-nuts-and-stan.html#cb14-7" aria-hidden="true" tabindex="-1"></a>fit_bin <span class="ot">&lt;-</span> <span class="fu">stan</span>(<span class="at">file =</span> <span class="st">&quot;binom.stan&quot;</span>, <span class="at">data =</span> d_bin)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="section-6.-hmc-nuts-and-stan.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (rstan)</span>
+<span id="cb19-2"><a href="section-6.-hmc-nuts-and-stan.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="section-6.-hmc-nuts-and-stan.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-4"><a href="section-6.-hmc-nuts-and-stan.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> parallel <span class="sc">::</span><span class="fu">detectCores</span>())</span>
+<span id="cb19-5"><a href="section-6.-hmc-nuts-and-stan.html#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="section-6.-hmc-nuts-and-stan.html#cb19-6" aria-hidden="true" tabindex="-1"></a>d_bin <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">N =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="dv">7</span>)</span>
+<span id="cb19-7"><a href="section-6.-hmc-nuts-and-stan.html#cb19-7" aria-hidden="true" tabindex="-1"></a>fit_bin <span class="ot">&lt;-</span> <span class="fu">stan</span>(<span class="at">file =</span> <span class="st">&quot;binom.stan&quot;</span>, <span class="at">data =</span> d_bin)</span></code></pre></div>
 <p>example: running Stan from Python</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="section-6.-hmc-nuts-and-stan.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pystan</span>
-<span id="cb15-2"><a href="section-6.-hmc-nuts-and-stan.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> stan_utility</span>
-<span id="cb15-3"><a href="section-6.-hmc-nuts-and-stan.html#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="section-6.-hmc-nuts-and-stan.html#cb15-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">&quot;N&quot;</span>: <span class="dv">10</span>, <span class="st">&quot;y&quot;</span>: <span class="dv">8</span>}</span>
-<span id="cb15-5"><a href="section-6.-hmc-nuts-and-stan.html#cb15-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> stan_utility.compile_model(<span class="st">&#39;binom.stan&#39;</span>)</span>
-<span id="cb15-6"><a href="section-6.-hmc-nuts-and-stan.html#cb15-6" aria-hidden="true" tabindex="-1"></a>fit <span class="op">=</span> model.sampling(data<span class="op">=</span>data)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="section-6.-hmc-nuts-and-stan.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pystan</span>
+<span id="cb20-2"><a href="section-6.-hmc-nuts-and-stan.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> stan_utility</span>
+<span id="cb20-3"><a href="section-6.-hmc-nuts-and-stan.html#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="section-6.-hmc-nuts-and-stan.html#cb20-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">&quot;N&quot;</span>: <span class="dv">10</span>, <span class="st">&quot;y&quot;</span>: <span class="dv">8</span>}</span>
+<span id="cb20-5"><a href="section-6.-hmc-nuts-and-stan.html#cb20-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> stan_utility.compile_model(<span class="st">&#39;binom.stan&#39;</span>)</span>
+<span id="cb20-6"><a href="section-6.-hmc-nuts-and-stan.html#cb20-6" aria-hidden="true" tabindex="-1"></a>fit <span class="op">=</span> model.sampling(data<span class="op">=</span>data)</span></code></pre></div>
 <p>example: Difference between proportions</p>
-<pre><code>data {
-  int&lt;lower=0&gt; N1;
-  int&lt;lower=0&gt; y1;
-  int&lt;lower=0&gt; N2;
-  int&lt;lower=0&gt; y2;
-}
-parameters {
-  real &lt;lower=0,upper=1&gt; theta1;
-  real &lt;lower=0,upper=1&gt; theta2;
-}
-model {
-  theta1 ~ beta(1,1);
-  theta2 ~ beta(1,1);
-  y1 ~ binomial(N1,theta1);
-  y2 ~ binomial(N2,theta2);
-}
-generated quantities {
-  real oddsratio;
-  oddsratio = (theta2 / (1 - theta2)) / (theta1 / (1 - theta1))
-}</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode stan"><code class="sourceCode stan"><span id="cb21-1"><a href="section-6.-hmc-nuts-and-stan.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
+<span id="cb21-2"><a href="section-6.-hmc-nuts-and-stan.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N1;</span>
+<span id="cb21-3"><a href="section-6.-hmc-nuts-and-stan.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; y1;</span>
+<span id="cb21-4"><a href="section-6.-hmc-nuts-and-stan.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N2;</span>
+<span id="cb21-5"><a href="section-6.-hmc-nuts-and-stan.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; y2;</span>
+<span id="cb21-6"><a href="section-6.-hmc-nuts-and-stan.html#cb21-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-7"><a href="section-6.-hmc-nuts-and-stan.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
+<span id="cb21-8"><a href="section-6.-hmc-nuts-and-stan.html#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> &lt;<span class="kw">lower</span>=<span class="dv">0</span>,<span class="kw">upper</span>=<span class="dv">1</span>&gt; theta1;</span>
+<span id="cb21-9"><a href="section-6.-hmc-nuts-and-stan.html#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> &lt;<span class="kw">lower</span>=<span class="dv">0</span>,<span class="kw">upper</span>=<span class="dv">1</span>&gt; theta2;</span>
+<span id="cb21-10"><a href="section-6.-hmc-nuts-and-stan.html#cb21-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-11"><a href="section-6.-hmc-nuts-and-stan.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="kw">model</span> {</span>
+<span id="cb21-12"><a href="section-6.-hmc-nuts-and-stan.html#cb21-12" aria-hidden="true" tabindex="-1"></a>  theta1 ~ beta(<span class="dv">1</span>,<span class="dv">1</span>);</span>
+<span id="cb21-13"><a href="section-6.-hmc-nuts-and-stan.html#cb21-13" aria-hidden="true" tabindex="-1"></a>  theta2 ~ beta(<span class="dv">1</span>,<span class="dv">1</span>);</span>
+<span id="cb21-14"><a href="section-6.-hmc-nuts-and-stan.html#cb21-14" aria-hidden="true" tabindex="-1"></a>  y1 ~ binomial(N1,theta1);</span>
+<span id="cb21-15"><a href="section-6.-hmc-nuts-and-stan.html#cb21-15" aria-hidden="true" tabindex="-1"></a>  y2 ~ binomial(N2,theta2);</span>
+<span id="cb21-16"><a href="section-6.-hmc-nuts-and-stan.html#cb21-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-17"><a href="section-6.-hmc-nuts-and-stan.html#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="kw">generated quantities</span> {</span>
+<span id="cb21-18"><a href="section-6.-hmc-nuts-and-stan.html#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> oddsratio;</span>
+<span id="cb21-19"><a href="section-6.-hmc-nuts-and-stan.html#cb21-19" aria-hidden="true" tabindex="-1"></a>  oddsratio = (theta2 / (<span class="dv">1</span> - theta2)) / (theta1 / (<span class="dv">1</span> - theta1))</span>
+<span id="cb21-20"><a href="section-6.-hmc-nuts-and-stan.html#cb21-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>some HMC-specific diagnostics with ‘rstan’</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="section-6.-hmc-nuts-and-stan.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_treedepth</span>(fit_bin2)</span>
-<span id="cb17-2"><a href="section-6.-hmc-nuts-and-stan.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_energy</span>(fit_bin2)</span>
-<span id="cb17-3"><a href="section-6.-hmc-nuts-and-stan.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">check_div</span>(fit_bin2)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="section-6.-hmc-nuts-and-stan.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_treedepth</span>(fit_bin2)</span>
+<span id="cb22-2"><a href="section-6.-hmc-nuts-and-stan.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_energy</span>(fit_bin2)</span>
+<span id="cb22-3"><a href="section-6.-hmc-nuts-and-stan.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">check_div</span>(fit_bin2)</span></code></pre></div>
 <p>example of scaling data in the Stan language</p>
-<pre><code>data {
-  int&lt;lower=0&gt; N; // number of data points
-  vector[N] x;
-  vector[N] y;
-  real xpred; // input location for prediction
-}
-
-transformed_data {
-  vector[N] x_std;
-  vector[N] y_std;
-  real xpred_std;
-  x_std = (x - mean(x)) / sd(x);
-  y_std = (y - mean(y)) / sd(y);
-  xpred_std = (xpred - mean(x)) / sd(x);
-}</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode stan"><code class="sourceCode stan"><span id="cb23-1"><a href="section-6.-hmc-nuts-and-stan.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
+<span id="cb23-2"><a href="section-6.-hmc-nuts-and-stan.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N; <span class="co">// number of data points</span></span>
+<span id="cb23-3"><a href="section-6.-hmc-nuts-and-stan.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] x;</span>
+<span id="cb23-4"><a href="section-6.-hmc-nuts-and-stan.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] y;</span>
+<span id="cb23-5"><a href="section-6.-hmc-nuts-and-stan.html#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> xpred; <span class="co">// input location for prediction</span></span>
+<span id="cb23-6"><a href="section-6.-hmc-nuts-and-stan.html#cb23-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-7"><a href="section-6.-hmc-nuts-and-stan.html#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="section-6.-hmc-nuts-and-stan.html#cb23-8" aria-hidden="true" tabindex="-1"></a>transformed_data {</span>
+<span id="cb23-9"><a href="section-6.-hmc-nuts-and-stan.html#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] x_std;</span>
+<span id="cb23-10"><a href="section-6.-hmc-nuts-and-stan.html#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] y_std;</span>
+<span id="cb23-11"><a href="section-6.-hmc-nuts-and-stan.html#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> xpred_std;</span>
+<span id="cb23-12"><a href="section-6.-hmc-nuts-and-stan.html#cb23-12" aria-hidden="true" tabindex="-1"></a>  x_std = (x - mean(x)) / sd(x);</span>
+<span id="cb23-13"><a href="section-6.-hmc-nuts-and-stan.html#cb23-13" aria-hidden="true" tabindex="-1"></a>  y_std = (y - mean(y)) / sd(y);</span>
+<span id="cb23-14"><a href="section-6.-hmc-nuts-and-stan.html#cb23-14" aria-hidden="true" tabindex="-1"></a>  xpred_std = (xpred - mean(x)) / sd(x);</span>
+<span id="cb23-15"><a href="section-6.-hmc-nuts-and-stan.html#cb23-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <ul>
 <li>other useful R packages worth looking into:
 <ul>
@@ -781,6 +782,29 @@ transformed_data {
 <li>‘projpred’: projection predictive variable selection</li>
 </ul></li>
 </ul>
+<hr />
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="section-6.-hmc-nuts-and-stan.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
+#&gt; Running under: macOS Big Sur 10.16
+#&gt; 
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#&gt; 
+#&gt; locale:
+#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] bookdown_0.24     clisymbols_1.2.0  digest_0.6.27     R6_2.5.0         
+#&gt;  [5] jsonlite_1.7.2    magrittr_2.0.1    evaluate_0.14     stringi_1.7.3    
+#&gt;  [9] rlang_0.4.11      renv_0.14.0       jquerylib_0.1.4   bslib_0.2.5.1    
+#&gt; [13] rmarkdown_2.10    tools_4.1.2       stringr_1.4.0     glue_1.4.2       
+#&gt; [17] xfun_0.25         yaml_2.2.1        compiler_4.1.2    htmltools_0.5.1.1
+#&gt; [21] knitr_1.33        sass_0.4.0</code></pre>
 
 </div>
 </div>

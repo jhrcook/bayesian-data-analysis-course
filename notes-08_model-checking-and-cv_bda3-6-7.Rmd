@@ -367,6 +367,7 @@ $$
 $$
 \widehat{lpd} = \sum_{i=1}^n \lgroup \frac{1}{S} \sum_{s=1}^S p(y_i|\theta^s) \rgroup
 $$
+
 ##### Pareto smoothed importance sampling {-}
 
 - fit the right tail of importance weights to smooth the values

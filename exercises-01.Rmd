@@ -2,7 +2,7 @@
 
 2021-08-19
 
-```{r setup, include=FALSE}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 ```
 
@@ -131,3 +131,9 @@ Thus the probability of the event is not subjective, the two people have differe
 **(b) The probability that Brazil wins the next World Cup, where $A$ is ignorant of soccer and $B$ is a knowledgeable sports fan.**
 
 As the event has yet to occur, the probability of the event is subjective and $B$ has a stronger prior belief than does $A$.
+
+---
+
+```{r}
+sessionInfo()
+```

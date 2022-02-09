@@ -12,52 +12,9 @@ knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 
 library(glue)
 library(rstan)
-```
-
-```
-## Loading required package: StanHeaders
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```
-## rstan (Version 2.21.2, GitRev: 2e1f913d3ca3)
-```
-
-```
-## For execution on a local, multicore CPU with excess RAM we recommend calling
-## options(mc.cores = parallel::detectCores()).
-## To avoid recompilation of unchanged Stan programs, we recommend calling
-## rstan_options(auto_write = TRUE)
-```
-
-```r
 library(tidybayes)
 library(tidyverse)
-```
 
-```
-## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
-## ✔ tibble  3.1.3     ✔ dplyr   1.0.7
-## ✔ tidyr   1.1.3     ✔ stringr 1.4.0
-## ✔ readr   2.0.1     ✔ forcats 0.5.1
-## ✔ purrr   0.3.4
-```
-
-```
-## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::collapse() masks glue::collapse()
-## ✖ tidyr::extract()  masks rstan::extract()
-## ✖ dplyr::filter()   masks stats::filter()
-## ✖ dplyr::lag()      masks stats::lag()
-```
-
-```r
 for (f in list.files(here::here("src"), pattern = "R$", full.names = TRUE)) {
   source(f)
 }
@@ -159,7 +116,7 @@ print(hierarchical_model, pars = c("alpha", "tau", "mu", "sigma"))
 #> mu[6]  88.51    0.10 5.47 78.00  84.76  88.50  92.29  99.23  3143    1
 #> sigma  14.27    0.04 2.08 10.87  12.79  14.02  15.50  18.81  2940    1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:07:43 2022.
+#> Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:43:59 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).
@@ -292,8 +249,8 @@ The model is available here ["assignment07_factories_hierarchical.stan"](https:/
 
 The only changes were made in the `generated quantities` block:
 
-```
-...
+```stan
+\\...
 generated quantities {
   // Compute the predictive distribution for the sixth machine.
   real y6pred;  // Leave for compatibility with earlier assignments.

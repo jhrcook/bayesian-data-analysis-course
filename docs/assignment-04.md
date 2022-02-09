@@ -449,11 +449,11 @@ glue("S_eff for prior draws of bioassy model: {round(prior_s_eff, 3)}")
 ```
 
 ```
-#> S_eff for prior draws of bioassy model: 1116.397
+#> S_eff for prior draws of bioassy model: 1148.336
 ```
 
 The $S_\text{eff}$ for the prior draws is calculated above.
-We can see that even though there were 4000 draws, the effective sampling size is about 1116.
+We can see that even though there were 4000 draws, the effective sampling size is about 1148.
 This means that the prior samples do no accurately sample from the target distribution.
 We can see this in the histogram with most importance weights near 0 and a thick tail of higher values.
 This is also shown in the plot below of the prior samples colored by their importance ratios.
@@ -537,7 +537,7 @@ post_means
 
 ```
 #>      alpha       beta 
-#>  0.9692832 10.7213716
+#>  0.9448945 10.7021797
 ```
 
 As stated in the hint with the question, we can calculate the MCSE of $\text{E}[\theta]$ as $\sqrt{\text{Var}[\theta]/S},$, using $S_\text{eff}$ for $S$, and $\text{Var}[\theta]$ as $\text{E}[\theta^2] − \text{E}[\theta]^2$
@@ -548,7 +548,7 @@ e_theta_squared <- posterior_mean(prior_a^2, prior_b^2)
 ```
 
 ```
-#> Warning in posterior_mean(prior_a^2, prior_b^2): NA weights - removing 70
+#> Warning in posterior_mean(prior_a^2, prior_b^2): NA weights - removing 67
 #> sample(s).
 ```
 
@@ -560,8 +560,8 @@ mcse
 ```
 
 ```
-#>      alpha       beta 
-#> 0.01003902 0.30847776
+#>       alpha        beta 
+#> 0.004619097 0.302886319
 ```
 
 
@@ -572,7 +572,7 @@ glue("alpha post mean: {a_post_mean}, beta post mean: {b_post_mean}")
 ```
 
 ```
-#> alpha post mean: 0.97, beta post mean: 11
+#> alpha post mean: 0.94, beta post mean: 11
 ```
 
 The posterior means for $\alpha$ and $\beta$ are indicated by the red dot over-layed on the distribution of importance weights from a previous question.
@@ -583,3 +583,51 @@ p + geom_point(x = a_post_mean, y = b_post_mean, color = "red", shape = 4, size 
 ```
 
 <img src="assignment-04_files/figure-html/unnamed-chunk-20-1.png" width="2100" />
+
+---
+
+
+```r
+sessionInfo()
+```
+
+```
+#> R version 4.1.2 (2021-11-01)
+#> Platform: x86_64-apple-darwin17.0 (64-bit)
+#> Running under: macOS Big Sur 10.16
+#> 
+#> Matrix products: default
+#> BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#> LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#> 
+#> locale:
+#> [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#> 
+#> attached base packages:
+#> [1] stats     graphics  grDevices datasets  utils     methods   base     
+#> 
+#> other attached packages:
+#>  [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4    
+#>  [5] readr_2.0.1     tidyr_1.1.3     tibble_3.1.3    ggplot2_3.3.5  
+#>  [9] tidyverse_1.3.1 glue_1.4.2     
+#> 
+#> loaded via a namespace (and not attached):
+#>  [1] httr_1.4.2        sass_0.4.0        bit64_4.0.5       vroom_1.5.4      
+#>  [5] jsonlite_1.7.2    viridisLite_0.4.0 here_1.0.1        modelr_0.1.8     
+#>  [9] bslib_0.2.5.1     assertthat_0.2.1  highr_0.9         renv_0.14.0      
+#> [13] cellranger_1.1.0  yaml_2.2.1        pillar_1.6.2      backports_1.2.1  
+#> [17] digest_0.6.27     checkmate_2.0.0   rvest_1.0.1       colorspace_2.0-2 
+#> [21] htmltools_0.5.1.1 clisymbols_1.2.0  pkgconfig_2.0.3   broom_0.7.9      
+#> [25] haven_2.4.3       bookdown_0.24     scales_1.1.1      tzdb_0.1.2       
+#> [29] generics_0.1.0    farver_2.1.0      ellipsis_0.3.2    withr_2.4.2      
+#> [33] cli_3.0.1         magrittr_2.0.1    crayon_1.4.1      readxl_1.3.1     
+#> [37] evaluate_0.14     fs_1.5.0          fansi_0.5.0       MASS_7.3-54      
+#> [41] xml2_1.3.2        tools_4.1.2       hms_1.1.0         lifecycle_1.0.0  
+#> [45] munsell_0.5.0     reprex_2.0.1      isoband_0.2.5     compiler_4.1.2   
+#> [49] jquerylib_0.1.4   aaltobda_0.3.1    rlang_0.4.11      grid_4.1.2       
+#> [53] rstudioapi_0.13   labeling_0.4.2    rmarkdown_2.10    gtable_0.3.0     
+#> [57] DBI_1.1.1         R6_2.5.0          lubridate_1.7.10  knitr_1.33       
+#> [61] bit_4.0.4         utf8_1.2.2        rprojroot_2.0.2   stringi_1.7.3    
+#> [65] parallel_4.1.2    Rcpp_1.0.7        vctrs_0.3.8       dbplyr_2.1.1     
+#> [69] tidyselect_1.1.1  xfun_0.25
+```

@@ -158,3 +158,9 @@ combined_likelihood <- accumulate(separate_likelihoods, ~ .x + .y)[[3]]
 
 plot_dist(y, combined_likelihood, "y", "likelihood")
 ```
+
+---
+
+```{r}
+sessionInfo()
+```

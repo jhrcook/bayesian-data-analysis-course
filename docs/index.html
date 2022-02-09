@@ -506,22 +506,8 @@ div.csl-indent {
 <!--bookdown:title:start-->
 <div id="bayesian-data-analysis-course" class="section level1 unnumbered">
 <h1>Bayesian Data Analysis course</h1>
-<p>TODO:</p>
-<ul>
-<li>go through each page and update styling</li>
-</ul>
-<p>DONE:</p>
-<ul>
-<li>citations: <a href="https://bookdown.org/yihui/bookdown/citations.html#citations" class="uri">https://bookdown.org/yihui/bookdown/citations.html#citations</a></li>
-<li>footnotes: remove number from foot note so they appear at the bottom of the current page (<a href="https://bookdown.org/yihui/bookdown/markdown-syntax.html#inline-formatting" class="uri">https://bookdown.org/yihui/bookdown/markdown-syntax.html#inline-formatting</a>)</li>
-<li>figure out where to put Stan models (script to put them all in an Rmd with good code highlighting)</li>
-<li>update About page</li>
-<li>update this page to act as more of an introduction and explain the structure of the book</li>
-<li>update each section’s Introduction page</li>
-<li>update links in notes to go to github (have these dynamically inserted using Rmd magic)</li>
-</ul>
 <p>This book serves as a collection of my notes and exercises completed for the <a href="https://avehtari.github.io/BDA_course_Aalto/"><em>Bayesian Data Analysis</em></a> course taught by Aki Vehtari.
-It is normally taught as CS-E5710 at Aalto University, but the lectures and assignments have been made freely available online.</p>
+It is normally taught as CS-E5710 at Aalto University, but the lectures and assignments have been made freely available online and the course is based around the text book <a href="http://www.stat.columbia.edu/~gelman/book/"><em>Bayesian Data Analysis</em> (3rd ed.)</a> by Gelman <em>et al</em> <span class="citation">(<a href="#ref-bda3" role="doc-biblioref">Gelman et al. 2013</a>)</span>.</p>
 <p>The source code for my course work is available on GitHub: <a href="https://github.com/jhrcook/bayesian-data-analysis-course">jhrcook/bayesian-data-analysis-course</a>.
 If you see any problems (big or small), please let me know by opening an <a href="https://github.com/jhrcook/bayesian-data-analysis-course/issues">Issue</a>.
 All R Markdown files are self-contained an can be executed on their own (i.e. do not need to be run in a series or specific order).</p>
@@ -531,7 +517,7 @@ All R Markdown files are self-contained an can be executed on their own (i.e. d
 <li><a href="https://avehtari.github.io/BDA_course_Aalto/">Course website</a></li>
 <li><a href="https://avehtari.github.io/BDA_course_Aalto/Aalto2021.html#Schedule_2021">2021 Schedule</a></li>
 <li><a href="https://github.com/avehtari/BDA_course_Aalto">GitHub repo</a> (<a href="https://github.com/jhrcook/BDA_course_Aalto">my fork</a>)</li>
-<li><a href="https://users.aalto.fi/~ave/BDA3.pdf"><em>Bayesian Data Analysis</em> (3e)</a> (BDA3) (<a href="https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/reading/bda3-exercise-solutions.pdf">exercise solutions</a>)</li>
+<li>free PDF of <a href="https://users.aalto.fi/~ave/BDA3.pdf"><em>Bayesian Data Analysis</em> (3e)</a> (a.k.a “BDA3”) (<a href="https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/reading/bda3-exercise-solutions.pdf">exercise solutions</a>)</li>
 <li><a href="https://avehtari.github.io/BDA_course_Aalto/chapter_notes/BDA_notes.pdf">Chapter Notes</a></li>
 <li><a href="https://aalto.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f0ec3a25-9e23-4935-873b-a9f401646812%22">Video lectures</a> or individually lists <a href="https://avehtari.github.io/BDA_course_Aalto/#videos">here</a></li>
 <li><a href="https://github.com/avehtari/BDA_course_Aalto/tree/master/slides">Lecture slides</a></li>
@@ -594,18 +580,18 @@ These are available in their own sections of the book: <a href="assignments-intr
 <div id="stan-models" class="section level2" number="0.6">
 <h2><span class="header-section-number">0.6</span> Stan models</h2>
 <p>Below is a list of the models built during the course.
-The original code is available in the GitHub repo <a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models">“models”</a> directory and they are also copied in the <a href="stan-models-1.html#stan-models-1">Models</a> section of this website.</p>
+The original code is available in the GitHub repo <a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/">“models”</a> directory and they are also copied in the <a href="stan-models-1.html#stan-models-1">Models</a> section of this website.</p>
 <ul>
-<li><a href="models/assignment06-bioassay.stan">Drug bioassay model</a> for Assignment 6</li>
-<li><a href="models/8-schools.stan">8 school SAT model</a></li>
-<li><a href="models/assignment07-drownings.stan">Drownings</a> for Assignment 7</li>
+<li><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment06-bioassay.stan">Drug bioassay model</a> for Assignment 6</li>
+<li><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/8-schools.stan">8 school SAT model</a></li>
+<li><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07-drownings.stan">Drownings</a> for Assignment 7</li>
 <li>Factory machine measurements for Assignments 7 &amp; 8:
 <ul>
-<li><a href="models/assignment07_factories_pooled.stan">pooled</a></li>
-<li><a href="models/assignment07_factories_separate.stan">separate</a></li>
-<li><a href="models/assignment07_factories_hierarchical.stan">hierarchical</a> (also used in Assignment 9)</li>
+<li><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_pooled.stan">pooled</a></li>
+<li><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_separate.stan">separate</a></li>
+<li><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_hierarchical.stan">hierarchical</a> (also used in Assignment 9)</li>
 </ul></li>
-<li><a href="models/serial-dilution.stan">serial dilution assay</a> for chapter 19 exercises</li>
+<li><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/serial-dilution.stan">serial dilution assay</a> for chapter 19 exercises</li>
 </ul>
 
 </div>
@@ -613,6 +599,12 @@ The original code is available in the GitHub repo <a href="https://github.com/jh
 
 
 
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-bda3" class="csl-entry">
+Gelman, Andrew, John B Carlin, Hal S Stern, David B Dunson, Aki Vehtari, and Donald B Rubin. 2013. <em>Bayesian Data Analysis, Third Edition</em>. 3rd ed. CRC Press.
+</div>
+</div>
             </section>
 
           </div>

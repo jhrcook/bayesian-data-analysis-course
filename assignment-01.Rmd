@@ -234,3 +234,9 @@ stopifnot(round(p_identical_twin(1 / 100, 1 / 500), 7) == 0.2857143)
 
 p_identical_twin(fraternal_prob = 1 / 150, identical_prob = 1 / 400)
 ```
+
+---
+
+```{r}
+sessionInfo()
+```

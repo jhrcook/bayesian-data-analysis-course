@@ -33,10 +33,10 @@ rstan_options(auto_write = TRUE)
 
 **Replicate the computations for the bioassay example of section 3.7 (BDA3) using Stan.**
 
-The model is located in "[models/assignment06-bioassay.stan](`r paste0(CM_URL, "models/assignment06-bioassay.stan")`).
+The model is located in ["models/assignment06-bioassay.stan"](`r paste0(MODELS_URL, "models/assignment06-bioassay.stan")`).
 I have copied it below:
 
-```
+```stan
 data {
   int<lower=0> N;    // number of data points
   vector[N] x;       // dose

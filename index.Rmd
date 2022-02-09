@@ -6,23 +6,8 @@ link-citations: true
 
 # Bayesian Data Analysis course {-}
 
-TODO:
-
-- go through each page and update styling
-
-DONE:
-
-- citations: https://bookdown.org/yihui/bookdown/citations.html#citations
-- footnotes: remove number from foot note so they appear at the bottom of the current page (https://bookdown.org/yihui/bookdown/markdown-syntax.html#inline-formatting)
-- figure out where to put Stan models (script to put them all in an Rmd with good code highlighting)
-- update About page
-- update this page to act as more of an introduction and explain the structure of the book
-- update each section's Introduction page
-- update links in notes to go to github (have these dynamically inserted using Rmd magic)
-
-
 This book serves as a collection of my notes and exercises completed for the [*Bayesian Data Analysis*](https://avehtari.github.io/BDA_course_Aalto/) course taught by Aki Vehtari.
-It is normally taught as CS-E5710 at Aalto University, but the lectures and assignments have been made freely available online.
+It is normally taught as CS-E5710 at Aalto University, but the lectures and assignments have been made freely available online and the course is based around the text book [*Bayesian Data Analysis* (3rd ed.)](http://www.stat.columbia.edu/~gelman/book/) by Gelman *et al* [@bda3].
 
 The source code for my course work is available on GitHub: [jhrcook/bayesian-data-analysis-course](https://github.com/jhrcook/bayesian-data-analysis-course).
 If you see any problems (big or small), please let me know by opening an [Issue](https://github.com/jhrcook/bayesian-data-analysis-course/issues).
@@ -33,7 +18,7 @@ All R Markdown files are self-contained an can be executed on their own (i.e. do
 - [Course website](https://avehtari.github.io/BDA_course_Aalto/)
 - [2021 Schedule](https://avehtari.github.io/BDA_course_Aalto/Aalto2021.html#Schedule_2021)
 - [GitHub repo](https://github.com/avehtari/BDA_course_Aalto) ([my fork](https://github.com/jhrcook/BDA_course_Aalto))
-- [*Bayesian Data Analysis* (3e)](https://users.aalto.fi/~ave/BDA3.pdf) (BDA3) ([exercise solutions](https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/reading/bda3-exercise-solutions.pdf))
+- free PDF of [*Bayesian Data Analysis* (3e)](https://users.aalto.fi/~ave/BDA3.pdf) (a.k.a "BDA3") ([exercise solutions](https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/reading/bda3-exercise-solutions.pdf))
 - [Chapter Notes](https://avehtari.github.io/BDA_course_Aalto/chapter_notes/BDA_notes.pdf)
 - [Video lectures](https://aalto.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%22f0ec3a25-9e23-4935-873b-a9f401646812%22) or individually lists [here](https://avehtari.github.io/BDA_course_Aalto/#videos)
 - [Lecture slides](https://github.com/avehtari/BDA_course_Aalto/tree/master/slides)
@@ -89,17 +74,16 @@ I plan to also read through and take notes on chapters 16 and 18 on "Generalized
 I completed the assignments that accompany the course and also did some of additional exercises from the book.
 These are available in their own sections of the book: [Assignments](#assignments-intro) and [Exercises](#exercises-intro).
 
-
 ## Stan models
 
 Below is a list of the models built during the course.
-The original code is available in the GitHub repo ["models"](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models) directory and they are also copied in the [Models](#stan-models-1) section of this website.
+The original code is available in the GitHub repo ["models"](`r MODELS_URL`) directory and they are also copied in the [Models](#stan-models-1) section of this website.
 
-- [Drug bioassay model](models/assignment06-bioassay.stan) for Assignment 6
-- [8 school SAT model](models/8-schools.stan)
-- [Drownings](models/assignment07-drownings.stan) for Assignment 7
+- [Drug bioassay model](`r paste0(MODELS_URL, "assignment06-bioassay.stan")`) for Assignment 6
+- [8 school SAT model](`r paste0(MODELS_URL, "8-schools.stan")`)
+- [Drownings](`r paste0(MODELS_URL, "assignment07-drownings.stan")`) for Assignment 7
 - Factory machine measurements for Assignments 7 & 8:
-  - [pooled](models/assignment07_factories_pooled.stan)
-  - [separate](models/assignment07_factories_separate.stan)
-  - [hierarchical](models/assignment07_factories_hierarchical.stan) (also used in Assignment 9)
-- [serial dilution assay](models/serial-dilution.stan) for chapter 19 exercises
+  - [pooled](`r paste0(MODELS_URL, "assignment07_factories_pooled.stan")`)
+  - [separate](`r paste0(MODELS_URL, "assignment07_factories_separate.stan")`)
+  - [hierarchical](`r paste0(MODELS_URL, "assignment07_factories_hierarchical.stan")`) (also used in Assignment 9)
+- [serial dilution assay](`r paste0(MODELS_URL, "serial-dilution.stan")`) for chapter 19 exercises

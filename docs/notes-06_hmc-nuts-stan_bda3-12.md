@@ -3,6 +3,9 @@
 2021-10-04
 
 
+```r
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+```
 
 ## Resources
 
@@ -139,7 +142,7 @@
 
 example: Binomial model
 
-```
+```stan
 data {
   int <lower=0> N; // number of experiments
   int<lower=0,upper=N> y; // number of successes
@@ -180,7 +183,7 @@ fit = model.sampling(data=data)
 
 example: Difference between proportions
 
-```
+```stan
 data {
   int<lower=0> N1;
   int<lower=0> y1;
@@ -213,7 +216,7 @@ check_div(fit_bin2)
 
 example of scaling data in the Stan language
 
-```
+```stan
 data {
   int<lower=0> N; // number of data points
   vector[N] x;
@@ -237,3 +240,34 @@ transformed_data {
   - 'bayesplot': visualization and model checking (see model checking in Ch 6)
   - 'loo': cross-validation model assessment, comparison and averaging (see Ch 7)
   - 'projpred': projection predictive variable selection
+
+---
+
+
+```r
+sessionInfo()
+```
+
+```
+#> R version 4.1.2 (2021-11-01)
+#> Platform: x86_64-apple-darwin17.0 (64-bit)
+#> Running under: macOS Big Sur 10.16
+#> 
+#> Matrix products: default
+#> BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#> LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#> 
+#> locale:
+#> [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#> 
+#> attached base packages:
+#> [1] stats     graphics  grDevices datasets  utils     methods   base     
+#> 
+#> loaded via a namespace (and not attached):
+#>  [1] bookdown_0.24     clisymbols_1.2.0  digest_0.6.27     R6_2.5.0         
+#>  [5] jsonlite_1.7.2    magrittr_2.0.1    evaluate_0.14     stringi_1.7.3    
+#>  [9] rlang_0.4.11      renv_0.14.0       jquerylib_0.1.4   bslib_0.2.5.1    
+#> [13] rmarkdown_2.10    tools_4.1.2       stringr_1.4.0     glue_1.4.2       
+#> [17] xfun_0.25         yaml_2.2.1        compiler_4.1.2    htmltools_0.5.1.1
+#> [21] knitr_1.33        sass_0.4.0
+```

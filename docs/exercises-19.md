@@ -3,6 +3,17 @@
 2021-12-10
 
 
+```r
+knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
+# dpi = 400, fig.width = 7, fig.height = 4.5, fig.retina = TRUE
+
+rfiles <- list.files(here::here("src"), full.names = TRUE, pattern = "R$")
+for (rfile in rfiles) {
+  source(rfile)
+}
+
+set.seed(0)
+```
 
 > I turned this exercise into a blog post on my [webiste](https://joshuacook.netlify.app).
 
@@ -290,7 +301,7 @@ print(dilution_model, pars = model_pars)
 #> alpha     0.72    0.01 0.17  0.33  0.61   0.74   0.85   0.98  1074    1
 #> sigma     1.33    0.01 0.24  0.98  1.16   1.30   1.45   1.92   893    1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:08:13 2022.
+#> Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:44:24 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).

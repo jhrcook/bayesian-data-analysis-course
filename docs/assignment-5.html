@@ -508,26 +508,26 @@ div.csl-indent {
 <p><strong><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-05.pdf">Assignment 5</a></strong></p>
 <div id="setup-4" class="section level2" number="24.1">
 <h2><span class="header-section-number">24.1</span> Setup</h2>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="assignment-5.html#cb143-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb143-2"><a href="assignment-5.html#cb143-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-3"><a href="assignment-5.html#cb143-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (f <span class="cf">in</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb143-4"><a href="assignment-5.html#cb143-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(f)</span>
-<span id="cb143-5"><a href="assignment-5.html#cb143-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb143-6"><a href="assignment-5.html#cb143-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-7"><a href="assignment-5.html#cb143-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb143-8"><a href="assignment-5.html#cb143-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb143-9"><a href="assignment-5.html#cb143-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb143-10"><a href="assignment-5.html#cb143-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-11"><a href="assignment-5.html#cb143-11" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(</span>
-<span id="cb143-12"><a href="assignment-5.html#cb143-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb143-13"><a href="assignment-5.html#cb143-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb143-14"><a href="assignment-5.html#cb143-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb143-15"><a href="assignment-5.html#cb143-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>()</span>
-<span id="cb143-16"><a href="assignment-5.html#cb143-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb143-17"><a href="assignment-5.html#cb143-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb143-18"><a href="assignment-5.html#cb143-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-19"><a href="assignment-5.html#cb143-19" aria-hidden="true" tabindex="-1"></a>bioassay <span class="ot">&lt;-</span> <span class="fu">read_bioassay_data</span>()</span>
-<span id="cb143-20"><a href="assignment-5.html#cb143-20" aria-hidden="true" tabindex="-1"></a>bioassay</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="assignment-5.html#cb160-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb160-2"><a href="assignment-5.html#cb160-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-3"><a href="assignment-5.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (f <span class="cf">in</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb160-4"><a href="assignment-5.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(f)</span>
+<span id="cb160-5"><a href="assignment-5.html#cb160-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb160-6"><a href="assignment-5.html#cb160-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-7"><a href="assignment-5.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb160-8"><a href="assignment-5.html#cb160-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb160-9"><a href="assignment-5.html#cb160-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb160-10"><a href="assignment-5.html#cb160-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-11"><a href="assignment-5.html#cb160-11" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(</span>
+<span id="cb160-12"><a href="assignment-5.html#cb160-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb160-13"><a href="assignment-5.html#cb160-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb160-14"><a href="assignment-5.html#cb160-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb160-15"><a href="assignment-5.html#cb160-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>()</span>
+<span id="cb160-16"><a href="assignment-5.html#cb160-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb160-17"><a href="assignment-5.html#cb160-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb160-18"><a href="assignment-5.html#cb160-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-19"><a href="assignment-5.html#cb160-19" aria-hidden="true" tabindex="-1"></a>bioassay <span class="ot">&lt;-</span> <span class="fu">read_bioassay_data</span>()</span>
+<span id="cb160-20"><a href="assignment-5.html#cb160-20" aria-hidden="true" tabindex="-1"></a>bioassay</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
 ##       x     n     y
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -557,245 +557,245 @@ div.csl-indent {
 <p><span class="math display">\[
 r = \frac{p(\theta^*|y)}{p(\theta^{t-1}|y)}
 \]</span></p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="assignment-5.html#cb145-1" aria-hidden="true" tabindex="-1"></a>prob_theta_under_prior <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
-<span id="cb145-2"><a href="assignment-5.html#cb145-2" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
-<span id="cb145-3"><a href="assignment-5.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">10</span><span class="sc">^</span><span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb145-4"><a href="assignment-5.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(<span class="fu">c</span>(a, b), <span class="at">mean =</span> mu, <span class="at">sigma =</span> sigma)</span>
-<span id="cb145-5"><a href="assignment-5.html#cb145-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb145-6"><a href="assignment-5.html#cb145-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb145-7"><a href="assignment-5.html#cb145-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb145-8"><a href="assignment-5.html#cb145-8" aria-hidden="true" tabindex="-1"></a>log_posterior_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b, x, y, n) {</span>
-<span id="cb145-9"><a href="assignment-5.html#cb145-9" aria-hidden="true" tabindex="-1"></a>  log_likelihood <span class="ot">&lt;-</span> aaltobda<span class="sc">::</span><span class="fu">bioassaylp</span>(</span>
-<span id="cb145-10"><a href="assignment-5.html#cb145-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> a, <span class="at">beta =</span> b, <span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">n =</span> n</span>
-<span id="cb145-11"><a href="assignment-5.html#cb145-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb145-12"><a href="assignment-5.html#cb145-12" aria-hidden="true" tabindex="-1"></a>  prior_prob <span class="ot">&lt;-</span> <span class="fu">prob_theta_under_prior</span>(a, b)</span>
-<span id="cb145-13"><a href="assignment-5.html#cb145-13" aria-hidden="true" tabindex="-1"></a>  log_post <span class="ot">&lt;-</span> log_likelihood <span class="sc">+</span> <span class="fu">log</span>(prior_prob)</span>
-<span id="cb145-14"><a href="assignment-5.html#cb145-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(log_post)</span>
-<span id="cb145-15"><a href="assignment-5.html#cb145-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb145-16"><a href="assignment-5.html#cb145-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb145-17"><a href="assignment-5.html#cb145-17" aria-hidden="true" tabindex="-1"></a>density_ratio <span class="ot">&lt;-</span> <span class="cf">function</span>(alpha_propose,</span>
-<span id="cb145-18"><a href="assignment-5.html#cb145-18" aria-hidden="true" tabindex="-1"></a>                          alpha_previous,</span>
-<span id="cb145-19"><a href="assignment-5.html#cb145-19" aria-hidden="true" tabindex="-1"></a>                          beta_propose,</span>
-<span id="cb145-20"><a href="assignment-5.html#cb145-20" aria-hidden="true" tabindex="-1"></a>                          beta_previous,</span>
-<span id="cb145-21"><a href="assignment-5.html#cb145-21" aria-hidden="true" tabindex="-1"></a>                          x,</span>
-<span id="cb145-22"><a href="assignment-5.html#cb145-22" aria-hidden="true" tabindex="-1"></a>                          y,</span>
-<span id="cb145-23"><a href="assignment-5.html#cb145-23" aria-hidden="true" tabindex="-1"></a>                          n) {</span>
-<span id="cb145-24"><a href="assignment-5.html#cb145-24" aria-hidden="true" tabindex="-1"></a>  log_post_new <span class="ot">&lt;-</span> <span class="fu">log_posterior_prob</span>(alpha_propose, beta_propose, x, y, n)</span>
-<span id="cb145-25"><a href="assignment-5.html#cb145-25" aria-hidden="true" tabindex="-1"></a>  log_post_old <span class="ot">&lt;-</span> <span class="fu">log_posterior_prob</span>(alpha_previous, beta_previous, x, y, n)</span>
-<span id="cb145-26"><a href="assignment-5.html#cb145-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">exp</span>(log_post_new <span class="sc">-</span> log_post_old))</span>
-<span id="cb145-27"><a href="assignment-5.html#cb145-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="assignment-5.html#cb146-1" aria-hidden="true" tabindex="-1"></a>test_1 <span class="ot">&lt;-</span> <span class="fu">density_ratio</span>(</span>
-<span id="cb146-2"><a href="assignment-5.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha_propose =</span> <span class="fl">1.89</span>, <span class="at">alpha_previous =</span> <span class="fl">0.374</span>,</span>
-<span id="cb146-3"><a href="assignment-5.html#cb146-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_propose =</span> <span class="fl">24.76</span>, <span class="at">beta_previous =</span> <span class="fl">20.04</span>,</span>
-<span id="cb146-4"><a href="assignment-5.html#cb146-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> bioassay<span class="sc">$</span>x, <span class="at">y =</span> bioassay<span class="sc">$</span>y, <span class="at">n =</span> bioassay<span class="sc">$</span>n</span>
-<span id="cb146-5"><a href="assignment-5.html#cb146-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb146-6"><a href="assignment-5.html#cb146-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stop_if_not_close_to</span>(test_1, <span class="fl">1.305179</span>)</span>
-<span id="cb146-7"><a href="assignment-5.html#cb146-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-8"><a href="assignment-5.html#cb146-8" aria-hidden="true" tabindex="-1"></a>test_2 <span class="ot">&lt;-</span> <span class="fu">density_ratio</span>(</span>
-<span id="cb146-9"><a href="assignment-5.html#cb146-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha_propose =</span> <span class="fl">0.374</span>, <span class="at">alpha_previous =</span> <span class="fl">1.89</span>,</span>
-<span id="cb146-10"><a href="assignment-5.html#cb146-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_propose =</span> <span class="fl">20.04</span>, <span class="at">beta_previous =</span> <span class="fl">24.76</span>,</span>
-<span id="cb146-11"><a href="assignment-5.html#cb146-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> bioassay<span class="sc">$</span>x, <span class="at">y =</span> bioassay<span class="sc">$</span>y, <span class="at">n =</span> bioassay<span class="sc">$</span>n</span>
-<span id="cb146-12"><a href="assignment-5.html#cb146-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb146-13"><a href="assignment-5.html#cb146-13" aria-hidden="true" tabindex="-1"></a><span class="fu">stop_if_not_close_to</span>(test_2, <span class="fl">0.7661784</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="assignment-5.html#cb162-1" aria-hidden="true" tabindex="-1"></a>prob_theta_under_prior <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb162-2"><a href="assignment-5.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb162-3"><a href="assignment-5.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">10</span><span class="sc">^</span><span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb162-4"><a href="assignment-5.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(<span class="fu">c</span>(a, b), <span class="at">mean =</span> mu, <span class="at">sigma =</span> sigma)</span>
+<span id="cb162-5"><a href="assignment-5.html#cb162-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb162-6"><a href="assignment-5.html#cb162-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-7"><a href="assignment-5.html#cb162-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-8"><a href="assignment-5.html#cb162-8" aria-hidden="true" tabindex="-1"></a>log_posterior_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b, x, y, n) {</span>
+<span id="cb162-9"><a href="assignment-5.html#cb162-9" aria-hidden="true" tabindex="-1"></a>  log_likelihood <span class="ot">&lt;-</span> aaltobda<span class="sc">::</span><span class="fu">bioassaylp</span>(</span>
+<span id="cb162-10"><a href="assignment-5.html#cb162-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> a, <span class="at">beta =</span> b, <span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">n =</span> n</span>
+<span id="cb162-11"><a href="assignment-5.html#cb162-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb162-12"><a href="assignment-5.html#cb162-12" aria-hidden="true" tabindex="-1"></a>  prior_prob <span class="ot">&lt;-</span> <span class="fu">prob_theta_under_prior</span>(a, b)</span>
+<span id="cb162-13"><a href="assignment-5.html#cb162-13" aria-hidden="true" tabindex="-1"></a>  log_post <span class="ot">&lt;-</span> log_likelihood <span class="sc">+</span> <span class="fu">log</span>(prior_prob)</span>
+<span id="cb162-14"><a href="assignment-5.html#cb162-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(log_post)</span>
+<span id="cb162-15"><a href="assignment-5.html#cb162-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb162-16"><a href="assignment-5.html#cb162-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-17"><a href="assignment-5.html#cb162-17" aria-hidden="true" tabindex="-1"></a>density_ratio <span class="ot">&lt;-</span> <span class="cf">function</span>(alpha_propose,</span>
+<span id="cb162-18"><a href="assignment-5.html#cb162-18" aria-hidden="true" tabindex="-1"></a>                          alpha_previous,</span>
+<span id="cb162-19"><a href="assignment-5.html#cb162-19" aria-hidden="true" tabindex="-1"></a>                          beta_propose,</span>
+<span id="cb162-20"><a href="assignment-5.html#cb162-20" aria-hidden="true" tabindex="-1"></a>                          beta_previous,</span>
+<span id="cb162-21"><a href="assignment-5.html#cb162-21" aria-hidden="true" tabindex="-1"></a>                          x,</span>
+<span id="cb162-22"><a href="assignment-5.html#cb162-22" aria-hidden="true" tabindex="-1"></a>                          y,</span>
+<span id="cb162-23"><a href="assignment-5.html#cb162-23" aria-hidden="true" tabindex="-1"></a>                          n) {</span>
+<span id="cb162-24"><a href="assignment-5.html#cb162-24" aria-hidden="true" tabindex="-1"></a>  log_post_new <span class="ot">&lt;-</span> <span class="fu">log_posterior_prob</span>(alpha_propose, beta_propose, x, y, n)</span>
+<span id="cb162-25"><a href="assignment-5.html#cb162-25" aria-hidden="true" tabindex="-1"></a>  log_post_old <span class="ot">&lt;-</span> <span class="fu">log_posterior_prob</span>(alpha_previous, beta_previous, x, y, n)</span>
+<span id="cb162-26"><a href="assignment-5.html#cb162-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">exp</span>(log_post_new <span class="sc">-</span> log_post_old))</span>
+<span id="cb162-27"><a href="assignment-5.html#cb162-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="assignment-5.html#cb163-1" aria-hidden="true" tabindex="-1"></a>test_1 <span class="ot">&lt;-</span> <span class="fu">density_ratio</span>(</span>
+<span id="cb163-2"><a href="assignment-5.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha_propose =</span> <span class="fl">1.89</span>, <span class="at">alpha_previous =</span> <span class="fl">0.374</span>,</span>
+<span id="cb163-3"><a href="assignment-5.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_propose =</span> <span class="fl">24.76</span>, <span class="at">beta_previous =</span> <span class="fl">20.04</span>,</span>
+<span id="cb163-4"><a href="assignment-5.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> bioassay<span class="sc">$</span>x, <span class="at">y =</span> bioassay<span class="sc">$</span>y, <span class="at">n =</span> bioassay<span class="sc">$</span>n</span>
+<span id="cb163-5"><a href="assignment-5.html#cb163-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb163-6"><a href="assignment-5.html#cb163-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stop_if_not_close_to</span>(test_1, <span class="fl">1.305179</span>)</span>
+<span id="cb163-7"><a href="assignment-5.html#cb163-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-8"><a href="assignment-5.html#cb163-8" aria-hidden="true" tabindex="-1"></a>test_2 <span class="ot">&lt;-</span> <span class="fu">density_ratio</span>(</span>
+<span id="cb163-9"><a href="assignment-5.html#cb163-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha_propose =</span> <span class="fl">0.374</span>, <span class="at">alpha_previous =</span> <span class="fl">1.89</span>,</span>
+<span id="cb163-10"><a href="assignment-5.html#cb163-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_propose =</span> <span class="fl">20.04</span>, <span class="at">beta_previous =</span> <span class="fl">24.76</span>,</span>
+<span id="cb163-11"><a href="assignment-5.html#cb163-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> bioassay<span class="sc">$</span>x, <span class="at">y =</span> bioassay<span class="sc">$</span>y, <span class="at">n =</span> bioassay<span class="sc">$</span>n</span>
+<span id="cb163-12"><a href="assignment-5.html#cb163-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb163-13"><a href="assignment-5.html#cb163-13" aria-hidden="true" tabindex="-1"></a><span class="fu">stop_if_not_close_to</span>(test_2, <span class="fl">0.7661784</span>)</span></code></pre></div>
 <p><strong>b) Now implement a function called <code>Metropolis_bioassay()</code> which implements the Metropolis algorithm using the <code>density_ratio()</code>.</strong></p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="assignment-5.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function to turn the chains into a data frame.</span></span>
-<span id="cb147-2"><a href="assignment-5.html#cb147-2" aria-hidden="true" tabindex="-1"></a>chain_to_df <span class="ot">&lt;-</span> <span class="cf">function</span>(chain, names) {</span>
-<span id="cb147-3"><a href="assignment-5.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_dfr</span>(chain, <span class="sc">~</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(.x))) <span class="sc">%&gt;%</span></span>
-<span id="cb147-4"><a href="assignment-5.html#cb147-4" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb147-5"><a href="assignment-5.html#cb147-5" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">set_names</span>(names)</span>
-<span id="cb147-6"><a href="assignment-5.html#cb147-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb147-7"><a href="assignment-5.html#cb147-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-8"><a href="assignment-5.html#cb147-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-9"><a href="assignment-5.html#cb147-9" aria-hidden="true" tabindex="-1"></a>propose_theta <span class="ot">&lt;-</span> <span class="cf">function</span>(theta_old, <span class="at">a_sigma =</span> <span class="dv">1</span>, <span class="at">b_sigma =</span> <span class="dv">5</span>) {</span>
-<span id="cb147-10"><a href="assignment-5.html#cb147-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb147-11"><a href="assignment-5.html#cb147-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> theta_old[[<span class="dv">1</span>]], <span class="at">sd =</span> a_sigma),</span>
-<span id="cb147-12"><a href="assignment-5.html#cb147-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> theta_old[[<span class="dv">2</span>]], <span class="at">sd =</span> b_sigma)</span>
-<span id="cb147-13"><a href="assignment-5.html#cb147-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb147-14"><a href="assignment-5.html#cb147-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb147-15"><a href="assignment-5.html#cb147-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-16"><a href="assignment-5.html#cb147-16" aria-hidden="true" tabindex="-1"></a>Metropolis_bioassay <span class="ot">&lt;-</span> <span class="cf">function</span>(theta_t0,</span>
-<span id="cb147-17"><a href="assignment-5.html#cb147-17" aria-hidden="true" tabindex="-1"></a>                                x,</span>
-<span id="cb147-18"><a href="assignment-5.html#cb147-18" aria-hidden="true" tabindex="-1"></a>                                y,</span>
-<span id="cb147-19"><a href="assignment-5.html#cb147-19" aria-hidden="true" tabindex="-1"></a>                                n,</span>
-<span id="cb147-20"><a href="assignment-5.html#cb147-20" aria-hidden="true" tabindex="-1"></a>                                <span class="at">alpha_jump =</span> <span class="dv">1</span>,</span>
-<span id="cb147-21"><a href="assignment-5.html#cb147-21" aria-hidden="true" tabindex="-1"></a>                                <span class="at">beta_jump =</span> <span class="dv">5</span>,</span>
-<span id="cb147-22"><a href="assignment-5.html#cb147-22" aria-hidden="true" tabindex="-1"></a>                                <span class="at">N =</span> <span class="dv">1000</span>,</span>
-<span id="cb147-23"><a href="assignment-5.html#cb147-23" aria-hidden="true" tabindex="-1"></a>                                <span class="at">quiet =</span> <span class="cn">FALSE</span>) {</span>
-<span id="cb147-24"><a href="assignment-5.html#cb147-24" aria-hidden="true" tabindex="-1"></a>  theta_t <span class="ot">&lt;-</span> <span class="fu">unlist</span>(theta_t0)</span>
-<span id="cb147-25"><a href="assignment-5.html#cb147-25" aria-hidden="true" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(<span class="cn">NA_real_</span>, <span class="at">n =</span> N <span class="sc">+</span> <span class="dv">1</span>))</span>
-<span id="cb147-26"><a href="assignment-5.html#cb147-26" aria-hidden="true" tabindex="-1"></a>  chain[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> theta_t</span>
-<span id="cb147-27"><a href="assignment-5.html#cb147-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-28"><a href="assignment-5.html#cb147-28" aria-hidden="true" tabindex="-1"></a>  n_accepts <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb147-29"><a href="assignment-5.html#cb147-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-30"><a href="assignment-5.html#cb147-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, N <span class="sc">+</span> <span class="dv">1</span>)) {</span>
-<span id="cb147-31"><a href="assignment-5.html#cb147-31" aria-hidden="true" tabindex="-1"></a>    theta_star <span class="ot">&lt;-</span> <span class="fu">propose_theta</span>(</span>
-<span id="cb147-32"><a href="assignment-5.html#cb147-32" aria-hidden="true" tabindex="-1"></a>      theta_t,</span>
-<span id="cb147-33"><a href="assignment-5.html#cb147-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">a_sigma =</span> alpha_jump, <span class="at">b_sigma =</span> beta_jump</span>
-<span id="cb147-34"><a href="assignment-5.html#cb147-34" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb147-35"><a href="assignment-5.html#cb147-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-36"><a href="assignment-5.html#cb147-36" aria-hidden="true" tabindex="-1"></a>    density_ratio <span class="ot">&lt;-</span> <span class="fu">density_ratio</span>(</span>
-<span id="cb147-37"><a href="assignment-5.html#cb147-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha_propose =</span> theta_star[[<span class="dv">1</span>]],</span>
-<span id="cb147-38"><a href="assignment-5.html#cb147-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha_previous =</span> theta_t[[<span class="dv">1</span>]],</span>
-<span id="cb147-39"><a href="assignment-5.html#cb147-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">beta_propose =</span> theta_star[[<span class="dv">2</span>]],</span>
-<span id="cb147-40"><a href="assignment-5.html#cb147-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">beta_previous =</span> theta_t[[<span class="dv">2</span>]],</span>
-<span id="cb147-41"><a href="assignment-5.html#cb147-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> x,</span>
-<span id="cb147-42"><a href="assignment-5.html#cb147-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> y,</span>
-<span id="cb147-43"><a href="assignment-5.html#cb147-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> n</span>
-<span id="cb147-44"><a href="assignment-5.html#cb147-44" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb147-45"><a href="assignment-5.html#cb147-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-46"><a href="assignment-5.html#cb147-46" aria-hidden="true" tabindex="-1"></a>    accept <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fu">min</span>(<span class="fu">c</span>(<span class="dv">1</span>, density_ratio))</span>
-<span id="cb147-47"><a href="assignment-5.html#cb147-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (accept) {</span>
-<span id="cb147-48"><a href="assignment-5.html#cb147-48" aria-hidden="true" tabindex="-1"></a>      theta_t <span class="ot">&lt;-</span> theta_star</span>
-<span id="cb147-49"><a href="assignment-5.html#cb147-49" aria-hidden="true" tabindex="-1"></a>      n_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb147-50"><a href="assignment-5.html#cb147-50" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb147-51"><a href="assignment-5.html#cb147-51" aria-hidden="true" tabindex="-1"></a>    chain[[t]] <span class="ot">&lt;-</span> theta_t</span>
-<span id="cb147-52"><a href="assignment-5.html#cb147-52" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb147-53"><a href="assignment-5.html#cb147-53" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>quiet) {</span>
-<span id="cb147-54"><a href="assignment-5.html#cb147-54" aria-hidden="true" tabindex="-1"></a>    frac_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">/</span> N</span>
-<span id="cb147-55"><a href="assignment-5.html#cb147-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">&quot;fraction of accepted jumps: {frac_accepts}&quot;</span>))</span>
-<span id="cb147-56"><a href="assignment-5.html#cb147-56" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb147-57"><a href="assignment-5.html#cb147-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">chain_to_df</span>(chain, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>)))</span>
-<span id="cb147-58"><a href="assignment-5.html#cb147-58" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="assignment-5.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the trace of the chains.</span></span>
-<span id="cb148-2"><a href="assignment-5.html#cb148-2" aria-hidden="true" tabindex="-1"></a>plot_trace <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, <span class="at">alpha =</span> <span class="fl">0.8</span>) {</span>
-<span id="cb148-3"><a href="assignment-5.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
-<span id="cb148-4"><a href="assignment-5.html#cb148-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
-<span id="cb148-5"><a href="assignment-5.html#cb148-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">step =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb148-6"><a href="assignment-5.html#cb148-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb148-7"><a href="assignment-5.html#cb148-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">-</span><span class="fu">c</span>(chain, step)) <span class="sc">%&gt;%</span></span>
-<span id="cb148-8"><a href="assignment-5.html#cb148-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> step, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb148-9"><a href="assignment-5.html#cb148-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(name), <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb148-10"><a href="assignment-5.html#cb148-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> chain), <span class="at">alpha =</span> alpha) <span class="sc">+</span></span>
-<span id="cb148-11"><a href="assignment-5.html#cb148-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb148-12"><a href="assignment-5.html#cb148-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)))</span>
-<span id="cb148-13"><a href="assignment-5.html#cb148-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb148-14"><a href="assignment-5.html#cb148-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-15"><a href="assignment-5.html#cb148-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the chains in 2 dimensions.</span></span>
-<span id="cb148-16"><a href="assignment-5.html#cb148-16" aria-hidden="true" tabindex="-1"></a>plot_chains <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, <span class="at">alpha =</span> <span class="fl">0.8</span>) {</span>
-<span id="cb148-17"><a href="assignment-5.html#cb148-17" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
-<span id="cb148-18"><a href="assignment-5.html#cb148-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha, <span class="at">y =</span> beta)) <span class="sc">+</span></span>
-<span id="cb148-19"><a href="assignment-5.html#cb148-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">color =</span> chain), <span class="at">alpha =</span> alpha) <span class="sc">+</span></span>
-<span id="cb148-20"><a href="assignment-5.html#cb148-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>)</span>
-<span id="cb148-21"><a href="assignment-5.html#cb148-21" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb148-22"><a href="assignment-5.html#cb148-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-23"><a href="assignment-5.html#cb148-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior density of `x`. Used by `plot_posterior()`.</span></span>
-<span id="cb148-24"><a href="assignment-5.html#cb148-24" aria-hidden="true" tabindex="-1"></a>plot_posterior_density <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, x, color) {</span>
-<span id="cb148-25"><a href="assignment-5.html#cb148-25" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
-<span id="cb148-26"><a href="assignment-5.html#cb148-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">color =</span> {{ color }}, <span class="at">fill =</span> {{ color }})) <span class="sc">+</span></span>
-<span id="cb148-27"><a href="assignment-5.html#cb148-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">size =</span> <span class="fl">0.7</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb148-28"><a href="assignment-5.html#cb148-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb148-29"><a href="assignment-5.html#cb148-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb148-30"><a href="assignment-5.html#cb148-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb148-31"><a href="assignment-5.html#cb148-31" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb148-32"><a href="assignment-5.html#cb148-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-33"><a href="assignment-5.html#cb148-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior distributions after removing warm-up steps.</span></span>
-<span id="cb148-34"><a href="assignment-5.html#cb148-34" aria-hidden="true" tabindex="-1"></a>plot_posterior <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">size =</span> <span class="fl">0.6</span>, <span class="at">warm_up =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb148-35"><a href="assignment-5.html#cb148-35" aria-hidden="true" tabindex="-1"></a>  chains_without_warmup <span class="ot">&lt;-</span> chains_df <span class="sc">%&gt;%</span></span>
-<span id="cb148-36"><a href="assignment-5.html#cb148-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
-<span id="cb148-37"><a href="assignment-5.html#cb148-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">step =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb148-38"><a href="assignment-5.html#cb148-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb148-39"><a href="assignment-5.html#cb148-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(step <span class="sc">&gt;</span> (<span class="fu">max</span>(step) <span class="sc">*</span> <span class="sc">!!</span>warm_up))</span>
-<span id="cb148-40"><a href="assignment-5.html#cb148-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-41"><a href="assignment-5.html#cb148-41" aria-hidden="true" tabindex="-1"></a>  scatter <span class="ot">&lt;-</span> chains_without_warmup <span class="sc">%&gt;%</span></span>
-<span id="cb148-42"><a href="assignment-5.html#cb148-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha, <span class="at">y =</span> beta)) <span class="sc">+</span></span>
-<span id="cb148-43"><a href="assignment-5.html#cb148-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density_2d</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb148-44"><a href="assignment-5.html#cb148-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> chain), <span class="at">size =</span> size, <span class="at">alpha =</span> alpha) <span class="sc">+</span></span>
-<span id="cb148-45"><a href="assignment-5.html#cb148-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb148-46"><a href="assignment-5.html#cb148-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;left&quot;</span>)</span>
-<span id="cb148-47"><a href="assignment-5.html#cb148-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-48"><a href="assignment-5.html#cb148-48" aria-hidden="true" tabindex="-1"></a>  alpha_dist <span class="ot">&lt;-</span> <span class="fu">plot_posterior_density</span>(chains_without_warmup, alpha, chain) <span class="sc">+</span></span>
-<span id="cb148-49"><a href="assignment-5.html#cb148-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)))</span>
-<span id="cb148-50"><a href="assignment-5.html#cb148-50" aria-hidden="true" tabindex="-1"></a>  beta_dist <span class="ot">&lt;-</span> <span class="fu">plot_posterior_density</span>(chains_without_warmup, beta, chain) <span class="sc">+</span></span>
-<span id="cb148-51"><a href="assignment-5.html#cb148-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb148-52"><a href="assignment-5.html#cb148-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>()</span>
-<span id="cb148-53"><a href="assignment-5.html#cb148-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-54"><a href="assignment-5.html#cb148-54" aria-hidden="true" tabindex="-1"></a>  patch_design <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb148-55"><a href="assignment-5.html#cb148-55" aria-hidden="true" tabindex="-1"></a><span class="st">    AAAA#</span></span>
-<span id="cb148-56"><a href="assignment-5.html#cb148-56" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
-<span id="cb148-57"><a href="assignment-5.html#cb148-57" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
-<span id="cb148-58"><a href="assignment-5.html#cb148-58" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
-<span id="cb148-59"><a href="assignment-5.html#cb148-59" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
-<span id="cb148-60"><a href="assignment-5.html#cb148-60" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;</span></span>
-<span id="cb148-61"><a href="assignment-5.html#cb148-61" aria-hidden="true" tabindex="-1"></a>  patch <span class="ot">&lt;-</span> alpha_dist <span class="sc">+</span> scatter <span class="sc">+</span> beta_dist <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">design =</span> patch_design)</span>
-<span id="cb148-62"><a href="assignment-5.html#cb148-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(patch)</span>
-<span id="cb148-63"><a href="assignment-5.html#cb148-63" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="assignment-5.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function to turn the chains into a data frame.</span></span>
+<span id="cb164-2"><a href="assignment-5.html#cb164-2" aria-hidden="true" tabindex="-1"></a>chain_to_df <span class="ot">&lt;-</span> <span class="cf">function</span>(chain, names) {</span>
+<span id="cb164-3"><a href="assignment-5.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_dfr</span>(chain, <span class="sc">~</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(.x))) <span class="sc">%&gt;%</span></span>
+<span id="cb164-4"><a href="assignment-5.html#cb164-4" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb164-5"><a href="assignment-5.html#cb164-5" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">set_names</span>(names)</span>
+<span id="cb164-6"><a href="assignment-5.html#cb164-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb164-7"><a href="assignment-5.html#cb164-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-8"><a href="assignment-5.html#cb164-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-9"><a href="assignment-5.html#cb164-9" aria-hidden="true" tabindex="-1"></a>propose_theta <span class="ot">&lt;-</span> <span class="cf">function</span>(theta_old, <span class="at">a_sigma =</span> <span class="dv">1</span>, <span class="at">b_sigma =</span> <span class="dv">5</span>) {</span>
+<span id="cb164-10"><a href="assignment-5.html#cb164-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb164-11"><a href="assignment-5.html#cb164-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> theta_old[[<span class="dv">1</span>]], <span class="at">sd =</span> a_sigma),</span>
+<span id="cb164-12"><a href="assignment-5.html#cb164-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> theta_old[[<span class="dv">2</span>]], <span class="at">sd =</span> b_sigma)</span>
+<span id="cb164-13"><a href="assignment-5.html#cb164-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb164-14"><a href="assignment-5.html#cb164-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb164-15"><a href="assignment-5.html#cb164-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-16"><a href="assignment-5.html#cb164-16" aria-hidden="true" tabindex="-1"></a>Metropolis_bioassay <span class="ot">&lt;-</span> <span class="cf">function</span>(theta_t0,</span>
+<span id="cb164-17"><a href="assignment-5.html#cb164-17" aria-hidden="true" tabindex="-1"></a>                                x,</span>
+<span id="cb164-18"><a href="assignment-5.html#cb164-18" aria-hidden="true" tabindex="-1"></a>                                y,</span>
+<span id="cb164-19"><a href="assignment-5.html#cb164-19" aria-hidden="true" tabindex="-1"></a>                                n,</span>
+<span id="cb164-20"><a href="assignment-5.html#cb164-20" aria-hidden="true" tabindex="-1"></a>                                <span class="at">alpha_jump =</span> <span class="dv">1</span>,</span>
+<span id="cb164-21"><a href="assignment-5.html#cb164-21" aria-hidden="true" tabindex="-1"></a>                                <span class="at">beta_jump =</span> <span class="dv">5</span>,</span>
+<span id="cb164-22"><a href="assignment-5.html#cb164-22" aria-hidden="true" tabindex="-1"></a>                                <span class="at">N =</span> <span class="dv">1000</span>,</span>
+<span id="cb164-23"><a href="assignment-5.html#cb164-23" aria-hidden="true" tabindex="-1"></a>                                <span class="at">quiet =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb164-24"><a href="assignment-5.html#cb164-24" aria-hidden="true" tabindex="-1"></a>  theta_t <span class="ot">&lt;-</span> <span class="fu">unlist</span>(theta_t0)</span>
+<span id="cb164-25"><a href="assignment-5.html#cb164-25" aria-hidden="true" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(<span class="cn">NA_real_</span>, <span class="at">n =</span> N <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb164-26"><a href="assignment-5.html#cb164-26" aria-hidden="true" tabindex="-1"></a>  chain[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> theta_t</span>
+<span id="cb164-27"><a href="assignment-5.html#cb164-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-28"><a href="assignment-5.html#cb164-28" aria-hidden="true" tabindex="-1"></a>  n_accepts <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb164-29"><a href="assignment-5.html#cb164-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-30"><a href="assignment-5.html#cb164-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, N <span class="sc">+</span> <span class="dv">1</span>)) {</span>
+<span id="cb164-31"><a href="assignment-5.html#cb164-31" aria-hidden="true" tabindex="-1"></a>    theta_star <span class="ot">&lt;-</span> <span class="fu">propose_theta</span>(</span>
+<span id="cb164-32"><a href="assignment-5.html#cb164-32" aria-hidden="true" tabindex="-1"></a>      theta_t,</span>
+<span id="cb164-33"><a href="assignment-5.html#cb164-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">a_sigma =</span> alpha_jump, <span class="at">b_sigma =</span> beta_jump</span>
+<span id="cb164-34"><a href="assignment-5.html#cb164-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb164-35"><a href="assignment-5.html#cb164-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-36"><a href="assignment-5.html#cb164-36" aria-hidden="true" tabindex="-1"></a>    density_ratio <span class="ot">&lt;-</span> <span class="fu">density_ratio</span>(</span>
+<span id="cb164-37"><a href="assignment-5.html#cb164-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha_propose =</span> theta_star[[<span class="dv">1</span>]],</span>
+<span id="cb164-38"><a href="assignment-5.html#cb164-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha_previous =</span> theta_t[[<span class="dv">1</span>]],</span>
+<span id="cb164-39"><a href="assignment-5.html#cb164-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">beta_propose =</span> theta_star[[<span class="dv">2</span>]],</span>
+<span id="cb164-40"><a href="assignment-5.html#cb164-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">beta_previous =</span> theta_t[[<span class="dv">2</span>]],</span>
+<span id="cb164-41"><a href="assignment-5.html#cb164-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> x,</span>
+<span id="cb164-42"><a href="assignment-5.html#cb164-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> y,</span>
+<span id="cb164-43"><a href="assignment-5.html#cb164-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> n</span>
+<span id="cb164-44"><a href="assignment-5.html#cb164-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb164-45"><a href="assignment-5.html#cb164-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-46"><a href="assignment-5.html#cb164-46" aria-hidden="true" tabindex="-1"></a>    accept <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fu">min</span>(<span class="fu">c</span>(<span class="dv">1</span>, density_ratio))</span>
+<span id="cb164-47"><a href="assignment-5.html#cb164-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (accept) {</span>
+<span id="cb164-48"><a href="assignment-5.html#cb164-48" aria-hidden="true" tabindex="-1"></a>      theta_t <span class="ot">&lt;-</span> theta_star</span>
+<span id="cb164-49"><a href="assignment-5.html#cb164-49" aria-hidden="true" tabindex="-1"></a>      n_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb164-50"><a href="assignment-5.html#cb164-50" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb164-51"><a href="assignment-5.html#cb164-51" aria-hidden="true" tabindex="-1"></a>    chain[[t]] <span class="ot">&lt;-</span> theta_t</span>
+<span id="cb164-52"><a href="assignment-5.html#cb164-52" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb164-53"><a href="assignment-5.html#cb164-53" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>quiet) {</span>
+<span id="cb164-54"><a href="assignment-5.html#cb164-54" aria-hidden="true" tabindex="-1"></a>    frac_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">/</span> N</span>
+<span id="cb164-55"><a href="assignment-5.html#cb164-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">&quot;fraction of accepted jumps: {frac_accepts}&quot;</span>))</span>
+<span id="cb164-56"><a href="assignment-5.html#cb164-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb164-57"><a href="assignment-5.html#cb164-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">chain_to_df</span>(chain, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>)))</span>
+<span id="cb164-58"><a href="assignment-5.html#cb164-58" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="assignment-5.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the trace of the chains.</span></span>
+<span id="cb165-2"><a href="assignment-5.html#cb165-2" aria-hidden="true" tabindex="-1"></a>plot_trace <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, <span class="at">alpha =</span> <span class="fl">0.8</span>) {</span>
+<span id="cb165-3"><a href="assignment-5.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
+<span id="cb165-4"><a href="assignment-5.html#cb165-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
+<span id="cb165-5"><a href="assignment-5.html#cb165-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">step =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb165-6"><a href="assignment-5.html#cb165-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb165-7"><a href="assignment-5.html#cb165-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">-</span><span class="fu">c</span>(chain, step)) <span class="sc">%&gt;%</span></span>
+<span id="cb165-8"><a href="assignment-5.html#cb165-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> step, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb165-9"><a href="assignment-5.html#cb165-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(name), <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-10"><a href="assignment-5.html#cb165-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> chain), <span class="at">alpha =</span> alpha) <span class="sc">+</span></span>
+<span id="cb165-11"><a href="assignment-5.html#cb165-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-12"><a href="assignment-5.html#cb165-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)))</span>
+<span id="cb165-13"><a href="assignment-5.html#cb165-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb165-14"><a href="assignment-5.html#cb165-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-15"><a href="assignment-5.html#cb165-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the chains in 2 dimensions.</span></span>
+<span id="cb165-16"><a href="assignment-5.html#cb165-16" aria-hidden="true" tabindex="-1"></a>plot_chains <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, <span class="at">alpha =</span> <span class="fl">0.8</span>) {</span>
+<span id="cb165-17"><a href="assignment-5.html#cb165-17" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
+<span id="cb165-18"><a href="assignment-5.html#cb165-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha, <span class="at">y =</span> beta)) <span class="sc">+</span></span>
+<span id="cb165-19"><a href="assignment-5.html#cb165-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">color =</span> chain), <span class="at">alpha =</span> alpha) <span class="sc">+</span></span>
+<span id="cb165-20"><a href="assignment-5.html#cb165-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>)</span>
+<span id="cb165-21"><a href="assignment-5.html#cb165-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb165-22"><a href="assignment-5.html#cb165-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-23"><a href="assignment-5.html#cb165-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior density of `x`. Used by `plot_posterior()`.</span></span>
+<span id="cb165-24"><a href="assignment-5.html#cb165-24" aria-hidden="true" tabindex="-1"></a>plot_posterior_density <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, x, color) {</span>
+<span id="cb165-25"><a href="assignment-5.html#cb165-25" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
+<span id="cb165-26"><a href="assignment-5.html#cb165-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">color =</span> {{ color }}, <span class="at">fill =</span> {{ color }})) <span class="sc">+</span></span>
+<span id="cb165-27"><a href="assignment-5.html#cb165-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">size =</span> <span class="fl">0.7</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb165-28"><a href="assignment-5.html#cb165-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-29"><a href="assignment-5.html#cb165-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-30"><a href="assignment-5.html#cb165-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb165-31"><a href="assignment-5.html#cb165-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb165-32"><a href="assignment-5.html#cb165-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-33"><a href="assignment-5.html#cb165-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior distributions after removing warm-up steps.</span></span>
+<span id="cb165-34"><a href="assignment-5.html#cb165-34" aria-hidden="true" tabindex="-1"></a>plot_posterior <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">size =</span> <span class="fl">0.6</span>, <span class="at">warm_up =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb165-35"><a href="assignment-5.html#cb165-35" aria-hidden="true" tabindex="-1"></a>  chains_without_warmup <span class="ot">&lt;-</span> chains_df <span class="sc">%&gt;%</span></span>
+<span id="cb165-36"><a href="assignment-5.html#cb165-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
+<span id="cb165-37"><a href="assignment-5.html#cb165-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">step =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb165-38"><a href="assignment-5.html#cb165-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb165-39"><a href="assignment-5.html#cb165-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(step <span class="sc">&gt;</span> (<span class="fu">max</span>(step) <span class="sc">*</span> <span class="sc">!!</span>warm_up))</span>
+<span id="cb165-40"><a href="assignment-5.html#cb165-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-41"><a href="assignment-5.html#cb165-41" aria-hidden="true" tabindex="-1"></a>  scatter <span class="ot">&lt;-</span> chains_without_warmup <span class="sc">%&gt;%</span></span>
+<span id="cb165-42"><a href="assignment-5.html#cb165-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha, <span class="at">y =</span> beta)) <span class="sc">+</span></span>
+<span id="cb165-43"><a href="assignment-5.html#cb165-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density_2d</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb165-44"><a href="assignment-5.html#cb165-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> chain), <span class="at">size =</span> size, <span class="at">alpha =</span> alpha) <span class="sc">+</span></span>
+<span id="cb165-45"><a href="assignment-5.html#cb165-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-46"><a href="assignment-5.html#cb165-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb165-47"><a href="assignment-5.html#cb165-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-48"><a href="assignment-5.html#cb165-48" aria-hidden="true" tabindex="-1"></a>  alpha_dist <span class="ot">&lt;-</span> <span class="fu">plot_posterior_density</span>(chains_without_warmup, alpha, chain) <span class="sc">+</span></span>
+<span id="cb165-49"><a href="assignment-5.html#cb165-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)))</span>
+<span id="cb165-50"><a href="assignment-5.html#cb165-50" aria-hidden="true" tabindex="-1"></a>  beta_dist <span class="ot">&lt;-</span> <span class="fu">plot_posterior_density</span>(chains_without_warmup, beta, chain) <span class="sc">+</span></span>
+<span id="cb165-51"><a href="assignment-5.html#cb165-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb165-52"><a href="assignment-5.html#cb165-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>()</span>
+<span id="cb165-53"><a href="assignment-5.html#cb165-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-54"><a href="assignment-5.html#cb165-54" aria-hidden="true" tabindex="-1"></a>  patch_design <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
+<span id="cb165-55"><a href="assignment-5.html#cb165-55" aria-hidden="true" tabindex="-1"></a><span class="st">    AAAA#</span></span>
+<span id="cb165-56"><a href="assignment-5.html#cb165-56" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
+<span id="cb165-57"><a href="assignment-5.html#cb165-57" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
+<span id="cb165-58"><a href="assignment-5.html#cb165-58" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
+<span id="cb165-59"><a href="assignment-5.html#cb165-59" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
+<span id="cb165-60"><a href="assignment-5.html#cb165-60" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;</span></span>
+<span id="cb165-61"><a href="assignment-5.html#cb165-61" aria-hidden="true" tabindex="-1"></a>  patch <span class="ot">&lt;-</span> alpha_dist <span class="sc">+</span> scatter <span class="sc">+</span> beta_dist <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">design =</span> patch_design)</span>
+<span id="cb165-62"><a href="assignment-5.html#cb165-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(patch)</span>
+<span id="cb165-63"><a href="assignment-5.html#cb165-63" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Run the Metropolis algorithm with the default values from the question.
 I chose a grid of starting points <span class="math inline">\((\pm 2.5, \pm 2.5)\)</span> and ran four chains for 1,000 iterations.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="assignment-5.html#cb149-1" aria-hidden="true" tabindex="-1"></a>starting_points <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb149-2"><a href="assignment-5.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
-<span id="cb149-3"><a href="assignment-5.html#cb149-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb149-4"><a href="assignment-5.html#cb149-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb149-5"><a href="assignment-5.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb149-6"><a href="assignment-5.html#cb149-6" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
-<span id="cb149-7"><a href="assignment-5.html#cb149-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
-<span id="cb149-8"><a href="assignment-5.html#cb149-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">Metropolis_bioassay</span>(</span>
-<span id="cb149-9"><a href="assignment-5.html#cb149-9" aria-hidden="true" tabindex="-1"></a>    starting_points[[.x]],</span>
-<span id="cb149-10"><a href="assignment-5.html#cb149-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
-<span id="cb149-11"><a href="assignment-5.html#cb149-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
-<span id="cb149-12"><a href="assignment-5.html#cb149-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n</span>
-<span id="cb149-13"><a href="assignment-5.html#cb149-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb149-14"><a href="assignment-5.html#cb149-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
-<span id="cb149-15"><a href="assignment-5.html#cb149-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="assignment-5.html#cb166-1" aria-hidden="true" tabindex="-1"></a>starting_points <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb166-2"><a href="assignment-5.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb166-3"><a href="assignment-5.html#cb166-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb166-4"><a href="assignment-5.html#cb166-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-5"><a href="assignment-5.html#cb166-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb166-6"><a href="assignment-5.html#cb166-6" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb166-7"><a href="assignment-5.html#cb166-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb166-8"><a href="assignment-5.html#cb166-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">Metropolis_bioassay</span>(</span>
+<span id="cb166-9"><a href="assignment-5.html#cb166-9" aria-hidden="true" tabindex="-1"></a>    starting_points[[.x]],</span>
+<span id="cb166-10"><a href="assignment-5.html#cb166-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
+<span id="cb166-11"><a href="assignment-5.html#cb166-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
+<span id="cb166-12"><a href="assignment-5.html#cb166-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n</span>
+<span id="cb166-13"><a href="assignment-5.html#cb166-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb166-14"><a href="assignment-5.html#cb166-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
+<span id="cb166-15"><a href="assignment-5.html#cb166-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt; fraction of accepted jumps: 0.402</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.428</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.445</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.456</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="assignment-5.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trace</span>(metropolis_chains)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="assignment-5.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trace</span>(metropolis_chains)</span></code></pre></div>
 <p><img src="assignment-05_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="assignment-5.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_chains</span>(metropolis_chains, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="assignment-5.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_chains</span>(metropolis_chains, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="assignment-05_files/figure-html/unnamed-chunk-5-2.png" width="2100" /></p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="assignment-5.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="assignment-5.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
 <p><img src="assignment-05_files/figure-html/unnamed-chunk-5-3.png" width="2100" /></p>
 <p>The chains mixed well, but I tried reducing the proposal distributions standard deviations by an order of magnitude.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="assignment-5.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb157-2"><a href="assignment-5.html#cb157-2" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
-<span id="cb157-3"><a href="assignment-5.html#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
-<span id="cb157-4"><a href="assignment-5.html#cb157-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">Metropolis_bioassay</span>(</span>
-<span id="cb157-5"><a href="assignment-5.html#cb157-5" aria-hidden="true" tabindex="-1"></a>    starting_points[[.x]],</span>
-<span id="cb157-6"><a href="assignment-5.html#cb157-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
-<span id="cb157-7"><a href="assignment-5.html#cb157-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
-<span id="cb157-8"><a href="assignment-5.html#cb157-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n,</span>
-<span id="cb157-9"><a href="assignment-5.html#cb157-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha_jump =</span> <span class="fl">0.1</span>,</span>
-<span id="cb157-10"><a href="assignment-5.html#cb157-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_jump =</span> <span class="dv">1</span></span>
-<span id="cb157-11"><a href="assignment-5.html#cb157-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb157-12"><a href="assignment-5.html#cb157-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
-<span id="cb157-13"><a href="assignment-5.html#cb157-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="assignment-5.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb174-2"><a href="assignment-5.html#cb174-2" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb174-3"><a href="assignment-5.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb174-4"><a href="assignment-5.html#cb174-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">Metropolis_bioassay</span>(</span>
+<span id="cb174-5"><a href="assignment-5.html#cb174-5" aria-hidden="true" tabindex="-1"></a>    starting_points[[.x]],</span>
+<span id="cb174-6"><a href="assignment-5.html#cb174-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
+<span id="cb174-7"><a href="assignment-5.html#cb174-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
+<span id="cb174-8"><a href="assignment-5.html#cb174-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n,</span>
+<span id="cb174-9"><a href="assignment-5.html#cb174-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha_jump =</span> <span class="fl">0.1</span>,</span>
+<span id="cb174-10"><a href="assignment-5.html#cb174-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_jump =</span> <span class="dv">1</span></span>
+<span id="cb174-11"><a href="assignment-5.html#cb174-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb174-12"><a href="assignment-5.html#cb174-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
+<span id="cb174-13"><a href="assignment-5.html#cb174-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt; fraction of accepted jumps: 0.847</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.866</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.889</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.858</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="assignment-5.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trace</span>(metropolis_chains)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="assignment-5.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trace</span>(metropolis_chains)</span></code></pre></div>
 <p><img src="assignment-05_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="assignment-5.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_chains</span>(metropolis_chains, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="assignment-5.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_chains</span>(metropolis_chains, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="assignment-05_files/figure-html/unnamed-chunk-6-2.png" width="2100" /></p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="assignment-5.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="assignment-5.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
 <p><img src="assignment-05_files/figure-html/unnamed-chunk-6-3.png" width="2100" /></p>
 <p><br> <!-- For some reason this is need to fix some weird formatting behavior. --></p>
 <p>The chains did not mix well with these smaller proposal distribution standard deviations.
 Below, I try slightly larger values for the jump sizes and also run 2,000 total iterations (1,000 warm-up steps).</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="assignment-5.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb165-2"><a href="assignment-5.html#cb165-2" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
-<span id="cb165-3"><a href="assignment-5.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
-<span id="cb165-4"><a href="assignment-5.html#cb165-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">Metropolis_bioassay</span>(</span>
-<span id="cb165-5"><a href="assignment-5.html#cb165-5" aria-hidden="true" tabindex="-1"></a>    starting_points[[.x]],</span>
-<span id="cb165-6"><a href="assignment-5.html#cb165-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
-<span id="cb165-7"><a href="assignment-5.html#cb165-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
-<span id="cb165-8"><a href="assignment-5.html#cb165-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n,</span>
-<span id="cb165-9"><a href="assignment-5.html#cb165-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha_jump =</span> <span class="dv">1</span>,</span>
-<span id="cb165-10"><a href="assignment-5.html#cb165-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_jump =</span> <span class="dv">3</span>,</span>
-<span id="cb165-11"><a href="assignment-5.html#cb165-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="dv">2000</span></span>
-<span id="cb165-12"><a href="assignment-5.html#cb165-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb165-13"><a href="assignment-5.html#cb165-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
-<span id="cb165-14"><a href="assignment-5.html#cb165-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="assignment-5.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb182-2"><a href="assignment-5.html#cb182-2" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb182-3"><a href="assignment-5.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb182-4"><a href="assignment-5.html#cb182-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">Metropolis_bioassay</span>(</span>
+<span id="cb182-5"><a href="assignment-5.html#cb182-5" aria-hidden="true" tabindex="-1"></a>    starting_points[[.x]],</span>
+<span id="cb182-6"><a href="assignment-5.html#cb182-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
+<span id="cb182-7"><a href="assignment-5.html#cb182-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
+<span id="cb182-8"><a href="assignment-5.html#cb182-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n,</span>
+<span id="cb182-9"><a href="assignment-5.html#cb182-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha_jump =</span> <span class="dv">1</span>,</span>
+<span id="cb182-10"><a href="assignment-5.html#cb182-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_jump =</span> <span class="dv">3</span>,</span>
+<span id="cb182-11"><a href="assignment-5.html#cb182-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="dv">2000</span></span>
+<span id="cb182-12"><a href="assignment-5.html#cb182-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb182-13"><a href="assignment-5.html#cb182-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
+<span id="cb182-14"><a href="assignment-5.html#cb182-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt; fraction of accepted jumps: 0.4955</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.523</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.519</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.5285</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="assignment-5.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trace</span>(metropolis_chains)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="assignment-5.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trace</span>(metropolis_chains)</span></code></pre></div>
 <p><img src="assignment-05_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="assignment-5.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_chains</span>(metropolis_chains, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="assignment-5.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_chains</span>(metropolis_chains, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="assignment-05_files/figure-html/unnamed-chunk-7-2.png" width="2100" /></p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="assignment-5.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="assignment-5.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
 <p><img src="assignment-05_files/figure-html/unnamed-chunk-7-3.png" width="2100" /></p>
 </div>
 <div id="exercise-2." class="section level3" number="24.2.2">
@@ -832,37 +832,37 @@ This strategy helped me to understand the effect (if any) of the starting locati
 <strong>Remember to remove the warm-up samples before computing <span class="math inline">\(\widehat{R}\)</span>.</strong>
 <strong>Report the <span class="math inline">\(\widehat{R}\)</span> values for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> separately.</strong>
 <strong>Report the values for the proposal distribution you finally used.</strong></p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="assignment-5.html#cb173-1" aria-hidden="true" tabindex="-1"></a>long_chains_df_to_matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df,</span>
-<span id="cb173-2"><a href="assignment-5.html#cb173-2" aria-hidden="true" tabindex="-1"></a>                                     mdl_param,</span>
-<span id="cb173-3"><a href="assignment-5.html#cb173-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">drop_cols =</span> <span class="fu">c</span>(),</span>
-<span id="cb173-4"><a href="assignment-5.html#cb173-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">warm_up =</span> <span class="sc">-</span><span class="dv">1</span>) {</span>
-<span id="cb173-5"><a href="assignment-5.html#cb173-5" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
-<span id="cb173-6"><a href="assignment-5.html#cb173-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(tidyselect<span class="sc">::</span><span class="fu">any_of</span>(drop_cols))) <span class="sc">%&gt;%</span></span>
-<span id="cb173-7"><a href="assignment-5.html#cb173-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
-<span id="cb173-8"><a href="assignment-5.html#cb173-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">idx__ =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb173-9"><a href="assignment-5.html#cb173-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb173-10"><a href="assignment-5.html#cb173-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(idx__ <span class="sc">&gt;</span> warm_up) <span class="sc">%&gt;%</span></span>
-<span id="cb173-11"><a href="assignment-5.html#cb173-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(idx__, <span class="at">names_from =</span> chain, <span class="at">values_from =</span> {{ mdl_param }}) <span class="sc">%&gt;%</span></span>
-<span id="cb173-12"><a href="assignment-5.html#cb173-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>idx__) <span class="sc">%&gt;%</span></span>
-<span id="cb173-13"><a href="assignment-5.html#cb173-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>()</span>
-<span id="cb173-14"><a href="assignment-5.html#cb173-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="assignment-5.html#cb174-1" aria-hidden="true" tabindex="-1"></a>alpha_rhat <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">Rhat</span>(</span>
-<span id="cb174-2"><a href="assignment-5.html#cb174-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">long_chains_df_to_matrix</span>(</span>
-<span id="cb174-3"><a href="assignment-5.html#cb174-3" aria-hidden="true" tabindex="-1"></a>    metropolis_chains, alpha,</span>
-<span id="cb174-4"><a href="assignment-5.html#cb174-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">drop_cols =</span> <span class="st">&quot;beta&quot;</span>, <span class="at">warm_up =</span> <span class="dv">1000</span></span>
-<span id="cb174-5"><a href="assignment-5.html#cb174-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb174-6"><a href="assignment-5.html#cb174-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb174-7"><a href="assignment-5.html#cb174-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-8"><a href="assignment-5.html#cb174-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;alpha Rhat: {round(alpha_rhat, 3)}&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="assignment-5.html#cb190-1" aria-hidden="true" tabindex="-1"></a>long_chains_df_to_matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df,</span>
+<span id="cb190-2"><a href="assignment-5.html#cb190-2" aria-hidden="true" tabindex="-1"></a>                                     mdl_param,</span>
+<span id="cb190-3"><a href="assignment-5.html#cb190-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">drop_cols =</span> <span class="fu">c</span>(),</span>
+<span id="cb190-4"><a href="assignment-5.html#cb190-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">warm_up =</span> <span class="sc">-</span><span class="dv">1</span>) {</span>
+<span id="cb190-5"><a href="assignment-5.html#cb190-5" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
+<span id="cb190-6"><a href="assignment-5.html#cb190-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(tidyselect<span class="sc">::</span><span class="fu">any_of</span>(drop_cols))) <span class="sc">%&gt;%</span></span>
+<span id="cb190-7"><a href="assignment-5.html#cb190-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
+<span id="cb190-8"><a href="assignment-5.html#cb190-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">idx__ =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb190-9"><a href="assignment-5.html#cb190-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb190-10"><a href="assignment-5.html#cb190-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(idx__ <span class="sc">&gt;</span> warm_up) <span class="sc">%&gt;%</span></span>
+<span id="cb190-11"><a href="assignment-5.html#cb190-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(idx__, <span class="at">names_from =</span> chain, <span class="at">values_from =</span> {{ mdl_param }}) <span class="sc">%&gt;%</span></span>
+<span id="cb190-12"><a href="assignment-5.html#cb190-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>idx__) <span class="sc">%&gt;%</span></span>
+<span id="cb190-13"><a href="assignment-5.html#cb190-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>()</span>
+<span id="cb190-14"><a href="assignment-5.html#cb190-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="assignment-5.html#cb191-1" aria-hidden="true" tabindex="-1"></a>alpha_rhat <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">Rhat</span>(</span>
+<span id="cb191-2"><a href="assignment-5.html#cb191-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">long_chains_df_to_matrix</span>(</span>
+<span id="cb191-3"><a href="assignment-5.html#cb191-3" aria-hidden="true" tabindex="-1"></a>    metropolis_chains, alpha,</span>
+<span id="cb191-4"><a href="assignment-5.html#cb191-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">drop_cols =</span> <span class="st">&quot;beta&quot;</span>, <span class="at">warm_up =</span> <span class="dv">1000</span></span>
+<span id="cb191-5"><a href="assignment-5.html#cb191-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb191-6"><a href="assignment-5.html#cb191-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb191-7"><a href="assignment-5.html#cb191-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-8"><a href="assignment-5.html#cb191-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;alpha Rhat: {round(alpha_rhat, 3)}&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt; alpha Rhat: 1.027</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="assignment-5.html#cb176-1" aria-hidden="true" tabindex="-1"></a>beta_rhat <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">Rhat</span>(</span>
-<span id="cb176-2"><a href="assignment-5.html#cb176-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">long_chains_df_to_matrix</span>(</span>
-<span id="cb176-3"><a href="assignment-5.html#cb176-3" aria-hidden="true" tabindex="-1"></a>    metropolis_chains, beta,</span>
-<span id="cb176-4"><a href="assignment-5.html#cb176-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">drop_cols =</span> <span class="st">&quot;alpha&quot;</span>, <span class="at">warm_up =</span> <span class="dv">1000</span></span>
-<span id="cb176-5"><a href="assignment-5.html#cb176-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb176-6"><a href="assignment-5.html#cb176-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb176-7"><a href="assignment-5.html#cb176-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb176-8"><a href="assignment-5.html#cb176-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;beta Rhat: {round(beta_rhat, 3)}&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="assignment-5.html#cb193-1" aria-hidden="true" tabindex="-1"></a>beta_rhat <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">Rhat</span>(</span>
+<span id="cb193-2"><a href="assignment-5.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">long_chains_df_to_matrix</span>(</span>
+<span id="cb193-3"><a href="assignment-5.html#cb193-3" aria-hidden="true" tabindex="-1"></a>    metropolis_chains, beta,</span>
+<span id="cb193-4"><a href="assignment-5.html#cb193-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">drop_cols =</span> <span class="st">&quot;alpha&quot;</span>, <span class="at">warm_up =</span> <span class="dv">1000</span></span>
+<span id="cb193-5"><a href="assignment-5.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb193-6"><a href="assignment-5.html#cb193-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb193-7"><a href="assignment-5.html#cb193-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-8"><a href="assignment-5.html#cb193-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;beta Rhat: {round(beta_rhat, 3)}&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt; beta Rhat: 1.056</code></pre>
 <p><strong>a) Describe briefly in your own words the basic idea of <span class="math inline">\(\widehat{R}\)</span> and how to to interpret the obtained <span class="math inline">\(\widehat{R}\)</span> values.</strong></p>
 <p><span class="math inline">\(\widehat{R}\)</span> is a metric for how well the chains have converged by comparing the variance within and between chains to the within-chain variance alone.
@@ -879,10 +879,10 @@ I would just run the chains for a bit longer, perhaps 3,000 steps, or I could co
 <strong>You can compare the results to Figure 3.3b in BDA3 to verify that your code gives sensible results </strong>
 <strong>Notice though that the results in Figure 3.3b are generated from posterior with a uniform prior, so even when if your algorithm works perfectly, the results will look slightly different (although fairly similar).</strong></p>
 <p>Below is the same plot that was created in Exercise 2.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="assignment-5.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="assignment-5.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
 <p><img src="assignment-05_files/figure-html/unnamed-chunk-10-1.png" width="2100" /></p>
 <hr />
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="assignment-5.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="assignment-5.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>#&gt; R version 4.1.2 (2021-11-01)
 #&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
 #&gt; Running under: macOS Big Sur 10.16

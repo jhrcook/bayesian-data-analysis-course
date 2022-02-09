@@ -68,6 +68,7 @@ $$
 $$
 \log(x_0^\text{init}) \sim \text{N}(\log(d_0^\text{init} \cdot \theta_0), (\sigma^\text{init})^2)
 $$
+
 - **Dilution errors** (cont)
   - there is no initial dilution for the unknown samples being tested
     - therefore, the unknown initial concentration for sample $j$ is $x^\text{init} = \theta_j$ for $j = 1, \dots, 10$

@@ -507,15 +507,15 @@ div.csl-indent {
 <p>2021-08-19</p>
 <div id="setup-9" class="section level2" number="30.1">
 <h2><span class="header-section-number">30.1</span> Setup</h2>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="chapter-2-exercises.html#cb301-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb301-2"><a href="chapter-2-exercises.html#cb301-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-3"><a href="chapter-2-exercises.html#cb301-3" aria-hidden="true" tabindex="-1"></a>rfiles <span class="ot">&lt;-</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">full.names =</span> <span class="cn">TRUE</span>, <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>)</span>
-<span id="cb301-4"><a href="chapter-2-exercises.html#cb301-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (rfile <span class="cf">in</span> rfiles) {</span>
-<span id="cb301-5"><a href="chapter-2-exercises.html#cb301-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(rfile)</span>
-<span id="cb301-6"><a href="chapter-2-exercises.html#cb301-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb301-7"><a href="chapter-2-exercises.html#cb301-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-8"><a href="chapter-2-exercises.html#cb301-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb301-9"><a href="chapter-2-exercises.html#cb301-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="chapter-2-exercises.html#cb312-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb312-2"><a href="chapter-2-exercises.html#cb312-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb312-3"><a href="chapter-2-exercises.html#cb312-3" aria-hidden="true" tabindex="-1"></a>rfiles <span class="ot">&lt;-</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">full.names =</span> <span class="cn">TRUE</span>, <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>)</span>
+<span id="cb312-4"><a href="chapter-2-exercises.html#cb312-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (rfile <span class="cf">in</span> rfiles) {</span>
+<span id="cb312-5"><a href="chapter-2-exercises.html#cb312-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(rfile)</span>
+<span id="cb312-6"><a href="chapter-2-exercises.html#cb312-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb312-7"><a href="chapter-2-exercises.html#cb312-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb312-8"><a href="chapter-2-exercises.html#cb312-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb312-9"><a href="chapter-2-exercises.html#cb312-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <blockquote>
 <p>Complete questions 2.1-2.5, 2.8, 2.9, 2.14, 2.17, and 2.22.</p>
 </blockquote>
@@ -533,9 +533,9 @@ div.csl-indent {
 <li>if <span class="math inline">\(y=0\)</span>: <span class="math inline">\(p(\theta | y=0) = \text{Beta}(4+0, 4+10)\)</span></li>
 </ul>
 <p><span class="math inline">\(p(\theta|y) = \frac{1}{3} \text{Beta}(6, 12) + \frac{1}{3} \text{Beta}(5, 13) + \frac{1}{3} \text{Beta}4, 14)\)</span></p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="chapter-2-exercises.html#cb302-1" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
-<span id="cb302-2"><a href="chapter-2-exercises.html#cb302-2" aria-hidden="true" tabindex="-1"></a>prob_density <span class="ot">&lt;-</span> (<span class="fu">dbeta</span>(theta, <span class="dv">6</span>, <span class="dv">12</span>) <span class="sc">+</span> <span class="fu">dbeta</span>(theta, <span class="dv">5</span>, <span class="dv">13</span>) <span class="sc">+</span> <span class="fu">dbeta</span>(theta, <span class="dv">4</span>, <span class="dv">14</span>)) <span class="sc">/</span> <span class="dv">3</span></span>
-<span id="cb302-3"><a href="chapter-2-exercises.html#cb302-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dist</span>(theta, prob_density, <span class="at">xlab =</span> <span class="st">&quot;theta&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;probability&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="chapter-2-exercises.html#cb313-1" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
+<span id="cb313-2"><a href="chapter-2-exercises.html#cb313-2" aria-hidden="true" tabindex="-1"></a>prob_density <span class="ot">&lt;-</span> (<span class="fu">dbeta</span>(theta, <span class="dv">6</span>, <span class="dv">12</span>) <span class="sc">+</span> <span class="fu">dbeta</span>(theta, <span class="dv">5</span>, <span class="dv">13</span>) <span class="sc">+</span> <span class="fu">dbeta</span>(theta, <span class="dv">4</span>, <span class="dv">14</span>)) <span class="sc">/</span> <span class="dv">3</span></span>
+<span id="cb313-3"><a href="chapter-2-exercises.html#cb313-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dist</span>(theta, prob_density, <span class="at">xlab =</span> <span class="st">&quot;theta&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;probability&quot;</span>)</span></code></pre></div>
 <p><img src="exercises-02_files/figure-html/unnamed-chunk-1-1.png" width="2100" /></p>
 </div>
 <div id="question-2-1" class="section level2" number="30.3">
@@ -571,11 +571,11 @@ Same cacuation for <span class="math inline">\(p(C_2|y)\)</span> resulting in <s
 <p><strong>a) Sketch the approximate distribution of <span class="math inline">\(y\)</span> based on the normal approximation.</strong></p>
 <p>mean: <span class="math inline">\(\text{E}(y) = \frac{1}{6} 1000 = \frac{500}{3}\)</span></p>
 <p>std. dev: <span class="math inline">\(\text{sd}(y) = \sqrt{\frac{1}{6} \frac{5}{6} 1000}\)</span></p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="chapter-2-exercises.html#cb303-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">500</span> <span class="sc">/</span> <span class="dv">3</span></span>
-<span id="cb303-2"><a href="chapter-2-exercises.html#cb303-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">1000</span> <span class="sc">*</span> <span class="dv">5</span> <span class="sc">/</span> (<span class="dv">6</span> <span class="sc">*</span> <span class="dv">6</span>))</span>
-<span id="cb303-3"><a href="chapter-2-exercises.html#cb303-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">250</span>, <span class="dv">1</span>)</span>
-<span id="cb303-4"><a href="chapter-2-exercises.html#cb303-4" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(y, mu, sigma)</span>
-<span id="cb303-5"><a href="chapter-2-exercises.html#cb303-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dist</span>(y, likelihood, <span class="at">xlab =</span> <span class="st">&quot;y&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;likelihood&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="chapter-2-exercises.html#cb314-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">500</span> <span class="sc">/</span> <span class="dv">3</span></span>
+<span id="cb314-2"><a href="chapter-2-exercises.html#cb314-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">1000</span> <span class="sc">*</span> <span class="dv">5</span> <span class="sc">/</span> (<span class="dv">6</span> <span class="sc">*</span> <span class="dv">6</span>))</span>
+<span id="cb314-3"><a href="chapter-2-exercises.html#cb314-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">250</span>, <span class="dv">1</span>)</span>
+<span id="cb314-4"><a href="chapter-2-exercises.html#cb314-4" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(y, mu, sigma)</span>
+<span id="cb314-5"><a href="chapter-2-exercises.html#cb314-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dist</span>(y, likelihood, <span class="at">xlab =</span> <span class="st">&quot;y&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;likelihood&quot;</span>)</span></code></pre></div>
 <p><img src="exercises-02_files/figure-html/unnamed-chunk-2-1.png" width="2100" /></p>
 <p><strong>b) Using the normal distribution table, give approximate 5%, 25%, 50%, 75%, and 95% points for the distribution of <span class="math inline">\(y\)</span>.</strong></p>
 <table>
@@ -626,18 +626,18 @@ Same cacuation for <span class="math inline">\(p(C_2|y)\)</span> resulting in <s
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="chapter-2-exercises.html#cb304-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">95</span>), <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">&quot;{.x}%&quot;</span>))</span>
-<span id="cb304-2"><a href="chapter-2-exercises.html#cb304-2" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">147.2</span>, <span class="fl">158.8</span>, <span class="fl">166.7</span>, <span class="fl">174.6</span>, <span class="fl">186.1</span>)</span>
-<span id="cb304-3"><a href="chapter-2-exercises.html#cb304-3" aria-hidden="true" tabindex="-1"></a>pqs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">p =</span> p, <span class="at">q =</span> q)</span>
-<span id="cb304-4"><a href="chapter-2-exercises.html#cb304-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb304-5"><a href="chapter-2-exercises.html#cb304-5" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y =</span> y, <span class="at">likelihood =</span> likelihood)</span>
-<span id="cb304-6"><a href="chapter-2-exercises.html#cb304-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">y =</span> likelihood)) <span class="sc">+</span></span>
-<span id="cb304-7"><a href="chapter-2-exercises.html#cb304-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb304-8"><a href="chapter-2-exercises.html#cb304-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> q, <span class="at">color =</span> p), <span class="at">data =</span> pqs, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb304-9"><a href="chapter-2-exercises.html#cb304-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> q, <span class="at">label =</span> p), <span class="at">data =</span> pqs, <span class="at">y =</span> <span class="fl">0.036</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb304-10"><a href="chapter-2-exercises.html#cb304-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
-<span id="cb304-11"><a href="chapter-2-exercises.html#cb304-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))) <span class="sc">+</span></span>
-<span id="cb304-12"><a href="chapter-2-exercises.html#cb304-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="chapter-2-exercises.html#cb315-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">95</span>), <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">&quot;{.x}%&quot;</span>))</span>
+<span id="cb315-2"><a href="chapter-2-exercises.html#cb315-2" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">147.2</span>, <span class="fl">158.8</span>, <span class="fl">166.7</span>, <span class="fl">174.6</span>, <span class="fl">186.1</span>)</span>
+<span id="cb315-3"><a href="chapter-2-exercises.html#cb315-3" aria-hidden="true" tabindex="-1"></a>pqs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">p =</span> p, <span class="at">q =</span> q)</span>
+<span id="cb315-4"><a href="chapter-2-exercises.html#cb315-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb315-5"><a href="chapter-2-exercises.html#cb315-5" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y =</span> y, <span class="at">likelihood =</span> likelihood)</span>
+<span id="cb315-6"><a href="chapter-2-exercises.html#cb315-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> y, <span class="at">y =</span> likelihood)) <span class="sc">+</span></span>
+<span id="cb315-7"><a href="chapter-2-exercises.html#cb315-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb315-8"><a href="chapter-2-exercises.html#cb315-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> q, <span class="at">color =</span> p), <span class="at">data =</span> pqs, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb315-9"><a href="chapter-2-exercises.html#cb315-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> q, <span class="at">label =</span> p), <span class="at">data =</span> pqs, <span class="at">y =</span> <span class="fl">0.036</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb315-10"><a href="chapter-2-exercises.html#cb315-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
+<span id="cb315-11"><a href="chapter-2-exercises.html#cb315-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))) <span class="sc">+</span></span>
+<span id="cb315-12"><a href="chapter-2-exercises.html#cb315-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="exercises-02_files/figure-html/unnamed-chunk-3-1.png" width="2100" /></p>
 </div>
 <div id="question-4" class="section level2" number="30.5">
@@ -660,23 +660,61 @@ p(\tilde{y}|M) &amp;= p(\tilde{y} | \theta=\frac{1}{12}, n=1000, M) p(\theta=\fr
 &amp;= N(\frac{1}{12} 1000, \sqrt{1000 \frac{1}{12} (1 - \frac{1}{12})}) \times \frac{1}{4} + \dots \\
 \end{aligned}
 \]</span></p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="chapter-2-exercises.html#cb305-1" aria-hidden="true" tabindex="-1"></a>six_likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(y, theta, <span class="at">n =</span> <span class="dv">1000</span>, prior) {</span>
-<span id="cb305-2"><a href="chapter-2-exercises.html#cb305-2" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> n <span class="sc">*</span> theta</span>
-<span id="cb305-3"><a href="chapter-2-exercises.html#cb305-3" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> theta <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> theta))</span>
-<span id="cb305-4"><a href="chapter-2-exercises.html#cb305-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dnorm</span>(y, mu, sigma) <span class="sc">*</span> prior</span>
-<span id="cb305-5"><a href="chapter-2-exercises.html#cb305-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb305-6"><a href="chapter-2-exercises.html#cb305-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb305-7"><a href="chapter-2-exercises.html#cb305-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">310</span>)</span>
-<span id="cb305-8"><a href="chapter-2-exercises.html#cb305-8" aria-hidden="true" tabindex="-1"></a>separate_likelihoods <span class="ot">&lt;-</span> <span class="fu">map2</span>(</span>
-<span id="cb305-9"><a href="chapter-2-exercises.html#cb305-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">12</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">6</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">4</span>),</span>
-<span id="cb305-10"><a href="chapter-2-exercises.html#cb305-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>),</span>
-<span id="cb305-11"><a href="chapter-2-exercises.html#cb305-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">six_likelihood</span>(y, .x, <span class="at">n =</span> <span class="dv">1000</span>, <span class="at">prior =</span> .y)</span>
-<span id="cb305-12"><a href="chapter-2-exercises.html#cb305-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb305-13"><a href="chapter-2-exercises.html#cb305-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb305-14"><a href="chapter-2-exercises.html#cb305-14" aria-hidden="true" tabindex="-1"></a>combined_likelihood <span class="ot">&lt;-</span> <span class="fu">accumulate</span>(separate_likelihoods, <span class="sc">~</span> .x <span class="sc">+</span> .y)[[<span class="dv">3</span>]]</span>
-<span id="cb305-15"><a href="chapter-2-exercises.html#cb305-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb305-16"><a href="chapter-2-exercises.html#cb305-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dist</span>(y, combined_likelihood, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;likelihood&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="chapter-2-exercises.html#cb316-1" aria-hidden="true" tabindex="-1"></a>six_likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(y, theta, <span class="at">n =</span> <span class="dv">1000</span>, prior) {</span>
+<span id="cb316-2"><a href="chapter-2-exercises.html#cb316-2" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> n <span class="sc">*</span> theta</span>
+<span id="cb316-3"><a href="chapter-2-exercises.html#cb316-3" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(n <span class="sc">*</span> theta <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> theta))</span>
+<span id="cb316-4"><a href="chapter-2-exercises.html#cb316-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dnorm</span>(y, mu, sigma) <span class="sc">*</span> prior</span>
+<span id="cb316-5"><a href="chapter-2-exercises.html#cb316-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb316-6"><a href="chapter-2-exercises.html#cb316-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-7"><a href="chapter-2-exercises.html#cb316-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">30</span>, <span class="dv">310</span>)</span>
+<span id="cb316-8"><a href="chapter-2-exercises.html#cb316-8" aria-hidden="true" tabindex="-1"></a>separate_likelihoods <span class="ot">&lt;-</span> <span class="fu">map2</span>(</span>
+<span id="cb316-9"><a href="chapter-2-exercises.html#cb316-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">12</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">6</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">4</span>),</span>
+<span id="cb316-10"><a href="chapter-2-exercises.html#cb316-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>),</span>
+<span id="cb316-11"><a href="chapter-2-exercises.html#cb316-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">six_likelihood</span>(y, .x, <span class="at">n =</span> <span class="dv">1000</span>, <span class="at">prior =</span> .y)</span>
+<span id="cb316-12"><a href="chapter-2-exercises.html#cb316-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb316-13"><a href="chapter-2-exercises.html#cb316-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-14"><a href="chapter-2-exercises.html#cb316-14" aria-hidden="true" tabindex="-1"></a>combined_likelihood <span class="ot">&lt;-</span> <span class="fu">accumulate</span>(separate_likelihoods, <span class="sc">~</span> .x <span class="sc">+</span> .y)[[<span class="dv">3</span>]]</span>
+<span id="cb316-15"><a href="chapter-2-exercises.html#cb316-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-16"><a href="chapter-2-exercises.html#cb316-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dist</span>(y, combined_likelihood, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;likelihood&quot;</span>)</span></code></pre></div>
 <p><img src="exercises-02_files/figure-html/unnamed-chunk-4-1.png" width="2100" /></p>
+<hr />
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="chapter-2-exercises.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
+#&gt; Running under: macOS Big Sur 10.16
+#&gt; 
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#&gt; 
+#&gt; locale:
+#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#&gt; 
+#&gt; other attached packages:
+#&gt;  [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4    
+#&gt;  [5] readr_2.0.1     tidyr_1.1.3     tibble_3.1.3    ggplot2_3.3.5  
+#&gt;  [9] tidyverse_1.3.1 glue_1.4.2     
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] Rcpp_1.0.7        lubridate_1.7.10  here_1.0.1        clisymbols_1.2.0 
+#&gt;  [5] assertthat_0.2.1  rprojroot_2.0.2   digest_0.6.27     utf8_1.2.2       
+#&gt;  [9] R6_2.5.0          cellranger_1.1.0  backports_1.2.1   reprex_2.0.1     
+#&gt; [13] evaluate_0.14     httr_1.4.2        highr_0.9         pillar_1.6.2     
+#&gt; [17] rlang_0.4.11      readxl_1.3.1      rstudioapi_0.13   jquerylib_0.1.4  
+#&gt; [21] rmarkdown_2.10    labeling_0.4.2    munsell_0.5.0     broom_0.7.9      
+#&gt; [25] compiler_4.1.2    modelr_0.1.8      xfun_0.25         pkgconfig_2.0.3  
+#&gt; [29] htmltools_0.5.1.1 tidyselect_1.1.1  bookdown_0.24     fansi_0.5.0      
+#&gt; [33] crayon_1.4.1      tzdb_0.1.2        dbplyr_2.1.1      withr_2.4.2      
+#&gt; [37] grid_4.1.2        jsonlite_1.7.2    gtable_0.3.0      lifecycle_1.0.0  
+#&gt; [41] DBI_1.1.1         magrittr_2.0.1    scales_1.1.1      cli_3.0.1        
+#&gt; [45] stringi_1.7.3     farver_2.1.0      renv_0.14.0       fs_1.5.0         
+#&gt; [49] xml2_1.3.2        bslib_0.2.5.1     ellipsis_0.3.2    generics_0.1.0   
+#&gt; [53] vctrs_0.3.8       tools_4.1.2       hms_1.1.0         yaml_2.2.1       
+#&gt; [57] colorspace_2.0-2  rvest_1.0.1       knitr_1.33        haven_2.4.3      
+#&gt; [61] sass_0.4.0</code></pre>
 
 </div>
 </div>

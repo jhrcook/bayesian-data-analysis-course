@@ -505,14 +505,14 @@ div.csl-indent {
 <div id="section-5.-markov-chain-monte-carlo" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Section 5. Markov chain Monte Carlo</h1>
 <p>2021-09-26</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="section-5.-markov-chain-monte-carlo.html#cb5-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>)</span>
-<span id="cb5-2"><a href="section-5.-markov-chain-monte-carlo.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="section-5.-markov-chain-monte-carlo.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb5-4"><a href="section-5.-markov-chain-monte-carlo.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
-<span id="cb5-5"><a href="section-5.-markov-chain-monte-carlo.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb5-6"><a href="section-5.-markov-chain-monte-carlo.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(tidyverse))</span>
-<span id="cb5-7"><a href="section-5.-markov-chain-monte-carlo.html#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="section-5.-markov-chain-monte-carlo.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="section-5.-markov-chain-monte-carlo.html#cb7-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>)</span>
+<span id="cb7-2"><a href="section-5.-markov-chain-monte-carlo.html#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="section-5.-markov-chain-monte-carlo.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb7-4"><a href="section-5.-markov-chain-monte-carlo.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb7-5"><a href="section-5.-markov-chain-monte-carlo.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb7-6"><a href="section-5.-markov-chain-monte-carlo.html#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-7"><a href="section-5.-markov-chain-monte-carlo.html#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="section-5.-markov-chain-monte-carlo.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
 <div id="resources-5" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Resources</h2>
 <ul>
@@ -629,81 +629,81 @@ div.csl-indent {
 <ul>
 <li>below is the code for the example described above</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="section-5.-markov-chain-monte-carlo.html#cb6-1" aria-hidden="true" tabindex="-1"></a>chain_to_df <span class="ot">&lt;-</span> <span class="cf">function</span>(chain, names) {</span>
-<span id="cb6-2"><a href="section-5.-markov-chain-monte-carlo.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_dfr</span>(chain, <span class="sc">~</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(.x))) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="section-5.-markov-chain-monte-carlo.html#cb6-3" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="section-5.-markov-chain-monte-carlo.html#cb6-4" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">set_names</span>(names)</span>
-<span id="cb6-5"><a href="section-5.-markov-chain-monte-carlo.html#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-6"><a href="section-5.-markov-chain-monte-carlo.html#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="section-5.-markov-chain-monte-carlo.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a single chain of a Gibbs sampler for a bivariate normal distribution.</span></span>
-<span id="cb6-8"><a href="section-5.-markov-chain-monte-carlo.html#cb6-8" aria-hidden="true" tabindex="-1"></a>gibbs_sample_demo <span class="ot">&lt;-</span> <span class="cf">function</span>(data, rho, theta_t0, <span class="at">N =</span> <span class="dv">100</span>) {</span>
-<span id="cb6-9"><a href="section-5.-markov-chain-monte-carlo.html#cb6-9" aria-hidden="true" tabindex="-1"></a>  theta_1 <span class="ot">&lt;-</span> theta_t0[[<span class="dv">1</span>]]</span>
-<span id="cb6-10"><a href="section-5.-markov-chain-monte-carlo.html#cb6-10" aria-hidden="true" tabindex="-1"></a>  theta_2 <span class="ot">&lt;-</span> theta_t0[[<span class="dv">2</span>]]</span>
-<span id="cb6-11"><a href="section-5.-markov-chain-monte-carlo.html#cb6-11" aria-hidden="true" tabindex="-1"></a>  y1 <span class="ot">&lt;-</span> data[[<span class="dv">1</span>]]</span>
-<span id="cb6-12"><a href="section-5.-markov-chain-monte-carlo.html#cb6-12" aria-hidden="true" tabindex="-1"></a>  y2 <span class="ot">&lt;-</span> data[[<span class="dv">2</span>]]</span>
-<span id="cb6-13"><a href="section-5.-markov-chain-monte-carlo.html#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="section-5.-markov-chain-monte-carlo.html#cb6-14" aria-hidden="true" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(theta_t0, <span class="at">n =</span> (<span class="dv">2</span> <span class="sc">*</span> N) <span class="sc">+</span> <span class="dv">1</span>))</span>
-<span id="cb6-15"><a href="section-5.-markov-chain-monte-carlo.html#cb6-15" aria-hidden="true" tabindex="-1"></a>  chain[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">c</span>(theta_1, theta_2, <span class="dv">1</span>)</span>
-<span id="cb6-16"><a href="section-5.-markov-chain-monte-carlo.html#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="section-5.-markov-chain-monte-carlo.html#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, N)) {</span>
-<span id="cb6-18"><a href="section-5.-markov-chain-monte-carlo.html#cb6-18" aria-hidden="true" tabindex="-1"></a>    theta_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, y1 <span class="sc">+</span> rho <span class="sc">*</span> (theta_2 <span class="sc">-</span> y2), <span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb6-19"><a href="section-5.-markov-chain-monte-carlo.html#cb6-19" aria-hidden="true" tabindex="-1"></a>    chain[[<span class="dv">2</span> <span class="sc">*</span> (t <span class="sc">-</span> <span class="dv">1</span>)]] <span class="ot">&lt;-</span> <span class="fu">c</span>(theta_1, theta_2, t)</span>
-<span id="cb6-20"><a href="section-5.-markov-chain-monte-carlo.html#cb6-20" aria-hidden="true" tabindex="-1"></a>    theta_2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, y2 <span class="sc">+</span> rho <span class="sc">*</span> (theta_1 <span class="sc">-</span> y1), <span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb6-21"><a href="section-5.-markov-chain-monte-carlo.html#cb6-21" aria-hidden="true" tabindex="-1"></a>    chain[[<span class="dv">2</span> <span class="sc">*</span> (t <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">c</span>(theta_1, theta_2, t)</span>
-<span id="cb6-22"><a href="section-5.-markov-chain-monte-carlo.html#cb6-22" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-23"><a href="section-5.-markov-chain-monte-carlo.html#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="section-5.-markov-chain-monte-carlo.html#cb6-24" aria-hidden="true" tabindex="-1"></a>  chain_df <span class="ot">&lt;-</span> <span class="fu">chain_to_df</span>(chain, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;theta_1&quot;</span>, <span class="st">&quot;theta_2&quot;</span>, <span class="st">&quot;t&quot;</span>))</span>
-<span id="cb6-25"><a href="section-5.-markov-chain-monte-carlo.html#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(chain_df)</span>
-<span id="cb6-26"><a href="section-5.-markov-chain-monte-carlo.html#cb6-26" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-27"><a href="section-5.-markov-chain-monte-carlo.html#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-28"><a href="section-5.-markov-chain-monte-carlo.html#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-29"><a href="section-5.-markov-chain-monte-carlo.html#cb6-29" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
-<span id="cb6-30"><a href="section-5.-markov-chain-monte-carlo.html#cb6-30" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb6-31"><a href="section-5.-markov-chain-monte-carlo.html#cb6-31" aria-hidden="true" tabindex="-1"></a>starting_points <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb6-32"><a href="section-5.-markov-chain-monte-carlo.html#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
-<span id="cb6-33"><a href="section-5.-markov-chain-monte-carlo.html#cb6-33" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-34"><a href="section-5.-markov-chain-monte-carlo.html#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-35"><a href="section-5.-markov-chain-monte-carlo.html#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb6-36"><a href="section-5.-markov-chain-monte-carlo.html#cb6-36" aria-hidden="true" tabindex="-1"></a>gibbs_demo_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
-<span id="cb6-37"><a href="section-5.-markov-chain-monte-carlo.html#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
-<span id="cb6-38"><a href="section-5.-markov-chain-monte-carlo.html#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">gibbs_sample_demo</span>(y, rho, starting_points[[.x]]) <span class="sc">%&gt;%</span></span>
-<span id="cb6-39"><a href="section-5.-markov-chain-monte-carlo.html#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
-<span id="cb6-40"><a href="section-5.-markov-chain-monte-carlo.html#cb6-40" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-41"><a href="section-5.-markov-chain-monte-carlo.html#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-42"><a href="section-5.-markov-chain-monte-carlo.html#cb6-42" aria-hidden="true" tabindex="-1"></a>plot_chains <span class="ot">&lt;-</span> <span class="cf">function</span>(chain_df, <span class="at">x =</span> theta_1, <span class="at">y =</span> theta_2, <span class="at">color =</span> chain) {</span>
-<span id="cb6-43"><a href="section-5.-markov-chain-monte-carlo.html#cb6-43" aria-hidden="true" tabindex="-1"></a>  chain_df <span class="sc">%&gt;%</span></span>
-<span id="cb6-44"><a href="section-5.-markov-chain-monte-carlo.html#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">y =</span> {{ y }}, <span class="at">color =</span> {{ color }})) <span class="sc">+</span></span>
-<span id="cb6-45"><a href="section-5.-markov-chain-monte-carlo.html#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb6-46"><a href="section-5.-markov-chain-monte-carlo.html#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span>
-<span id="cb6-47"><a href="section-5.-markov-chain-monte-carlo.html#cb6-47" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-48"><a href="section-5.-markov-chain-monte-carlo.html#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-49"><a href="section-5.-markov-chain-monte-carlo.html#cb6-49" aria-hidden="true" tabindex="-1"></a>plot_points <span class="ot">&lt;-</span> <span class="cf">function</span>(chain_df, <span class="at">x =</span> theta_1, <span class="at">y =</span> theta_2, <span class="at">color =</span> chain) {</span>
-<span id="cb6-50"><a href="section-5.-markov-chain-monte-carlo.html#cb6-50" aria-hidden="true" tabindex="-1"></a>  chain_df <span class="sc">%&gt;%</span></span>
-<span id="cb6-51"><a href="section-5.-markov-chain-monte-carlo.html#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">y =</span> {{ y }}, <span class="at">color =</span> {{ color }})) <span class="sc">+</span></span>
-<span id="cb6-52"><a href="section-5.-markov-chain-monte-carlo.html#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.75</span>, <span class="at">alpha =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb6-53"><a href="section-5.-markov-chain-monte-carlo.html#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span>
-<span id="cb6-54"><a href="section-5.-markov-chain-monte-carlo.html#cb6-54" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-55"><a href="section-5.-markov-chain-monte-carlo.html#cb6-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-56"><a href="section-5.-markov-chain-monte-carlo.html#cb6-56" aria-hidden="true" tabindex="-1"></a>theta_axis_labs <span class="ot">&lt;-</span> <span class="cf">function</span>(p) {</span>
-<span id="cb6-57"><a href="section-5.-markov-chain-monte-carlo.html#cb6-57" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span></span>
-<span id="cb6-58"><a href="section-5.-markov-chain-monte-carlo.html#cb6-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb6-59"><a href="section-5.-markov-chain-monte-carlo.html#cb6-59" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>(),</span>
-<span id="cb6-60"><a href="section-5.-markov-chain-monte-carlo.html#cb6-60" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>()</span>
-<span id="cb6-61"><a href="section-5.-markov-chain-monte-carlo.html#cb6-61" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb6-62"><a href="section-5.-markov-chain-monte-carlo.html#cb6-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;θ&lt;sub&gt;1&lt;/sub&gt;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;θ&lt;sub&gt;2&lt;/sub&gt;&quot;</span>)</span>
-<span id="cb6-63"><a href="section-5.-markov-chain-monte-carlo.html#cb6-63" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-64"><a href="section-5.-markov-chain-monte-carlo.html#cb6-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-65"><a href="section-5.-markov-chain-monte-carlo.html#cb6-65" aria-hidden="true" tabindex="-1"></a>gibbs_plot_chains <span class="ot">&lt;-</span> <span class="fu">plot_chains</span>(gibbs_demo_chains) <span class="sc">%&gt;%</span></span>
-<span id="cb6-66"><a href="section-5.-markov-chain-monte-carlo.html#cb6-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
-<span id="cb6-67"><a href="section-5.-markov-chain-monte-carlo.html#cb6-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-68"><a href="section-5.-markov-chain-monte-carlo.html#cb6-68" aria-hidden="true" tabindex="-1"></a>gibbs_plot_points <span class="ot">&lt;-</span> gibbs_demo_chains <span class="sc">%&gt;%</span></span>
-<span id="cb6-69"><a href="section-5.-markov-chain-monte-carlo.html#cb6-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chain, t) <span class="sc">%&gt;%</span></span>
-<span id="cb6-70"><a href="section-5.-markov-chain-monte-carlo.html#cb6-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-71"><a href="section-5.-markov-chain-monte-carlo.html#cb6-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-72"><a href="section-5.-markov-chain-monte-carlo.html#cb6-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_points</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-73"><a href="section-5.-markov-chain-monte-carlo.html#cb6-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
-<span id="cb6-74"><a href="section-5.-markov-chain-monte-carlo.html#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-75"><a href="section-5.-markov-chain-monte-carlo.html#cb6-75" aria-hidden="true" tabindex="-1"></a>(gibbs_plot_chains <span class="sc">|</span> gibbs_plot_points) <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&quot;Gibbs sampler&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="section-5.-markov-chain-monte-carlo.html#cb8-1" aria-hidden="true" tabindex="-1"></a>chain_to_df <span class="ot">&lt;-</span> <span class="cf">function</span>(chain, names) {</span>
+<span id="cb8-2"><a href="section-5.-markov-chain-monte-carlo.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_dfr</span>(chain, <span class="sc">~</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(.x))) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="section-5.-markov-chain-monte-carlo.html#cb8-3" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="section-5.-markov-chain-monte-carlo.html#cb8-4" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">set_names</span>(names)</span>
+<span id="cb8-5"><a href="section-5.-markov-chain-monte-carlo.html#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-6"><a href="section-5.-markov-chain-monte-carlo.html#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="section-5.-markov-chain-monte-carlo.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a single chain of a Gibbs sampler for a bivariate normal distribution.</span></span>
+<span id="cb8-8"><a href="section-5.-markov-chain-monte-carlo.html#cb8-8" aria-hidden="true" tabindex="-1"></a>gibbs_sample_demo <span class="ot">&lt;-</span> <span class="cf">function</span>(data, rho, theta_t0, <span class="at">N =</span> <span class="dv">100</span>) {</span>
+<span id="cb8-9"><a href="section-5.-markov-chain-monte-carlo.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  theta_1 <span class="ot">&lt;-</span> theta_t0[[<span class="dv">1</span>]]</span>
+<span id="cb8-10"><a href="section-5.-markov-chain-monte-carlo.html#cb8-10" aria-hidden="true" tabindex="-1"></a>  theta_2 <span class="ot">&lt;-</span> theta_t0[[<span class="dv">2</span>]]</span>
+<span id="cb8-11"><a href="section-5.-markov-chain-monte-carlo.html#cb8-11" aria-hidden="true" tabindex="-1"></a>  y1 <span class="ot">&lt;-</span> data[[<span class="dv">1</span>]]</span>
+<span id="cb8-12"><a href="section-5.-markov-chain-monte-carlo.html#cb8-12" aria-hidden="true" tabindex="-1"></a>  y2 <span class="ot">&lt;-</span> data[[<span class="dv">2</span>]]</span>
+<span id="cb8-13"><a href="section-5.-markov-chain-monte-carlo.html#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="section-5.-markov-chain-monte-carlo.html#cb8-14" aria-hidden="true" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(theta_t0, <span class="at">n =</span> (<span class="dv">2</span> <span class="sc">*</span> N) <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb8-15"><a href="section-5.-markov-chain-monte-carlo.html#cb8-15" aria-hidden="true" tabindex="-1"></a>  chain[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">c</span>(theta_1, theta_2, <span class="dv">1</span>)</span>
+<span id="cb8-16"><a href="section-5.-markov-chain-monte-carlo.html#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="section-5.-markov-chain-monte-carlo.html#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, N)) {</span>
+<span id="cb8-18"><a href="section-5.-markov-chain-monte-carlo.html#cb8-18" aria-hidden="true" tabindex="-1"></a>    theta_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, y1 <span class="sc">+</span> rho <span class="sc">*</span> (theta_2 <span class="sc">-</span> y2), <span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb8-19"><a href="section-5.-markov-chain-monte-carlo.html#cb8-19" aria-hidden="true" tabindex="-1"></a>    chain[[<span class="dv">2</span> <span class="sc">*</span> (t <span class="sc">-</span> <span class="dv">1</span>)]] <span class="ot">&lt;-</span> <span class="fu">c</span>(theta_1, theta_2, t)</span>
+<span id="cb8-20"><a href="section-5.-markov-chain-monte-carlo.html#cb8-20" aria-hidden="true" tabindex="-1"></a>    theta_2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, y2 <span class="sc">+</span> rho <span class="sc">*</span> (theta_1 <span class="sc">-</span> y1), <span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb8-21"><a href="section-5.-markov-chain-monte-carlo.html#cb8-21" aria-hidden="true" tabindex="-1"></a>    chain[[<span class="dv">2</span> <span class="sc">*</span> (t <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">c</span>(theta_1, theta_2, t)</span>
+<span id="cb8-22"><a href="section-5.-markov-chain-monte-carlo.html#cb8-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-23"><a href="section-5.-markov-chain-monte-carlo.html#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="section-5.-markov-chain-monte-carlo.html#cb8-24" aria-hidden="true" tabindex="-1"></a>  chain_df <span class="ot">&lt;-</span> <span class="fu">chain_to_df</span>(chain, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;theta_1&quot;</span>, <span class="st">&quot;theta_2&quot;</span>, <span class="st">&quot;t&quot;</span>))</span>
+<span id="cb8-25"><a href="section-5.-markov-chain-monte-carlo.html#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(chain_df)</span>
+<span id="cb8-26"><a href="section-5.-markov-chain-monte-carlo.html#cb8-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-27"><a href="section-5.-markov-chain-monte-carlo.html#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="section-5.-markov-chain-monte-carlo.html#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="section-5.-markov-chain-monte-carlo.html#cb8-29" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
+<span id="cb8-30"><a href="section-5.-markov-chain-monte-carlo.html#cb8-30" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb8-31"><a href="section-5.-markov-chain-monte-carlo.html#cb8-31" aria-hidden="true" tabindex="-1"></a>starting_points <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb8-32"><a href="section-5.-markov-chain-monte-carlo.html#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb8-33"><a href="section-5.-markov-chain-monte-carlo.html#cb8-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-34"><a href="section-5.-markov-chain-monte-carlo.html#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="section-5.-markov-chain-monte-carlo.html#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb8-36"><a href="section-5.-markov-chain-monte-carlo.html#cb8-36" aria-hidden="true" tabindex="-1"></a>gibbs_demo_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb8-37"><a href="section-5.-markov-chain-monte-carlo.html#cb8-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb8-38"><a href="section-5.-markov-chain-monte-carlo.html#cb8-38" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">gibbs_sample_demo</span>(y, rho, starting_points[[.x]]) <span class="sc">%&gt;%</span></span>
+<span id="cb8-39"><a href="section-5.-markov-chain-monte-carlo.html#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
+<span id="cb8-40"><a href="section-5.-markov-chain-monte-carlo.html#cb8-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-41"><a href="section-5.-markov-chain-monte-carlo.html#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-42"><a href="section-5.-markov-chain-monte-carlo.html#cb8-42" aria-hidden="true" tabindex="-1"></a>plot_chains <span class="ot">&lt;-</span> <span class="cf">function</span>(chain_df, <span class="at">x =</span> theta_1, <span class="at">y =</span> theta_2, <span class="at">color =</span> chain) {</span>
+<span id="cb8-43"><a href="section-5.-markov-chain-monte-carlo.html#cb8-43" aria-hidden="true" tabindex="-1"></a>  chain_df <span class="sc">%&gt;%</span></span>
+<span id="cb8-44"><a href="section-5.-markov-chain-monte-carlo.html#cb8-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">y =</span> {{ y }}, <span class="at">color =</span> {{ color }})) <span class="sc">+</span></span>
+<span id="cb8-45"><a href="section-5.-markov-chain-monte-carlo.html#cb8-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb8-46"><a href="section-5.-markov-chain-monte-carlo.html#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span>
+<span id="cb8-47"><a href="section-5.-markov-chain-monte-carlo.html#cb8-47" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-48"><a href="section-5.-markov-chain-monte-carlo.html#cb8-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-49"><a href="section-5.-markov-chain-monte-carlo.html#cb8-49" aria-hidden="true" tabindex="-1"></a>plot_points <span class="ot">&lt;-</span> <span class="cf">function</span>(chain_df, <span class="at">x =</span> theta_1, <span class="at">y =</span> theta_2, <span class="at">color =</span> chain) {</span>
+<span id="cb8-50"><a href="section-5.-markov-chain-monte-carlo.html#cb8-50" aria-hidden="true" tabindex="-1"></a>  chain_df <span class="sc">%&gt;%</span></span>
+<span id="cb8-51"><a href="section-5.-markov-chain-monte-carlo.html#cb8-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">y =</span> {{ y }}, <span class="at">color =</span> {{ color }})) <span class="sc">+</span></span>
+<span id="cb8-52"><a href="section-5.-markov-chain-monte-carlo.html#cb8-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.75</span>, <span class="at">alpha =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb8-53"><a href="section-5.-markov-chain-monte-carlo.html#cb8-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span>
+<span id="cb8-54"><a href="section-5.-markov-chain-monte-carlo.html#cb8-54" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-55"><a href="section-5.-markov-chain-monte-carlo.html#cb8-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-56"><a href="section-5.-markov-chain-monte-carlo.html#cb8-56" aria-hidden="true" tabindex="-1"></a>theta_axis_labs <span class="ot">&lt;-</span> <span class="cf">function</span>(p) {</span>
+<span id="cb8-57"><a href="section-5.-markov-chain-monte-carlo.html#cb8-57" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span></span>
+<span id="cb8-58"><a href="section-5.-markov-chain-monte-carlo.html#cb8-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb8-59"><a href="section-5.-markov-chain-monte-carlo.html#cb8-59" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb8-60"><a href="section-5.-markov-chain-monte-carlo.html#cb8-60" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>()</span>
+<span id="cb8-61"><a href="section-5.-markov-chain-monte-carlo.html#cb8-61" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb8-62"><a href="section-5.-markov-chain-monte-carlo.html#cb8-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;θ&lt;sub&gt;1&lt;/sub&gt;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;θ&lt;sub&gt;2&lt;/sub&gt;&quot;</span>)</span>
+<span id="cb8-63"><a href="section-5.-markov-chain-monte-carlo.html#cb8-63" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-64"><a href="section-5.-markov-chain-monte-carlo.html#cb8-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-65"><a href="section-5.-markov-chain-monte-carlo.html#cb8-65" aria-hidden="true" tabindex="-1"></a>gibbs_plot_chains <span class="ot">&lt;-</span> <span class="fu">plot_chains</span>(gibbs_demo_chains) <span class="sc">%&gt;%</span></span>
+<span id="cb8-66"><a href="section-5.-markov-chain-monte-carlo.html#cb8-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
+<span id="cb8-67"><a href="section-5.-markov-chain-monte-carlo.html#cb8-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-68"><a href="section-5.-markov-chain-monte-carlo.html#cb8-68" aria-hidden="true" tabindex="-1"></a>gibbs_plot_points <span class="ot">&lt;-</span> gibbs_demo_chains <span class="sc">%&gt;%</span></span>
+<span id="cb8-69"><a href="section-5.-markov-chain-monte-carlo.html#cb8-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chain, t) <span class="sc">%&gt;%</span></span>
+<span id="cb8-70"><a href="section-5.-markov-chain-monte-carlo.html#cb8-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-71"><a href="section-5.-markov-chain-monte-carlo.html#cb8-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-72"><a href="section-5.-markov-chain-monte-carlo.html#cb8-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_points</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-73"><a href="section-5.-markov-chain-monte-carlo.html#cb8-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
+<span id="cb8-74"><a href="section-5.-markov-chain-monte-carlo.html#cb8-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-75"><a href="section-5.-markov-chain-monte-carlo.html#cb8-75" aria-hidden="true" tabindex="-1"></a>(gibbs_plot_chains <span class="sc">|</span> gibbs_plot_points) <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&quot;Gibbs sampler&quot;</span>)</span></code></pre></div>
 <p><img src="notes-05_mcmc_bda3-11_files/figure-html/unnamed-chunk-1-1.png" width="2100" /></p>
 </div>
 <div id="metropolis-and-metropolis-hastings-algorithms" class="section level4 unnumbered">
@@ -735,68 +735,68 @@ div.csl-indent {
 <li>thus, the density ratio: <span class="math inline">\(r = \text{N}(\theta^*|0, I) / \text{N}(\theta^{t-1}|0, I)\)</span></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="section-5.-markov-chain-monte-carlo.html#cb7-1" aria-hidden="true" tabindex="-1"></a>calc_metropolis_density_ratio <span class="ot">&lt;-</span> <span class="cf">function</span>(t_star, t_m1, data, prior_cov_mat) {</span>
-<span id="cb7-2"><a href="section-5.-markov-chain-monte-carlo.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  numerator <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(t_star, data, prior_cov_mat)</span>
-<span id="cb7-3"><a href="section-5.-markov-chain-monte-carlo.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  denominator <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(t_m1, data, prior_cov_mat)</span>
-<span id="cb7-4"><a href="section-5.-markov-chain-monte-carlo.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(numerator <span class="sc">/</span> denominator)</span>
-<span id="cb7-5"><a href="section-5.-markov-chain-monte-carlo.html#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-6"><a href="section-5.-markov-chain-monte-carlo.html#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="section-5.-markov-chain-monte-carlo.html#cb7-7" aria-hidden="true" tabindex="-1"></a>metropolis_algorithm_demo <span class="ot">&lt;-</span> <span class="cf">function</span>(data, theta_t0, <span class="at">N =</span> <span class="dv">1000</span>, <span class="at">quiet =</span> <span class="cn">FALSE</span>) {</span>
-<span id="cb7-8"><a href="section-5.-markov-chain-monte-carlo.html#cb7-8" aria-hidden="true" tabindex="-1"></a>  theta_t <span class="ot">&lt;-</span> <span class="fu">unlist</span>(theta_t0)</span>
-<span id="cb7-9"><a href="section-5.-markov-chain-monte-carlo.html#cb7-9" aria-hidden="true" tabindex="-1"></a>  prior_dist_mu <span class="ot">&lt;-</span> data</span>
-<span id="cb7-10"><a href="section-5.-markov-chain-monte-carlo.html#cb7-10" aria-hidden="true" tabindex="-1"></a>  prior_dist_cov_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb7-11"><a href="section-5.-markov-chain-monte-carlo.html#cb7-11" aria-hidden="true" tabindex="-1"></a>  jumping_dist_cov_mat <span class="ot">&lt;-</span> prior_dist_cov_mat <span class="sc">*</span> <span class="fl">0.2</span><span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb7-12"><a href="section-5.-markov-chain-monte-carlo.html#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="section-5.-markov-chain-monte-carlo.html#cb7-13" aria-hidden="true" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(<span class="cn">NA_real_</span>, <span class="at">n =</span> N <span class="sc">+</span> <span class="dv">1</span>))</span>
-<span id="cb7-14"><a href="section-5.-markov-chain-monte-carlo.html#cb7-14" aria-hidden="true" tabindex="-1"></a>  chain[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> theta_t</span>
-<span id="cb7-15"><a href="section-5.-markov-chain-monte-carlo.html#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="section-5.-markov-chain-monte-carlo.html#cb7-16" aria-hidden="true" tabindex="-1"></a>  n_accepts <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb7-17"><a href="section-5.-markov-chain-monte-carlo.html#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="section-5.-markov-chain-monte-carlo.html#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, N <span class="sc">+</span> <span class="dv">1</span>)) {</span>
-<span id="cb7-19"><a href="section-5.-markov-chain-monte-carlo.html#cb7-19" aria-hidden="true" tabindex="-1"></a>    theta_star <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">rmvnorm</span>(</span>
-<span id="cb7-20"><a href="section-5.-markov-chain-monte-carlo.html#cb7-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> theta_t, <span class="at">sigma =</span> jumping_dist_cov_mat</span>
-<span id="cb7-21"><a href="section-5.-markov-chain-monte-carlo.html#cb7-21" aria-hidden="true" tabindex="-1"></a>    )[<span class="dv">1</span>, ]</span>
-<span id="cb7-22"><a href="section-5.-markov-chain-monte-carlo.html#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="section-5.-markov-chain-monte-carlo.html#cb7-23" aria-hidden="true" tabindex="-1"></a>    density_ratio <span class="ot">&lt;-</span> <span class="fu">calc_metropolis_density_ratio</span>(</span>
-<span id="cb7-24"><a href="section-5.-markov-chain-monte-carlo.html#cb7-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">t_star =</span> theta_star,</span>
-<span id="cb7-25"><a href="section-5.-markov-chain-monte-carlo.html#cb7-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">t_m1 =</span> theta_t,</span>
-<span id="cb7-26"><a href="section-5.-markov-chain-monte-carlo.html#cb7-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> data,</span>
-<span id="cb7-27"><a href="section-5.-markov-chain-monte-carlo.html#cb7-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">prior_cov_mat =</span> prior_dist_cov_mat</span>
-<span id="cb7-28"><a href="section-5.-markov-chain-monte-carlo.html#cb7-28" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-29"><a href="section-5.-markov-chain-monte-carlo.html#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="section-5.-markov-chain-monte-carlo.html#cb7-30" aria-hidden="true" tabindex="-1"></a>    accept <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fu">min</span>(<span class="fu">c</span>(<span class="dv">1</span>, density_ratio))</span>
-<span id="cb7-31"><a href="section-5.-markov-chain-monte-carlo.html#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (accept) {</span>
-<span id="cb7-32"><a href="section-5.-markov-chain-monte-carlo.html#cb7-32" aria-hidden="true" tabindex="-1"></a>      theta_t <span class="ot">&lt;-</span> theta_star</span>
-<span id="cb7-33"><a href="section-5.-markov-chain-monte-carlo.html#cb7-33" aria-hidden="true" tabindex="-1"></a>      n_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb7-34"><a href="section-5.-markov-chain-monte-carlo.html#cb7-34" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-35"><a href="section-5.-markov-chain-monte-carlo.html#cb7-35" aria-hidden="true" tabindex="-1"></a>    chain[[t]] <span class="ot">&lt;-</span> theta_t</span>
-<span id="cb7-36"><a href="section-5.-markov-chain-monte-carlo.html#cb7-36" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-37"><a href="section-5.-markov-chain-monte-carlo.html#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>quiet) {</span>
-<span id="cb7-38"><a href="section-5.-markov-chain-monte-carlo.html#cb7-38" aria-hidden="true" tabindex="-1"></a>    frac_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">/</span> N</span>
-<span id="cb7-39"><a href="section-5.-markov-chain-monte-carlo.html#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="fu">glue</span>(<span class="st">&quot;fraction of accepted jumps: {frac_accepts}&quot;</span>))</span>
-<span id="cb7-40"><a href="section-5.-markov-chain-monte-carlo.html#cb7-40" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-41"><a href="section-5.-markov-chain-monte-carlo.html#cb7-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">chain_to_df</span>(chain, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;theta_1&quot;</span>, <span class="st">&quot;theta_2&quot;</span>)))</span>
-<span id="cb7-42"><a href="section-5.-markov-chain-monte-carlo.html#cb7-42" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-43"><a href="section-5.-markov-chain-monte-carlo.html#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-44"><a href="section-5.-markov-chain-monte-carlo.html#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb7-45"><a href="section-5.-markov-chain-monte-carlo.html#cb7-45" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
-<span id="cb7-46"><a href="section-5.-markov-chain-monte-carlo.html#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
-<span id="cb7-47"><a href="section-5.-markov-chain-monte-carlo.html#cb7-47" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">metropolis_algorithm_demo</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), starting_points[[.x]]) <span class="sc">%&gt;%</span></span>
-<span id="cb7-48"><a href="section-5.-markov-chain-monte-carlo.html#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
-<span id="cb7-49"><a href="section-5.-markov-chain-monte-carlo.html#cb7-49" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="section-5.-markov-chain-monte-carlo.html#cb9-1" aria-hidden="true" tabindex="-1"></a>calc_metropolis_density_ratio <span class="ot">&lt;-</span> <span class="cf">function</span>(t_star, t_m1, data, prior_cov_mat) {</span>
+<span id="cb9-2"><a href="section-5.-markov-chain-monte-carlo.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  numerator <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(t_star, data, prior_cov_mat)</span>
+<span id="cb9-3"><a href="section-5.-markov-chain-monte-carlo.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  denominator <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(t_m1, data, prior_cov_mat)</span>
+<span id="cb9-4"><a href="section-5.-markov-chain-monte-carlo.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(numerator <span class="sc">/</span> denominator)</span>
+<span id="cb9-5"><a href="section-5.-markov-chain-monte-carlo.html#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-6"><a href="section-5.-markov-chain-monte-carlo.html#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="section-5.-markov-chain-monte-carlo.html#cb9-7" aria-hidden="true" tabindex="-1"></a>metropolis_algorithm_demo <span class="ot">&lt;-</span> <span class="cf">function</span>(data, theta_t0, <span class="at">N =</span> <span class="dv">1000</span>, <span class="at">quiet =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb9-8"><a href="section-5.-markov-chain-monte-carlo.html#cb9-8" aria-hidden="true" tabindex="-1"></a>  theta_t <span class="ot">&lt;-</span> <span class="fu">unlist</span>(theta_t0)</span>
+<span id="cb9-9"><a href="section-5.-markov-chain-monte-carlo.html#cb9-9" aria-hidden="true" tabindex="-1"></a>  prior_dist_mu <span class="ot">&lt;-</span> data</span>
+<span id="cb9-10"><a href="section-5.-markov-chain-monte-carlo.html#cb9-10" aria-hidden="true" tabindex="-1"></a>  prior_dist_cov_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb9-11"><a href="section-5.-markov-chain-monte-carlo.html#cb9-11" aria-hidden="true" tabindex="-1"></a>  jumping_dist_cov_mat <span class="ot">&lt;-</span> prior_dist_cov_mat <span class="sc">*</span> <span class="fl">0.2</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb9-12"><a href="section-5.-markov-chain-monte-carlo.html#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="section-5.-markov-chain-monte-carlo.html#cb9-13" aria-hidden="true" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(<span class="cn">NA_real_</span>, <span class="at">n =</span> N <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb9-14"><a href="section-5.-markov-chain-monte-carlo.html#cb9-14" aria-hidden="true" tabindex="-1"></a>  chain[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> theta_t</span>
+<span id="cb9-15"><a href="section-5.-markov-chain-monte-carlo.html#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="section-5.-markov-chain-monte-carlo.html#cb9-16" aria-hidden="true" tabindex="-1"></a>  n_accepts <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb9-17"><a href="section-5.-markov-chain-monte-carlo.html#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="section-5.-markov-chain-monte-carlo.html#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, N <span class="sc">+</span> <span class="dv">1</span>)) {</span>
+<span id="cb9-19"><a href="section-5.-markov-chain-monte-carlo.html#cb9-19" aria-hidden="true" tabindex="-1"></a>    theta_star <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">rmvnorm</span>(</span>
+<span id="cb9-20"><a href="section-5.-markov-chain-monte-carlo.html#cb9-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> theta_t, <span class="at">sigma =</span> jumping_dist_cov_mat</span>
+<span id="cb9-21"><a href="section-5.-markov-chain-monte-carlo.html#cb9-21" aria-hidden="true" tabindex="-1"></a>    )[<span class="dv">1</span>, ]</span>
+<span id="cb9-22"><a href="section-5.-markov-chain-monte-carlo.html#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="section-5.-markov-chain-monte-carlo.html#cb9-23" aria-hidden="true" tabindex="-1"></a>    density_ratio <span class="ot">&lt;-</span> <span class="fu">calc_metropolis_density_ratio</span>(</span>
+<span id="cb9-24"><a href="section-5.-markov-chain-monte-carlo.html#cb9-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">t_star =</span> theta_star,</span>
+<span id="cb9-25"><a href="section-5.-markov-chain-monte-carlo.html#cb9-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">t_m1 =</span> theta_t,</span>
+<span id="cb9-26"><a href="section-5.-markov-chain-monte-carlo.html#cb9-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> data,</span>
+<span id="cb9-27"><a href="section-5.-markov-chain-monte-carlo.html#cb9-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">prior_cov_mat =</span> prior_dist_cov_mat</span>
+<span id="cb9-28"><a href="section-5.-markov-chain-monte-carlo.html#cb9-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-29"><a href="section-5.-markov-chain-monte-carlo.html#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="section-5.-markov-chain-monte-carlo.html#cb9-30" aria-hidden="true" tabindex="-1"></a>    accept <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fu">min</span>(<span class="fu">c</span>(<span class="dv">1</span>, density_ratio))</span>
+<span id="cb9-31"><a href="section-5.-markov-chain-monte-carlo.html#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (accept) {</span>
+<span id="cb9-32"><a href="section-5.-markov-chain-monte-carlo.html#cb9-32" aria-hidden="true" tabindex="-1"></a>      theta_t <span class="ot">&lt;-</span> theta_star</span>
+<span id="cb9-33"><a href="section-5.-markov-chain-monte-carlo.html#cb9-33" aria-hidden="true" tabindex="-1"></a>      n_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb9-34"><a href="section-5.-markov-chain-monte-carlo.html#cb9-34" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-35"><a href="section-5.-markov-chain-monte-carlo.html#cb9-35" aria-hidden="true" tabindex="-1"></a>    chain[[t]] <span class="ot">&lt;-</span> theta_t</span>
+<span id="cb9-36"><a href="section-5.-markov-chain-monte-carlo.html#cb9-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-37"><a href="section-5.-markov-chain-monte-carlo.html#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>quiet) {</span>
+<span id="cb9-38"><a href="section-5.-markov-chain-monte-carlo.html#cb9-38" aria-hidden="true" tabindex="-1"></a>    frac_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">/</span> N</span>
+<span id="cb9-39"><a href="section-5.-markov-chain-monte-carlo.html#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="fu">glue</span>(<span class="st">&quot;fraction of accepted jumps: {frac_accepts}&quot;</span>))</span>
+<span id="cb9-40"><a href="section-5.-markov-chain-monte-carlo.html#cb9-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-41"><a href="section-5.-markov-chain-monte-carlo.html#cb9-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">chain_to_df</span>(chain, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;theta_1&quot;</span>, <span class="st">&quot;theta_2&quot;</span>)))</span>
+<span id="cb9-42"><a href="section-5.-markov-chain-monte-carlo.html#cb9-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-43"><a href="section-5.-markov-chain-monte-carlo.html#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="section-5.-markov-chain-monte-carlo.html#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb9-45"><a href="section-5.-markov-chain-monte-carlo.html#cb9-45" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb9-46"><a href="section-5.-markov-chain-monte-carlo.html#cb9-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb9-47"><a href="section-5.-markov-chain-monte-carlo.html#cb9-47" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">metropolis_algorithm_demo</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), starting_points[[.x]]) <span class="sc">%&gt;%</span></span>
+<span id="cb9-48"><a href="section-5.-markov-chain-monte-carlo.html#cb9-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
+<span id="cb9-49"><a href="section-5.-markov-chain-monte-carlo.html#cb9-49" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>#&gt; fraction of accepted jumps: 0.888</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.868</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.914</code></pre>
 <pre><code>#&gt; fraction of accepted jumps: 0.869</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="section-5.-markov-chain-monte-carlo.html#cb12-1" aria-hidden="true" tabindex="-1"></a>metropolis_plot_chains <span class="ot">&lt;-</span> <span class="fu">plot_chains</span>(metropolis_chains) <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="section-5.-markov-chain-monte-carlo.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
-<span id="cb12-3"><a href="section-5.-markov-chain-monte-carlo.html#cb12-3" aria-hidden="true" tabindex="-1"></a>metropolis_plot_points <span class="ot">&lt;-</span> metropolis_chains <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="section-5.-markov-chain-monte-carlo.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
-<span id="cb12-5"><a href="section-5.-markov-chain-monte-carlo.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-6"><a href="section-5.-markov-chain-monte-carlo.html#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_points</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb12-7"><a href="section-5.-markov-chain-monte-carlo.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
-<span id="cb12-8"><a href="section-5.-markov-chain-monte-carlo.html#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="section-5.-markov-chain-monte-carlo.html#cb12-9" aria-hidden="true" tabindex="-1"></a>(metropolis_plot_chains <span class="sc">|</span> metropolis_plot_points) <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&quot;Metropolis algorithm&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="section-5.-markov-chain-monte-carlo.html#cb14-1" aria-hidden="true" tabindex="-1"></a>metropolis_plot_chains <span class="ot">&lt;-</span> <span class="fu">plot_chains</span>(metropolis_chains) <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="section-5.-markov-chain-monte-carlo.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
+<span id="cb14-3"><a href="section-5.-markov-chain-monte-carlo.html#cb14-3" aria-hidden="true" tabindex="-1"></a>metropolis_plot_points <span class="ot">&lt;-</span> metropolis_chains <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="section-5.-markov-chain-monte-carlo.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="section-5.-markov-chain-monte-carlo.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="section-5.-markov-chain-monte-carlo.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_points</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="section-5.-markov-chain-monte-carlo.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theta_axis_labs</span>()</span>
+<span id="cb14-8"><a href="section-5.-markov-chain-monte-carlo.html#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="section-5.-markov-chain-monte-carlo.html#cb14-9" aria-hidden="true" tabindex="-1"></a>(metropolis_plot_chains <span class="sc">|</span> metropolis_plot_points) <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&quot;Metropolis algorithm&quot;</span>)</span></code></pre></div>
 <p><img src="notes-05_mcmc_bda3-11_files/figure-html/unnamed-chunk-2-1.png" width="2100" /></p>
 </div>
 <div id="the-metropolis-hastings-algorithm" class="section level5 unnumbered">
@@ -1009,6 +1009,44 @@ div.csl-indent {
 <p><span class="math display">\[
 \hat{\rho}_n = 1 - \frac{W - \frac{1}{M} \sum_m^M \hat{\rho}_{n,m}}{2 \widehat{\text{var}}^+}
 \]</span></p>
+<hr />
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="section-5.-markov-chain-monte-carlo.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
+#&gt; Running under: macOS Big Sur 10.16
+#&gt; 
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#&gt; 
+#&gt; locale:
+#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#&gt; 
+#&gt; other attached packages:
+#&gt;  [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4    
+#&gt;  [5] readr_2.0.1     tidyr_1.1.3     tibble_3.1.3    ggplot2_3.3.5  
+#&gt;  [9] tidyverse_1.3.1 patchwork_1.1.1 ggtext_0.1.1    glue_1.4.2     
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] Rcpp_1.0.7         mvtnorm_1.1-2      lubridate_1.7.10   clisymbols_1.2.0  
+#&gt;  [5] assertthat_0.2.1   digest_0.6.27      utf8_1.2.2         R6_2.5.0          
+#&gt;  [9] cellranger_1.1.0   backports_1.2.1    reprex_2.0.1       evaluate_0.14     
+#&gt; [13] highr_0.9          httr_1.4.2         pillar_1.6.2       rlang_0.4.11      
+#&gt; [17] readxl_1.3.1       rstudioapi_0.13    jquerylib_0.1.4    rmarkdown_2.10    
+#&gt; [21] labeling_0.4.2     munsell_0.5.0      gridtext_0.1.4     broom_0.7.9       
+#&gt; [25] compiler_4.1.2     modelr_0.1.8       xfun_0.25          pkgconfig_2.0.3   
+#&gt; [29] htmltools_0.5.1.1  tidyselect_1.1.1   bookdown_0.24      fansi_0.5.0       
+#&gt; [33] crayon_1.4.1       tzdb_0.1.2         dbplyr_2.1.1       withr_2.4.2       
+#&gt; [37] grid_4.1.2         jsonlite_1.7.2     gtable_0.3.0       lifecycle_1.0.0   
+#&gt; [41] DBI_1.1.1          magrittr_2.0.1     scales_1.1.1       cli_3.0.1         
+#&gt; [45] stringi_1.7.3      farver_2.1.0       renv_0.14.0        fs_1.5.0          
+#&gt; [49] xml2_1.3.2         bslib_0.2.5.1      ellipsis_0.3.2     generics_0.1.0    
+#&gt; [53] vctrs_0.3.8        RColorBrewer_1.1-2 tools_4.1.2        markdown_1.1      
+#&gt; [57] hms_1.1.0          yaml_2.2.1         colorspace_2.0-2   rvest_1.0.1       
+#&gt; [61] knitr_1.33         haven_2.4.3        sass_0.4.0</code></pre>
 
 </div>
 </div>

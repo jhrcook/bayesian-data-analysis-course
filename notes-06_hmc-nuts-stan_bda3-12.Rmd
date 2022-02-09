@@ -2,7 +2,7 @@
 
 2021-10-04
 
-```{r setup, include=FALSE}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 ```
 
@@ -141,7 +141,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 example: Binomial model
 
-```
+```stan
 data {
   int <lower=0> N; // number of experiments
   int<lower=0,upper=N> y; // number of successes
@@ -182,7 +182,7 @@ fit = model.sampling(data=data)
 
 example: Difference between proportions
 
-```
+```stan
 data {
   int<lower=0> N1;
   int<lower=0> y1;
@@ -215,7 +215,7 @@ check_div(fit_bin2)
 
 example of scaling data in the Stan language
 
-```
+```stan
 data {
   int<lower=0> N; // number of data points
   vector[N] x;
@@ -239,3 +239,9 @@ transformed_data {
   - 'bayesplot': visualization and model checking (see model checking in Ch 6)
   - 'loo': cross-validation model assessment, comparison and averaging (see Ch 7)
   - 'projpred': projection predictive variable selection
+
+---
+
+```{r}
+sessionInfo()
+```

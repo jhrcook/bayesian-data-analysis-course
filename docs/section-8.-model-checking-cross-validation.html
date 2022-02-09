@@ -674,25 +674,25 @@ div.csl-indent {
 <li>examples with binary data and logistic regression</li>
 <li>get posterior predictive distribution in Stan:</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode stan"><code class="sourceCode stan"><span id="cb27-1"><a href="section-8.-model-checking-cross-validation.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
-<span id="cb27-2"><a href="section-8.-model-checking-cross-validation.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">1</span>&gt; N;</span>
-<span id="cb27-3"><a href="section-8.-model-checking-cross-validation.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; y[N];</span>
-<span id="cb27-4"><a href="section-8.-model-checking-cross-validation.html#cb27-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-5"><a href="section-8.-model-checking-cross-validation.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
-<span id="cb27-6"><a href="section-8.-model-checking-cross-validation.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; lambda;</span>
-<span id="cb27-7"><a href="section-8.-model-checking-cross-validation.html#cb27-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-8"><a href="section-8.-model-checking-cross-validation.html#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="kw">model</span> {</span>
-<span id="cb27-9"><a href="section-8.-model-checking-cross-validation.html#cb27-9" aria-hidden="true" tabindex="-1"></a>  lambda ~ exponential(<span class="fl">0.2</span>);</span>
-<span id="cb27-10"><a href="section-8.-model-checking-cross-validation.html#cb27-10" aria-hidden="true" tabindex="-1"></a>  y ~ poisson(lambda);</span>
-<span id="cb27-11"><a href="section-8.-model-checking-cross-validation.html#cb27-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-12"><a href="section-8.-model-checking-cross-validation.html#cb27-12" aria-hidden="true" tabindex="-1"></a>generated_quantities {</span>
-<span id="cb27-13"><a href="section-8.-model-checking-cross-validation.html#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> log_lik[N];</span>
-<span id="cb27-14"><a href="section-8.-model-checking-cross-validation.html#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> y_rep[N];</span>
-<span id="cb27-15"><a href="section-8.-model-checking-cross-validation.html#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span>:N) {</span>
-<span id="cb27-16"><a href="section-8.-model-checking-cross-validation.html#cb27-16" aria-hidden="true" tabindex="-1"></a>    y_rep[n] = poisson_rng(lambda);</span>
-<span id="cb27-17"><a href="section-8.-model-checking-cross-validation.html#cb27-17" aria-hidden="true" tabindex="-1"></a>    log_lik[n] = poisson_lpmf(y[n] | lambda);</span>
-<span id="cb27-18"><a href="section-8.-model-checking-cross-validation.html#cb27-18" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb27-19"><a href="section-8.-model-checking-cross-validation.html#cb27-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode stan"><code class="sourceCode stan"><span id="cb32-1"><a href="section-8.-model-checking-cross-validation.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
+<span id="cb32-2"><a href="section-8.-model-checking-cross-validation.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">1</span>&gt; N;</span>
+<span id="cb32-3"><a href="section-8.-model-checking-cross-validation.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; y[N];</span>
+<span id="cb32-4"><a href="section-8.-model-checking-cross-validation.html#cb32-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-5"><a href="section-8.-model-checking-cross-validation.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
+<span id="cb32-6"><a href="section-8.-model-checking-cross-validation.html#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; lambda;</span>
+<span id="cb32-7"><a href="section-8.-model-checking-cross-validation.html#cb32-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-8"><a href="section-8.-model-checking-cross-validation.html#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="kw">model</span> {</span>
+<span id="cb32-9"><a href="section-8.-model-checking-cross-validation.html#cb32-9" aria-hidden="true" tabindex="-1"></a>  lambda ~ exponential(<span class="fl">0.2</span>);</span>
+<span id="cb32-10"><a href="section-8.-model-checking-cross-validation.html#cb32-10" aria-hidden="true" tabindex="-1"></a>  y ~ poisson(lambda);</span>
+<span id="cb32-11"><a href="section-8.-model-checking-cross-validation.html#cb32-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-12"><a href="section-8.-model-checking-cross-validation.html#cb32-12" aria-hidden="true" tabindex="-1"></a>generated_quantities {</span>
+<span id="cb32-13"><a href="section-8.-model-checking-cross-validation.html#cb32-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> log_lik[N];</span>
+<span id="cb32-14"><a href="section-8.-model-checking-cross-validation.html#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> y_rep[N];</span>
+<span id="cb32-15"><a href="section-8.-model-checking-cross-validation.html#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span>:N) {</span>
+<span id="cb32-16"><a href="section-8.-model-checking-cross-validation.html#cb32-16" aria-hidden="true" tabindex="-1"></a>    y_rep[n] = poisson_rng(lambda);</span>
+<span id="cb32-17"><a href="section-8.-model-checking-cross-validation.html#cb32-17" aria-hidden="true" tabindex="-1"></a>    log_lik[n] = poisson_lpmf(y[n] | lambda);</span>
+<span id="cb32-18"><a href="section-8.-model-checking-cross-validation.html#cb32-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-19"><a href="section-8.-model-checking-cross-validation.html#cb32-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <hr />
 </div>
 </div>
@@ -1057,8 +1057,10 @@ Although WAIC is asymptotically equal to LOO, we demonstrate that PSIS-LOO is mo
 </ul>
 <p><span class="math display">\[
 \widehat{lpd} = \sum_{i=1}^n \lgroup \frac{1}{S} \sum_{s=1}^S p(y_i|\theta^s) \rgroup
-\]</span>
-##### Pareto smoothed importance sampling {-}</p>
+\]</span></p>
+</div>
+<div id="pareto-smoothed-importance-sampling" class="section level5 unnumbered">
+<h5>Pareto smoothed importance sampling</h5>
 <ul>
 <li>fit the right tail of importance weights to smooth the values</li>
 <li>The estimated shape parameter <span class="math inline">\(\hat{k}\)</span> of the generalized Pareto distribution can be used to assessthe reliability of the estimate:

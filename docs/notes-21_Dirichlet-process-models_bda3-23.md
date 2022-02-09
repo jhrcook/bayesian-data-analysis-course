@@ -3,6 +3,19 @@
 2022-01-20
 
 
+```r
+knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
+
+library(tidyverse)
+
+theme_set(
+  theme_bw() +
+    theme(
+      strip.background = element_blank(),
+      axis.ticks = element_blank()
+    )
+)
+```
 
 > These are just notes on a single chapter of *BDA3* that were not part of the course.
 

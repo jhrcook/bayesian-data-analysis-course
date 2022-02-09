@@ -169,3 +169,9 @@ posteriors %>%
 
 The posterior is not very sensitive to the prior save for the exception of an overly-confident prior of $\text{Beta}(20, 100)$.
 This is likely due to the large amount of data, meaning that the likelihood dominated the posterior.
+
+---
+
+```{r}
+sessionInfo()
+```

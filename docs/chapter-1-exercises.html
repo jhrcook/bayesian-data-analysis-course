@@ -505,6 +505,7 @@ div.csl-indent {
 <div id="chapter-1-exercises" class="section level1" number="29">
 <h1><span class="header-section-number">29</span> Chapter 1 Exercises</h1>
 <p>2021-08-19</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="chapter-1-exercises.html#cb306-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div>
 <blockquote>
 <p>Complete questions 1-4 and 6-8.</p>
 </blockquote>
@@ -519,16 +520,16 @@ div.csl-indent {
 &amp;= \frac{1}{2} N(y|1,2) + \frac{1}{2} N(y|2,2)
 \end{aligned}
 \]</span></p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="chapter-1-exercises.html#cb298-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
-<span id="cb298-2"><a href="chapter-1-exercises.html#cb298-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(y, <span class="dv">1</span>, <span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(y, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb298-3"><a href="chapter-1-exercises.html#cb298-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb298-4"><a href="chapter-1-exercises.html#cb298-4" aria-hidden="true" tabindex="-1"></a>  y, d,</span>
-<span id="cb298-5"><a href="chapter-1-exercises.html#cb298-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
-<span id="cb298-6"><a href="chapter-1-exercises.html#cb298-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">frame =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb298-7"><a href="chapter-1-exercises.html#cb298-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb298-8"><a href="chapter-1-exercises.html#cb298-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;probability density&quot;</span>,</span>
-<span id="cb298-9"><a href="chapter-1-exercises.html#cb298-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Joint probability density of y&quot;</span></span>
-<span id="cb298-10"><a href="chapter-1-exercises.html#cb298-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="chapter-1-exercises.html#cb307-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="dv">10</span>, <span class="fl">0.1</span>)</span>
+<span id="cb307-2"><a href="chapter-1-exercises.html#cb307-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(y, <span class="dv">1</span>, <span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(y, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb307-3"><a href="chapter-1-exercises.html#cb307-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb307-4"><a href="chapter-1-exercises.html#cb307-4" aria-hidden="true" tabindex="-1"></a>  y, d,</span>
+<span id="cb307-5"><a href="chapter-1-exercises.html#cb307-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb307-6"><a href="chapter-1-exercises.html#cb307-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">frame =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb307-7"><a href="chapter-1-exercises.html#cb307-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb307-8"><a href="chapter-1-exercises.html#cb307-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;probability density&quot;</span>,</span>
+<span id="cb307-9"><a href="chapter-1-exercises.html#cb307-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Joint probability density of y&quot;</span></span>
+<span id="cb307-10"><a href="chapter-1-exercises.html#cb307-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="exercises-01_files/figure-html/unnamed-chunk-1-1.png" width="2100" /></p>
 <p><strong>b) What is <span class="math inline">\(\Pr(\theta=1 | y=1)\)</span> with <span class="math inline">\(\sigma=2\)</span>.</strong></p>
 <p>Solve using Baye’s rule:</p>
@@ -551,7 +552,7 @@ div.csl-indent {
 &amp;= \frac{\frac{1}{2} N(y=1|1,2)}{\frac{1}{2} N(y=1|1,2) + \frac{1}{2} N(y=1|2,2)} \\
 \end{aligned}
 \]</span></p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="chapter-1-exercises.html#cb299-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="sc">/</span> (<span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="chapter-1-exercises.html#cb308-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="sc">/</span> (<span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">dnorm</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>#&gt; [1] 0.5312094</code></pre>
 <p><strong>c) Describe the posterior density of <span class="math inline">\(\theta\)</span> as <span class="math inline">\(\sigma\)</span> increases or decreases.</strong></p>
 <p>As <span class="math inline">\(\sigma \to \infty\)</span>, the probabilities <span class="math inline">\(\Pr(y|\theta)\)</span> and <span class="math inline">\(\Pr(y)\)</span> become increasingly wide, resulting in the prior probability <span class="math inline">\(\Pr(\theta)\)</span> consuming the equation resulting in <span class="math inline">\(\Pr(\theta=1|y=1) = \frac{1}{2}\)</span>.
@@ -606,6 +607,29 @@ For off-diagonals, the result is the covariance between the indeices of <span cl
 Thus the probability of the event is not subjective, the two people have different amounts of data.</p>
 <p><strong>(b) The probability that Brazil wins the next World Cup, where <span class="math inline">\(A\)</span> is ignorant of soccer and <span class="math inline">\(B\)</span> is a knowledgeable sports fan.</strong></p>
 <p>As the event has yet to occur, the probability of the event is subjective and <span class="math inline">\(B\)</span> has a stronger prior belief than does <span class="math inline">\(A\)</span>.</p>
+<hr />
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="chapter-1-exercises.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
+#&gt; Running under: macOS Big Sur 10.16
+#&gt; 
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#&gt; 
+#&gt; locale:
+#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] bookdown_0.24     clisymbols_1.2.0  digest_0.6.27     R6_2.5.0         
+#&gt;  [5] jsonlite_1.7.2    magrittr_2.0.1    evaluate_0.14     highr_0.9        
+#&gt;  [9] stringi_1.7.3     rlang_0.4.11      renv_0.14.0       jquerylib_0.1.4  
+#&gt; [13] bslib_0.2.5.1     rmarkdown_2.10    tools_4.1.2       stringr_1.4.0    
+#&gt; [17] glue_1.4.2        xfun_0.25         yaml_2.2.1        compiler_4.1.2   
+#&gt; [21] htmltools_0.5.1.1 knitr_1.33        sass_0.4.0</code></pre>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 
 2022-01-20
 
-```{r setup, include=FALSE}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, dpi = 300, comment = "#>")
 
 library(tidyverse)

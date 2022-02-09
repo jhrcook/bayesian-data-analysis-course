@@ -453,3 +453,9 @@ The posterior means for $\alpha$ and $\beta$ are indicated by the red dot over-l
 ```{r}
 p + geom_point(x = a_post_mean, y = b_post_mean, color = "red", shape = 4, size = 3)
 ```
+
+---
+
+```{r}
+sessionInfo()
+```

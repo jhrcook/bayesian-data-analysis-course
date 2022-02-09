@@ -10,3 +10,6 @@ Each section corresponding to a session of the course contains several parts.
 Each begins with a list of resources for the session including readings from BDA3 or external sources (e.g. papers), lecture recordings and slides, a reading guide/instructions, and a link to any assignment instructions.
 This is then followed by notes from the reading(s) and lecture.
 In contrast, the sections corresponding to my additional reading just contain notes on the book's text.
+
+The notes on the book may at times be sparse because I also took notes directly in the book.
+The balance of where I took notes varied from chapter-to-chapter.

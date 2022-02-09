@@ -547,3 +547,9 @@ rope
 prob_rope <- mean((mud_draws > -rope) & (mud_draws < rope))
 glue("probability that µ_d is within the ROPE: {round(prob_rope, 3)}")
 ```
+
+---
+
+```{r}
+sessionInfo()
+```

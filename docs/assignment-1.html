@@ -508,9 +508,9 @@ div.csl-indent {
 <p><strong><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-01.pdf">Assignment 1</a></strong></p>
 <div id="setup" class="section level2" number="20.1">
 <h2><span class="header-section-number">20.1</span> Setup</h2>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="assignment-1.html#cb34-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb34-2"><a href="assignment-1.html#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="assignment-1.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="assignment-1.html#cb43-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb43-2"><a href="assignment-1.html#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="assignment-1.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span></code></pre></div>
 </div>
 <div id="exercise-1" class="section level2" number="20.2">
 <h2><span class="header-section-number">20.2</span> Exercise 1</h2>
@@ -619,49 +619,49 @@ Taking the test twice will only help if the false positive is caused by randomne
 <p><span class="math display">\[
 \Pr(red) = \Sigma_{b}^{boxes} \Pr(\text{red} | \text{box}_b) \Pr(\text{box}_b)
 \]</span></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="assignment-1.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contents of the boxes.</span></span>
-<span id="cb35-2"><a href="assignment-1.html#cb35-2" aria-hidden="true" tabindex="-1"></a>boxes <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
-<span id="cb35-3"><a href="assignment-1.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>),</span>
-<span id="cb35-4"><a href="assignment-1.html#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">2</span>,</span>
-<span id="cb35-5"><a href="assignment-1.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;white&quot;</span>))</span>
-<span id="cb35-6"><a href="assignment-1.html#cb35-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb35-7"><a href="assignment-1.html#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Probability of selecting each box.</span></span>
-<span id="cb35-8"><a href="assignment-1.html#cb35-8" aria-hidden="true" tabindex="-1"></a>box_probs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
-<span id="cb35-9"><a href="assignment-1.html#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>),</span>
-<span id="cb35-10"><a href="assignment-1.html#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">1</span>,</span>
-<span id="cb35-11"><a href="assignment-1.html#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>))</span>
-<span id="cb35-12"><a href="assignment-1.html#cb35-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb35-13"><a href="assignment-1.html#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-14"><a href="assignment-1.html#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the probability of red per box.</span></span>
-<span id="cb35-15"><a href="assignment-1.html#cb35-15" aria-hidden="true" tabindex="-1"></a>p_red_per_box <span class="ot">&lt;-</span> <span class="cf">function</span>(boxes) {</span>
-<span id="cb35-16"><a href="assignment-1.html#cb35-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(boxes[, <span class="st">&quot;red&quot;</span>] <span class="sc">/</span> <span class="fu">apply</span>(boxes, <span class="dv">1</span>, sum))</span>
-<span id="cb35-17"><a href="assignment-1.html#cb35-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb35-18"><a href="assignment-1.html#cb35-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-19"><a href="assignment-1.html#cb35-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the probability of pulling red.</span></span>
-<span id="cb35-20"><a href="assignment-1.html#cb35-20" aria-hidden="true" tabindex="-1"></a>p_red <span class="ot">&lt;-</span> <span class="cf">function</span>(boxes, box_probs) {</span>
-<span id="cb35-21"><a href="assignment-1.html#cb35-21" aria-hidden="true" tabindex="-1"></a>  red_probs <span class="ot">&lt;-</span> <span class="fu">p_red_per_box</span>(boxes)</span>
-<span id="cb35-22"><a href="assignment-1.html#cb35-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sum</span>(red_probs <span class="sc">*</span> box_probs))</span>
-<span id="cb35-23"><a href="assignment-1.html#cb35-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb35-24"><a href="assignment-1.html#cb35-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-25"><a href="assignment-1.html#cb35-25" aria-hidden="true" tabindex="-1"></a>prob_red <span class="ot">&lt;-</span> <span class="fu">p_red</span>(boxes, box_probs)</span>
-<span id="cb35-26"><a href="assignment-1.html#cb35-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;probability of red: {prob_red}&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="assignment-1.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contents of the boxes.</span></span>
+<span id="cb44-2"><a href="assignment-1.html#cb44-2" aria-hidden="true" tabindex="-1"></a>boxes <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb44-3"><a href="assignment-1.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>),</span>
+<span id="cb44-4"><a href="assignment-1.html#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb44-5"><a href="assignment-1.html#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;white&quot;</span>))</span>
+<span id="cb44-6"><a href="assignment-1.html#cb44-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb44-7"><a href="assignment-1.html#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Probability of selecting each box.</span></span>
+<span id="cb44-8"><a href="assignment-1.html#cb44-8" aria-hidden="true" tabindex="-1"></a>box_probs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb44-9"><a href="assignment-1.html#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb44-10"><a href="assignment-1.html#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb44-11"><a href="assignment-1.html#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>))</span>
+<span id="cb44-12"><a href="assignment-1.html#cb44-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb44-13"><a href="assignment-1.html#cb44-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-14"><a href="assignment-1.html#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the probability of red per box.</span></span>
+<span id="cb44-15"><a href="assignment-1.html#cb44-15" aria-hidden="true" tabindex="-1"></a>p_red_per_box <span class="ot">&lt;-</span> <span class="cf">function</span>(boxes) {</span>
+<span id="cb44-16"><a href="assignment-1.html#cb44-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(boxes[, <span class="st">&quot;red&quot;</span>] <span class="sc">/</span> <span class="fu">apply</span>(boxes, <span class="dv">1</span>, sum))</span>
+<span id="cb44-17"><a href="assignment-1.html#cb44-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb44-18"><a href="assignment-1.html#cb44-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-19"><a href="assignment-1.html#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the probability of pulling red.</span></span>
+<span id="cb44-20"><a href="assignment-1.html#cb44-20" aria-hidden="true" tabindex="-1"></a>p_red <span class="ot">&lt;-</span> <span class="cf">function</span>(boxes, box_probs) {</span>
+<span id="cb44-21"><a href="assignment-1.html#cb44-21" aria-hidden="true" tabindex="-1"></a>  red_probs <span class="ot">&lt;-</span> <span class="fu">p_red_per_box</span>(boxes)</span>
+<span id="cb44-22"><a href="assignment-1.html#cb44-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sum</span>(red_probs <span class="sc">*</span> box_probs))</span>
+<span id="cb44-23"><a href="assignment-1.html#cb44-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb44-24"><a href="assignment-1.html#cb44-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-25"><a href="assignment-1.html#cb44-25" aria-hidden="true" tabindex="-1"></a>prob_red <span class="ot">&lt;-</span> <span class="fu">p_red</span>(boxes, box_probs)</span>
+<span id="cb44-26"><a href="assignment-1.html#cb44-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;probability of red: {prob_red}&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt; probability of red: 0.319285714285714</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="assignment-1.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the prob. that each box was used given a red ball was selected.</span></span>
-<span id="cb37-2"><a href="assignment-1.html#cb37-2" aria-hidden="true" tabindex="-1"></a>p_box <span class="ot">&lt;-</span> <span class="cf">function</span>(boxes, box_probs) {</span>
-<span id="cb37-3"><a href="assignment-1.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  prob_red <span class="ot">&lt;-</span> <span class="fu">p_red</span>(boxes, box_probs)</span>
-<span id="cb37-4"><a href="assignment-1.html#cb37-4" aria-hidden="true" tabindex="-1"></a>  red_probs <span class="ot">&lt;-</span> <span class="fu">p_red_per_box</span>(boxes)</span>
-<span id="cb37-5"><a href="assignment-1.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  box_probs_red <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb37-6"><a href="assignment-1.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (box <span class="cf">in</span> <span class="fu">rownames</span>(box_probs)) {</span>
-<span id="cb37-7"><a href="assignment-1.html#cb37-7" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">unlist</span>(box_probs[box, ]) <span class="sc">*</span> <span class="fu">unlist</span>(red_probs[box]) <span class="sc">/</span> prob_red</span>
-<span id="cb37-8"><a href="assignment-1.html#cb37-8" aria-hidden="true" tabindex="-1"></a>    box_probs_red <span class="ot">&lt;-</span> <span class="fu">c</span>(box_probs_red, p)</span>
-<span id="cb37-9"><a href="assignment-1.html#cb37-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb37-10"><a href="assignment-1.html#cb37-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(box_probs_red) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(box_probs)</span>
-<span id="cb37-11"><a href="assignment-1.html#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(box_probs_red)</span>
-<span id="cb37-12"><a href="assignment-1.html#cb37-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb37-13"><a href="assignment-1.html#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-14"><a href="assignment-1.html#cb37-14" aria-hidden="true" tabindex="-1"></a>probs_of_boxes <span class="ot">&lt;-</span> <span class="fu">p_box</span>(<span class="at">boxes =</span> boxes, <span class="at">box_probs =</span> box_probs)</span>
-<span id="cb37-15"><a href="assignment-1.html#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">sum</span>(probs_of_boxes) <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb37-16"><a href="assignment-1.html#cb37-16" aria-hidden="true" tabindex="-1"></a>probs_of_boxes</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="assignment-1.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the prob. that each box was used given a red ball was selected.</span></span>
+<span id="cb46-2"><a href="assignment-1.html#cb46-2" aria-hidden="true" tabindex="-1"></a>p_box <span class="ot">&lt;-</span> <span class="cf">function</span>(boxes, box_probs) {</span>
+<span id="cb46-3"><a href="assignment-1.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  prob_red <span class="ot">&lt;-</span> <span class="fu">p_red</span>(boxes, box_probs)</span>
+<span id="cb46-4"><a href="assignment-1.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  red_probs <span class="ot">&lt;-</span> <span class="fu">p_red_per_box</span>(boxes)</span>
+<span id="cb46-5"><a href="assignment-1.html#cb46-5" aria-hidden="true" tabindex="-1"></a>  box_probs_red <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb46-6"><a href="assignment-1.html#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (box <span class="cf">in</span> <span class="fu">rownames</span>(box_probs)) {</span>
+<span id="cb46-7"><a href="assignment-1.html#cb46-7" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">unlist</span>(box_probs[box, ]) <span class="sc">*</span> <span class="fu">unlist</span>(red_probs[box]) <span class="sc">/</span> prob_red</span>
+<span id="cb46-8"><a href="assignment-1.html#cb46-8" aria-hidden="true" tabindex="-1"></a>    box_probs_red <span class="ot">&lt;-</span> <span class="fu">c</span>(box_probs_red, p)</span>
+<span id="cb46-9"><a href="assignment-1.html#cb46-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb46-10"><a href="assignment-1.html#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(box_probs_red) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(box_probs)</span>
+<span id="cb46-11"><a href="assignment-1.html#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(box_probs_red)</span>
+<span id="cb46-12"><a href="assignment-1.html#cb46-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-13"><a href="assignment-1.html#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-14"><a href="assignment-1.html#cb46-14" aria-hidden="true" tabindex="-1"></a>probs_of_boxes <span class="ot">&lt;-</span> <span class="fu">p_box</span>(<span class="at">boxes =</span> boxes, <span class="at">box_probs =</span> box_probs)</span>
+<span id="cb46-15"><a href="assignment-1.html#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">sum</span>(probs_of_boxes) <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb46-16"><a href="assignment-1.html#cb46-16" aria-hidden="true" tabindex="-1"></a>probs_of_boxes</span></code></pre></div>
 <pre><code>#&gt;         A         B         C 
 #&gt; 0.3579418 0.2505593 0.3914989</code></pre>
 </div>
@@ -698,16 +698,42 @@ Taking the test twice will only help if the false positive is caused by randomne
 \Pr(\text{identical} | \text{twin AND brother}) = \frac{\frac{1}{400} \frac{1}{2}}{\frac{7}{2400}} = 0.429
 \]</span></p>
 <p><strong>Implement this as a function in R that computes the probability.</strong></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="assignment-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a>p_identical_twin <span class="ot">&lt;-</span> <span class="cf">function</span>(fraternal_prob, identical_prob) {</span>
-<span id="cb39-2"><a href="assignment-1.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  (identical_prob <span class="sc">*</span> <span class="fl">0.5</span>) <span class="sc">/</span> (identical_prob <span class="sc">*</span> <span class="fl">0.5</span> <span class="sc">+</span> fraternal_prob <span class="sc">*</span> <span class="fl">0.25</span>)</span>
-<span id="cb39-3"><a href="assignment-1.html#cb39-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb39-4"><a href="assignment-1.html#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="assignment-1.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Tests from provided examples.</span></span>
-<span id="cb39-6"><a href="assignment-1.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">round</span>(<span class="fu">p_identical_twin</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">125</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">300</span>), <span class="dv">7</span>) <span class="sc">==</span> <span class="fl">0.4545455</span>)</span>
-<span id="cb39-7"><a href="assignment-1.html#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">round</span>(<span class="fu">p_identical_twin</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">100</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">500</span>), <span class="dv">7</span>) <span class="sc">==</span> <span class="fl">0.2857143</span>)</span>
-<span id="cb39-8"><a href="assignment-1.html#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-9"><a href="assignment-1.html#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">p_identical_twin</span>(<span class="at">fraternal_prob =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">150</span>, <span class="at">identical_prob =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">400</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="assignment-1.html#cb48-1" aria-hidden="true" tabindex="-1"></a>p_identical_twin <span class="ot">&lt;-</span> <span class="cf">function</span>(fraternal_prob, identical_prob) {</span>
+<span id="cb48-2"><a href="assignment-1.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  (identical_prob <span class="sc">*</span> <span class="fl">0.5</span>) <span class="sc">/</span> (identical_prob <span class="sc">*</span> <span class="fl">0.5</span> <span class="sc">+</span> fraternal_prob <span class="sc">*</span> <span class="fl">0.25</span>)</span>
+<span id="cb48-3"><a href="assignment-1.html#cb48-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb48-4"><a href="assignment-1.html#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="assignment-1.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Tests from provided examples.</span></span>
+<span id="cb48-6"><a href="assignment-1.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">round</span>(<span class="fu">p_identical_twin</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">125</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">300</span>), <span class="dv">7</span>) <span class="sc">==</span> <span class="fl">0.4545455</span>)</span>
+<span id="cb48-7"><a href="assignment-1.html#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">round</span>(<span class="fu">p_identical_twin</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">100</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">500</span>), <span class="dv">7</span>) <span class="sc">==</span> <span class="fl">0.2857143</span>)</span>
+<span id="cb48-8"><a href="assignment-1.html#cb48-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="assignment-1.html#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">p_identical_twin</span>(<span class="at">fraternal_prob =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">150</span>, <span class="at">identical_prob =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">400</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 0.4285714</code></pre>
+<hr />
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="assignment-1.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
+#&gt; Running under: macOS Big Sur 10.16
+#&gt; 
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#&gt; 
+#&gt; locale:
+#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#&gt; 
+#&gt; other attached packages:
+#&gt; [1] glue_1.4.2
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] bookdown_0.24     clisymbols_1.2.0  crayon_1.4.1      digest_0.6.27    
+#&gt;  [5] R6_2.5.0          jsonlite_1.7.2    magrittr_2.0.1    evaluate_0.14    
+#&gt;  [9] stringi_1.7.3     rlang_0.4.11      renv_0.14.0       jquerylib_0.1.4  
+#&gt; [13] bslib_0.2.5.1     rmarkdown_2.10    tools_4.1.2       stringr_1.4.0    
+#&gt; [17] xfun_0.25         yaml_2.2.1        compiler_4.1.2    htmltools_0.5.1.1
+#&gt; [21] knitr_1.33        sass_0.4.0</code></pre>
 
 </div>
 </div>

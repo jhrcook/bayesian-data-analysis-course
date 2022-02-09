@@ -34,10 +34,10 @@ rstan_options(auto_write = TRUE)
 
 **Replicate the computations for the bioassay example of section 3.7 (BDA3) using Stan.**
 
-The model is located in "[models/assignment06-bioassay.stan](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/models/assignment06-bioassay.stan).
+The model is located in ["models/assignment06-bioassay.stan"](https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/models/assignment06-bioassay.stan).
 I have copied it below:
 
-```
+```stan
 data {
   int<lower=0> N;    // number of data points
   vector[N] x;       // dose
@@ -122,8 +122,8 @@ bioassay_mdl_posterior <- stan(
 #> 
 #> SAMPLING FOR MODEL 'assignment06-bioassay' NOW (CHAIN 1).
 #> Chain 1: 
-#> Chain 1: Gradient evaluation took 5.5e-05 seconds
-#> Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.55 seconds.
+#> Chain 1: Gradient evaluation took 5.4e-05 seconds
+#> Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.54 seconds.
 #> Chain 1: Adjust your expectations accordingly!
 #> Chain 1: 
 #> Chain 1: 
@@ -140,15 +140,15 @@ bioassay_mdl_posterior <- stan(
 #> Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #> Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 #> Chain 1: 
-#> Chain 1:  Elapsed Time: 0.03982 seconds (Warm-up)
-#> Chain 1:                0.033487 seconds (Sampling)
-#> Chain 1:                0.073307 seconds (Total)
+#> Chain 1:  Elapsed Time: 0.033336 seconds (Warm-up)
+#> Chain 1:                0.029092 seconds (Sampling)
+#> Chain 1:                0.062428 seconds (Total)
 #> Chain 1: 
 #> 
 #> SAMPLING FOR MODEL 'assignment06-bioassay' NOW (CHAIN 2).
 #> Chain 2: 
-#> Chain 2: Gradient evaluation took 1.3e-05 seconds
-#> Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
+#> Chain 2: Gradient evaluation took 1.1e-05 seconds
+#> Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 #> Chain 2: Adjust your expectations accordingly!
 #> Chain 2: 
 #> Chain 2: 
@@ -165,15 +165,15 @@ bioassay_mdl_posterior <- stan(
 #> Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #> Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 #> Chain 2: 
-#> Chain 2:  Elapsed Time: 0.036828 seconds (Warm-up)
-#> Chain 2:                0.034224 seconds (Sampling)
-#> Chain 2:                0.071052 seconds (Total)
+#> Chain 2:  Elapsed Time: 0.033188 seconds (Warm-up)
+#> Chain 2:                0.031381 seconds (Sampling)
+#> Chain 2:                0.064569 seconds (Total)
 #> Chain 2: 
 #> 
 #> SAMPLING FOR MODEL 'assignment06-bioassay' NOW (CHAIN 3).
 #> Chain 3: 
-#> Chain 3: Gradient evaluation took 1.3e-05 seconds
-#> Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
+#> Chain 3: Gradient evaluation took 1.2e-05 seconds
+#> Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
 #> Chain 3: Adjust your expectations accordingly!
 #> Chain 3: 
 #> Chain 3: 
@@ -190,15 +190,15 @@ bioassay_mdl_posterior <- stan(
 #> Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #> Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 #> Chain 3: 
-#> Chain 3:  Elapsed Time: 0.034739 seconds (Warm-up)
-#> Chain 3:                0.027769 seconds (Sampling)
-#> Chain 3:                0.062508 seconds (Total)
+#> Chain 3:  Elapsed Time: 0.034297 seconds (Warm-up)
+#> Chain 3:                0.027382 seconds (Sampling)
+#> Chain 3:                0.061679 seconds (Total)
 #> Chain 3: 
 #> 
 #> SAMPLING FOR MODEL 'assignment06-bioassay' NOW (CHAIN 4).
 #> Chain 4: 
-#> Chain 4: Gradient evaluation took 1.2e-05 seconds
-#> Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+#> Chain 4: Gradient evaluation took 1.1e-05 seconds
+#> Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
 #> Chain 4: Adjust your expectations accordingly!
 #> Chain 4: 
 #> Chain 4: 
@@ -215,9 +215,9 @@ bioassay_mdl_posterior <- stan(
 #> Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 #> Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 #> Chain 4: 
-#> Chain 4:  Elapsed Time: 0.033204 seconds (Warm-up)
-#> Chain 4:                0.028264 seconds (Sampling)
-#> Chain 4:                0.061468 seconds (Total)
+#> Chain 4:  Elapsed Time: 0.032353 seconds (Warm-up)
+#> Chain 4:                0.030003 seconds (Sampling)
+#> Chain 4:                0.062356 seconds (Total)
 #> Chain 4:
 ```
 
@@ -241,15 +241,15 @@ bioassay_mdl_posterior
 #> post-warmup draws per chain=1000, total post-warmup draws=4000.
 #> 
 #>                mean se_mean   sd   2.5%    25%   50%   75% 97.5% n_eff Rhat
-#> mdl_params[1]  0.96    0.02 0.89  -0.65   0.35  0.91  1.54  2.77  1353    1
-#> mdl_params[2] 10.64    0.13 4.64   3.48   7.13 10.03 13.65 20.83  1331    1
-#> theta[1]      -8.19    0.09 3.52 -16.08 -10.35 -7.70 -5.50 -2.77  1509    1
-#> theta[2]      -2.23    0.02 1.10  -4.67  -2.92 -2.11 -1.44 -0.40  2476    1
-#> theta[3]       0.43    0.02 0.77  -1.01  -0.10  0.41  0.92  2.01  1596    1
-#> theta[4]       8.73    0.11 4.00   2.34   5.74  8.19 11.37 17.39  1236    1
-#> lp__          -7.14    0.03 1.00  -9.88  -7.54 -6.83 -6.42 -6.14  1593    1
+#> mdl_params[1]  0.99    0.02 0.89  -0.62   0.38  0.95  1.54  2.80  1290    1
+#> mdl_params[2] 10.70    0.13 4.55   3.57   7.29 10.22 13.39 21.05  1163    1
+#> theta[1]      -8.21    0.09 3.45 -15.99 -10.24 -7.82 -5.63 -2.86  1354    1
+#> theta[2]      -2.22    0.02 1.09  -4.63  -2.89 -2.12 -1.43 -0.41  2236    1
+#> theta[3]       0.46    0.02 0.77  -1.00  -0.07  0.44  0.94  2.01  1506    1
+#> theta[4]       8.80    0.12 3.91   2.51   5.87  8.46 11.14 17.71  1073    1
+#> lp__          -7.12    0.03 1.01  -9.92  -7.52 -6.80 -6.41 -6.15  1054    1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:06:40 2022.
+#> Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:43:02 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).

@@ -2,7 +2,7 @@
 
 2021-12-10
 
-```{r setup, include=FALSE}
+```{r setup, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = "#>", dpi = 300)
 # dpi = 400, fig.width = 7, fig.height = 4.5, fig.retina = TRUE
 

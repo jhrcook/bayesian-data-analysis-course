@@ -218,3 +218,34 @@ pbeta(0.5, 241945, 251527, lower.tail = FALSE) # 1 - p
     - draws are *dependent*
     - computationally heavy
   - we will see Gibbs, Metropolis, and Dynamic Hamiltonian Monte Carlo (HMC; state-of-the-art)
+
+---
+
+
+```r
+sessionInfo()
+```
+
+```
+#> R version 4.1.2 (2021-11-01)
+#> Platform: x86_64-apple-darwin17.0 (64-bit)
+#> Running under: macOS Big Sur 10.16
+#> 
+#> Matrix products: default
+#> BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#> LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#> 
+#> locale:
+#> [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#> 
+#> attached base packages:
+#> [1] stats     graphics  grDevices datasets  utils     methods   base     
+#> 
+#> loaded via a namespace (and not attached):
+#>  [1] bookdown_0.24     clisymbols_1.2.0  digest_0.6.27     R6_2.5.0         
+#>  [5] jsonlite_1.7.2    magrittr_2.0.1    evaluate_0.14     stringi_1.7.3    
+#>  [9] rlang_0.4.11      renv_0.14.0       jquerylib_0.1.4   bslib_0.2.5.1    
+#> [13] rmarkdown_2.10    tools_4.1.2       stringr_1.4.0     glue_1.4.2       
+#> [17] xfun_0.25         yaml_2.2.1        compiler_4.1.2    htmltools_0.5.1.1
+#> [21] knitr_1.33        sass_0.4.0
+```

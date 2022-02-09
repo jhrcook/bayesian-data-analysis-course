@@ -80,7 +80,7 @@ print(separate_model, pars = c("mu", "sigma"))
 #> sigma[4]   6.85    0.06 2.47   3.90   5.26   6.37   7.82  12.71  1640    1
 #>  [ reached getOption("max.print") -- omitted 2 rows ]
 #> 
-#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:07:25 2022.
+#> Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:43:42 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).
@@ -116,7 +116,7 @@ print(pooled_model, pars = c("mu", "sigma"))
 #> mu    93.64    0.06 3.15 87.50 91.56 93.62 95.67 99.94  2906    1
 #> sigma 17.74    0.04 2.33 13.92 16.06 17.47 19.16 22.88  2707    1
 #> 
-#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:07:28 2022.
+#> Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:43:44 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).
@@ -174,7 +174,7 @@ print(hierarchical_model, pars = c("alpha", "tau", "mu", "sigma"))
 #> mu[6]  88.65    0.12 5.69 77.27  84.95  88.75  92.59  99.52  2244 1.00
 #> sigma  14.34    0.05 2.19 10.78  12.78  14.07  15.58  19.52  1980 1.00
 #> 
-#> Samples were drawn using NUTS(diag_e) at Tue Feb  8 07:07:30 2022.
+#> Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:43:46 2022.
 #> For each parameter, n_eff is a crude measure of effective sample size,
 #> and Rhat is the potential scale reduction factor on split chains (at 
 #> convergence, Rhat=1).

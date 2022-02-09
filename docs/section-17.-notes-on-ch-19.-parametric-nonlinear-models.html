@@ -596,13 +596,21 @@ y_i \sim \text{N}(g(x_i, \beta), (\frac{g(x_i, \beta)}{A})^{2\alpha} \sigma_y^2)
 </ul>
 <p><span class="math display">\[
 \log(x_0^\text{init}) \sim \text{N}(\log(d_0^\text{init} \cdot \theta_0), (\sigma^\text{init})^2)
-\]</span>
-- <strong>Dilution errors</strong> (cont)
-- there is no initial dilution for the unknown samples being tested
-- therefore, the unknown initial concentration for sample <span class="math inline">\(j\)</span> is <span class="math inline">\(x^\text{init} = \theta_j\)</span> for <span class="math inline">\(j = 1, \dots, 10\)</span>
-- for the dilutions of the unknown samples, set <span class="math inline">\(x_i = d_i \cdot x_{j(i)}^\text{init}\)</span>
-- <span class="math inline">\(j(i)\)</span> is the sample <span class="math inline">\(j\)</span> corresponding to measurement <span class="math inline">\(i\)</span>
-- <span class="math inline">\(d_i\)</span> is the dilution of measurement <span class="math inline">\(i\)</span> relative to the initial concentration</p>
+\]</span></p>
+<ul>
+<li><strong>Dilution errors</strong> (cont)
+<ul>
+<li>there is no initial dilution for the unknown samples being tested
+<ul>
+<li>therefore, the unknown initial concentration for sample <span class="math inline">\(j\)</span> is <span class="math inline">\(x^\text{init} = \theta_j\)</span> for <span class="math inline">\(j = 1, \dots, 10\)</span></li>
+<li>for the dilutions of the unknown samples, set <span class="math inline">\(x_i = d_i \cdot x_{j(i)}^\text{init}\)</span>
+<ul>
+<li><span class="math inline">\(j(i)\)</span> is the sample <span class="math inline">\(j\)</span> corresponding to measurement <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(d_i\)</span> is the dilution of measurement <span class="math inline">\(i\)</span> relative to the initial concentration</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 </div>
 <div id="prior-distributions" class="section level4 unnumbered">
 <h4>Prior distributions</h4>
