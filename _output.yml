@@ -1,0 +1,17 @@
+bookdown::gitbook:
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><strong><a href="./">Notes for BDA3</a></strong></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="_blank">Published with bookdown</a></li>
+    search:
+      engine: fuse
+    edit:
+      link: https://github.com/hadley/r4ds/edit/master/%s
+      text: "Edit"
+    sharing:
+      github: true
+      twitter: true
+      facebook: false

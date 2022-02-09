@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>27 Assignment 8 | bookdown</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="27 Assignment 8 | bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="27 Assignment 8 | bookdown" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="27 Assignment 8 | bookdown" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="assignment-7.html"/>
+<link rel="next" href="assignment-9.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Notes for BDA3</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bayesian Data Analysis course</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.1</b> Resources</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#how-to-study"><i class="fa fa-check"></i><b>0.2</b> How to study</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-sections"><i class="fa fa-check"></i><b>0.3</b> Course sections</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#additional-notes"><i class="fa fa-check"></i><b>0.4</b> Additional notes</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#assignments-and-exercises"><i class="fa fa-check"></i><b>0.5</b> Assignments and exercises</a></li>
+<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#stan-models"><i class="fa fa-check"></i><b>0.6</b> Stan models</a></li>
+</ul></li>
+<li class="part"><span><b>I Notes</b></span></li>
+<li class="chapter" data-level="" data-path="notes-introduction.html"><a href="notes-introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html"><i class="fa fa-check"></i><b>1</b> Section 1. Course introduction and prerequisites</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#resources-1"><i class="fa fa-check"></i><b>1.1</b> Resources</a></li>
+<li class="chapter" data-level="1.2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#notes"><i class="fa fa-check"></i><b>1.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#reading-instructions"><i class="fa fa-check"></i><b>1.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="1.2.2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#lecture-notes"><i class="fa fa-check"></i><b>1.2.2</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html"><i class="fa fa-check"></i><b>2</b> Section 2. Basics of Bayesian inferences</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#resources-2"><i class="fa fa-check"></i><b>2.1</b> Resources</a></li>
+<li class="chapter" data-level="2.2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#notes-1"><i class="fa fa-check"></i><b>2.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#chapter-instructions"><i class="fa fa-check"></i><b>2.2.1</b> Chapter instructions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#chapter-2.-single-parameter-models"><i class="fa fa-check"></i><b>2.2.2</b> Chapter 2. Single-parameter models</a></li>
+<li class="chapter" data-level="2.2.3" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#lecture-notes-1"><i class="fa fa-check"></i><b>2.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html"><i class="fa fa-check"></i><b>3</b> Section 3. Multidimensional Posterior</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#resources-3"><i class="fa fa-check"></i><b>3.1</b> Resources</a></li>
+<li class="chapter" data-level="3.2" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#notes-2"><i class="fa fa-check"></i><b>3.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#reading-instructions-1"><i class="fa fa-check"></i><b>3.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#chapter-3.-introduction-to-multiparameter-models"><i class="fa fa-check"></i><b>3.2.2</b> Chapter 3. Introduction to multiparameter models</a></li>
+<li class="chapter" data-level="3.2.3" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#lecture-notes-2"><i class="fa fa-check"></i><b>3.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html"><i class="fa fa-check"></i><b>4</b> Section 4. Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#resources-4"><i class="fa fa-check"></i><b>4.1</b> Resources</a></li>
+<li class="chapter" data-level="4.2" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#notes-3"><i class="fa fa-check"></i><b>4.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#reading-instructions-2"><i class="fa fa-check"></i><b>4.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="4.2.2" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#chapter-10.-introduction-to-bayesian-computation"><i class="fa fa-check"></i><b>4.2.2</b> Chapter 10. Introduction to Bayesian computation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#lecture-notes-3"><i class="fa fa-check"></i><b>4.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html"><i class="fa fa-check"></i><b>5</b> Section 5. Markov chain Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#resources-5"><i class="fa fa-check"></i><b>5.1</b> Resources</a></li>
+<li class="chapter" data-level="5.2" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#notes-4"><i class="fa fa-check"></i><b>5.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#reading-instructions-3"><i class="fa fa-check"></i><b>5.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="5.2.2" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#chapter-11.-basics-of-markov-chain-simulation"><i class="fa fa-check"></i><b>5.2.2</b> Chapter 11. Basics of Markov chain simulation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#lecture-notes-4"><i class="fa fa-check"></i><b>5.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html"><i class="fa fa-check"></i><b>6</b> Section 6. HMC, NUTS, and Stan</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#resources-6"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#notes-5"><i class="fa fa-check"></i><b>6.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#reading-instructions-4"><i class="fa fa-check"></i><b>6.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="6.2.2" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#chapter-12.-computationally-efficient-markov-chain-simulation"><i class="fa fa-check"></i><b>6.2.2</b> Chapter 12. Computationally efficient Markov chain simulation</a></li>
+<li class="chapter" data-level="6.2.3" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#lecture-notes-5"><i class="fa fa-check"></i><b>6.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html"><i class="fa fa-check"></i><b>7</b> Section 7. Hierarchical models and exchangeability</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#resources-7"><i class="fa fa-check"></i><b>7.1</b> Resources</a></li>
+<li class="chapter" data-level="7.2" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#notes-6"><i class="fa fa-check"></i><b>7.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#reading-instructions-5"><i class="fa fa-check"></i><b>7.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="7.2.2" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#chapter-5.-hierarchical-models"><i class="fa fa-check"></i><b>7.2.2</b> Chapter 5. Hierarchical models</a></li>
+<li class="chapter" data-level="7.2.3" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#lecture-notes-6"><i class="fa fa-check"></i><b>7.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html"><i class="fa fa-check"></i><b>8</b> Section 8. Model checking &amp; Cross-validation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#resources-8"><i class="fa fa-check"></i><b>8.1</b> Resources</a></li>
+<li class="chapter" data-level="8.2" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#notes-7"><i class="fa fa-check"></i><b>8.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6-reading-instructions"><i class="fa fa-check"></i><b>8.2.1</b> Chapter 6 reading instructions</a></li>
+<li class="chapter" data-level="8.2.2" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6.-model-checking"><i class="fa fa-check"></i><b>8.2.2</b> Chapter 6. Model checking</a></li>
+<li class="chapter" data-level="8.2.3" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6.-lecture-notes"><i class="fa fa-check"></i><b>8.2.3</b> Chapter 6. Lecture notes</a></li>
+<li class="chapter" data-level="8.2.4" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7-reading-instructions"><i class="fa fa-check"></i><b>8.2.4</b> Chapter 7 reading instructions</a></li>
+<li class="chapter" data-level="8.2.5" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7.-evaluating-comparing-and-expanding-models"><i class="fa fa-check"></i><b>8.2.5</b> Chapter 7. Evaluating, comparing, and expanding models</a></li>
+<li class="chapter" data-level="8.2.6" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#additional-reading"><i class="fa fa-check"></i><b>8.2.6</b> Additional Reading</a></li>
+<li class="chapter" data-level="8.2.7" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7.-lecture-notes"><i class="fa fa-check"></i><b>8.2.7</b> Chapter 7. Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html"><i class="fa fa-check"></i><b>9</b> Section 9. Model comparison and selection</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#resources-9"><i class="fa fa-check"></i><b>9.1</b> Resources</a></li>
+<li class="chapter" data-level="9.2" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#notes-8"><i class="fa fa-check"></i><b>9.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#lecture-notes-7"><i class="fa fa-check"></i><b>9.2.1</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html"><i class="fa fa-check"></i><b>10</b> Section 10. Decision analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#resources-10"><i class="fa fa-check"></i><b>10.1</b> Resources</a></li>
+<li class="chapter" data-level="10.2" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#notes-9"><i class="fa fa-check"></i><b>10.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#reading-instructions-6"><i class="fa fa-check"></i><b>10.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="10.2.2" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#chapter-9.-decision-analysis"><i class="fa fa-check"></i><b>10.2.2</b> Chapter 9. Decision analysis</a></li>
+<li class="chapter" data-level="10.2.3" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#lecture-notes-8"><i class="fa fa-check"></i><b>10.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html"><i class="fa fa-check"></i><b>11</b> Section 11. Normal approximation &amp; Frequency properties</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#resources-11"><i class="fa fa-check"></i><b>11.1</b> Resources</a></li>
+<li class="chapter" data-level="11.2" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#notes-10"><i class="fa fa-check"></i><b>11.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#reading-instructions-7"><i class="fa fa-check"></i><b>11.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="11.2.2" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#chapter-4.-asymptotics-and-connections-to-non-bayesian-approaches"><i class="fa fa-check"></i><b>11.2.2</b> Chapter 4. Asymptotics and connections to non-Bayesian approaches</a></li>
+<li class="chapter" data-level="11.2.3" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#lecture-notes-9"><i class="fa fa-check"></i><b>11.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html"><i class="fa fa-check"></i><b>12</b> Section 12. Extended topics</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#resources-12"><i class="fa fa-check"></i><b>12.1</b> Resources</a></li>
+<li class="chapter" data-level="12.2" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#notes-11"><i class="fa fa-check"></i><b>12.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#lecture-12.1-frequency-evaluation-hypothesis-testing-and-variable-selection"><i class="fa fa-check"></i><b>12.2.1</b> Lecture 12.1 Frequency evaluation, hypothesis testing and variable selection</a></li>
+<li class="chapter" data-level="12.2.2" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#lecture-12.2-overview-of-modeling-data-collection-bda3-ch-8-linear-models-bda-ch-14-18-lasso-horseshoe-and-gaussian-processes-bda3-ch-21"><i class="fa fa-check"></i><b>12.2.2</b> Lecture 12.2 Overview of modeling data collection, BDA3 Ch 8, linear models, BDA Ch 14-18, lasso, horseshoe and Gaussian processes, BDA3 Ch 21</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><i class="fa fa-check"></i><b>13</b> Section 13. Notes on ‘Ch 14. Introduction to regression models’</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#chapter-14.-introduction-to-regression-models"><i class="fa fa-check"></i><b>13.1</b> Chapter 14. Introduction to regression models</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#conditional-modeling"><i class="fa fa-check"></i><b>13.1.1</b> 14.1 Conditional modeling</a></li>
+<li class="chapter" data-level="13.1.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#bayesian-analysis-of-classical-regression"><i class="fa fa-check"></i><b>13.1.2</b> 14.2 Bayesian analysis of classical regression</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#goals-of-regression-analysis"><i class="fa fa-check"></i><b>13.2</b> 14.4 Goals of regression analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#assembling-the-matrix-of-explanatory-variables"><i class="fa fa-check"></i><b>13.3</b> 14.5 Assembling the matrix of explanatory variables</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#identifiability-and-collinearity"><i class="fa fa-check"></i><b>13.3.1</b> Identifiability and collinearity</a></li>
+<li class="chapter" data-level="13.3.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#nonlinear-relations"><i class="fa fa-check"></i><b>13.3.2</b> Nonlinear relations</a></li>
+<li class="chapter" data-level="13.3.3" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#indicator-variables"><i class="fa fa-check"></i><b>13.3.3</b> Indicator variables</a></li>
+<li class="chapter" data-level="13.3.4" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#interactions"><i class="fa fa-check"></i><b>13.3.4</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#regularization-and-dimension-reduction"><i class="fa fa-check"></i><b>13.4</b> 14.6 Regularization and dimension reduction</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><a href="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><i class="fa fa-check"></i><b>14</b> Section 14. Notes on ‘Ch 15. Hierarchical linear models’</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><a href="section-14.-notes-on-ch-15.-hierarchical-linear-models.html#chapter-15.-hierarchical-linear-models"><i class="fa fa-check"></i><b>14.1</b> Chapter 15. Hierarchical linear models</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><i class="fa fa-check"></i><b>15</b> Section 17. Notes on ‘Ch 19. Parametric nonlinear models’</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#chapter-19.-parametric-nonlinear-models"><i class="fa fa-check"></i><b>15.1</b> Chapter 19. Parametric nonlinear models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#example-serial-dilution-assay"><i class="fa fa-check"></i>19.1 Example: serial dilution assay</a></li>
+<li class="chapter" data-level="" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#example-population-toxicokinetics"><i class="fa fa-check"></i>19.2 Example: population toxicokinetics</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html"><i class="fa fa-check"></i><b>16</b> Section 18. Notes on ‘Ch 20. Basis function models’</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#chapter-20.-basis-function-models"><i class="fa fa-check"></i><b>16.1</b> Chapter 20. Basis function models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#splines-and-weighted-sums-of-basis-functions"><i class="fa fa-check"></i>20.1 Splines and weighted sums of basis functions</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#basis-selection-and-shrinkage-coefficients"><i class="fa fa-check"></i><b>16.2</b> 20.2 Basis selection and shrinkage coefficients</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#shrinkage-priors"><i class="fa fa-check"></i>Shrinkage priors</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#non-normal-models-and-regression-surfaces"><i class="fa fa-check"></i><b>16.3</b> 20.3 Non-normal models and regression surfaces</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#other-error-distributions"><i class="fa fa-check"></i>Other error distributions</a></li>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#multivariate-regression-surfaces"><i class="fa fa-check"></i>Multivariate regression surfaces</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html"><i class="fa fa-check"></i><b>17</b> Section 19. Notes on ‘Ch 21. Gaussian process models’</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#chapter-21.-gaussian-process-models"><i class="fa fa-check"></i><b>17.1</b> Chapter 21. Gaussian process models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#gaussian-process-regression"><i class="fa fa-check"></i>21.1 Gaussian process regression</a></li>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#latent-gaussian-process-models"><i class="fa fa-check"></i>21.3 Latent Gaussian process models</a></li>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#functional-data-analysis"><i class="fa fa-check"></i>21.4 Functional data analysis</a></li>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#density-estimation-and-regression"><i class="fa fa-check"></i>21.5 Density estimation and regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html"><i class="fa fa-check"></i><b>18</b> Section 20. Notes on ‘Ch 22. Finite mixture models’</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#chapter-22.-finite-mixture-models"><i class="fa fa-check"></i><b>18.1</b> Chapter 22. Finite mixture models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#setting-up-and-interpreting-mixture-models"><i class="fa fa-check"></i>22.1 Setting up and interpreting mixture models</a></li>
+<li class="chapter" data-level="" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#unspecifed-number-of-mixture-components"><i class="fa fa-check"></i>22.4 Unspecifed number of mixture components</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><i class="fa fa-check"></i><b>19</b> Section 21. Notes on ‘Ch 23. Dirichlet process models’</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#chapter-23.-dirichlet-process-models"><i class="fa fa-check"></i><b>19.1</b> Chapter 23. Dirichlet process models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#bayesian-histograms"><i class="fa fa-check"></i>23.1 Bayesian histograms</a></li>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#dirichlet-process-prior-distributions"><i class="fa fa-check"></i>23.2 Dirichlet process prior distributions</a></li>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#dirichlet-process-mixtures"><i class="fa fa-check"></i>23.3 Dirichlet process mixtures</a></li>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#beyond-density-estimation"><i class="fa fa-check"></i>23.4 Beyond density estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Assignments</b></span></li>
+<li class="chapter" data-level="" data-path="assignments-intro.html"><a href="assignments-intro.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="20" data-path="assignment-1.html"><a href="assignment-1.html"><i class="fa fa-check"></i><b>20</b> Assignment 1</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="assignment-1.html"><a href="assignment-1.html#setup"><i class="fa fa-check"></i><b>20.1</b> Setup</a></li>
+<li class="chapter" data-level="20.2" data-path="assignment-1.html"><a href="assignment-1.html#exercise-1"><i class="fa fa-check"></i><b>20.2</b> Exercise 1</a></li>
+<li class="chapter" data-level="20.3" data-path="assignment-1.html"><a href="assignment-1.html#exercise-3"><i class="fa fa-check"></i><b>20.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="20.4" data-path="assignment-1.html"><a href="assignment-1.html#exercise-4"><i class="fa fa-check"></i><b>20.4</b> Exercise 4</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="assignment-1.html"><a href="assignment-1.html#a"><i class="fa fa-check"></i><b>20.4.1</b> 4.a</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="assignment-1.html"><a href="assignment-1.html#exercise-5"><i class="fa fa-check"></i><b>20.5</b> Exercise 5</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="assignment-2.html"><a href="assignment-2.html"><i class="fa fa-check"></i><b>21</b> Assignment 2</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="assignment-2.html"><a href="assignment-2.html#setup-1"><i class="fa fa-check"></i><b>21.1</b> Setup</a></li>
+<li class="chapter" data-level="21.2" data-path="assignment-2.html"><a href="assignment-2.html#exercise-1.-inference-for-binomial-proportion"><i class="fa fa-check"></i><b>21.2</b> Exercise 1. Inference for binomial proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="assignment-3.html"><a href="assignment-3.html"><i class="fa fa-check"></i><b>22</b> Assignment 3</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="assignment-3.html"><a href="assignment-3.html#setup-2"><i class="fa fa-check"></i><b>22.1</b> Setup</a></li>
+<li class="chapter" data-level="22.2" data-path="assignment-3.html"><a href="assignment-3.html#exercise-1.-inference-for-normal-mean-and-deviation"><i class="fa fa-check"></i><b>22.2</b> Exercise 1. Inference for normal mean and deviation</a></li>
+<li class="chapter" data-level="22.3" data-path="assignment-3.html"><a href="assignment-3.html#exercise-2.-inference-for-the-difference-between-proportions"><i class="fa fa-check"></i><b>22.3</b> Exercise 2. Inference for the difference between proportions</a></li>
+<li class="chapter" data-level="22.4" data-path="assignment-3.html"><a href="assignment-3.html#exercise-3.-inference-for-the-difference-between-normal-means"><i class="fa fa-check"></i><b>22.4</b> Exercise 3. Inference for the difference between normal means</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="assignment-4.html"><a href="assignment-4.html"><i class="fa fa-check"></i><b>23</b> Assignment 4</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="assignment-4.html"><a href="assignment-4.html#setup-3"><i class="fa fa-check"></i><b>23.1</b> Setup</a></li>
+<li class="chapter" data-level="23.2" data-path="assignment-4.html"><a href="assignment-4.html#exercise-1.-bioassay-model"><i class="fa fa-check"></i><b>23.2</b> Exercise 1. Bioassay model</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="assignment-5.html"><a href="assignment-5.html"><i class="fa fa-check"></i><b>24</b> Assignment 5</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="assignment-5.html"><a href="assignment-5.html#setup-4"><i class="fa fa-check"></i><b>24.1</b> Setup</a></li>
+<li class="chapter" data-level="24.2" data-path="assignment-5.html"><a href="assignment-5.html#generalized-linear-model-bioassay-with-metropolis"><i class="fa fa-check"></i><b>24.2</b> Generalized linear model: Bioassay with Metropolis</a>
+<ul>
+<li class="chapter" data-level="24.2.1" data-path="assignment-5.html"><a href="assignment-5.html#exercise-1."><i class="fa fa-check"></i><b>24.2.1</b> Exercise 1.</a></li>
+<li class="chapter" data-level="24.2.2" data-path="assignment-5.html"><a href="assignment-5.html#exercise-2."><i class="fa fa-check"></i><b>24.2.2</b> Exercise 2.</a></li>
+<li class="chapter" data-level="24.2.3" data-path="assignment-5.html"><a href="assignment-5.html#exercise-3-1"><i class="fa fa-check"></i><b>24.2.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="24.2.4" data-path="assignment-5.html"><a href="assignment-5.html#exercise-4-1"><i class="fa fa-check"></i><b>24.2.4</b> Exercise 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="assignment-6.html"><a href="assignment-6.html"><i class="fa fa-check"></i><b>25</b> Assignment 6</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="assignment-6.html"><a href="assignment-6.html#setup-5"><i class="fa fa-check"></i><b>25.1</b> Setup</a></li>
+<li class="chapter" data-level="25.2" data-path="assignment-6.html"><a href="assignment-6.html#exercise-1.-generalized-linear-model-bioassay-with-stan"><i class="fa fa-check"></i><b>25.2</b> Exercise 1. Generalized linear model: Bioassay with Stan</a>
+<ul>
+<li class="chapter" data-level="25.2.1" data-path="assignment-6.html"><a href="assignment-6.html#write-down-the-model-for-the-bioassay-data-in-stan-syntax."><i class="fa fa-check"></i><b>25.2.1</b> 1. Write down the model for the bioassay data in Stan syntax.</a></li>
+<li class="chapter" data-level="25.2.2" data-path="assignment-6.html"><a href="assignment-6.html#use-widehatr-for-convergence-analysis."><i class="fa fa-check"></i><b>25.2.2</b> 2. Use <span class="math inline">\(\widehat{R}\)</span> for convergence analysis.</a></li>
+<li class="chapter" data-level="25.2.3" data-path="assignment-6.html"><a href="assignment-6.html#plot-the-draws-for-alpha-and-beta-scatter-plot-and-include-this-plot-in-your-report"><i class="fa fa-check"></i><b>25.2.3</b> 3. Plot the draws for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> (scatter plot) and include this plot in your report</a></li>
+<li class="chapter" data-level="25.2.4" data-path="assignment-6.html"><a href="assignment-6.html#to-develop-the-course-and-provide-feedback-to-stan-developers-we-collect-information-on-which-stan-setup-you-used-and-whether-you-had-any-problems-in-setting-it-up-or-using-it."><i class="fa fa-check"></i><b>25.2.4</b> 4. To develop the course and provide feedback to Stan developers, we collect information on which Stan setup you used and whether you had any problems in setting it up or using it.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="assignment-7.html"><a href="assignment-7.html"><i class="fa fa-check"></i><b>26</b> Assignment 7</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="assignment-7.html"><a href="assignment-7.html#setup-6"><i class="fa fa-check"></i><b>26.1</b> Setup</a></li>
+<li class="chapter" data-level="26.2" data-path="assignment-7.html"><a href="assignment-7.html#linear-model-drowning-data-with-stan"><i class="fa fa-check"></i><b>26.2</b> 1. Linear model: drowning data with Stan</a></li>
+<li class="chapter" data-level="26.3" data-path="assignment-7.html"><a href="assignment-7.html#hierarchical-model-factory-data-with-stan"><i class="fa fa-check"></i><b>26.3</b> 2. Hierarchical model: factory data with Stan</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="assignment-8.html"><a href="assignment-8.html"><i class="fa fa-check"></i><b>27</b> Assignment 8</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="assignment-8.html"><a href="assignment-8.html#setup-7"><i class="fa fa-check"></i><b>27.1</b> Setup</a></li>
+<li class="chapter" data-level="27.2" data-path="assignment-8.html"><a href="assignment-8.html#exercise-1.-model-assessment-loo-cv-for-factory-data-with-stan"><i class="fa fa-check"></i><b>27.2</b> Exercise 1. Model assessment: LOO-CV for factory data with Stan</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="assignment-9.html"><a href="assignment-9.html"><i class="fa fa-check"></i><b>28</b> Assignment 9</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="assignment-9.html"><a href="assignment-9.html#setup-8"><i class="fa fa-check"></i><b>28.1</b> Setup</a></li>
+<li class="chapter" data-level="28.2" data-path="assignment-9.html"><a href="assignment-9.html#exercise-1.-decision-analysis-for-the-factory-data"><i class="fa fa-check"></i><b>28.2</b> Exercise 1. Decision analysis for the factory data</a></li>
+</ul></li>
+<li class="part"><span><b>III Book Exercises</b></span></li>
+<li class="chapter" data-level="" data-path="exercises-intro.html"><a href="exercises-intro.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="29" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html"><i class="fa fa-check"></i><b>29</b> Chapter 1 Exercises</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-1"><i class="fa fa-check"></i><b>29.1</b> Question 1</a></li>
+<li class="chapter" data-level="29.2" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-2"><i class="fa fa-check"></i><b>29.2</b> Question 2</a></li>
+<li class="chapter" data-level="29.3" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-6"><i class="fa fa-check"></i><b>29.3</b> Question 6</a></li>
+<li class="chapter" data-level="29.4" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-8"><i class="fa fa-check"></i><b>29.4</b> Question 8</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html"><i class="fa fa-check"></i><b>30</b> Chapter 2 Exercises</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#setup-9"><i class="fa fa-check"></i><b>30.1</b> Setup</a></li>
+<li class="chapter" data-level="30.2" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-1-1"><i class="fa fa-check"></i><b>30.2</b> Question 1</a></li>
+<li class="chapter" data-level="30.3" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-2-1"><i class="fa fa-check"></i><b>30.3</b> Question 2</a></li>
+<li class="chapter" data-level="30.4" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-3"><i class="fa fa-check"></i><b>30.4</b> Question 3</a></li>
+<li class="chapter" data-level="30.5" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-4"><i class="fa fa-check"></i><b>30.5</b> Question 4</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="chapter-5-exercises.html"><a href="chapter-5-exercises.html"><i class="fa fa-check"></i><b>31</b> Chapter 5 Exercises</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="chapter-5-exercises.html"><a href="chapter-5-exercises.html#question-1-2"><i class="fa fa-check"></i><b>31.1</b> Question 1</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><i class="fa fa-check"></i><b>32</b> Chapter 19 Exercises - Reproducing the the ‘serial dilution assay’</a>
+<ul>
+<li class="chapter" data-level="32.1" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#setup-10"><i class="fa fa-check"></i><b>32.1</b> Setup</a></li>
+<li class="chapter" data-level="32.2" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#modeling"><i class="fa fa-check"></i><b>32.2</b> Modeling</a>
+<ul>
+<li class="chapter" data-level="32.2.1" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#model-specification"><i class="fa fa-check"></i><b>32.2.1</b> Model specification</a></li>
+<li class="chapter" data-level="32.2.2" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#in-stan"><i class="fa fa-check"></i><b>32.2.2</b> In Stan</a></li>
+<li class="chapter" data-level="32.2.3" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#sampling"><i class="fa fa-check"></i><b>32.2.3</b> Sampling</a></li>
+<li class="chapter" data-level="32.2.4" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#posterior-distributions"><i class="fa fa-check"></i><b>32.2.4</b> Posterior distributions</a></li>
+<li class="chapter" data-level="32.2.5" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#posterior-predictive-check"><i class="fa fa-check"></i><b>32.2.5</b> Posterior predictive check</a></li>
+</ul></li>
+<li class="chapter" data-level="32.3" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#session-info"><i class="fa fa-check"></i><b>32.3</b> Session info</a></li>
+</ul></li>
+<li class="part"><span><b>IV Models</b></span></li>
+<li class="chapter" data-level="33" data-path="stan-models-1.html"><a href="stan-models-1.html"><i class="fa fa-check"></i><b>33</b> Stan models</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="stan-models-1.html"><a href="stan-models-1.html#model-8-schools.stan"><i class="fa fa-check"></i><b>33.1</b> Model: <code>8-schools.stan</code></a></li>
+<li class="chapter" data-level="33.2" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment06-bioassay.stan"><i class="fa fa-check"></i><b>33.2</b> Model: <code>assignment06-bioassay.stan</code></a></li>
+<li class="chapter" data-level="33.3" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07_factories_hierarchical.stan"><i class="fa fa-check"></i><b>33.3</b> Model: <code>assignment07_factories_hierarchical.stan</code></a></li>
+<li class="chapter" data-level="33.4" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07_factories_pooled.stan"><i class="fa fa-check"></i><b>33.4</b> Model: <code>assignment07_factories_pooled.stan</code></a></li>
+<li class="chapter" data-level="33.5" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07_factories_separate.stan"><i class="fa fa-check"></i><b>33.5</b> Model: <code>assignment07_factories_separate.stan</code></a></li>
+<li class="chapter" data-level="33.6" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07-drownings.stan"><i class="fa fa-check"></i><b>33.6</b> Model: <code>assignment07-drownings.stan</code></a></li>
+<li class="chapter" data-level="33.7" data-path="stan-models-1.html"><a href="stan-models-1.html#model-serial-dilution.stan"><i class="fa fa-check"></i><b>33.7</b> Model: <code>serial-dilution.stan</code></a></li>
+</ul></li>
+<li class="part"><span><b>V Misc</b></span></li>
+<li class="chapter" data-level="" data-path="about.html"><a href="about.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="33.8" data-path="about.html"><a href="about.html#the-website"><i class="fa fa-check"></i><b>33.8</b> The website</a></li>
+<li class="chapter" data-level="33.9" data-path="about.html"><a href="about.html#about-me"><i class="fa fa-check"></i><b>33.9</b> About me</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="assignment-8" class="section level1" number="27">
+<h1><span class="header-section-number">27</span> Assignment 8</h1>
+<p>2021-11-12</p>
+<p><strong><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-08.pdf">Assignment 8</a></strong></p>
+<div id="setup-7" class="section level2" number="27.1">
+<h2><span class="header-section-number">27.1</span> Setup</h2>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="assignment-8.html#cb259-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb259-2"><a href="assignment-8.html#cb259-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-3"><a href="assignment-8.html#cb259-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (f <span class="cf">in</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb259-4"><a href="assignment-8.html#cb259-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(f)</span>
+<span id="cb259-5"><a href="assignment-8.html#cb259-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb259-6"><a href="assignment-8.html#cb259-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-7"><a href="assignment-8.html#cb259-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan)</span>
+<span id="cb259-8"><a href="assignment-8.html#cb259-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayestestR)</span>
+<span id="cb259-9"><a href="assignment-8.html#cb259-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(loo)</span>
+<span id="cb259-10"><a href="assignment-8.html#cb259-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
+<span id="cb259-11"><a href="assignment-8.html#cb259-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb259-12"><a href="assignment-8.html#cb259-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-13"><a href="assignment-8.html#cb259-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb259-14"><a href="assignment-8.html#cb259-14" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> <span class="dv">2</span>)</span>
+<span id="cb259-15"><a href="assignment-8.html#cb259-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-16"><a href="assignment-8.html#cb259-16" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>()))</span>
+<span id="cb259-17"><a href="assignment-8.html#cb259-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-18"><a href="assignment-8.html#cb259-18" aria-hidden="true" tabindex="-1"></a>factory <span class="ot">&lt;-</span> aaltobda<span class="sc">::</span>factory</span>
+<span id="cb259-19"><a href="assignment-8.html#cb259-19" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">678</span>)</span></code></pre></div>
+</div>
+<div id="exercise-1.-model-assessment-loo-cv-for-factory-data-with-stan" class="section level2" number="27.2">
+<h2><span class="header-section-number">27.2</span> Exercise 1. Model assessment: LOO-CV for factory data with Stan</h2>
+<p><strong>Use leave-one-out cross-validation (LOO-CV) to assess the predictive performance of the pooled, separate and hierarchical Gaussian models for the factory dataset (see the second exercise in Assignment 7).</strong></p>
+<p><strong>a) Fit the models with Stan as instructed in Assignment 7.</strong>
+<strong>To use the <code>loo</code> or <code>psisloo</code> functions, you need to compute the log-likelihood values of each observation for every posterior draw (i.e. an <span class="math inline">\(S\)</span>-by-<span class="math inline">\(N\)</span> matrix, where <span class="math inline">\(S\)</span> is the number of posterior draws and <span class="math inline">\(N = 30\)</span> is the total number of observations).</strong>
+<strong>This can be done in the <code>generated quantities</code> block in the Stan code; for a demonstration, see the Gaussian linear model <code>lin.stan</code> in the R Stan examples that can be found here.</strong></p>
+<p><em>Separate model</em></p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="assignment-8.html#cb260-1" aria-hidden="true" tabindex="-1"></a>separate_model_code <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb260-2"><a href="assignment-8.html#cb260-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;models&quot;</span>, <span class="st">&quot;assignment07_factories_separate.stan&quot;</span></span>
+<span id="cb260-3"><a href="assignment-8.html#cb260-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb260-4"><a href="assignment-8.html#cb260-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-5"><a href="assignment-8.html#cb260-5" aria-hidden="true" tabindex="-1"></a>separate_model_data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb260-6"><a href="assignment-8.html#cb260-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> factory,</span>
+<span id="cb260-7"><a href="assignment-8.html#cb260-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">nrow</span>(factory),</span>
+<span id="cb260-8"><a href="assignment-8.html#cb260-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">J =</span> <span class="fu">ncol</span>(factory)</span>
+<span id="cb260-9"><a href="assignment-8.html#cb260-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb260-10"><a href="assignment-8.html#cb260-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-11"><a href="assignment-8.html#cb260-11" aria-hidden="true" tabindex="-1"></a>separate_model <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">stan</span>(</span>
+<span id="cb260-12"><a href="assignment-8.html#cb260-12" aria-hidden="true" tabindex="-1"></a>  separate_model_code,</span>
+<span id="cb260-13"><a href="assignment-8.html#cb260-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> separate_model_data,</span>
+<span id="cb260-14"><a href="assignment-8.html#cb260-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb260-15"><a href="assignment-8.html#cb260-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">0</span></span>
+<span id="cb260-16"><a href="assignment-8.html#cb260-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb260-17"><a href="assignment-8.html#cb260-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-18"><a href="assignment-8.html#cb260-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(separate_model, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">&quot;mu&quot;</span>, <span class="st">&quot;sigma&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; Inference for Stan model: assignment07_factories_separate.
+#&gt; 4 chains, each with iter=2000; warmup=1000; thin=1; 
+#&gt; post-warmup draws per chain=1000, total post-warmup draws=4000.
+#&gt; 
+#&gt;            mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
+#&gt; mu[1]     85.74    0.13 7.30  72.77  80.60  85.40  90.50 101.41  2985    1
+#&gt; mu[2]    105.07    0.07 4.40  96.26 102.25 105.16 107.86 113.48  3528    1
+#&gt; mu[3]     90.40    0.08 4.62  81.81  87.40  90.12  93.23 100.44  3546    1
+#&gt; mu[4]    110.56    0.06 3.12 104.01 108.86 110.67 112.45 116.16  2523    1
+#&gt; mu[5]     91.46    0.06 3.90  84.00  89.00  91.29  93.83  99.79  3928    1
+#&gt; mu[6]     91.25    0.11 6.31  79.88  87.09  90.80  94.99 104.94  3392    1
+#&gt; sigma[1]  19.28    0.14 6.92  10.51  14.54  17.85  22.36  36.47  2495    1
+#&gt; sigma[2]  10.41    0.06 3.32   6.14   8.14   9.78  11.92  18.78  2971    1
+#&gt; sigma[3]  11.42    0.07 3.76   6.62   8.86  10.57  13.13  20.71  2825    1
+#&gt; sigma[4]   6.85    0.06 2.47   3.90   5.26   6.37   7.82  12.71  1640    1
+#&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 2 rows ]
+#&gt; 
+#&gt; Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:43:42 2022.
+#&gt; For each parameter, n_eff is a crude measure of effective sample size,
+#&gt; and Rhat is the potential scale reduction factor on split chains (at 
+#&gt; convergence, Rhat=1).</code></pre>
+<p><em>Pooled model</em></p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="assignment-8.html#cb262-1" aria-hidden="true" tabindex="-1"></a>pooled_model_code <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;models&quot;</span>, <span class="st">&quot;assignment07_factories_pooled.stan&quot;</span>)</span>
+<span id="cb262-2"><a href="assignment-8.html#cb262-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-3"><a href="assignment-8.html#cb262-3" aria-hidden="true" tabindex="-1"></a>pooled_model_data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb262-4"><a href="assignment-8.html#cb262-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">unname</span>(<span class="fu">unlist</span>(factory)),</span>
+<span id="cb262-5"><a href="assignment-8.html#cb262-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">length</span>(<span class="fu">unlist</span>(factory))</span>
+<span id="cb262-6"><a href="assignment-8.html#cb262-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb262-7"><a href="assignment-8.html#cb262-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-8"><a href="assignment-8.html#cb262-8" aria-hidden="true" tabindex="-1"></a>pooled_model <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">stan</span>(</span>
+<span id="cb262-9"><a href="assignment-8.html#cb262-9" aria-hidden="true" tabindex="-1"></a>  pooled_model_code,</span>
+<span id="cb262-10"><a href="assignment-8.html#cb262-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> pooled_model_data,</span>
+<span id="cb262-11"><a href="assignment-8.html#cb262-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb262-12"><a href="assignment-8.html#cb262-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">0</span></span>
+<span id="cb262-13"><a href="assignment-8.html#cb262-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb262-14"><a href="assignment-8.html#cb262-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-15"><a href="assignment-8.html#cb262-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pooled_model, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">&quot;mu&quot;</span>, <span class="st">&quot;sigma&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; Inference for Stan model: assignment07_factories_pooled.
+#&gt; 4 chains, each with iter=2000; warmup=1000; thin=1; 
+#&gt; post-warmup draws per chain=1000, total post-warmup draws=4000.
+#&gt; 
+#&gt;        mean se_mean   sd  2.5%   25%   50%   75% 97.5% n_eff Rhat
+#&gt; mu    93.64    0.06 3.15 87.50 91.56 93.62 95.67 99.94  2906    1
+#&gt; sigma 17.74    0.04 2.33 13.92 16.06 17.47 19.16 22.88  2707    1
+#&gt; 
+#&gt; Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:43:44 2022.
+#&gt; For each parameter, n_eff is a crude measure of effective sample size,
+#&gt; and Rhat is the potential scale reduction factor on split chains (at 
+#&gt; convergence, Rhat=1).</code></pre>
+<p><em>Hierarchical model</em></p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="assignment-8.html#cb264-1" aria-hidden="true" tabindex="-1"></a>hierarchical_model_code <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb264-2"><a href="assignment-8.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;models&quot;</span>, <span class="st">&quot;assignment07_factories_hierarchical.stan&quot;</span></span>
+<span id="cb264-3"><a href="assignment-8.html#cb264-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb264-4"><a href="assignment-8.html#cb264-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-5"><a href="assignment-8.html#cb264-5" aria-hidden="true" tabindex="-1"></a>hierarchical_model_data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb264-6"><a href="assignment-8.html#cb264-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> factory,</span>
+<span id="cb264-7"><a href="assignment-8.html#cb264-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">nrow</span>(factory),</span>
+<span id="cb264-8"><a href="assignment-8.html#cb264-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">J =</span> <span class="fu">ncol</span>(factory)</span>
+<span id="cb264-9"><a href="assignment-8.html#cb264-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb264-10"><a href="assignment-8.html#cb264-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-11"><a href="assignment-8.html#cb264-11" aria-hidden="true" tabindex="-1"></a>hierarchical_model <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">stan</span>(</span>
+<span id="cb264-12"><a href="assignment-8.html#cb264-12" aria-hidden="true" tabindex="-1"></a>  hierarchical_model_code,</span>
+<span id="cb264-13"><a href="assignment-8.html#cb264-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> hierarchical_model_data,</span>
+<span id="cb264-14"><a href="assignment-8.html#cb264-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb264-15"><a href="assignment-8.html#cb264-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">0</span></span>
+<span id="cb264-16"><a href="assignment-8.html#cb264-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>#&gt; Warning: There were 29 divergent transitions after warmup. See
+#&gt; http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
+#&gt; to find out why this is a problem and how to eliminate them.</code></pre>
+<pre><code>#&gt; Warning: Examine the pairs() plot to diagnose sampling problems</code></pre>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="assignment-8.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hierarchical_model, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;tau&quot;</span>, <span class="st">&quot;mu&quot;</span>, <span class="st">&quot;sigma&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; Inference for Stan model: assignment07_factories_hierarchical.
+#&gt; 4 chains, each with iter=2000; warmup=1000; thin=1; 
+#&gt; post-warmup draws per chain=1000, total post-warmup draws=4000.
+#&gt; 
+#&gt;         mean se_mean   sd  2.5%    25%    50%    75%  97.5% n_eff Rhat
+#&gt; alpha  94.49    0.08 4.59 85.49  91.41  94.51  97.42 103.75  3438 1.00
+#&gt; tau    10.94    0.12 4.10  3.65   8.07  10.58  13.41  19.85  1222 1.01
+#&gt; mu[1]  81.63    0.17 6.34 69.57  77.30  81.40  85.80  94.85  1382 1.00
+#&gt; mu[2] 102.56    0.12 5.77 91.48  98.58 102.49 106.34 114.27  2445 1.00
+#&gt; mu[3]  89.79    0.10 5.57 78.62  86.16  89.88  93.51 100.59  3159 1.00
+#&gt; mu[4] 106.30    0.14 6.32 93.89 102.01 106.47 110.66 118.44  2004 1.00
+#&gt; mu[5]  91.32    0.09 5.38 80.68  87.73  91.38  94.88 101.74  3999 1.00
+#&gt; mu[6]  88.65    0.12 5.69 77.27  84.95  88.75  92.59  99.52  2244 1.00
+#&gt; sigma  14.34    0.05 2.19 10.78  12.78  14.07  15.58  19.52  1980 1.00
+#&gt; 
+#&gt; Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:43:46 2022.
+#&gt; For each parameter, n_eff is a crude measure of effective sample size,
+#&gt; and Rhat is the potential scale reduction factor on split chains (at 
+#&gt; convergence, Rhat=1).</code></pre>
+<p><strong>b) Compute the PSIS-LOO elpd values and the <span class="math inline">\(\hat{k}\)</span>-values for each of the three models.</strong>
+<strong>Hint! It will be convenient to visualize the <span class="math inline">\(\hat{k}\)</span>-values for each model so that you can easily see how many of these values fall in the range <span class="math inline">\(\hat{k} &gt; 0.7\)</span> to assess the reliability of the PSIS-LOO estimate for each model.</strong>
+<strong>You can read more about the theoretical guarantees for the accuracy of the estimate depending on <span class="math inline">\(\hat{k}\)</span> from the original article (see here or here), but regarding this assignment, it suffices to understand that if all the <span class="math inline">\(\hat{k}\)</span>-values are <span class="math inline">\(\hat{k} \le 0.7\)</span>, the PSIS-LOO estimate can be considered to be reliable, otherwise there is a concern that it may be biased (too optimistic, overestimating the predictive accuracy of the model).</strong></p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="assignment-8.html#cb269-1" aria-hidden="true" tabindex="-1"></a>calc_loo <span class="ot">&lt;-</span> <span class="cf">function</span>(mdl) {</span>
+<span id="cb269-2"><a href="assignment-8.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  log_lik <span class="ot">&lt;-</span> loo<span class="sc">::</span><span class="fu">extract_log_lik</span>(mdl, <span class="at">merge_chains =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb269-3"><a href="assignment-8.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  r_eff <span class="ot">&lt;-</span> loo<span class="sc">::</span><span class="fu">relative_eff</span>(<span class="fu">exp</span>(log_lik))</span>
+<span id="cb269-4"><a href="assignment-8.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  loo_res <span class="ot">&lt;-</span> loo<span class="sc">::</span><span class="fu">loo</span>(log_lik, <span class="at">r_eff =</span> r_eff)</span>
+<span id="cb269-5"><a href="assignment-8.html#cb269-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(loo_res)</span>
+<span id="cb269-6"><a href="assignment-8.html#cb269-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><em>Separate model</em></p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="assignment-8.html#cb270-1" aria-hidden="true" tabindex="-1"></a>separate_loo <span class="ot">&lt;-</span> <span class="fu">calc_loo</span>(separate_model)</span></code></pre></div>
+<pre><code>#&gt; Warning: Some Pareto k diagnostic values are too high. See help(&#39;pareto-k-diagnostic&#39;) for details.</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="assignment-8.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(separate_loo)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Computed from 4000 by 30 log-likelihood matrix
+#&gt; 
+#&gt;          Estimate   SE
+#&gt; elpd_loo   -131.7  7.1
+#&gt; p_loo        13.6  3.5
+#&gt; looic       263.5 14.2
+#&gt; ------
+#&gt; Monte Carlo SE of elpd_loo is NA.
+#&gt; 
+#&gt; Pareto k diagnostic values:
+#&gt;                          Count Pct.    Min. n_eff
+#&gt; (-Inf, 0.5]   (good)     19    63.3%   1810      
+#&gt;  (0.5, 0.7]   (ok)        6    20.0%   572       
+#&gt;    (0.7, 1]   (bad)       4    13.3%   32        
+#&gt;    (1, Inf)   (very bad)  1     3.3%   12        
+#&gt; See help(&#39;pareto-k-diagnostic&#39;) for details.</code></pre>
+<p><em>Pooled model</em></p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="assignment-8.html#cb274-1" aria-hidden="true" tabindex="-1"></a>pooled_loo <span class="ot">&lt;-</span> <span class="fu">calc_loo</span>(pooled_model)</span>
+<span id="cb274-2"><a href="assignment-8.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pooled_loo)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Computed from 4000 by 30 log-likelihood matrix
+#&gt; 
+#&gt;          Estimate  SE
+#&gt; elpd_loo   -130.9 4.9
+#&gt; p_loo         2.1 0.9
+#&gt; looic       261.9 9.7
+#&gt; ------
+#&gt; Monte Carlo SE of elpd_loo is 0.0.
+#&gt; 
+#&gt; All Pareto k estimates are good (k &lt; 0.5).
+#&gt; See help(&#39;pareto-k-diagnostic&#39;) for details.</code></pre>
+<p><em>Hierarchical model</em></p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="assignment-8.html#cb276-1" aria-hidden="true" tabindex="-1"></a>hierarchical_loo <span class="ot">&lt;-</span> <span class="fu">calc_loo</span>(hierarchical_model)</span></code></pre></div>
+<pre><code>#&gt; Warning: Some Pareto k diagnostic values are slightly high. See help(&#39;pareto-k-diagnostic&#39;) for details.</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="assignment-8.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hierarchical_loo)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Computed from 4000 by 30 log-likelihood matrix
+#&gt; 
+#&gt;          Estimate   SE
+#&gt; elpd_loo   -127.0  5.1
+#&gt; p_loo         6.1  1.8
+#&gt; looic       254.0 10.1
+#&gt; ------
+#&gt; Monte Carlo SE of elpd_loo is 0.1.
+#&gt; 
+#&gt; Pareto k diagnostic values:
+#&gt;                          Count Pct.    Min. n_eff
+#&gt; (-Inf, 0.5]   (good)     28    93.3%   1358      
+#&gt;  (0.5, 0.7]   (ok)        2     6.7%   250       
+#&gt;    (0.7, 1]   (bad)       0     0.0%   &lt;NA&gt;      
+#&gt;    (1, Inf)   (very bad)  0     0.0%   &lt;NA&gt;      
+#&gt; 
+#&gt; All Pareto k estimates are ok (k &lt; 0.7).
+#&gt; See help(&#39;pareto-k-diagnostic&#39;) for details.</code></pre>
+<p><strong>c) Compute the effective number of parameters $p_ for each of the three models.</strong>
+<strong>Hint! The estimated effective number of parameters in the model can be computed from equation (7.15) in the book, where elpdloo-cv is the PSIS-LOO value (sum of the LOO log densities) and lpd is given by equation (7.5) in the book.</strong></p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="assignment-8.html#cb280-1" aria-hidden="true" tabindex="-1"></a>extract_p_eff <span class="ot">&lt;-</span> <span class="cf">function</span>(loo_res) {</span>
+<span id="cb280-2"><a href="assignment-8.html#cb280-2" aria-hidden="true" tabindex="-1"></a>  loo_res<span class="sc">$</span>estimates[<span class="dv">2</span>, ]</span>
+<span id="cb280-3"><a href="assignment-8.html#cb280-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb280-4"><a href="assignment-8.html#cb280-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb280-5"><a href="assignment-8.html#cb280-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb280-6"><a href="assignment-8.html#cb280-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_p_eff</span>(separate_loo),</span>
+<span id="cb280-7"><a href="assignment-8.html#cb280-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_p_eff</span>(pooled_loo),</span>
+<span id="cb280-8"><a href="assignment-8.html#cb280-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_p_eff</span>(hierarchical_loo)</span>
+<span id="cb280-9"><a href="assignment-8.html#cb280-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb280-10"><a href="assignment-8.html#cb280-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_column</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">&quot;separate&quot;</span>, <span class="st">&quot;pooled&quot;</span>, <span class="st">&quot;hierarchical&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; # A tibble: 3 × 3
+#&gt;   Estimate    SE model       
+#&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
+#&gt; 1    13.6  3.47  separate    
+#&gt; 2     2.13 0.892 pooled      
+#&gt; 3     6.07 1.76  hierarchical</code></pre>
+<p><strong>d) Assess how reliable the PSIS-LOO estimates are for the three models based on the <span class="math inline">\(\hat{k}\)</span>-values.</strong></p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="assignment-8.html#cb282-1" aria-hidden="true" tabindex="-1"></a>plot_khat <span class="ot">&lt;-</span> <span class="cf">function</span>(loo_res, factory_data) {</span>
+<span id="cb282-2"><a href="assignment-8.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  khat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(loo_res<span class="sc">$</span>pointwise)<span class="sc">$</span>influence_pareto_k</span>
+<span id="cb282-3"><a href="assignment-8.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  factory_data <span class="sc">%&gt;%</span></span>
+<span id="cb282-4"><a href="assignment-8.html#cb282-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">idx =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb282-5"><a href="assignment-8.html#cb282-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">-</span>idx, <span class="at">names_to =</span> <span class="st">&quot;factory&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;measure&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb282-6"><a href="assignment-8.html#cb282-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(factory) <span class="sc">%&gt;%</span></span>
+<span id="cb282-7"><a href="assignment-8.html#cb282-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb282-8"><a href="assignment-8.html#cb282-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">khat =</span> <span class="sc">!!</span>khat,</span>
+<span id="cb282-9"><a href="assignment-8.html#cb282-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">factory =</span> <span class="fu">str_replace</span>(factory, <span class="st">&quot;V&quot;</span>, <span class="st">&quot;factory &quot;</span>)</span>
+<span id="cb282-10"><a href="assignment-8.html#cb282-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb282-11"><a href="assignment-8.html#cb282-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(idx), <span class="at">y =</span> khat)) <span class="sc">+</span></span>
+<span id="cb282-12"><a href="assignment-8.html#cb282-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(factory), <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-13"><a href="assignment-8.html#cb282-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">1.0</span>), <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-14"><a href="assignment-8.html#cb282-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;#6497B1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-15"><a href="assignment-8.html#cb282-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>()) <span class="sc">+</span></span>
+<span id="cb282-16"><a href="assignment-8.html#cb282-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;measurement&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Pareto shape k&quot;</span>)</span>
+<span id="cb282-17"><a href="assignment-8.html#cb282-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="assignment-8.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_khat</span>(separate_loo, factory) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Separate model&quot;</span>)</span></code></pre></div>
+<p><img src="assignment-08_files/figure-html/unnamed-chunk-10-1.png" width="2100" /></p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="assignment-8.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_khat</span>(pooled_loo, factory) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Pooled model&quot;</span>)</span></code></pre></div>
+<p><img src="assignment-08_files/figure-html/unnamed-chunk-11-1.png" width="2100" /></p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="assignment-8.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_khat</span>(hierarchical_loo, factory) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Hierarchical model&quot;</span>)</span></code></pre></div>
+<p><img src="assignment-08_files/figure-html/unnamed-chunk-12-1.png" width="2100" /></p>
+<p><strong>e) An assessment of whether there are differences between the models with regard to the elpdloo-cv, and if so, which model should be selected according to PSIS-LOO.</strong></p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="assignment-8.html#cb286-1" aria-hidden="true" tabindex="-1"></a>extract_elpd <span class="ot">&lt;-</span> <span class="cf">function</span>(loo_res) {</span>
+<span id="cb286-2"><a href="assignment-8.html#cb286-2" aria-hidden="true" tabindex="-1"></a>  loo_res<span class="sc">$</span>estimates[<span class="dv">1</span>, ]</span>
+<span id="cb286-3"><a href="assignment-8.html#cb286-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="assignment-8.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb287-2"><a href="assignment-8.html#cb287-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_elpd</span>(separate_loo),</span>
+<span id="cb287-3"><a href="assignment-8.html#cb287-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_elpd</span>(pooled_loo),</span>
+<span id="cb287-4"><a href="assignment-8.html#cb287-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_elpd</span>(hierarchical_loo)</span>
+<span id="cb287-5"><a href="assignment-8.html#cb287-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb287-6"><a href="assignment-8.html#cb287-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_column</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">&quot;separate&quot;</span>, <span class="st">&quot;pooled&quot;</span>, <span class="st">&quot;hierarchical&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; # A tibble: 3 × 3
+#&gt;   Estimate    SE model       
+#&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
+#&gt; 1    -132.  7.08 separate    
+#&gt; 2    -131.  4.86 pooled      
+#&gt; 3    -127.  5.05 hierarchical</code></pre>
+<p>From the ELPD and <span class="math inline">\(\hat{k}\)</span> values, the hierarchical model is superior to the seaprate and pooled models.</p>
+<p><strong>f) Both the Stan and R code should be included in your report.</strong></p>
+<p>All of the R code is included in this file.
+All of the models are described in <a href="assignment-7.html#assignment-7">Assignment 7</a>.
+Below is a list of the Stan code for all of the models (available in the <a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/"><code>models/</code></a> directory):</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_separate.stan">separate models</a></li>
+<li><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_pooled.stan">pooled model</a></li>
+<li><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/models/assignment07_factories_hierarchical.stan">hierarchical model</a></li>
+</ol>
+<hr />
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="assignment-8.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
+#&gt; Running under: macOS Big Sur 10.16
+#&gt; 
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#&gt; 
+#&gt; locale:
+#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#&gt; 
+#&gt; other attached packages:
+#&gt;  [1] forcats_0.5.1        stringr_1.4.0        dplyr_1.0.7         
+#&gt;  [4] purrr_0.3.4          readr_2.0.1          tidyr_1.1.3         
+#&gt;  [7] tibble_3.1.3         tidyverse_1.3.1      tidybayes_3.0.1     
+#&gt; [10] loo_2.4.1            bayestestR_0.11.0    rstan_2.21.2        
+#&gt; [13] ggplot2_3.3.5        StanHeaders_2.21.0-7
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] fs_1.5.0             matrixStats_0.61.0   lubridate_1.7.10    
+#&gt;  [4] insight_0.14.4       httr_1.4.2           rprojroot_2.0.2     
+#&gt;  [7] tensorA_0.36.2       tools_4.1.2          backports_1.2.1     
+#&gt; [10] bslib_0.2.5.1        utf8_1.2.2           R6_2.5.0            
+#&gt; [13] DBI_1.1.1            colorspace_2.0-2     ggdist_3.0.0        
+#&gt; [16] withr_2.4.2          tidyselect_1.1.1     gridExtra_2.3       
+#&gt; [19] prettyunits_1.1.1    processx_3.5.2       curl_4.3.2          
+#&gt; [22] compiler_4.1.2       rvest_1.0.1          cli_3.0.1           
+#&gt; [25] arrayhelpers_1.1-0   xml2_1.3.2           labeling_0.4.2      
+#&gt; [28] bookdown_0.24        posterior_1.1.0      sass_0.4.0          
+#&gt; [31] scales_1.1.1         checkmate_2.0.0      aaltobda_0.3.1      
+#&gt; [34] callr_3.7.0          digest_0.6.27        rmarkdown_2.10      
+#&gt; [37] pkgconfig_2.0.3      htmltools_0.5.1.1    highr_0.9           
+#&gt; [40] dbplyr_2.1.1         rlang_0.4.11         readxl_1.3.1        
+#&gt; [43] rstudioapi_0.13      jquerylib_0.1.4      farver_2.1.0        
+#&gt; [46] generics_0.1.0       svUnit_1.0.6         jsonlite_1.7.2      
+#&gt; [49] distributional_0.2.2 inline_0.3.19        magrittr_2.0.1      
+#&gt; [52] Rcpp_1.0.7           munsell_0.5.0        fansi_0.5.0         
+#&gt; [55] abind_1.4-5          lifecycle_1.0.0      stringi_1.7.3       
+#&gt; [58] yaml_2.2.1           pkgbuild_1.2.0       grid_4.1.2          
+#&gt; [61] parallel_4.1.2       crayon_1.4.1         lattice_0.20-45     
+#&gt; [64] haven_2.4.3          hms_1.1.0            knitr_1.33          
+#&gt; [67] ps_1.6.0             pillar_1.6.2         codetools_0.2-18    
+#&gt; [70] clisymbols_1.2.0     stats4_4.1.2         reprex_2.0.1        
+#&gt; [73] glue_1.4.2           evaluate_0.14        V8_3.4.2            
+#&gt; [76] renv_0.14.0          RcppParallel_5.1.4   modelr_0.1.8        
+#&gt; [79] vctrs_0.3.8          tzdb_0.1.2           cellranger_1.1.0    
+#&gt; [82] gtable_0.3.0         assertthat_0.2.1     datawizard_0.2.1    
+#&gt; [85] xfun_0.25            broom_0.7.9          coda_0.19-4         
+#&gt; [88] ellipsis_0.3.2       here_1.0.1</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="assignment-7.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="assignment-9.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/hadley/r4ds/edit/master/assignment-08.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/assignment-08.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

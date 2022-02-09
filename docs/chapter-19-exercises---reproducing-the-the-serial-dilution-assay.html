@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>32 Chapter 19 Exercises - Reproducing the the ‘serial dilution assay’ | bookdown</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="32 Chapter 19 Exercises - Reproducing the the ‘serial dilution assay’ | bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="32 Chapter 19 Exercises - Reproducing the the ‘serial dilution assay’ | bookdown" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="32 Chapter 19 Exercises - Reproducing the the ‘serial dilution assay’ | bookdown" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter-5-exercises.html"/>
+<link rel="next" href="stan-models-1.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Notes for BDA3</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bayesian Data Analysis course</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.1</b> Resources</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#how-to-study"><i class="fa fa-check"></i><b>0.2</b> How to study</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-sections"><i class="fa fa-check"></i><b>0.3</b> Course sections</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#additional-notes"><i class="fa fa-check"></i><b>0.4</b> Additional notes</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#assignments-and-exercises"><i class="fa fa-check"></i><b>0.5</b> Assignments and exercises</a></li>
+<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#stan-models"><i class="fa fa-check"></i><b>0.6</b> Stan models</a></li>
+</ul></li>
+<li class="part"><span><b>I Notes</b></span></li>
+<li class="chapter" data-level="" data-path="notes-introduction.html"><a href="notes-introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html"><i class="fa fa-check"></i><b>1</b> Section 1. Course introduction and prerequisites</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#resources-1"><i class="fa fa-check"></i><b>1.1</b> Resources</a></li>
+<li class="chapter" data-level="1.2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#notes"><i class="fa fa-check"></i><b>1.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#reading-instructions"><i class="fa fa-check"></i><b>1.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="1.2.2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#lecture-notes"><i class="fa fa-check"></i><b>1.2.2</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html"><i class="fa fa-check"></i><b>2</b> Section 2. Basics of Bayesian inferences</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#resources-2"><i class="fa fa-check"></i><b>2.1</b> Resources</a></li>
+<li class="chapter" data-level="2.2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#notes-1"><i class="fa fa-check"></i><b>2.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#chapter-instructions"><i class="fa fa-check"></i><b>2.2.1</b> Chapter instructions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#chapter-2.-single-parameter-models"><i class="fa fa-check"></i><b>2.2.2</b> Chapter 2. Single-parameter models</a></li>
+<li class="chapter" data-level="2.2.3" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#lecture-notes-1"><i class="fa fa-check"></i><b>2.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html"><i class="fa fa-check"></i><b>3</b> Section 3. Multidimensional Posterior</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#resources-3"><i class="fa fa-check"></i><b>3.1</b> Resources</a></li>
+<li class="chapter" data-level="3.2" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#notes-2"><i class="fa fa-check"></i><b>3.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#reading-instructions-1"><i class="fa fa-check"></i><b>3.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#chapter-3.-introduction-to-multiparameter-models"><i class="fa fa-check"></i><b>3.2.2</b> Chapter 3. Introduction to multiparameter models</a></li>
+<li class="chapter" data-level="3.2.3" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#lecture-notes-2"><i class="fa fa-check"></i><b>3.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html"><i class="fa fa-check"></i><b>4</b> Section 4. Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#resources-4"><i class="fa fa-check"></i><b>4.1</b> Resources</a></li>
+<li class="chapter" data-level="4.2" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#notes-3"><i class="fa fa-check"></i><b>4.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#reading-instructions-2"><i class="fa fa-check"></i><b>4.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="4.2.2" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#chapter-10.-introduction-to-bayesian-computation"><i class="fa fa-check"></i><b>4.2.2</b> Chapter 10. Introduction to Bayesian computation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#lecture-notes-3"><i class="fa fa-check"></i><b>4.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html"><i class="fa fa-check"></i><b>5</b> Section 5. Markov chain Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#resources-5"><i class="fa fa-check"></i><b>5.1</b> Resources</a></li>
+<li class="chapter" data-level="5.2" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#notes-4"><i class="fa fa-check"></i><b>5.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#reading-instructions-3"><i class="fa fa-check"></i><b>5.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="5.2.2" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#chapter-11.-basics-of-markov-chain-simulation"><i class="fa fa-check"></i><b>5.2.2</b> Chapter 11. Basics of Markov chain simulation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#lecture-notes-4"><i class="fa fa-check"></i><b>5.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html"><i class="fa fa-check"></i><b>6</b> Section 6. HMC, NUTS, and Stan</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#resources-6"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#notes-5"><i class="fa fa-check"></i><b>6.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#reading-instructions-4"><i class="fa fa-check"></i><b>6.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="6.2.2" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#chapter-12.-computationally-efficient-markov-chain-simulation"><i class="fa fa-check"></i><b>6.2.2</b> Chapter 12. Computationally efficient Markov chain simulation</a></li>
+<li class="chapter" data-level="6.2.3" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#lecture-notes-5"><i class="fa fa-check"></i><b>6.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html"><i class="fa fa-check"></i><b>7</b> Section 7. Hierarchical models and exchangeability</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#resources-7"><i class="fa fa-check"></i><b>7.1</b> Resources</a></li>
+<li class="chapter" data-level="7.2" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#notes-6"><i class="fa fa-check"></i><b>7.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#reading-instructions-5"><i class="fa fa-check"></i><b>7.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="7.2.2" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#chapter-5.-hierarchical-models"><i class="fa fa-check"></i><b>7.2.2</b> Chapter 5. Hierarchical models</a></li>
+<li class="chapter" data-level="7.2.3" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#lecture-notes-6"><i class="fa fa-check"></i><b>7.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html"><i class="fa fa-check"></i><b>8</b> Section 8. Model checking &amp; Cross-validation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#resources-8"><i class="fa fa-check"></i><b>8.1</b> Resources</a></li>
+<li class="chapter" data-level="8.2" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#notes-7"><i class="fa fa-check"></i><b>8.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6-reading-instructions"><i class="fa fa-check"></i><b>8.2.1</b> Chapter 6 reading instructions</a></li>
+<li class="chapter" data-level="8.2.2" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6.-model-checking"><i class="fa fa-check"></i><b>8.2.2</b> Chapter 6. Model checking</a></li>
+<li class="chapter" data-level="8.2.3" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6.-lecture-notes"><i class="fa fa-check"></i><b>8.2.3</b> Chapter 6. Lecture notes</a></li>
+<li class="chapter" data-level="8.2.4" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7-reading-instructions"><i class="fa fa-check"></i><b>8.2.4</b> Chapter 7 reading instructions</a></li>
+<li class="chapter" data-level="8.2.5" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7.-evaluating-comparing-and-expanding-models"><i class="fa fa-check"></i><b>8.2.5</b> Chapter 7. Evaluating, comparing, and expanding models</a></li>
+<li class="chapter" data-level="8.2.6" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#additional-reading"><i class="fa fa-check"></i><b>8.2.6</b> Additional Reading</a></li>
+<li class="chapter" data-level="8.2.7" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7.-lecture-notes"><i class="fa fa-check"></i><b>8.2.7</b> Chapter 7. Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html"><i class="fa fa-check"></i><b>9</b> Section 9. Model comparison and selection</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#resources-9"><i class="fa fa-check"></i><b>9.1</b> Resources</a></li>
+<li class="chapter" data-level="9.2" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#notes-8"><i class="fa fa-check"></i><b>9.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#lecture-notes-7"><i class="fa fa-check"></i><b>9.2.1</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html"><i class="fa fa-check"></i><b>10</b> Section 10. Decision analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#resources-10"><i class="fa fa-check"></i><b>10.1</b> Resources</a></li>
+<li class="chapter" data-level="10.2" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#notes-9"><i class="fa fa-check"></i><b>10.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#reading-instructions-6"><i class="fa fa-check"></i><b>10.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="10.2.2" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#chapter-9.-decision-analysis"><i class="fa fa-check"></i><b>10.2.2</b> Chapter 9. Decision analysis</a></li>
+<li class="chapter" data-level="10.2.3" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#lecture-notes-8"><i class="fa fa-check"></i><b>10.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html"><i class="fa fa-check"></i><b>11</b> Section 11. Normal approximation &amp; Frequency properties</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#resources-11"><i class="fa fa-check"></i><b>11.1</b> Resources</a></li>
+<li class="chapter" data-level="11.2" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#notes-10"><i class="fa fa-check"></i><b>11.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#reading-instructions-7"><i class="fa fa-check"></i><b>11.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="11.2.2" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#chapter-4.-asymptotics-and-connections-to-non-bayesian-approaches"><i class="fa fa-check"></i><b>11.2.2</b> Chapter 4. Asymptotics and connections to non-Bayesian approaches</a></li>
+<li class="chapter" data-level="11.2.3" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#lecture-notes-9"><i class="fa fa-check"></i><b>11.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html"><i class="fa fa-check"></i><b>12</b> Section 12. Extended topics</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#resources-12"><i class="fa fa-check"></i><b>12.1</b> Resources</a></li>
+<li class="chapter" data-level="12.2" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#notes-11"><i class="fa fa-check"></i><b>12.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#lecture-12.1-frequency-evaluation-hypothesis-testing-and-variable-selection"><i class="fa fa-check"></i><b>12.2.1</b> Lecture 12.1 Frequency evaluation, hypothesis testing and variable selection</a></li>
+<li class="chapter" data-level="12.2.2" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#lecture-12.2-overview-of-modeling-data-collection-bda3-ch-8-linear-models-bda-ch-14-18-lasso-horseshoe-and-gaussian-processes-bda3-ch-21"><i class="fa fa-check"></i><b>12.2.2</b> Lecture 12.2 Overview of modeling data collection, BDA3 Ch 8, linear models, BDA Ch 14-18, lasso, horseshoe and Gaussian processes, BDA3 Ch 21</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><i class="fa fa-check"></i><b>13</b> Section 13. Notes on ‘Ch 14. Introduction to regression models’</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#chapter-14.-introduction-to-regression-models"><i class="fa fa-check"></i><b>13.1</b> Chapter 14. Introduction to regression models</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#conditional-modeling"><i class="fa fa-check"></i><b>13.1.1</b> 14.1 Conditional modeling</a></li>
+<li class="chapter" data-level="13.1.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#bayesian-analysis-of-classical-regression"><i class="fa fa-check"></i><b>13.1.2</b> 14.2 Bayesian analysis of classical regression</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#goals-of-regression-analysis"><i class="fa fa-check"></i><b>13.2</b> 14.4 Goals of regression analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#assembling-the-matrix-of-explanatory-variables"><i class="fa fa-check"></i><b>13.3</b> 14.5 Assembling the matrix of explanatory variables</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#identifiability-and-collinearity"><i class="fa fa-check"></i><b>13.3.1</b> Identifiability and collinearity</a></li>
+<li class="chapter" data-level="13.3.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#nonlinear-relations"><i class="fa fa-check"></i><b>13.3.2</b> Nonlinear relations</a></li>
+<li class="chapter" data-level="13.3.3" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#indicator-variables"><i class="fa fa-check"></i><b>13.3.3</b> Indicator variables</a></li>
+<li class="chapter" data-level="13.3.4" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#interactions"><i class="fa fa-check"></i><b>13.3.4</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#regularization-and-dimension-reduction"><i class="fa fa-check"></i><b>13.4</b> 14.6 Regularization and dimension reduction</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><a href="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><i class="fa fa-check"></i><b>14</b> Section 14. Notes on ‘Ch 15. Hierarchical linear models’</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><a href="section-14.-notes-on-ch-15.-hierarchical-linear-models.html#chapter-15.-hierarchical-linear-models"><i class="fa fa-check"></i><b>14.1</b> Chapter 15. Hierarchical linear models</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><i class="fa fa-check"></i><b>15</b> Section 17. Notes on ‘Ch 19. Parametric nonlinear models’</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#chapter-19.-parametric-nonlinear-models"><i class="fa fa-check"></i><b>15.1</b> Chapter 19. Parametric nonlinear models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#example-serial-dilution-assay"><i class="fa fa-check"></i>19.1 Example: serial dilution assay</a></li>
+<li class="chapter" data-level="" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#example-population-toxicokinetics"><i class="fa fa-check"></i>19.2 Example: population toxicokinetics</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html"><i class="fa fa-check"></i><b>16</b> Section 18. Notes on ‘Ch 20. Basis function models’</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#chapter-20.-basis-function-models"><i class="fa fa-check"></i><b>16.1</b> Chapter 20. Basis function models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#splines-and-weighted-sums-of-basis-functions"><i class="fa fa-check"></i>20.1 Splines and weighted sums of basis functions</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#basis-selection-and-shrinkage-coefficients"><i class="fa fa-check"></i><b>16.2</b> 20.2 Basis selection and shrinkage coefficients</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#shrinkage-priors"><i class="fa fa-check"></i>Shrinkage priors</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#non-normal-models-and-regression-surfaces"><i class="fa fa-check"></i><b>16.3</b> 20.3 Non-normal models and regression surfaces</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#other-error-distributions"><i class="fa fa-check"></i>Other error distributions</a></li>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#multivariate-regression-surfaces"><i class="fa fa-check"></i>Multivariate regression surfaces</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html"><i class="fa fa-check"></i><b>17</b> Section 19. Notes on ‘Ch 21. Gaussian process models’</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#chapter-21.-gaussian-process-models"><i class="fa fa-check"></i><b>17.1</b> Chapter 21. Gaussian process models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#gaussian-process-regression"><i class="fa fa-check"></i>21.1 Gaussian process regression</a></li>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#latent-gaussian-process-models"><i class="fa fa-check"></i>21.3 Latent Gaussian process models</a></li>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#functional-data-analysis"><i class="fa fa-check"></i>21.4 Functional data analysis</a></li>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#density-estimation-and-regression"><i class="fa fa-check"></i>21.5 Density estimation and regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html"><i class="fa fa-check"></i><b>18</b> Section 20. Notes on ‘Ch 22. Finite mixture models’</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#chapter-22.-finite-mixture-models"><i class="fa fa-check"></i><b>18.1</b> Chapter 22. Finite mixture models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#setting-up-and-interpreting-mixture-models"><i class="fa fa-check"></i>22.1 Setting up and interpreting mixture models</a></li>
+<li class="chapter" data-level="" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#unspecifed-number-of-mixture-components"><i class="fa fa-check"></i>22.4 Unspecifed number of mixture components</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><i class="fa fa-check"></i><b>19</b> Section 21. Notes on ‘Ch 23. Dirichlet process models’</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#chapter-23.-dirichlet-process-models"><i class="fa fa-check"></i><b>19.1</b> Chapter 23. Dirichlet process models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#bayesian-histograms"><i class="fa fa-check"></i>23.1 Bayesian histograms</a></li>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#dirichlet-process-prior-distributions"><i class="fa fa-check"></i>23.2 Dirichlet process prior distributions</a></li>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#dirichlet-process-mixtures"><i class="fa fa-check"></i>23.3 Dirichlet process mixtures</a></li>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#beyond-density-estimation"><i class="fa fa-check"></i>23.4 Beyond density estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Assignments</b></span></li>
+<li class="chapter" data-level="" data-path="assignments-intro.html"><a href="assignments-intro.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="20" data-path="assignment-1.html"><a href="assignment-1.html"><i class="fa fa-check"></i><b>20</b> Assignment 1</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="assignment-1.html"><a href="assignment-1.html#setup"><i class="fa fa-check"></i><b>20.1</b> Setup</a></li>
+<li class="chapter" data-level="20.2" data-path="assignment-1.html"><a href="assignment-1.html#exercise-1"><i class="fa fa-check"></i><b>20.2</b> Exercise 1</a></li>
+<li class="chapter" data-level="20.3" data-path="assignment-1.html"><a href="assignment-1.html#exercise-3"><i class="fa fa-check"></i><b>20.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="20.4" data-path="assignment-1.html"><a href="assignment-1.html#exercise-4"><i class="fa fa-check"></i><b>20.4</b> Exercise 4</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="assignment-1.html"><a href="assignment-1.html#a"><i class="fa fa-check"></i><b>20.4.1</b> 4.a</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="assignment-1.html"><a href="assignment-1.html#exercise-5"><i class="fa fa-check"></i><b>20.5</b> Exercise 5</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="assignment-2.html"><a href="assignment-2.html"><i class="fa fa-check"></i><b>21</b> Assignment 2</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="assignment-2.html"><a href="assignment-2.html#setup-1"><i class="fa fa-check"></i><b>21.1</b> Setup</a></li>
+<li class="chapter" data-level="21.2" data-path="assignment-2.html"><a href="assignment-2.html#exercise-1.-inference-for-binomial-proportion"><i class="fa fa-check"></i><b>21.2</b> Exercise 1. Inference for binomial proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="assignment-3.html"><a href="assignment-3.html"><i class="fa fa-check"></i><b>22</b> Assignment 3</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="assignment-3.html"><a href="assignment-3.html#setup-2"><i class="fa fa-check"></i><b>22.1</b> Setup</a></li>
+<li class="chapter" data-level="22.2" data-path="assignment-3.html"><a href="assignment-3.html#exercise-1.-inference-for-normal-mean-and-deviation"><i class="fa fa-check"></i><b>22.2</b> Exercise 1. Inference for normal mean and deviation</a></li>
+<li class="chapter" data-level="22.3" data-path="assignment-3.html"><a href="assignment-3.html#exercise-2.-inference-for-the-difference-between-proportions"><i class="fa fa-check"></i><b>22.3</b> Exercise 2. Inference for the difference between proportions</a></li>
+<li class="chapter" data-level="22.4" data-path="assignment-3.html"><a href="assignment-3.html#exercise-3.-inference-for-the-difference-between-normal-means"><i class="fa fa-check"></i><b>22.4</b> Exercise 3. Inference for the difference between normal means</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="assignment-4.html"><a href="assignment-4.html"><i class="fa fa-check"></i><b>23</b> Assignment 4</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="assignment-4.html"><a href="assignment-4.html#setup-3"><i class="fa fa-check"></i><b>23.1</b> Setup</a></li>
+<li class="chapter" data-level="23.2" data-path="assignment-4.html"><a href="assignment-4.html#exercise-1.-bioassay-model"><i class="fa fa-check"></i><b>23.2</b> Exercise 1. Bioassay model</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="assignment-5.html"><a href="assignment-5.html"><i class="fa fa-check"></i><b>24</b> Assignment 5</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="assignment-5.html"><a href="assignment-5.html#setup-4"><i class="fa fa-check"></i><b>24.1</b> Setup</a></li>
+<li class="chapter" data-level="24.2" data-path="assignment-5.html"><a href="assignment-5.html#generalized-linear-model-bioassay-with-metropolis"><i class="fa fa-check"></i><b>24.2</b> Generalized linear model: Bioassay with Metropolis</a>
+<ul>
+<li class="chapter" data-level="24.2.1" data-path="assignment-5.html"><a href="assignment-5.html#exercise-1."><i class="fa fa-check"></i><b>24.2.1</b> Exercise 1.</a></li>
+<li class="chapter" data-level="24.2.2" data-path="assignment-5.html"><a href="assignment-5.html#exercise-2."><i class="fa fa-check"></i><b>24.2.2</b> Exercise 2.</a></li>
+<li class="chapter" data-level="24.2.3" data-path="assignment-5.html"><a href="assignment-5.html#exercise-3-1"><i class="fa fa-check"></i><b>24.2.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="24.2.4" data-path="assignment-5.html"><a href="assignment-5.html#exercise-4-1"><i class="fa fa-check"></i><b>24.2.4</b> Exercise 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="assignment-6.html"><a href="assignment-6.html"><i class="fa fa-check"></i><b>25</b> Assignment 6</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="assignment-6.html"><a href="assignment-6.html#setup-5"><i class="fa fa-check"></i><b>25.1</b> Setup</a></li>
+<li class="chapter" data-level="25.2" data-path="assignment-6.html"><a href="assignment-6.html#exercise-1.-generalized-linear-model-bioassay-with-stan"><i class="fa fa-check"></i><b>25.2</b> Exercise 1. Generalized linear model: Bioassay with Stan</a>
+<ul>
+<li class="chapter" data-level="25.2.1" data-path="assignment-6.html"><a href="assignment-6.html#write-down-the-model-for-the-bioassay-data-in-stan-syntax."><i class="fa fa-check"></i><b>25.2.1</b> 1. Write down the model for the bioassay data in Stan syntax.</a></li>
+<li class="chapter" data-level="25.2.2" data-path="assignment-6.html"><a href="assignment-6.html#use-widehatr-for-convergence-analysis."><i class="fa fa-check"></i><b>25.2.2</b> 2. Use <span class="math inline">\(\widehat{R}\)</span> for convergence analysis.</a></li>
+<li class="chapter" data-level="25.2.3" data-path="assignment-6.html"><a href="assignment-6.html#plot-the-draws-for-alpha-and-beta-scatter-plot-and-include-this-plot-in-your-report"><i class="fa fa-check"></i><b>25.2.3</b> 3. Plot the draws for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> (scatter plot) and include this plot in your report</a></li>
+<li class="chapter" data-level="25.2.4" data-path="assignment-6.html"><a href="assignment-6.html#to-develop-the-course-and-provide-feedback-to-stan-developers-we-collect-information-on-which-stan-setup-you-used-and-whether-you-had-any-problems-in-setting-it-up-or-using-it."><i class="fa fa-check"></i><b>25.2.4</b> 4. To develop the course and provide feedback to Stan developers, we collect information on which Stan setup you used and whether you had any problems in setting it up or using it.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="assignment-7.html"><a href="assignment-7.html"><i class="fa fa-check"></i><b>26</b> Assignment 7</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="assignment-7.html"><a href="assignment-7.html#setup-6"><i class="fa fa-check"></i><b>26.1</b> Setup</a></li>
+<li class="chapter" data-level="26.2" data-path="assignment-7.html"><a href="assignment-7.html#linear-model-drowning-data-with-stan"><i class="fa fa-check"></i><b>26.2</b> 1. Linear model: drowning data with Stan</a></li>
+<li class="chapter" data-level="26.3" data-path="assignment-7.html"><a href="assignment-7.html#hierarchical-model-factory-data-with-stan"><i class="fa fa-check"></i><b>26.3</b> 2. Hierarchical model: factory data with Stan</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="assignment-8.html"><a href="assignment-8.html"><i class="fa fa-check"></i><b>27</b> Assignment 8</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="assignment-8.html"><a href="assignment-8.html#setup-7"><i class="fa fa-check"></i><b>27.1</b> Setup</a></li>
+<li class="chapter" data-level="27.2" data-path="assignment-8.html"><a href="assignment-8.html#exercise-1.-model-assessment-loo-cv-for-factory-data-with-stan"><i class="fa fa-check"></i><b>27.2</b> Exercise 1. Model assessment: LOO-CV for factory data with Stan</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="assignment-9.html"><a href="assignment-9.html"><i class="fa fa-check"></i><b>28</b> Assignment 9</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="assignment-9.html"><a href="assignment-9.html#setup-8"><i class="fa fa-check"></i><b>28.1</b> Setup</a></li>
+<li class="chapter" data-level="28.2" data-path="assignment-9.html"><a href="assignment-9.html#exercise-1.-decision-analysis-for-the-factory-data"><i class="fa fa-check"></i><b>28.2</b> Exercise 1. Decision analysis for the factory data</a></li>
+</ul></li>
+<li class="part"><span><b>III Book Exercises</b></span></li>
+<li class="chapter" data-level="" data-path="exercises-intro.html"><a href="exercises-intro.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="29" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html"><i class="fa fa-check"></i><b>29</b> Chapter 1 Exercises</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-1"><i class="fa fa-check"></i><b>29.1</b> Question 1</a></li>
+<li class="chapter" data-level="29.2" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-2"><i class="fa fa-check"></i><b>29.2</b> Question 2</a></li>
+<li class="chapter" data-level="29.3" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-6"><i class="fa fa-check"></i><b>29.3</b> Question 6</a></li>
+<li class="chapter" data-level="29.4" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-8"><i class="fa fa-check"></i><b>29.4</b> Question 8</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html"><i class="fa fa-check"></i><b>30</b> Chapter 2 Exercises</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#setup-9"><i class="fa fa-check"></i><b>30.1</b> Setup</a></li>
+<li class="chapter" data-level="30.2" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-1-1"><i class="fa fa-check"></i><b>30.2</b> Question 1</a></li>
+<li class="chapter" data-level="30.3" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-2-1"><i class="fa fa-check"></i><b>30.3</b> Question 2</a></li>
+<li class="chapter" data-level="30.4" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-3"><i class="fa fa-check"></i><b>30.4</b> Question 3</a></li>
+<li class="chapter" data-level="30.5" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-4"><i class="fa fa-check"></i><b>30.5</b> Question 4</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="chapter-5-exercises.html"><a href="chapter-5-exercises.html"><i class="fa fa-check"></i><b>31</b> Chapter 5 Exercises</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="chapter-5-exercises.html"><a href="chapter-5-exercises.html#question-1-2"><i class="fa fa-check"></i><b>31.1</b> Question 1</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><i class="fa fa-check"></i><b>32</b> Chapter 19 Exercises - Reproducing the the ‘serial dilution assay’</a>
+<ul>
+<li class="chapter" data-level="32.1" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#setup-10"><i class="fa fa-check"></i><b>32.1</b> Setup</a></li>
+<li class="chapter" data-level="32.2" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#modeling"><i class="fa fa-check"></i><b>32.2</b> Modeling</a>
+<ul>
+<li class="chapter" data-level="32.2.1" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#model-specification"><i class="fa fa-check"></i><b>32.2.1</b> Model specification</a></li>
+<li class="chapter" data-level="32.2.2" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#in-stan"><i class="fa fa-check"></i><b>32.2.2</b> In Stan</a></li>
+<li class="chapter" data-level="32.2.3" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#sampling"><i class="fa fa-check"></i><b>32.2.3</b> Sampling</a></li>
+<li class="chapter" data-level="32.2.4" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#posterior-distributions"><i class="fa fa-check"></i><b>32.2.4</b> Posterior distributions</a></li>
+<li class="chapter" data-level="32.2.5" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#posterior-predictive-check"><i class="fa fa-check"></i><b>32.2.5</b> Posterior predictive check</a></li>
+</ul></li>
+<li class="chapter" data-level="32.3" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#session-info"><i class="fa fa-check"></i><b>32.3</b> Session info</a></li>
+</ul></li>
+<li class="part"><span><b>IV Models</b></span></li>
+<li class="chapter" data-level="33" data-path="stan-models-1.html"><a href="stan-models-1.html"><i class="fa fa-check"></i><b>33</b> Stan models</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="stan-models-1.html"><a href="stan-models-1.html#model-8-schools.stan"><i class="fa fa-check"></i><b>33.1</b> Model: <code>8-schools.stan</code></a></li>
+<li class="chapter" data-level="33.2" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment06-bioassay.stan"><i class="fa fa-check"></i><b>33.2</b> Model: <code>assignment06-bioassay.stan</code></a></li>
+<li class="chapter" data-level="33.3" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07_factories_hierarchical.stan"><i class="fa fa-check"></i><b>33.3</b> Model: <code>assignment07_factories_hierarchical.stan</code></a></li>
+<li class="chapter" data-level="33.4" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07_factories_pooled.stan"><i class="fa fa-check"></i><b>33.4</b> Model: <code>assignment07_factories_pooled.stan</code></a></li>
+<li class="chapter" data-level="33.5" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07_factories_separate.stan"><i class="fa fa-check"></i><b>33.5</b> Model: <code>assignment07_factories_separate.stan</code></a></li>
+<li class="chapter" data-level="33.6" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07-drownings.stan"><i class="fa fa-check"></i><b>33.6</b> Model: <code>assignment07-drownings.stan</code></a></li>
+<li class="chapter" data-level="33.7" data-path="stan-models-1.html"><a href="stan-models-1.html#model-serial-dilution.stan"><i class="fa fa-check"></i><b>33.7</b> Model: <code>serial-dilution.stan</code></a></li>
+</ul></li>
+<li class="part"><span><b>V Misc</b></span></li>
+<li class="chapter" data-level="" data-path="about.html"><a href="about.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="33.8" data-path="about.html"><a href="about.html#the-website"><i class="fa fa-check"></i><b>33.8</b> The website</a></li>
+<li class="chapter" data-level="33.9" data-path="about.html"><a href="about.html#about-me"><i class="fa fa-check"></i><b>33.9</b> About me</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-19-exercises---reproducing-the-the-serial-dilution-assay" class="section level1" number="32">
+<h1><span class="header-section-number">32</span> Chapter 19 Exercises - Reproducing the the ‘serial dilution assay’</h1>
+<p>2021-12-10</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb319-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb319-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dpi = 400, fig.width = 7, fig.height = 4.5, fig.retina = TRUE</span></span>
+<span id="cb319-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb319-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb319-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb319-4" aria-hidden="true" tabindex="-1"></a>rfiles <span class="ot">&lt;-</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">full.names =</span> <span class="cn">TRUE</span>, <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>)</span>
+<span id="cb319-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb319-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (rfile <span class="cf">in</span> rfiles) {</span>
+<span id="cb319-6"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb319-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(rfile)</span>
+<span id="cb319-7"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb319-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb319-8"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb319-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb319-9"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb319-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span></code></pre></div>
+<blockquote>
+<p>I turned this exercise into a blog post on my <a href="https://joshuacook.netlify.app">webiste</a>.</p>
+</blockquote>
+<p>In chapter 17 “Parametric nonlinear models” of <em>Bayesian Data Analysis</em> by Gelman <em>et al.</em> <span class="citation">(<a href="#ref-bda3" role="doc-biblioref">Gelman et al. 2013</a>)</span>, the authors present an example of fitting a curve to a <a href="https://en.wikipedia.org/wiki/Serial_dilution">serial dilution</a> standard curve and using it to estimate unknown concentrations.
+Below, I build the model with Stan and fit it using MCMC.
+Unfortunately, I was unable to find the original data in Gelman’s original publication of the model <span class="citation">(<a href="#ref-Gelman2004-kh" role="doc-biblioref">Gelman, Chew, and Shnaidman 2004</a>)</span>.
+The best I could do was copy the data for the standard curve from a table in the book and build the model to fit that data.</p>
+<blockquote>
+<p>The source code for this post is in a <a href="https://github.com/jhrcook/bayesian-data-analysis-course">repository</a> of my work for Aki Vehtari’s Bayesian Data Analysis <a href="https://avehtari.github.io/BDA_course_Aalto/index.html">course</a>.</p>
+</blockquote>
+<div id="setup-10" class="section level2" number="32.1">
+<h2><span class="header-section-number">32.1</span> Setup</h2>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan)</span>
+<span id="cb320-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
+<span id="cb320-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb320-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb320-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-6"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-6" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>())</span>
+<span id="cb320-7"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb320-8"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-9"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-9" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(</span>
+<span id="cb320-10"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb320-11"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb320-12"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(),</span>
+<span id="cb320-13"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb320-14"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
+<span id="cb320-15"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb320-16"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb320-17"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-18"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-18" aria-hidden="true" tabindex="-1"></a>SNS_BLUE <span class="ot">&lt;-</span> <span class="st">&quot;#1F77B4&quot;</span></span>
+<span id="cb320-19"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb320-19" aria-hidden="true" tabindex="-1"></a>STAN_RED <span class="ot">&lt;-</span> <span class="st">&quot;#B2171D&quot;</span></span></code></pre></div>
+<p>As mentioned above, I couldn’t find the original data, so I copied it from the book’s figure 19.3 on page 473.</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-1" aria-hidden="true" tabindex="-1"></a>dilution_standards_data <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb321-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>conc, <span class="sc">~</span>dilution, <span class="sc">~</span>y,</span>
+<span id="cb321-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-3" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.64</span>, <span class="dv">1</span>, <span class="fu">c</span>(<span class="fl">101.8</span>, <span class="fl">121.4</span>),</span>
+<span id="cb321-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-4" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.32</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span>, <span class="fu">c</span>(<span class="fl">105.2</span>, <span class="fl">114.1</span>),</span>
+<span id="cb321-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-5" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.16</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">4</span>, <span class="fu">c</span>(<span class="fl">92.7</span>, <span class="fl">93.3</span>),</span>
+<span id="cb321-6"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-6" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.08</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">8</span>, <span class="fu">c</span>(<span class="fl">72.4</span>, <span class="fl">61.1</span>),</span>
+<span id="cb321-7"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-7" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.04</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">16</span>, <span class="fu">c</span>(<span class="fl">57.6</span>, <span class="fl">50.0</span>),</span>
+<span id="cb321-8"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-8" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.02</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">32</span>, <span class="fu">c</span>(<span class="fl">38.5</span>, <span class="fl">35.1</span>),</span>
+<span id="cb321-9"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-9" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.01</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">64</span>, <span class="fu">c</span>(<span class="fl">26.6</span>, <span class="fl">25.0</span>),</span>
+<span id="cb321-10"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-10" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="fu">c</span>(<span class="fl">14.7</span>, <span class="fl">14.2</span>),</span>
+<span id="cb321-11"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb321-12"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rep =</span> purrr<span class="sc">::</span><span class="fu">map</span>(conc, <span class="sc">~</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb321-13"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(y, rep))</span>
+<span id="cb321-14"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-15"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb321-15" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dilution_standards_data)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">conc</th>
+<th align="right">dilution</th>
+<th align="right">y</th>
+<th align="left">rep</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0.64</td>
+<td align="right">1.000000</td>
+<td align="right">101.8</td>
+<td align="left">a</td>
+</tr>
+<tr class="even">
+<td align="right">0.64</td>
+<td align="right">1.000000</td>
+<td align="right">121.4</td>
+<td align="left">b</td>
+</tr>
+<tr class="odd">
+<td align="right">0.32</td>
+<td align="right">0.500000</td>
+<td align="right">105.2</td>
+<td align="left">a</td>
+</tr>
+<tr class="even">
+<td align="right">0.32</td>
+<td align="right">0.500000</td>
+<td align="right">114.1</td>
+<td align="left">b</td>
+</tr>
+<tr class="odd">
+<td align="right">0.16</td>
+<td align="right">0.250000</td>
+<td align="right">92.7</td>
+<td align="left">a</td>
+</tr>
+<tr class="even">
+<td align="right">0.16</td>
+<td align="right">0.250000</td>
+<td align="right">93.3</td>
+<td align="left">b</td>
+</tr>
+<tr class="odd">
+<td align="right">0.08</td>
+<td align="right">0.125000</td>
+<td align="right">72.4</td>
+<td align="left">a</td>
+</tr>
+<tr class="even">
+<td align="right">0.08</td>
+<td align="right">0.125000</td>
+<td align="right">61.1</td>
+<td align="left">b</td>
+</tr>
+<tr class="odd">
+<td align="right">0.04</td>
+<td align="right">0.062500</td>
+<td align="right">57.6</td>
+<td align="left">a</td>
+</tr>
+<tr class="even">
+<td align="right">0.04</td>
+<td align="right">0.062500</td>
+<td align="right">50.0</td>
+<td align="left">b</td>
+</tr>
+<tr class="odd">
+<td align="right">0.02</td>
+<td align="right">0.031250</td>
+<td align="right">38.5</td>
+<td align="left">a</td>
+</tr>
+<tr class="even">
+<td align="right">0.02</td>
+<td align="right">0.031250</td>
+<td align="right">35.1</td>
+<td align="left">b</td>
+</tr>
+<tr class="odd">
+<td align="right">0.01</td>
+<td align="right">0.015625</td>
+<td align="right">26.6</td>
+<td align="left">a</td>
+</tr>
+<tr class="even">
+<td align="right">0.01</td>
+<td align="right">0.015625</td>
+<td align="right">25.0</td>
+<td align="left">b</td>
+</tr>
+<tr class="odd">
+<td align="right">0.00</td>
+<td align="right">0.000000</td>
+<td align="right">14.7</td>
+<td align="left">a</td>
+</tr>
+<tr class="even">
+<td align="right">0.00</td>
+<td align="right">0.000000</td>
+<td align="right">14.2</td>
+<td align="left">b</td>
+</tr>
+</tbody>
+</table>
+<p>The following plot shows the two standard dilution curves.
+They are quite similar.</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-1" aria-hidden="true" tabindex="-1"></a>data_plot <span class="ot">&lt;-</span> dilution_standards_data <span class="sc">%&gt;%</span></span>
+<span id="cb322-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> y, <span class="at">color =</span> rep)) <span class="sc">+</span></span>
+<span id="cb322-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb322-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb322-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.02</span>)), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb322-6"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.02</span>)), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb322-7"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb322-8"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb322-9"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>),</span>
+<span id="cb322-10"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb322-11"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb322-12"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb322-13"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;concentration&quot;</span>,</span>
+<span id="cb322-14"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb322-15"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Serial dilution standard curve&quot;</span>,</span>
+<span id="cb322-16"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;replicate&quot;</span></span>
+<span id="cb322-17"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb322-18"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb322-19"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb322-19" aria-hidden="true" tabindex="-1"></a>data_plot</span></code></pre></div>
+<p><img src="exercises-19_files/figure-html/unnamed-chunk-2-1.png" width="2100" /></p>
+</div>
+<div id="modeling" class="section level2" number="32.2">
+<h2><span class="header-section-number">32.2</span> Modeling</h2>
+<div id="model-specification" class="section level3" number="32.2.1">
+<h3><span class="header-section-number">32.2.1</span> Model specification</h3>
+<p>The model uses a normal likelihood to describe the posterior distribution <span class="math inline">\(p(y|x)\)</span>.
+The mean of the likelihood is defined for a given concentration <span class="math inline">\(x\)</span> using the standard equation used in the field:</p>
+<p><span class="math display">\[
+\text{E}[y | x, \beta] = g(x, \beta) = \beta_1 + \frac{\beta_2}{1 + (x/\beta_3)^{-\beta_4}} \\
+\]</span></p>
+<p>The model is a scaled and shifted logistic curve.
+This structure results in the following interpretations for <span class="math inline">\(\beta\)</span>, all of which are restricted to positive values:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\beta_1\)</span>: color intensity when the concentration is 0</li>
+<li><span class="math inline">\(\beta_2\)</span>: increase to saturation</li>
+<li><span class="math inline">\(\beta_3\)</span>: the inflection point of the curve</li>
+<li><span class="math inline">\(\beta_4\)</span>: rate of saturation</li>
+</ol>
+<p>Below are the prior distributions for <span class="math inline">\(\beta\)</span>. Note that they are are drastically different scales - this is critical to help the model fit the data.</p>
+<p><span class="math display">\[
+\beta_1 \sim N(10, 2.5) \\
+\beta_2 \sim N(100, 5) \\
+\beta_3 \sim N(0, 1) \\
+\beta_4 \sim N(0, 2.5)
+\]</span></p>
+<p>The measurement error of the model, representing the variance in the model’s likelihood is defined as follows:</p>
+<p><span class="math display">\[
+\tau(\alpha, \sigma_y, g(x, \beta), A) = \lgroup \frac{g(x,\beta)}{A} \rgroup^{2\alpha} \sigma^2_y
+\]</span></p>
+<p>Here, <span class="math inline">\(\alpha\)</span>, restricted to lie between 0 and 1, allows the variance to be higher for larger measurement values.
+<span class="math inline">\(A\)</span> is a constant (set to 30 by the authors) that allows <span class="math inline">\(\sigma_y\)</span> to be more easily interpreted as the variance from “typical” measurements.
+Below are the priors for the new variables in the model.</p>
+<p><span class="math display">\[
+\alpha \sim \text{Beta}(1, 1) \qquad
+\sigma \sim |N(0, 2.5)|
+\]</span></p>
+</div>
+<div id="in-stan" class="section level3" number="32.2.2">
+<h3><span class="header-section-number">32.2.2</span> In Stan</h3>
+<p>Below is the Stan code for the model.
+It looks very similar to the mathematical description of the model, a nice feature of the Stan probabilistic programming language.</p>
+<p>The centrality and variance of the likelihood are calculated separately as <code>g</code> and <code>tau</code> so they can be used in the <code>model</code> and <code>generated quantities</code> block without duplicating the code.
+The <code>log_lik</code> is calculated so that PSIS-LOO cross validation can be estimated.
+I also included the ability to provide new data to make predictions over as <code>xnew</code>.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb323-1" aria-hidden="true" tabindex="-1"></a>dilution_model_file <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;models&quot;</span>, <span class="st">&quot;serial-dilution.stan&quot;</span>)</span>
+<span id="cb323-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb323-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="fu">readLines</span>(dilution_model_file))</span></code></pre></div>
+<pre><code>#&gt; data {
+#&gt;   int&lt;lower=0&gt; N;           // number of data points
+#&gt;   int&lt;lower=0&gt; A;           // constant used in model of measurement error
+#&gt;   vector&lt;lower=0&gt;[N] x;     // concentration values
+#&gt;   vector&lt;lower=0&gt;[N] y;     // observed color intensity
+#&gt;   int&lt;lower=0&gt; M;           // number of new x values
+#&gt;   vector&lt;lower=0&gt;[M] xnew;  // new x values
+#&gt; }
+#&gt; 
+#&gt; parameters {
+#&gt;   vector&lt;lower=0&gt;[4] beta;
+#&gt;   real&lt;lower=0,upper=1&gt; alpha;
+#&gt;   real&lt;lower=0&gt; sigma;
+#&gt; }
+#&gt; 
+#&gt; transformed parameters {
+#&gt;   vector&lt;lower=0&gt;[N] g;
+#&gt;   vector&lt;lower=0&gt;[N] tau;
+#&gt; 
+#&gt;   for (i in 1:N) {
+#&gt;     g[i] = beta[1] + beta[2] / (1 + (x[i] / beta[3]) ^ (-beta[4]));
+#&gt;     tau[i] = ((g[i] / A) ^ (2.0 * alpha)) * (sigma ^ 2.0);
+#&gt;   }
+#&gt; }
+#&gt; 
+#&gt; model {
+#&gt;   // Priors
+#&gt;   alpha ~ beta(1, 1);
+#&gt;   beta[1] ~ normal(10, 2.5);
+#&gt;   beta[2] ~ normal(100, 5);
+#&gt;   beta[3] ~ normal(0, 1);
+#&gt;   beta[4] ~ normal(0, 2.5);
+#&gt;   sigma ~ normal(0, 2.5);
+#&gt; 
+#&gt;   // Likelihood
+#&gt;   for (i in 1:N) {
+#&gt;     y[i] ~ normal(g[i], tau[i]);
+#&gt;   }
+#&gt; }
+#&gt; 
+#&gt; generated quantities {
+#&gt;   vector[N] ypred;
+#&gt;   vector[N] log_lik;
+#&gt; 
+#&gt;   vector[M] g_hat;
+#&gt;   vector[M] tau_hat;
+#&gt;   vector[M] ynew;
+#&gt; 
+#&gt;   for (i in 1:N) {
+#&gt;     ypred[i] = normal_rng(g[i], tau[i]);
+#&gt;     log_lik[i] = normal_lpdf(y[i] | g[i], tau[i]);
+#&gt;   }
+#&gt; 
+#&gt;   for (i in 1:M) {
+#&gt;     g_hat[i] = beta[1] + beta[2] / (1 + (xnew[i] / beta[3]) ^ (-beta[4]));
+#&gt;     tau_hat[i] = ((g_hat[i] / A) ^ (2.0 * alpha)) * (sigma ^ 2.0);
+#&gt;     ynew[i] = normal_rng(g_hat[i], tau_hat[i]);
+#&gt;   }
+#&gt; }</code></pre>
+</div>
+<div id="sampling" class="section level3" number="32.2.3">
+<h3><span class="header-section-number">32.2.3</span> Sampling</h3>
+<p>As mentioned above, specifically defining the prior distributions for each <span class="math inline">\(\beta\)</span> is necessary for MCMC to accurately sample from the posterior.
+With those helping restrict the range of their values, the model fit very well.</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-1" aria-hidden="true" tabindex="-1"></a>xnew <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(dilution_standards_data<span class="sc">$</span>conc), <span class="fl">0.001</span>)</span>
+<span id="cb325-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-2" aria-hidden="true" tabindex="-1"></a>model_data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb325-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">nrow</span>(dilution_standards_data),</span>
+<span id="cb325-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span> <span class="dv">30</span>,</span>
+<span id="cb325-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> dilution_standards_data<span class="sc">$</span>conc,</span>
+<span id="cb325-6"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> dilution_standards_data<span class="sc">$</span>y,</span>
+<span id="cb325-7"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">M =</span> <span class="fu">length</span>(xnew),</span>
+<span id="cb325-8"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xnew =</span> xnew</span>
+<span id="cb325-9"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb325-10"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb325-11"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-11" aria-hidden="true" tabindex="-1"></a>dilution_model <span class="ot">&lt;-</span> <span class="fu">stan</span>(</span>
+<span id="cb325-12"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-12" aria-hidden="true" tabindex="-1"></a>  dilution_model_file,</span>
+<span id="cb325-13"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_name =</span> <span class="st">&quot;serial-dilution&quot;</span>,</span>
+<span id="cb325-14"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> model_data,</span>
+<span id="cb325-15"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">1000</span></span>
+<span id="cb325-16"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb325-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="posterior-distributions" class="section level3" number="32.2.4">
+<h3><span class="header-section-number">32.2.4</span> Posterior distributions</h3>
+<p>The next step is to analyze the posterior draws of the model.
+We can check the success of MCMC by visualizing the traces of the chains, looking for good mixing (“fuzzy caterpillars”) and checking diagnostic values such as <span class="math inline">\(\widehat{R}\)</span> and <span class="math inline">\(n_\text{eff}\)</span>.
+The trace plots are shown below followed by a table of the posteriors with the diagnostic values.
+Everything looks good suggesting MCMC was successful.</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb326-1" aria-hidden="true" tabindex="-1"></a>model_pars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;beta&quot;</span>, <span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;sigma&quot;</span>)</span>
+<span id="cb326-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb326-2" aria-hidden="true" tabindex="-1"></a>rstan<span class="sc">::</span><span class="fu">stan_trace</span>(dilution_model, <span class="at">pars =</span> model_pars, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb326-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb326-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb326-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb326-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.02</span>))) <span class="sc">+</span></span>
+<span id="cb326-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb326-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="exercises-19_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dilution_model, <span class="at">pars =</span> model_pars)</span></code></pre></div>
+<pre><code>#&gt; Inference for Stan model: serial-dilution.
+#&gt; 4 chains, each with iter=2000; warmup=1000; thin=1; 
+#&gt; post-warmup draws per chain=1000, total post-warmup draws=4000.
+#&gt; 
+#&gt;           mean se_mean   sd  2.5%   25%    50%    75%  97.5% n_eff Rhat
+#&gt; beta[1]  14.33    0.02 0.55 13.12 14.08  14.36  14.61  15.33  1074    1
+#&gt; beta[2] 102.70    0.10 4.30 94.48 99.67 102.61 105.60 111.32  1755    1
+#&gt; beta[3]   0.06    0.00 0.01  0.05  0.06   0.06   0.07   0.08  1633    1
+#&gt; beta[4]   1.13    0.00 0.08  0.97  1.07   1.12   1.18   1.29  1870    1
+#&gt; alpha     0.72    0.01 0.17  0.33  0.61   0.74   0.85   0.98  1074    1
+#&gt; sigma     1.33    0.01 0.24  0.98  1.16   1.30   1.45   1.92   893    1
+#&gt; 
+#&gt; Samples were drawn using NUTS(diag_e) at Wed Feb  9 06:44:24 2022.
+#&gt; For each parameter, n_eff is a crude measure of effective sample size,
+#&gt; and Rhat is the potential scale reduction factor on split chains (at 
+#&gt; convergence, Rhat=1).</code></pre>
+<p>The following density plots show the posterior distributions of the model parameters <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\alpha\)</span>, and <span class="math inline">\(\sigma\)</span>.</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb329-1" aria-hidden="true" tabindex="-1"></a>rstan<span class="sc">::</span><span class="fu">stan_dens</span>(</span>
+<span id="cb329-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb329-2" aria-hidden="true" tabindex="-1"></a>  dilution_model,</span>
+<span id="cb329-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb329-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pars =</span> model_pars,</span>
+<span id="cb329-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb329-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">separate_chains =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb329-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb329-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> <span class="fl">0.6</span></span>
+<span id="cb329-6"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb329-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb329-7"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb329-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb329-8"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb329-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.02</span>)))</span></code></pre></div>
+<p><img src="exercises-19_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
+</div>
+<div id="posterior-predictive-check" class="section level3" number="32.2.5">
+<h3><span class="header-section-number">32.2.5</span> Posterior predictive check</h3>
+<p>Below is a plot of the posterior predictive distributions of the model on the original data.
+1,000 individual simulations are plotted in blue and the mean in black.
+The simulated curves visually appear to correspond well with the observed data indicating the model has good fit.</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb330-1" aria-hidden="true" tabindex="-1"></a>dilution_post_pred <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">extract</span>(dilution_model, <span class="st">&quot;ypred&quot;</span>)<span class="sc">$</span>ypred <span class="sc">%&gt;%</span></span>
+<span id="cb330-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb330-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb330-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb330-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb330-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb330-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">ncol</span>(.))) <span class="sc">%&gt;%</span></span>
+<span id="cb330-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb330-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">draw =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb330-6"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb330-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span><span class="fu">c</span>(draw), <span class="at">names_to =</span> <span class="st">&quot;idx&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb330-7"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb330-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb330-8"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb330-8" aria-hidden="true" tabindex="-1"></a>    dilution_standards_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">idx =</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>())),</span>
+<span id="cb330-9"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb330-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">&quot;idx&quot;</span></span>
+<span id="cb330-10"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb330-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-1" aria-hidden="true" tabindex="-1"></a>plt_n_draws <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb331-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-2" aria-hidden="true" tabindex="-1"></a>plt_draws <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">max</span>(dilution_post_pred<span class="sc">$</span>draw), plt_n_draws)</span>
+<span id="cb331-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb331-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-4" aria-hidden="true" tabindex="-1"></a>ppc_mean <span class="ot">&lt;-</span> dilution_post_pred <span class="sc">%&gt;%</span></span>
+<span id="cb331-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(conc) <span class="sc">%&gt;%</span></span>
+<span id="cb331-6"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">value =</span> <span class="fu">mean</span>(value)) <span class="sc">%&gt;%</span></span>
+<span id="cb331-7"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb331-8"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb331-9"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-9" aria-hidden="true" tabindex="-1"></a>dilution_post_pred <span class="sc">%&gt;%</span></span>
+<span id="cb331-10"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(draw <span class="sc">%in%</span> <span class="sc">!!</span>plt_draws) <span class="sc">%&gt;%</span></span>
+<span id="cb331-11"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">grp =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">&quot;{draw}-{rep}&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb331-12"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb331-13"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> grp), <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">color =</span> SNS_BLUE) <span class="sc">+</span></span>
+<span id="cb331-14"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">group =</span> <span class="st">&quot;a&quot;</span>, <span class="at">data =</span> ppc_mean, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb331-15"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> ppc_mean, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb331-16"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb331-17"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> y, <span class="at">group =</span> rep),</span>
+<span id="cb331-18"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> dilution_standards_data,</span>
+<span id="cb331-19"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> STAN_RED</span>
+<span id="cb331-20"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb331-21"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> y), <span class="at">data =</span> dilution_standards_data, <span class="at">color =</span> STAN_RED) <span class="sc">+</span></span>
+<span id="cb331-22"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb331-23"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.02</span>))) <span class="sc">+</span></span>
+<span id="cb331-24"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb331-25"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;concentration&quot;</span>,</span>
+<span id="cb331-26"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb331-27"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Posterior predictive distribution&quot;</span></span>
+<span id="cb331-28"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb331-28" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="exercises-19_files/figure-html/unnamed-chunk-9-1.png" width="2100" /></p>
+<p>I also had the model make posterior predictions on concentrations across the observed range at smaller step-sizes.
+The mean and 89% HDI are shown in blue below along with the observed data in red.
+The inset plot is a zoomed-in view of the posterior predictive distribution at the lower concentrations.</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-1" aria-hidden="true" tabindex="-1"></a>ynew_mean <span class="ot">&lt;-</span> <span class="fu">apply</span>(rstan<span class="sc">::</span><span class="fu">extract</span>(dilution_model, <span class="at">pars =</span> <span class="st">&quot;ynew&quot;</span>)<span class="sc">$</span>ynew, <span class="dv">2</span>, mean)</span>
+<span id="cb332-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-2" aria-hidden="true" tabindex="-1"></a>ynew_hdi <span class="ot">&lt;-</span> <span class="fu">apply</span>(</span>
+<span id="cb332-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-3" aria-hidden="true" tabindex="-1"></a>  rstan<span class="sc">::</span><span class="fu">extract</span>(dilution_model, <span class="at">pars =</span> <span class="st">&quot;ynew&quot;</span>)<span class="sc">$</span>ynew,</span>
+<span id="cb332-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>,</span>
+<span id="cb332-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-5" aria-hidden="true" tabindex="-1"></a>  bayestestR<span class="sc">::</span>hdi,</span>
+<span id="cb332-6"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ci =</span> <span class="fl">0.89</span></span>
+<span id="cb332-7"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb332-8"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-8" aria-hidden="true" tabindex="-1"></a>ynew_ppc <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb332-9"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">conc =</span> xnew,</span>
+<span id="cb332-10"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ynew_mean =</span> ynew_mean,</span>
+<span id="cb332-11"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">ynew_hdi_low =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(ynew_hdi, <span class="sc">~</span> <span class="fu">unlist</span>(.x)[[<span class="dv">2</span>]]),</span>
+<span id="cb332-12"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">ynew_hdi_hi =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(ynew_hdi, <span class="sc">~</span> <span class="fu">unlist</span>(.x)[[<span class="dv">3</span>]])</span>
+<span id="cb332-13"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb332-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-1" aria-hidden="true" tabindex="-1"></a>plot_posterior_pred <span class="ot">&lt;-</span> <span class="cf">function</span>(ppc_df, obs_df, <span class="at">pt_size =</span> <span class="fl">1.5</span>) {</span>
+<span id="cb333-2"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-2" aria-hidden="true" tabindex="-1"></a>  ppc_df <span class="sc">%&gt;%</span></span>
+<span id="cb333-3"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> conc, <span class="at">y =</span> ynew_mean)) <span class="sc">+</span></span>
+<span id="cb333-4"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(</span>
+<span id="cb333-5"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">ymin =</span> ynew_hdi_low, <span class="at">ymax =</span> ynew_hdi_hi),</span>
+<span id="cb333-6"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> SNS_BLUE,</span>
+<span id="cb333-7"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb333-8"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb333-9"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">group =</span> <span class="st">&quot;a&quot;</span>) <span class="sc">+</span></span>
+<span id="cb333-10"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb333-11"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">y =</span> y, <span class="at">group =</span> rep),</span>
+<span id="cb333-12"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> obs_df,</span>
+<span id="cb333-13"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> STAN_RED</span>
+<span id="cb333-14"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb333-15"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> y), <span class="at">data =</span> obs_df, <span class="at">size =</span> pt_size, <span class="at">color =</span> STAN_RED) <span class="sc">+</span></span>
+<span id="cb333-16"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb333-17"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.02</span>)))</span>
+<span id="cb333-18"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb333-19"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-20"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-20" aria-hidden="true" tabindex="-1"></a>ppc_plot <span class="ot">&lt;-</span> <span class="fu">plot_posterior_pred</span>(ynew_ppc, dilution_standards_data) <span class="sc">+</span></span>
+<span id="cb333-21"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb333-22"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;concentration&quot;</span>,</span>
+<span id="cb333-23"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb333-24"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Posterior predictive distribution&quot;</span></span>
+<span id="cb333-25"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb333-26"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-27"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-27" aria-hidden="true" tabindex="-1"></a>sub_max <span class="ot">&lt;-</span> <span class="fl">0.04</span></span>
+<span id="cb333-28"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-28" aria-hidden="true" tabindex="-1"></a>sub_ppc_plot <span class="ot">&lt;-</span> <span class="fu">plot_posterior_pred</span>(</span>
+<span id="cb333-29"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-29" aria-hidden="true" tabindex="-1"></a>  ynew_ppc <span class="sc">%&gt;%</span> <span class="fu">filter</span>(conc <span class="sc">&lt;=</span> sub_max),</span>
+<span id="cb333-30"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-30" aria-hidden="true" tabindex="-1"></a>  dilution_standards_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(conc <span class="sc">&lt;=</span> sub_max),</span>
+<span id="cb333-31"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt_size =</span> <span class="fl">0.6</span></span>
+<span id="cb333-32"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-32" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb333-33"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb333-34"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-35"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-35" aria-hidden="true" tabindex="-1"></a>ppc_plot <span class="sc">+</span></span>
+<span id="cb333-36"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb333-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inset_element</span>(sub_ppc_plot, <span class="at">left =</span> <span class="fl">0.5</span>, <span class="at">bottom =</span> <span class="fl">0.05</span>, <span class="at">right =</span> <span class="fl">0.9</span>, <span class="at">top =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="exercises-19_files/figure-html/unnamed-chunk-11-1.png" width="2100" /></p>
+<hr />
+</div>
+</div>
+<div id="session-info" class="section level2" number="32.3">
+<h2><span class="header-section-number">32.3</span> Session info</h2>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
+#&gt; Running under: macOS Big Sur 10.16
+#&gt; 
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#&gt; 
+#&gt; locale:
+#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#&gt; 
+#&gt; other attached packages:
+#&gt;  [1] forcats_0.5.1        stringr_1.4.0        dplyr_1.0.7         
+#&gt;  [4] purrr_0.3.4          readr_2.0.1          tidyr_1.1.3         
+#&gt;  [7] tibble_3.1.3         tidyverse_1.3.1      patchwork_1.1.1     
+#&gt; [10] tidybayes_3.0.1      rstan_2.21.2         ggplot2_3.3.5       
+#&gt; [13] StanHeaders_2.21.0-7
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] matrixStats_0.61.0   fs_1.5.0             lubridate_1.7.10    
+#&gt;  [4] insight_0.14.4       RColorBrewer_1.1-2   httr_1.4.2          
+#&gt;  [7] rprojroot_2.0.2      tensorA_0.36.2       tools_4.1.2         
+#&gt; [10] backports_1.2.1      bslib_0.2.5.1        utf8_1.2.2          
+#&gt; [13] R6_2.5.0             DBI_1.1.1            colorspace_2.0-2    
+#&gt; [16] ggdist_3.0.0         withr_2.4.2          tidyselect_1.1.1    
+#&gt; [19] gridExtra_2.3        prettyunits_1.1.1    processx_3.5.2      
+#&gt; [22] curl_4.3.2           compiler_4.1.2       cli_3.0.1           
+#&gt; [25] rvest_1.0.1          arrayhelpers_1.1-0   xml2_1.3.2          
+#&gt; [28] bayestestR_0.11.0    labeling_0.4.2       bookdown_0.24       
+#&gt; [31] posterior_1.1.0      sass_0.4.0           scales_1.1.1        
+#&gt; [34] checkmate_2.0.0      callr_3.7.0          digest_0.6.27       
+#&gt; [37] rmarkdown_2.10       pkgconfig_2.0.3      htmltools_0.5.1.1   
+#&gt; [40] highr_0.9            dbplyr_2.1.1         rlang_0.4.11        
+#&gt; [43] readxl_1.3.1         rstudioapi_0.13      jquerylib_0.1.4     
+#&gt; [46] farver_2.1.0         generics_0.1.0       svUnit_1.0.6        
+#&gt; [49] jsonlite_1.7.2       distributional_0.2.2 inline_0.3.19       
+#&gt; [52] magrittr_2.0.1       loo_2.4.1            Rcpp_1.0.7          
+#&gt; [55] munsell_0.5.0        fansi_0.5.0          abind_1.4-5         
+#&gt; [58] lifecycle_1.0.0      stringi_1.7.3        yaml_2.2.1          
+#&gt; [61] pkgbuild_1.2.0       grid_4.1.2           parallel_4.1.2      
+#&gt; [64] crayon_1.4.1         lattice_0.20-45      haven_2.4.3         
+#&gt; [67] hms_1.1.0            knitr_1.33           ps_1.6.0            
+#&gt; [70] pillar_1.6.2         codetools_0.2-18     clisymbols_1.2.0    
+#&gt; [73] stats4_4.1.2         reprex_2.0.1         glue_1.4.2          
+#&gt; [76] evaluate_0.14        V8_3.4.2             renv_0.14.0         
+#&gt; [79] RcppParallel_5.1.4   modelr_0.1.8         vctrs_0.3.8         
+#&gt; [82] tzdb_0.1.2           cellranger_1.1.0     gtable_0.3.0        
+#&gt; [85] datawizard_0.2.1     assertthat_0.2.1     xfun_0.25           
+#&gt; [88] broom_0.7.9          coda_0.19-4          ellipsis_0.3.2      
+#&gt; [91] here_1.0.1</code></pre>
+
+</div>
+</div>
+
+
+
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-bda3" class="csl-entry">
+Gelman, Andrew, John B Carlin, Hal S Stern, David B Dunson, Aki Vehtari, and Donald B Rubin. 2013. <em>Bayesian Data Analysis, Third Edition</em>. 3rd ed. CRC Press.
+</div>
+<div id="ref-Gelman2004-kh" class="csl-entry">
+Gelman, Andrew, Ginger L Chew, and Michael Shnaidman. 2004. <span>“Bayesian Analysis of Serial Dilution Assays.”</span> <em>Biometrics</em> 60 (2): 407–17. <a href="https://doi.org/10.1111/j.0006-341X.2004.00185.x">https://doi.org/10.1111/j.0006-341X.2004.00185.x</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-5-exercises.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="stan-models-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/hadley/r4ds/edit/master/exercises-19.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/exercises-19.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

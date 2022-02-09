@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>24 Assignment 5 | bookdown</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="24 Assignment 5 | bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="24 Assignment 5 | bookdown" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="24 Assignment 5 | bookdown" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="assignment-4.html"/>
+<link rel="next" href="assignment-6.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">Notes for BDA3</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bayesian Data Analysis course</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.1</b> Resources</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#how-to-study"><i class="fa fa-check"></i><b>0.2</b> How to study</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-sections"><i class="fa fa-check"></i><b>0.3</b> Course sections</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#additional-notes"><i class="fa fa-check"></i><b>0.4</b> Additional notes</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#assignments-and-exercises"><i class="fa fa-check"></i><b>0.5</b> Assignments and exercises</a></li>
+<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#stan-models"><i class="fa fa-check"></i><b>0.6</b> Stan models</a></li>
+</ul></li>
+<li class="part"><span><b>I Notes</b></span></li>
+<li class="chapter" data-level="" data-path="notes-introduction.html"><a href="notes-introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html"><i class="fa fa-check"></i><b>1</b> Section 1. Course introduction and prerequisites</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#resources-1"><i class="fa fa-check"></i><b>1.1</b> Resources</a></li>
+<li class="chapter" data-level="1.2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#notes"><i class="fa fa-check"></i><b>1.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#reading-instructions"><i class="fa fa-check"></i><b>1.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="1.2.2" data-path="section-1.-course-introduction-and-prerequisites.html"><a href="section-1.-course-introduction-and-prerequisites.html#lecture-notes"><i class="fa fa-check"></i><b>1.2.2</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html"><i class="fa fa-check"></i><b>2</b> Section 2. Basics of Bayesian inferences</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#resources-2"><i class="fa fa-check"></i><b>2.1</b> Resources</a></li>
+<li class="chapter" data-level="2.2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#notes-1"><i class="fa fa-check"></i><b>2.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#chapter-instructions"><i class="fa fa-check"></i><b>2.2.1</b> Chapter instructions</a></li>
+<li class="chapter" data-level="2.2.2" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#chapter-2.-single-parameter-models"><i class="fa fa-check"></i><b>2.2.2</b> Chapter 2. Single-parameter models</a></li>
+<li class="chapter" data-level="2.2.3" data-path="section-2.-basics-of-bayesian-inferences.html"><a href="section-2.-basics-of-bayesian-inferences.html#lecture-notes-1"><i class="fa fa-check"></i><b>2.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html"><i class="fa fa-check"></i><b>3</b> Section 3. Multidimensional Posterior</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#resources-3"><i class="fa fa-check"></i><b>3.1</b> Resources</a></li>
+<li class="chapter" data-level="3.2" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#notes-2"><i class="fa fa-check"></i><b>3.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#reading-instructions-1"><i class="fa fa-check"></i><b>3.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#chapter-3.-introduction-to-multiparameter-models"><i class="fa fa-check"></i><b>3.2.2</b> Chapter 3. Introduction to multiparameter models</a></li>
+<li class="chapter" data-level="3.2.3" data-path="section-3.-multidimensional-posterior.html"><a href="section-3.-multidimensional-posterior.html#lecture-notes-2"><i class="fa fa-check"></i><b>3.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html"><i class="fa fa-check"></i><b>4</b> Section 4. Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#resources-4"><i class="fa fa-check"></i><b>4.1</b> Resources</a></li>
+<li class="chapter" data-level="4.2" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#notes-3"><i class="fa fa-check"></i><b>4.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#reading-instructions-2"><i class="fa fa-check"></i><b>4.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="4.2.2" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#chapter-10.-introduction-to-bayesian-computation"><i class="fa fa-check"></i><b>4.2.2</b> Chapter 10. Introduction to Bayesian computation</a></li>
+<li class="chapter" data-level="4.2.3" data-path="section-4.-monte-carlo.html"><a href="section-4.-monte-carlo.html#lecture-notes-3"><i class="fa fa-check"></i><b>4.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html"><i class="fa fa-check"></i><b>5</b> Section 5. Markov chain Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#resources-5"><i class="fa fa-check"></i><b>5.1</b> Resources</a></li>
+<li class="chapter" data-level="5.2" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#notes-4"><i class="fa fa-check"></i><b>5.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#reading-instructions-3"><i class="fa fa-check"></i><b>5.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="5.2.2" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#chapter-11.-basics-of-markov-chain-simulation"><i class="fa fa-check"></i><b>5.2.2</b> Chapter 11. Basics of Markov chain simulation</a></li>
+<li class="chapter" data-level="5.2.3" data-path="section-5.-markov-chain-monte-carlo.html"><a href="section-5.-markov-chain-monte-carlo.html#lecture-notes-4"><i class="fa fa-check"></i><b>5.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html"><i class="fa fa-check"></i><b>6</b> Section 6. HMC, NUTS, and Stan</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#resources-6"><i class="fa fa-check"></i><b>6.1</b> Resources</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#notes-5"><i class="fa fa-check"></i><b>6.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#reading-instructions-4"><i class="fa fa-check"></i><b>6.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="6.2.2" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#chapter-12.-computationally-efficient-markov-chain-simulation"><i class="fa fa-check"></i><b>6.2.2</b> Chapter 12. Computationally efficient Markov chain simulation</a></li>
+<li class="chapter" data-level="6.2.3" data-path="section-6.-hmc-nuts-and-stan.html"><a href="section-6.-hmc-nuts-and-stan.html#lecture-notes-5"><i class="fa fa-check"></i><b>6.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html"><i class="fa fa-check"></i><b>7</b> Section 7. Hierarchical models and exchangeability</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#resources-7"><i class="fa fa-check"></i><b>7.1</b> Resources</a></li>
+<li class="chapter" data-level="7.2" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#notes-6"><i class="fa fa-check"></i><b>7.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#reading-instructions-5"><i class="fa fa-check"></i><b>7.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="7.2.2" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#chapter-5.-hierarchical-models"><i class="fa fa-check"></i><b>7.2.2</b> Chapter 5. Hierarchical models</a></li>
+<li class="chapter" data-level="7.2.3" data-path="section-7.-hierarchical-models-and-exchangeability.html"><a href="section-7.-hierarchical-models-and-exchangeability.html#lecture-notes-6"><i class="fa fa-check"></i><b>7.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html"><i class="fa fa-check"></i><b>8</b> Section 8. Model checking &amp; Cross-validation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#resources-8"><i class="fa fa-check"></i><b>8.1</b> Resources</a></li>
+<li class="chapter" data-level="8.2" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#notes-7"><i class="fa fa-check"></i><b>8.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6-reading-instructions"><i class="fa fa-check"></i><b>8.2.1</b> Chapter 6 reading instructions</a></li>
+<li class="chapter" data-level="8.2.2" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6.-model-checking"><i class="fa fa-check"></i><b>8.2.2</b> Chapter 6. Model checking</a></li>
+<li class="chapter" data-level="8.2.3" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-6.-lecture-notes"><i class="fa fa-check"></i><b>8.2.3</b> Chapter 6. Lecture notes</a></li>
+<li class="chapter" data-level="8.2.4" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7-reading-instructions"><i class="fa fa-check"></i><b>8.2.4</b> Chapter 7 reading instructions</a></li>
+<li class="chapter" data-level="8.2.5" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7.-evaluating-comparing-and-expanding-models"><i class="fa fa-check"></i><b>8.2.5</b> Chapter 7. Evaluating, comparing, and expanding models</a></li>
+<li class="chapter" data-level="8.2.6" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#additional-reading"><i class="fa fa-check"></i><b>8.2.6</b> Additional Reading</a></li>
+<li class="chapter" data-level="8.2.7" data-path="section-8.-model-checking-cross-validation.html"><a href="section-8.-model-checking-cross-validation.html#chapter-7.-lecture-notes"><i class="fa fa-check"></i><b>8.2.7</b> Chapter 7. Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html"><i class="fa fa-check"></i><b>9</b> Section 9. Model comparison and selection</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#resources-9"><i class="fa fa-check"></i><b>9.1</b> Resources</a></li>
+<li class="chapter" data-level="9.2" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#notes-8"><i class="fa fa-check"></i><b>9.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="section-9.-model-comparison-and-selection.html"><a href="section-9.-model-comparison-and-selection.html#lecture-notes-7"><i class="fa fa-check"></i><b>9.2.1</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html"><i class="fa fa-check"></i><b>10</b> Section 10. Decision analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#resources-10"><i class="fa fa-check"></i><b>10.1</b> Resources</a></li>
+<li class="chapter" data-level="10.2" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#notes-9"><i class="fa fa-check"></i><b>10.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#reading-instructions-6"><i class="fa fa-check"></i><b>10.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="10.2.2" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#chapter-9.-decision-analysis"><i class="fa fa-check"></i><b>10.2.2</b> Chapter 9. Decision analysis</a></li>
+<li class="chapter" data-level="10.2.3" data-path="section-10.-decision-analysis.html"><a href="section-10.-decision-analysis.html#lecture-notes-8"><i class="fa fa-check"></i><b>10.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html"><i class="fa fa-check"></i><b>11</b> Section 11. Normal approximation &amp; Frequency properties</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#resources-11"><i class="fa fa-check"></i><b>11.1</b> Resources</a></li>
+<li class="chapter" data-level="11.2" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#notes-10"><i class="fa fa-check"></i><b>11.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#reading-instructions-7"><i class="fa fa-check"></i><b>11.2.1</b> Reading instructions</a></li>
+<li class="chapter" data-level="11.2.2" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#chapter-4.-asymptotics-and-connections-to-non-bayesian-approaches"><i class="fa fa-check"></i><b>11.2.2</b> Chapter 4. Asymptotics and connections to non-Bayesian approaches</a></li>
+<li class="chapter" data-level="11.2.3" data-path="section-11.-normal-approximation-frequency-properties.html"><a href="section-11.-normal-approximation-frequency-properties.html#lecture-notes-9"><i class="fa fa-check"></i><b>11.2.3</b> Lecture notes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html"><i class="fa fa-check"></i><b>12</b> Section 12. Extended topics</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#resources-12"><i class="fa fa-check"></i><b>12.1</b> Resources</a></li>
+<li class="chapter" data-level="12.2" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#notes-11"><i class="fa fa-check"></i><b>12.2</b> Notes</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#lecture-12.1-frequency-evaluation-hypothesis-testing-and-variable-selection"><i class="fa fa-check"></i><b>12.2.1</b> Lecture 12.1 Frequency evaluation, hypothesis testing and variable selection</a></li>
+<li class="chapter" data-level="12.2.2" data-path="section-12.-extended-topics.html"><a href="section-12.-extended-topics.html#lecture-12.2-overview-of-modeling-data-collection-bda3-ch-8-linear-models-bda-ch-14-18-lasso-horseshoe-and-gaussian-processes-bda3-ch-21"><i class="fa fa-check"></i><b>12.2.2</b> Lecture 12.2 Overview of modeling data collection, BDA3 Ch 8, linear models, BDA Ch 14-18, lasso, horseshoe and Gaussian processes, BDA3 Ch 21</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><i class="fa fa-check"></i><b>13</b> Section 13. Notes on ‘Ch 14. Introduction to regression models’</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#chapter-14.-introduction-to-regression-models"><i class="fa fa-check"></i><b>13.1</b> Chapter 14. Introduction to regression models</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#conditional-modeling"><i class="fa fa-check"></i><b>13.1.1</b> 14.1 Conditional modeling</a></li>
+<li class="chapter" data-level="13.1.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#bayesian-analysis-of-classical-regression"><i class="fa fa-check"></i><b>13.1.2</b> 14.2 Bayesian analysis of classical regression</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#goals-of-regression-analysis"><i class="fa fa-check"></i><b>13.2</b> 14.4 Goals of regression analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#assembling-the-matrix-of-explanatory-variables"><i class="fa fa-check"></i><b>13.3</b> 14.5 Assembling the matrix of explanatory variables</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#identifiability-and-collinearity"><i class="fa fa-check"></i><b>13.3.1</b> Identifiability and collinearity</a></li>
+<li class="chapter" data-level="13.3.2" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#nonlinear-relations"><i class="fa fa-check"></i><b>13.3.2</b> Nonlinear relations</a></li>
+<li class="chapter" data-level="13.3.3" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#indicator-variables"><i class="fa fa-check"></i><b>13.3.3</b> Indicator variables</a></li>
+<li class="chapter" data-level="13.3.4" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#interactions"><i class="fa fa-check"></i><b>13.3.4</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="section-13.-notes-on-ch-14.-introduction-to-regression-models.html"><a href="section-13.-notes-on-ch-14.-introduction-to-regression-models.html#regularization-and-dimension-reduction"><i class="fa fa-check"></i><b>13.4</b> 14.6 Regularization and dimension reduction</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><a href="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><i class="fa fa-check"></i><b>14</b> Section 14. Notes on ‘Ch 15. Hierarchical linear models’</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="section-14.-notes-on-ch-15.-hierarchical-linear-models.html"><a href="section-14.-notes-on-ch-15.-hierarchical-linear-models.html#chapter-15.-hierarchical-linear-models"><i class="fa fa-check"></i><b>14.1</b> Chapter 15. Hierarchical linear models</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><i class="fa fa-check"></i><b>15</b> Section 17. Notes on ‘Ch 19. Parametric nonlinear models’</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#chapter-19.-parametric-nonlinear-models"><i class="fa fa-check"></i><b>15.1</b> Chapter 19. Parametric nonlinear models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#example-serial-dilution-assay"><i class="fa fa-check"></i>19.1 Example: serial dilution assay</a></li>
+<li class="chapter" data-level="" data-path="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html"><a href="section-17.-notes-on-ch-19.-parametric-nonlinear-models.html#example-population-toxicokinetics"><i class="fa fa-check"></i>19.2 Example: population toxicokinetics</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html"><i class="fa fa-check"></i><b>16</b> Section 18. Notes on ‘Ch 20. Basis function models’</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#chapter-20.-basis-function-models"><i class="fa fa-check"></i><b>16.1</b> Chapter 20. Basis function models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#splines-and-weighted-sums-of-basis-functions"><i class="fa fa-check"></i>20.1 Splines and weighted sums of basis functions</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#basis-selection-and-shrinkage-coefficients"><i class="fa fa-check"></i><b>16.2</b> 20.2 Basis selection and shrinkage coefficients</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#shrinkage-priors"><i class="fa fa-check"></i>Shrinkage priors</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#non-normal-models-and-regression-surfaces"><i class="fa fa-check"></i><b>16.3</b> 20.3 Non-normal models and regression surfaces</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#other-error-distributions"><i class="fa fa-check"></i>Other error distributions</a></li>
+<li class="chapter" data-level="" data-path="section-18.-notes-on-ch-20.-basis-function-models.html"><a href="section-18.-notes-on-ch-20.-basis-function-models.html#multivariate-regression-surfaces"><i class="fa fa-check"></i>Multivariate regression surfaces</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html"><i class="fa fa-check"></i><b>17</b> Section 19. Notes on ‘Ch 21. Gaussian process models’</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#chapter-21.-gaussian-process-models"><i class="fa fa-check"></i><b>17.1</b> Chapter 21. Gaussian process models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#gaussian-process-regression"><i class="fa fa-check"></i>21.1 Gaussian process regression</a></li>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#latent-gaussian-process-models"><i class="fa fa-check"></i>21.3 Latent Gaussian process models</a></li>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#functional-data-analysis"><i class="fa fa-check"></i>21.4 Functional data analysis</a></li>
+<li class="chapter" data-level="" data-path="section-19.-notes-on-ch-21.-gaussian-process-models.html"><a href="section-19.-notes-on-ch-21.-gaussian-process-models.html#density-estimation-and-regression"><i class="fa fa-check"></i>21.5 Density estimation and regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html"><i class="fa fa-check"></i><b>18</b> Section 20. Notes on ‘Ch 22. Finite mixture models’</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#chapter-22.-finite-mixture-models"><i class="fa fa-check"></i><b>18.1</b> Chapter 22. Finite mixture models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#setting-up-and-interpreting-mixture-models"><i class="fa fa-check"></i>22.1 Setting up and interpreting mixture models</a></li>
+<li class="chapter" data-level="" data-path="section-20.-notes-on-ch-22.-finite-mixture-models.html"><a href="section-20.-notes-on-ch-22.-finite-mixture-models.html#unspecifed-number-of-mixture-components"><i class="fa fa-check"></i>22.4 Unspecifed number of mixture components</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><i class="fa fa-check"></i><b>19</b> Section 21. Notes on ‘Ch 23. Dirichlet process models’</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#chapter-23.-dirichlet-process-models"><i class="fa fa-check"></i><b>19.1</b> Chapter 23. Dirichlet process models</a>
+<ul>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#bayesian-histograms"><i class="fa fa-check"></i>23.1 Bayesian histograms</a></li>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#dirichlet-process-prior-distributions"><i class="fa fa-check"></i>23.2 Dirichlet process prior distributions</a></li>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#dirichlet-process-mixtures"><i class="fa fa-check"></i>23.3 Dirichlet process mixtures</a></li>
+<li class="chapter" data-level="" data-path="section-21.-notes-on-ch-23.-dirichlet-process-models.html"><a href="section-21.-notes-on-ch-23.-dirichlet-process-models.html#beyond-density-estimation"><i class="fa fa-check"></i>23.4 Beyond density estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Assignments</b></span></li>
+<li class="chapter" data-level="" data-path="assignments-intro.html"><a href="assignments-intro.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="20" data-path="assignment-1.html"><a href="assignment-1.html"><i class="fa fa-check"></i><b>20</b> Assignment 1</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="assignment-1.html"><a href="assignment-1.html#setup"><i class="fa fa-check"></i><b>20.1</b> Setup</a></li>
+<li class="chapter" data-level="20.2" data-path="assignment-1.html"><a href="assignment-1.html#exercise-1"><i class="fa fa-check"></i><b>20.2</b> Exercise 1</a></li>
+<li class="chapter" data-level="20.3" data-path="assignment-1.html"><a href="assignment-1.html#exercise-3"><i class="fa fa-check"></i><b>20.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="20.4" data-path="assignment-1.html"><a href="assignment-1.html#exercise-4"><i class="fa fa-check"></i><b>20.4</b> Exercise 4</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="assignment-1.html"><a href="assignment-1.html#a"><i class="fa fa-check"></i><b>20.4.1</b> 4.a</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="assignment-1.html"><a href="assignment-1.html#exercise-5"><i class="fa fa-check"></i><b>20.5</b> Exercise 5</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="assignment-2.html"><a href="assignment-2.html"><i class="fa fa-check"></i><b>21</b> Assignment 2</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="assignment-2.html"><a href="assignment-2.html#setup-1"><i class="fa fa-check"></i><b>21.1</b> Setup</a></li>
+<li class="chapter" data-level="21.2" data-path="assignment-2.html"><a href="assignment-2.html#exercise-1.-inference-for-binomial-proportion"><i class="fa fa-check"></i><b>21.2</b> Exercise 1. Inference for binomial proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="assignment-3.html"><a href="assignment-3.html"><i class="fa fa-check"></i><b>22</b> Assignment 3</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="assignment-3.html"><a href="assignment-3.html#setup-2"><i class="fa fa-check"></i><b>22.1</b> Setup</a></li>
+<li class="chapter" data-level="22.2" data-path="assignment-3.html"><a href="assignment-3.html#exercise-1.-inference-for-normal-mean-and-deviation"><i class="fa fa-check"></i><b>22.2</b> Exercise 1. Inference for normal mean and deviation</a></li>
+<li class="chapter" data-level="22.3" data-path="assignment-3.html"><a href="assignment-3.html#exercise-2.-inference-for-the-difference-between-proportions"><i class="fa fa-check"></i><b>22.3</b> Exercise 2. Inference for the difference between proportions</a></li>
+<li class="chapter" data-level="22.4" data-path="assignment-3.html"><a href="assignment-3.html#exercise-3.-inference-for-the-difference-between-normal-means"><i class="fa fa-check"></i><b>22.4</b> Exercise 3. Inference for the difference between normal means</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="assignment-4.html"><a href="assignment-4.html"><i class="fa fa-check"></i><b>23</b> Assignment 4</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="assignment-4.html"><a href="assignment-4.html#setup-3"><i class="fa fa-check"></i><b>23.1</b> Setup</a></li>
+<li class="chapter" data-level="23.2" data-path="assignment-4.html"><a href="assignment-4.html#exercise-1.-bioassay-model"><i class="fa fa-check"></i><b>23.2</b> Exercise 1. Bioassay model</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="assignment-5.html"><a href="assignment-5.html"><i class="fa fa-check"></i><b>24</b> Assignment 5</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="assignment-5.html"><a href="assignment-5.html#setup-4"><i class="fa fa-check"></i><b>24.1</b> Setup</a></li>
+<li class="chapter" data-level="24.2" data-path="assignment-5.html"><a href="assignment-5.html#generalized-linear-model-bioassay-with-metropolis"><i class="fa fa-check"></i><b>24.2</b> Generalized linear model: Bioassay with Metropolis</a>
+<ul>
+<li class="chapter" data-level="24.2.1" data-path="assignment-5.html"><a href="assignment-5.html#exercise-1."><i class="fa fa-check"></i><b>24.2.1</b> Exercise 1.</a></li>
+<li class="chapter" data-level="24.2.2" data-path="assignment-5.html"><a href="assignment-5.html#exercise-2."><i class="fa fa-check"></i><b>24.2.2</b> Exercise 2.</a></li>
+<li class="chapter" data-level="24.2.3" data-path="assignment-5.html"><a href="assignment-5.html#exercise-3-1"><i class="fa fa-check"></i><b>24.2.3</b> Exercise 3</a></li>
+<li class="chapter" data-level="24.2.4" data-path="assignment-5.html"><a href="assignment-5.html#exercise-4-1"><i class="fa fa-check"></i><b>24.2.4</b> Exercise 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="assignment-6.html"><a href="assignment-6.html"><i class="fa fa-check"></i><b>25</b> Assignment 6</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="assignment-6.html"><a href="assignment-6.html#setup-5"><i class="fa fa-check"></i><b>25.1</b> Setup</a></li>
+<li class="chapter" data-level="25.2" data-path="assignment-6.html"><a href="assignment-6.html#exercise-1.-generalized-linear-model-bioassay-with-stan"><i class="fa fa-check"></i><b>25.2</b> Exercise 1. Generalized linear model: Bioassay with Stan</a>
+<ul>
+<li class="chapter" data-level="25.2.1" data-path="assignment-6.html"><a href="assignment-6.html#write-down-the-model-for-the-bioassay-data-in-stan-syntax."><i class="fa fa-check"></i><b>25.2.1</b> 1. Write down the model for the bioassay data in Stan syntax.</a></li>
+<li class="chapter" data-level="25.2.2" data-path="assignment-6.html"><a href="assignment-6.html#use-widehatr-for-convergence-analysis."><i class="fa fa-check"></i><b>25.2.2</b> 2. Use <span class="math inline">\(\widehat{R}\)</span> for convergence analysis.</a></li>
+<li class="chapter" data-level="25.2.3" data-path="assignment-6.html"><a href="assignment-6.html#plot-the-draws-for-alpha-and-beta-scatter-plot-and-include-this-plot-in-your-report"><i class="fa fa-check"></i><b>25.2.3</b> 3. Plot the draws for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> (scatter plot) and include this plot in your report</a></li>
+<li class="chapter" data-level="25.2.4" data-path="assignment-6.html"><a href="assignment-6.html#to-develop-the-course-and-provide-feedback-to-stan-developers-we-collect-information-on-which-stan-setup-you-used-and-whether-you-had-any-problems-in-setting-it-up-or-using-it."><i class="fa fa-check"></i><b>25.2.4</b> 4. To develop the course and provide feedback to Stan developers, we collect information on which Stan setup you used and whether you had any problems in setting it up or using it.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="assignment-7.html"><a href="assignment-7.html"><i class="fa fa-check"></i><b>26</b> Assignment 7</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="assignment-7.html"><a href="assignment-7.html#setup-6"><i class="fa fa-check"></i><b>26.1</b> Setup</a></li>
+<li class="chapter" data-level="26.2" data-path="assignment-7.html"><a href="assignment-7.html#linear-model-drowning-data-with-stan"><i class="fa fa-check"></i><b>26.2</b> 1. Linear model: drowning data with Stan</a></li>
+<li class="chapter" data-level="26.3" data-path="assignment-7.html"><a href="assignment-7.html#hierarchical-model-factory-data-with-stan"><i class="fa fa-check"></i><b>26.3</b> 2. Hierarchical model: factory data with Stan</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="assignment-8.html"><a href="assignment-8.html"><i class="fa fa-check"></i><b>27</b> Assignment 8</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="assignment-8.html"><a href="assignment-8.html#setup-7"><i class="fa fa-check"></i><b>27.1</b> Setup</a></li>
+<li class="chapter" data-level="27.2" data-path="assignment-8.html"><a href="assignment-8.html#exercise-1.-model-assessment-loo-cv-for-factory-data-with-stan"><i class="fa fa-check"></i><b>27.2</b> Exercise 1. Model assessment: LOO-CV for factory data with Stan</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="assignment-9.html"><a href="assignment-9.html"><i class="fa fa-check"></i><b>28</b> Assignment 9</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="assignment-9.html"><a href="assignment-9.html#setup-8"><i class="fa fa-check"></i><b>28.1</b> Setup</a></li>
+<li class="chapter" data-level="28.2" data-path="assignment-9.html"><a href="assignment-9.html#exercise-1.-decision-analysis-for-the-factory-data"><i class="fa fa-check"></i><b>28.2</b> Exercise 1. Decision analysis for the factory data</a></li>
+</ul></li>
+<li class="part"><span><b>III Book Exercises</b></span></li>
+<li class="chapter" data-level="" data-path="exercises-intro.html"><a href="exercises-intro.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="29" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html"><i class="fa fa-check"></i><b>29</b> Chapter 1 Exercises</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-1"><i class="fa fa-check"></i><b>29.1</b> Question 1</a></li>
+<li class="chapter" data-level="29.2" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-2"><i class="fa fa-check"></i><b>29.2</b> Question 2</a></li>
+<li class="chapter" data-level="29.3" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-6"><i class="fa fa-check"></i><b>29.3</b> Question 6</a></li>
+<li class="chapter" data-level="29.4" data-path="chapter-1-exercises.html"><a href="chapter-1-exercises.html#question-8"><i class="fa fa-check"></i><b>29.4</b> Question 8</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html"><i class="fa fa-check"></i><b>30</b> Chapter 2 Exercises</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#setup-9"><i class="fa fa-check"></i><b>30.1</b> Setup</a></li>
+<li class="chapter" data-level="30.2" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-1-1"><i class="fa fa-check"></i><b>30.2</b> Question 1</a></li>
+<li class="chapter" data-level="30.3" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-2-1"><i class="fa fa-check"></i><b>30.3</b> Question 2</a></li>
+<li class="chapter" data-level="30.4" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-3"><i class="fa fa-check"></i><b>30.4</b> Question 3</a></li>
+<li class="chapter" data-level="30.5" data-path="chapter-2-exercises.html"><a href="chapter-2-exercises.html#question-4"><i class="fa fa-check"></i><b>30.5</b> Question 4</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="chapter-5-exercises.html"><a href="chapter-5-exercises.html"><i class="fa fa-check"></i><b>31</b> Chapter 5 Exercises</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="chapter-5-exercises.html"><a href="chapter-5-exercises.html#question-1-2"><i class="fa fa-check"></i><b>31.1</b> Question 1</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><i class="fa fa-check"></i><b>32</b> Chapter 19 Exercises - Reproducing the the ‘serial dilution assay’</a>
+<ul>
+<li class="chapter" data-level="32.1" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#setup-10"><i class="fa fa-check"></i><b>32.1</b> Setup</a></li>
+<li class="chapter" data-level="32.2" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#modeling"><i class="fa fa-check"></i><b>32.2</b> Modeling</a>
+<ul>
+<li class="chapter" data-level="32.2.1" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#model-specification"><i class="fa fa-check"></i><b>32.2.1</b> Model specification</a></li>
+<li class="chapter" data-level="32.2.2" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#in-stan"><i class="fa fa-check"></i><b>32.2.2</b> In Stan</a></li>
+<li class="chapter" data-level="32.2.3" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#sampling"><i class="fa fa-check"></i><b>32.2.3</b> Sampling</a></li>
+<li class="chapter" data-level="32.2.4" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#posterior-distributions"><i class="fa fa-check"></i><b>32.2.4</b> Posterior distributions</a></li>
+<li class="chapter" data-level="32.2.5" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#posterior-predictive-check"><i class="fa fa-check"></i><b>32.2.5</b> Posterior predictive check</a></li>
+</ul></li>
+<li class="chapter" data-level="32.3" data-path="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html"><a href="chapter-19-exercises---reproducing-the-the-serial-dilution-assay.html#session-info"><i class="fa fa-check"></i><b>32.3</b> Session info</a></li>
+</ul></li>
+<li class="part"><span><b>IV Models</b></span></li>
+<li class="chapter" data-level="33" data-path="stan-models-1.html"><a href="stan-models-1.html"><i class="fa fa-check"></i><b>33</b> Stan models</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="stan-models-1.html"><a href="stan-models-1.html#model-8-schools.stan"><i class="fa fa-check"></i><b>33.1</b> Model: <code>8-schools.stan</code></a></li>
+<li class="chapter" data-level="33.2" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment06-bioassay.stan"><i class="fa fa-check"></i><b>33.2</b> Model: <code>assignment06-bioassay.stan</code></a></li>
+<li class="chapter" data-level="33.3" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07_factories_hierarchical.stan"><i class="fa fa-check"></i><b>33.3</b> Model: <code>assignment07_factories_hierarchical.stan</code></a></li>
+<li class="chapter" data-level="33.4" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07_factories_pooled.stan"><i class="fa fa-check"></i><b>33.4</b> Model: <code>assignment07_factories_pooled.stan</code></a></li>
+<li class="chapter" data-level="33.5" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07_factories_separate.stan"><i class="fa fa-check"></i><b>33.5</b> Model: <code>assignment07_factories_separate.stan</code></a></li>
+<li class="chapter" data-level="33.6" data-path="stan-models-1.html"><a href="stan-models-1.html#model-assignment07-drownings.stan"><i class="fa fa-check"></i><b>33.6</b> Model: <code>assignment07-drownings.stan</code></a></li>
+<li class="chapter" data-level="33.7" data-path="stan-models-1.html"><a href="stan-models-1.html#model-serial-dilution.stan"><i class="fa fa-check"></i><b>33.7</b> Model: <code>serial-dilution.stan</code></a></li>
+</ul></li>
+<li class="part"><span><b>V Misc</b></span></li>
+<li class="chapter" data-level="" data-path="about.html"><a href="about.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="33.8" data-path="about.html"><a href="about.html#the-website"><i class="fa fa-check"></i><b>33.8</b> The website</a></li>
+<li class="chapter" data-level="33.9" data-path="about.html"><a href="about.html#about-me"><i class="fa fa-check"></i><b>33.9</b> About me</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="assignment-5" class="section level1" number="24">
+<h1><span class="header-section-number">24</span> Assignment 5</h1>
+<p>2021-10-01</p>
+<p><strong><a href="https://github.com/jhrcook/bayesian-data-analysis-course/tree/master/course-material/assignment-05.pdf">Assignment 5</a></strong></p>
+<div id="setup-4" class="section level2" number="24.1">
+<h2><span class="header-section-number">24.1</span> Setup</h2>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="assignment-5.html#cb160-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">comment =</span> <span class="st">&quot;#&gt;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb160-2"><a href="assignment-5.html#cb160-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-3"><a href="assignment-5.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (f <span class="cf">in</span> <span class="fu">list.files</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;src&quot;</span>), <span class="at">pattern =</span> <span class="st">&quot;R$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb160-4"><a href="assignment-5.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(f)</span>
+<span id="cb160-5"><a href="assignment-5.html#cb160-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb160-6"><a href="assignment-5.html#cb160-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-7"><a href="assignment-5.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb160-8"><a href="assignment-5.html#cb160-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb160-9"><a href="assignment-5.html#cb160-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb160-10"><a href="assignment-5.html#cb160-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-11"><a href="assignment-5.html#cb160-11" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(</span>
+<span id="cb160-12"><a href="assignment-5.html#cb160-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb160-13"><a href="assignment-5.html#cb160-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb160-14"><a href="assignment-5.html#cb160-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb160-15"><a href="assignment-5.html#cb160-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>()</span>
+<span id="cb160-16"><a href="assignment-5.html#cb160-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb160-17"><a href="assignment-5.html#cb160-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb160-18"><a href="assignment-5.html#cb160-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-19"><a href="assignment-5.html#cb160-19" aria-hidden="true" tabindex="-1"></a>bioassay <span class="ot">&lt;-</span> <span class="fu">read_bioassay_data</span>()</span>
+<span id="cb160-20"><a href="assignment-5.html#cb160-20" aria-hidden="true" tabindex="-1"></a>bioassay</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+##       x     n     y
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 -0.86     5     0
+## 2 -0.3      5     1
+## 3 -0.05     5     3
+## 4  0.73     5     5</code></pre>
+</div>
+<div id="generalized-linear-model-bioassay-with-metropolis" class="section level2" number="24.2">
+<h2><span class="header-section-number">24.2</span> Generalized linear model: Bioassay with Metropolis</h2>
+<p><strong>Metropolis algorithm: Replicate the computations for the bioassay example of section 3.7 in BDA3 using the Metropolis algorithm.</strong>
+<strong>The Metropolis algorithm is described in BDA3 Chapter 11.2.</strong>
+<strong>More information on the bioassay data can be found in Section 3.7 in BDA3, and in Chapter 3 notes.</strong></p>
+<div id="exercise-1." class="section level3" number="24.2.1">
+<h3><span class="header-section-number">24.2.1</span> Exercise 1.</h3>
+<p><strong>Implement the Metropolis algorithm as an R function for the bioassay data. Use the Gaussian prior as in Assignment 4, that is</strong></p>
+<p><span class="math display">\[
+\begin{bmatrix}
+\alpha \\ \beta
+\end{bmatrix} \sim \text{N} (\mu_0, \Sigma_0)
+\quad \text{where} \quad
+\mu_0 = \begin{bmatrix} 0 \\ 10 \end{bmatrix}
+\quad \text{and} \quad
+\Sigma_0 = \begin{bmatrix} 2^2 &amp; 12 \\ 12 &amp; 10^2 \end{bmatrix}
+\]</span></p>
+<p><strong>a) Start by implementing a function called density_ratio to compute the density ratio function, <span class="math inline">\(r\)</span> in Eq. (11.1) in BDA3.</strong></p>
+<p><span class="math display">\[
+r = \frac{p(\theta^*|y)}{p(\theta^{t-1}|y)}
+\]</span></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="assignment-5.html#cb162-1" aria-hidden="true" tabindex="-1"></a>prob_theta_under_prior <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb162-2"><a href="assignment-5.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb162-3"><a href="assignment-5.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">10</span><span class="sc">^</span><span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb162-4"><a href="assignment-5.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(<span class="fu">c</span>(a, b), <span class="at">mean =</span> mu, <span class="at">sigma =</span> sigma)</span>
+<span id="cb162-5"><a href="assignment-5.html#cb162-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb162-6"><a href="assignment-5.html#cb162-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-7"><a href="assignment-5.html#cb162-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-8"><a href="assignment-5.html#cb162-8" aria-hidden="true" tabindex="-1"></a>log_posterior_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b, x, y, n) {</span>
+<span id="cb162-9"><a href="assignment-5.html#cb162-9" aria-hidden="true" tabindex="-1"></a>  log_likelihood <span class="ot">&lt;-</span> aaltobda<span class="sc">::</span><span class="fu">bioassaylp</span>(</span>
+<span id="cb162-10"><a href="assignment-5.html#cb162-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> a, <span class="at">beta =</span> b, <span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">n =</span> n</span>
+<span id="cb162-11"><a href="assignment-5.html#cb162-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb162-12"><a href="assignment-5.html#cb162-12" aria-hidden="true" tabindex="-1"></a>  prior_prob <span class="ot">&lt;-</span> <span class="fu">prob_theta_under_prior</span>(a, b)</span>
+<span id="cb162-13"><a href="assignment-5.html#cb162-13" aria-hidden="true" tabindex="-1"></a>  log_post <span class="ot">&lt;-</span> log_likelihood <span class="sc">+</span> <span class="fu">log</span>(prior_prob)</span>
+<span id="cb162-14"><a href="assignment-5.html#cb162-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(log_post)</span>
+<span id="cb162-15"><a href="assignment-5.html#cb162-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb162-16"><a href="assignment-5.html#cb162-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-17"><a href="assignment-5.html#cb162-17" aria-hidden="true" tabindex="-1"></a>density_ratio <span class="ot">&lt;-</span> <span class="cf">function</span>(alpha_propose,</span>
+<span id="cb162-18"><a href="assignment-5.html#cb162-18" aria-hidden="true" tabindex="-1"></a>                          alpha_previous,</span>
+<span id="cb162-19"><a href="assignment-5.html#cb162-19" aria-hidden="true" tabindex="-1"></a>                          beta_propose,</span>
+<span id="cb162-20"><a href="assignment-5.html#cb162-20" aria-hidden="true" tabindex="-1"></a>                          beta_previous,</span>
+<span id="cb162-21"><a href="assignment-5.html#cb162-21" aria-hidden="true" tabindex="-1"></a>                          x,</span>
+<span id="cb162-22"><a href="assignment-5.html#cb162-22" aria-hidden="true" tabindex="-1"></a>                          y,</span>
+<span id="cb162-23"><a href="assignment-5.html#cb162-23" aria-hidden="true" tabindex="-1"></a>                          n) {</span>
+<span id="cb162-24"><a href="assignment-5.html#cb162-24" aria-hidden="true" tabindex="-1"></a>  log_post_new <span class="ot">&lt;-</span> <span class="fu">log_posterior_prob</span>(alpha_propose, beta_propose, x, y, n)</span>
+<span id="cb162-25"><a href="assignment-5.html#cb162-25" aria-hidden="true" tabindex="-1"></a>  log_post_old <span class="ot">&lt;-</span> <span class="fu">log_posterior_prob</span>(alpha_previous, beta_previous, x, y, n)</span>
+<span id="cb162-26"><a href="assignment-5.html#cb162-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">exp</span>(log_post_new <span class="sc">-</span> log_post_old))</span>
+<span id="cb162-27"><a href="assignment-5.html#cb162-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="assignment-5.html#cb163-1" aria-hidden="true" tabindex="-1"></a>test_1 <span class="ot">&lt;-</span> <span class="fu">density_ratio</span>(</span>
+<span id="cb163-2"><a href="assignment-5.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha_propose =</span> <span class="fl">1.89</span>, <span class="at">alpha_previous =</span> <span class="fl">0.374</span>,</span>
+<span id="cb163-3"><a href="assignment-5.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_propose =</span> <span class="fl">24.76</span>, <span class="at">beta_previous =</span> <span class="fl">20.04</span>,</span>
+<span id="cb163-4"><a href="assignment-5.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> bioassay<span class="sc">$</span>x, <span class="at">y =</span> bioassay<span class="sc">$</span>y, <span class="at">n =</span> bioassay<span class="sc">$</span>n</span>
+<span id="cb163-5"><a href="assignment-5.html#cb163-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb163-6"><a href="assignment-5.html#cb163-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stop_if_not_close_to</span>(test_1, <span class="fl">1.305179</span>)</span>
+<span id="cb163-7"><a href="assignment-5.html#cb163-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-8"><a href="assignment-5.html#cb163-8" aria-hidden="true" tabindex="-1"></a>test_2 <span class="ot">&lt;-</span> <span class="fu">density_ratio</span>(</span>
+<span id="cb163-9"><a href="assignment-5.html#cb163-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha_propose =</span> <span class="fl">0.374</span>, <span class="at">alpha_previous =</span> <span class="fl">1.89</span>,</span>
+<span id="cb163-10"><a href="assignment-5.html#cb163-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta_propose =</span> <span class="fl">20.04</span>, <span class="at">beta_previous =</span> <span class="fl">24.76</span>,</span>
+<span id="cb163-11"><a href="assignment-5.html#cb163-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> bioassay<span class="sc">$</span>x, <span class="at">y =</span> bioassay<span class="sc">$</span>y, <span class="at">n =</span> bioassay<span class="sc">$</span>n</span>
+<span id="cb163-12"><a href="assignment-5.html#cb163-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb163-13"><a href="assignment-5.html#cb163-13" aria-hidden="true" tabindex="-1"></a><span class="fu">stop_if_not_close_to</span>(test_2, <span class="fl">0.7661784</span>)</span></code></pre></div>
+<p><strong>b) Now implement a function called <code>Metropolis_bioassay()</code> which implements the Metropolis algorithm using the <code>density_ratio()</code>.</strong></p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="assignment-5.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function to turn the chains into a data frame.</span></span>
+<span id="cb164-2"><a href="assignment-5.html#cb164-2" aria-hidden="true" tabindex="-1"></a>chain_to_df <span class="ot">&lt;-</span> <span class="cf">function</span>(chain, names) {</span>
+<span id="cb164-3"><a href="assignment-5.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_dfr</span>(chain, <span class="sc">~</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(.x))) <span class="sc">%&gt;%</span></span>
+<span id="cb164-4"><a href="assignment-5.html#cb164-4" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb164-5"><a href="assignment-5.html#cb164-5" aria-hidden="true" tabindex="-1"></a>    purrr<span class="sc">::</span><span class="fu">set_names</span>(names)</span>
+<span id="cb164-6"><a href="assignment-5.html#cb164-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb164-7"><a href="assignment-5.html#cb164-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-8"><a href="assignment-5.html#cb164-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-9"><a href="assignment-5.html#cb164-9" aria-hidden="true" tabindex="-1"></a>propose_theta <span class="ot">&lt;-</span> <span class="cf">function</span>(theta_old, <span class="at">a_sigma =</span> <span class="dv">1</span>, <span class="at">b_sigma =</span> <span class="dv">5</span>) {</span>
+<span id="cb164-10"><a href="assignment-5.html#cb164-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb164-11"><a href="assignment-5.html#cb164-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> theta_old[[<span class="dv">1</span>]], <span class="at">sd =</span> a_sigma),</span>
+<span id="cb164-12"><a href="assignment-5.html#cb164-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> theta_old[[<span class="dv">2</span>]], <span class="at">sd =</span> b_sigma)</span>
+<span id="cb164-13"><a href="assignment-5.html#cb164-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb164-14"><a href="assignment-5.html#cb164-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb164-15"><a href="assignment-5.html#cb164-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-16"><a href="assignment-5.html#cb164-16" aria-hidden="true" tabindex="-1"></a>Metropolis_bioassay <span class="ot">&lt;-</span> <span class="cf">function</span>(theta_t0,</span>
+<span id="cb164-17"><a href="assignment-5.html#cb164-17" aria-hidden="true" tabindex="-1"></a>                                x,</span>
+<span id="cb164-18"><a href="assignment-5.html#cb164-18" aria-hidden="true" tabindex="-1"></a>                                y,</span>
+<span id="cb164-19"><a href="assignment-5.html#cb164-19" aria-hidden="true" tabindex="-1"></a>                                n,</span>
+<span id="cb164-20"><a href="assignment-5.html#cb164-20" aria-hidden="true" tabindex="-1"></a>                                <span class="at">alpha_jump =</span> <span class="dv">1</span>,</span>
+<span id="cb164-21"><a href="assignment-5.html#cb164-21" aria-hidden="true" tabindex="-1"></a>                                <span class="at">beta_jump =</span> <span class="dv">5</span>,</span>
+<span id="cb164-22"><a href="assignment-5.html#cb164-22" aria-hidden="true" tabindex="-1"></a>                                <span class="at">N =</span> <span class="dv">1000</span>,</span>
+<span id="cb164-23"><a href="assignment-5.html#cb164-23" aria-hidden="true" tabindex="-1"></a>                                <span class="at">quiet =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb164-24"><a href="assignment-5.html#cb164-24" aria-hidden="true" tabindex="-1"></a>  theta_t <span class="ot">&lt;-</span> <span class="fu">unlist</span>(theta_t0)</span>
+<span id="cb164-25"><a href="assignment-5.html#cb164-25" aria-hidden="true" tabindex="-1"></a>  chain <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">rep</span>(<span class="cn">NA_real_</span>, <span class="at">n =</span> N <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb164-26"><a href="assignment-5.html#cb164-26" aria-hidden="true" tabindex="-1"></a>  chain[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> theta_t</span>
+<span id="cb164-27"><a href="assignment-5.html#cb164-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-28"><a href="assignment-5.html#cb164-28" aria-hidden="true" tabindex="-1"></a>  n_accepts <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb164-29"><a href="assignment-5.html#cb164-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-30"><a href="assignment-5.html#cb164-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, N <span class="sc">+</span> <span class="dv">1</span>)) {</span>
+<span id="cb164-31"><a href="assignment-5.html#cb164-31" aria-hidden="true" tabindex="-1"></a>    theta_star <span class="ot">&lt;-</span> <span class="fu">propose_theta</span>(</span>
+<span id="cb164-32"><a href="assignment-5.html#cb164-32" aria-hidden="true" tabindex="-1"></a>      theta_t,</span>
+<span id="cb164-33"><a href="assignment-5.html#cb164-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">a_sigma =</span> alpha_jump, <span class="at">b_sigma =</span> beta_jump</span>
+<span id="cb164-34"><a href="assignment-5.html#cb164-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb164-35"><a href="assignment-5.html#cb164-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-36"><a href="assignment-5.html#cb164-36" aria-hidden="true" tabindex="-1"></a>    density_ratio <span class="ot">&lt;-</span> <span class="fu">density_ratio</span>(</span>
+<span id="cb164-37"><a href="assignment-5.html#cb164-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha_propose =</span> theta_star[[<span class="dv">1</span>]],</span>
+<span id="cb164-38"><a href="assignment-5.html#cb164-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha_previous =</span> theta_t[[<span class="dv">1</span>]],</span>
+<span id="cb164-39"><a href="assignment-5.html#cb164-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">beta_propose =</span> theta_star[[<span class="dv">2</span>]],</span>
+<span id="cb164-40"><a href="assignment-5.html#cb164-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">beta_previous =</span> theta_t[[<span class="dv">2</span>]],</span>
+<span id="cb164-41"><a href="assignment-5.html#cb164-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> x,</span>
+<span id="cb164-42"><a href="assignment-5.html#cb164-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> y,</span>
+<span id="cb164-43"><a href="assignment-5.html#cb164-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> n</span>
+<span id="cb164-44"><a href="assignment-5.html#cb164-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb164-45"><a href="assignment-5.html#cb164-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-46"><a href="assignment-5.html#cb164-46" aria-hidden="true" tabindex="-1"></a>    accept <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fu">min</span>(<span class="fu">c</span>(<span class="dv">1</span>, density_ratio))</span>
+<span id="cb164-47"><a href="assignment-5.html#cb164-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (accept) {</span>
+<span id="cb164-48"><a href="assignment-5.html#cb164-48" aria-hidden="true" tabindex="-1"></a>      theta_t <span class="ot">&lt;-</span> theta_star</span>
+<span id="cb164-49"><a href="assignment-5.html#cb164-49" aria-hidden="true" tabindex="-1"></a>      n_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb164-50"><a href="assignment-5.html#cb164-50" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb164-51"><a href="assignment-5.html#cb164-51" aria-hidden="true" tabindex="-1"></a>    chain[[t]] <span class="ot">&lt;-</span> theta_t</span>
+<span id="cb164-52"><a href="assignment-5.html#cb164-52" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb164-53"><a href="assignment-5.html#cb164-53" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>quiet) {</span>
+<span id="cb164-54"><a href="assignment-5.html#cb164-54" aria-hidden="true" tabindex="-1"></a>    frac_accepts <span class="ot">&lt;-</span> n_accepts <span class="sc">/</span> N</span>
+<span id="cb164-55"><a href="assignment-5.html#cb164-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">&quot;fraction of accepted jumps: {frac_accepts}&quot;</span>))</span>
+<span id="cb164-56"><a href="assignment-5.html#cb164-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb164-57"><a href="assignment-5.html#cb164-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">chain_to_df</span>(chain, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;alpha&quot;</span>, <span class="st">&quot;beta&quot;</span>)))</span>
+<span id="cb164-58"><a href="assignment-5.html#cb164-58" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="assignment-5.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the trace of the chains.</span></span>
+<span id="cb165-2"><a href="assignment-5.html#cb165-2" aria-hidden="true" tabindex="-1"></a>plot_trace <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, <span class="at">alpha =</span> <span class="fl">0.8</span>) {</span>
+<span id="cb165-3"><a href="assignment-5.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
+<span id="cb165-4"><a href="assignment-5.html#cb165-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
+<span id="cb165-5"><a href="assignment-5.html#cb165-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">step =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb165-6"><a href="assignment-5.html#cb165-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb165-7"><a href="assignment-5.html#cb165-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">-</span><span class="fu">c</span>(chain, step)) <span class="sc">%&gt;%</span></span>
+<span id="cb165-8"><a href="assignment-5.html#cb165-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> step, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb165-9"><a href="assignment-5.html#cb165-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(name), <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-10"><a href="assignment-5.html#cb165-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> chain), <span class="at">alpha =</span> alpha) <span class="sc">+</span></span>
+<span id="cb165-11"><a href="assignment-5.html#cb165-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-12"><a href="assignment-5.html#cb165-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)))</span>
+<span id="cb165-13"><a href="assignment-5.html#cb165-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb165-14"><a href="assignment-5.html#cb165-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-15"><a href="assignment-5.html#cb165-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the chains in 2 dimensions.</span></span>
+<span id="cb165-16"><a href="assignment-5.html#cb165-16" aria-hidden="true" tabindex="-1"></a>plot_chains <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, <span class="at">alpha =</span> <span class="fl">0.8</span>) {</span>
+<span id="cb165-17"><a href="assignment-5.html#cb165-17" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
+<span id="cb165-18"><a href="assignment-5.html#cb165-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha, <span class="at">y =</span> beta)) <span class="sc">+</span></span>
+<span id="cb165-19"><a href="assignment-5.html#cb165-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">color =</span> chain), <span class="at">alpha =</span> alpha) <span class="sc">+</span></span>
+<span id="cb165-20"><a href="assignment-5.html#cb165-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>)</span>
+<span id="cb165-21"><a href="assignment-5.html#cb165-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb165-22"><a href="assignment-5.html#cb165-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-23"><a href="assignment-5.html#cb165-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior density of `x`. Used by `plot_posterior()`.</span></span>
+<span id="cb165-24"><a href="assignment-5.html#cb165-24" aria-hidden="true" tabindex="-1"></a>plot_posterior_density <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, x, color) {</span>
+<span id="cb165-25"><a href="assignment-5.html#cb165-25" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
+<span id="cb165-26"><a href="assignment-5.html#cb165-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">color =</span> {{ color }}, <span class="at">fill =</span> {{ color }})) <span class="sc">+</span></span>
+<span id="cb165-27"><a href="assignment-5.html#cb165-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">size =</span> <span class="fl">0.7</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb165-28"><a href="assignment-5.html#cb165-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-29"><a href="assignment-5.html#cb165-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-30"><a href="assignment-5.html#cb165-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb165-31"><a href="assignment-5.html#cb165-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb165-32"><a href="assignment-5.html#cb165-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-33"><a href="assignment-5.html#cb165-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the posterior distributions after removing warm-up steps.</span></span>
+<span id="cb165-34"><a href="assignment-5.html#cb165-34" aria-hidden="true" tabindex="-1"></a>plot_posterior <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">size =</span> <span class="fl">0.6</span>, <span class="at">warm_up =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb165-35"><a href="assignment-5.html#cb165-35" aria-hidden="true" tabindex="-1"></a>  chains_without_warmup <span class="ot">&lt;-</span> chains_df <span class="sc">%&gt;%</span></span>
+<span id="cb165-36"><a href="assignment-5.html#cb165-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
+<span id="cb165-37"><a href="assignment-5.html#cb165-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">step =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb165-38"><a href="assignment-5.html#cb165-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb165-39"><a href="assignment-5.html#cb165-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(step <span class="sc">&gt;</span> (<span class="fu">max</span>(step) <span class="sc">*</span> <span class="sc">!!</span>warm_up))</span>
+<span id="cb165-40"><a href="assignment-5.html#cb165-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-41"><a href="assignment-5.html#cb165-41" aria-hidden="true" tabindex="-1"></a>  scatter <span class="ot">&lt;-</span> chains_without_warmup <span class="sc">%&gt;%</span></span>
+<span id="cb165-42"><a href="assignment-5.html#cb165-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alpha, <span class="at">y =</span> beta)) <span class="sc">+</span></span>
+<span id="cb165-43"><a href="assignment-5.html#cb165-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density_2d</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb165-44"><a href="assignment-5.html#cb165-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> chain), <span class="at">size =</span> size, <span class="at">alpha =</span> alpha) <span class="sc">+</span></span>
+<span id="cb165-45"><a href="assignment-5.html#cb165-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb165-46"><a href="assignment-5.html#cb165-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb165-47"><a href="assignment-5.html#cb165-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-48"><a href="assignment-5.html#cb165-48" aria-hidden="true" tabindex="-1"></a>  alpha_dist <span class="ot">&lt;-</span> <span class="fu">plot_posterior_density</span>(chains_without_warmup, alpha, chain) <span class="sc">+</span></span>
+<span id="cb165-49"><a href="assignment-5.html#cb165-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)))</span>
+<span id="cb165-50"><a href="assignment-5.html#cb165-50" aria-hidden="true" tabindex="-1"></a>  beta_dist <span class="ot">&lt;-</span> <span class="fu">plot_posterior_density</span>(chains_without_warmup, beta, chain) <span class="sc">+</span></span>
+<span id="cb165-51"><a href="assignment-5.html#cb165-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb165-52"><a href="assignment-5.html#cb165-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>()</span>
+<span id="cb165-53"><a href="assignment-5.html#cb165-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-54"><a href="assignment-5.html#cb165-54" aria-hidden="true" tabindex="-1"></a>  patch_design <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
+<span id="cb165-55"><a href="assignment-5.html#cb165-55" aria-hidden="true" tabindex="-1"></a><span class="st">    AAAA#</span></span>
+<span id="cb165-56"><a href="assignment-5.html#cb165-56" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
+<span id="cb165-57"><a href="assignment-5.html#cb165-57" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
+<span id="cb165-58"><a href="assignment-5.html#cb165-58" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
+<span id="cb165-59"><a href="assignment-5.html#cb165-59" aria-hidden="true" tabindex="-1"></a><span class="st">    BBBBC</span></span>
+<span id="cb165-60"><a href="assignment-5.html#cb165-60" aria-hidden="true" tabindex="-1"></a><span class="st">  &quot;</span></span>
+<span id="cb165-61"><a href="assignment-5.html#cb165-61" aria-hidden="true" tabindex="-1"></a>  patch <span class="ot">&lt;-</span> alpha_dist <span class="sc">+</span> scatter <span class="sc">+</span> beta_dist <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">design =</span> patch_design)</span>
+<span id="cb165-62"><a href="assignment-5.html#cb165-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(patch)</span>
+<span id="cb165-63"><a href="assignment-5.html#cb165-63" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Run the Metropolis algorithm with the default values from the question.
+I chose a grid of starting points <span class="math inline">\((\pm 2.5, \pm 2.5)\)</span> and ran four chains for 1,000 iterations.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="assignment-5.html#cb166-1" aria-hidden="true" tabindex="-1"></a>starting_points <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb166-2"><a href="assignment-5.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>), <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>), <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb166-3"><a href="assignment-5.html#cb166-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb166-4"><a href="assignment-5.html#cb166-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-5"><a href="assignment-5.html#cb166-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb166-6"><a href="assignment-5.html#cb166-6" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb166-7"><a href="assignment-5.html#cb166-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb166-8"><a href="assignment-5.html#cb166-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">Metropolis_bioassay</span>(</span>
+<span id="cb166-9"><a href="assignment-5.html#cb166-9" aria-hidden="true" tabindex="-1"></a>    starting_points[[.x]],</span>
+<span id="cb166-10"><a href="assignment-5.html#cb166-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
+<span id="cb166-11"><a href="assignment-5.html#cb166-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
+<span id="cb166-12"><a href="assignment-5.html#cb166-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n</span>
+<span id="cb166-13"><a href="assignment-5.html#cb166-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb166-14"><a href="assignment-5.html#cb166-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
+<span id="cb166-15"><a href="assignment-5.html#cb166-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>#&gt; fraction of accepted jumps: 0.402</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.428</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.445</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.456</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="assignment-5.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trace</span>(metropolis_chains)</span></code></pre></div>
+<p><img src="assignment-05_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="assignment-5.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_chains</span>(metropolis_chains, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="assignment-05_files/figure-html/unnamed-chunk-5-2.png" width="2100" /></p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="assignment-5.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
+<p><img src="assignment-05_files/figure-html/unnamed-chunk-5-3.png" width="2100" /></p>
+<p>The chains mixed well, but I tried reducing the proposal distributions standard deviations by an order of magnitude.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="assignment-5.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb174-2"><a href="assignment-5.html#cb174-2" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb174-3"><a href="assignment-5.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb174-4"><a href="assignment-5.html#cb174-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">Metropolis_bioassay</span>(</span>
+<span id="cb174-5"><a href="assignment-5.html#cb174-5" aria-hidden="true" tabindex="-1"></a>    starting_points[[.x]],</span>
+<span id="cb174-6"><a href="assignment-5.html#cb174-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
+<span id="cb174-7"><a href="assignment-5.html#cb174-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
+<span id="cb174-8"><a href="assignment-5.html#cb174-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n,</span>
+<span id="cb174-9"><a href="assignment-5.html#cb174-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha_jump =</span> <span class="fl">0.1</span>,</span>
+<span id="cb174-10"><a href="assignment-5.html#cb174-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_jump =</span> <span class="dv">1</span></span>
+<span id="cb174-11"><a href="assignment-5.html#cb174-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb174-12"><a href="assignment-5.html#cb174-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
+<span id="cb174-13"><a href="assignment-5.html#cb174-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>#&gt; fraction of accepted jumps: 0.847</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.866</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.889</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.858</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="assignment-5.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trace</span>(metropolis_chains)</span></code></pre></div>
+<p><img src="assignment-05_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="assignment-5.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_chains</span>(metropolis_chains, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="assignment-05_files/figure-html/unnamed-chunk-6-2.png" width="2100" /></p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="assignment-5.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
+<p><img src="assignment-05_files/figure-html/unnamed-chunk-6-3.png" width="2100" /></p>
+<p><br> <!-- For some reason this is need to fix some weird formatting behavior. --></p>
+<p>The chains did not mix well with these smaller proposal distribution standard deviations.
+Below, I try slightly larger values for the jump sizes and also run 2,000 total iterations (1,000 warm-up steps).</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="assignment-5.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb182-2"><a href="assignment-5.html#cb182-2" aria-hidden="true" tabindex="-1"></a>metropolis_chains <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(</span>
+<span id="cb182-3"><a href="assignment-5.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb182-4"><a href="assignment-5.html#cb182-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> <span class="fu">Metropolis_bioassay</span>(</span>
+<span id="cb182-5"><a href="assignment-5.html#cb182-5" aria-hidden="true" tabindex="-1"></a>    starting_points[[.x]],</span>
+<span id="cb182-6"><a href="assignment-5.html#cb182-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> bioassay<span class="sc">$</span>x,</span>
+<span id="cb182-7"><a href="assignment-5.html#cb182-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bioassay<span class="sc">$</span>y,</span>
+<span id="cb182-8"><a href="assignment-5.html#cb182-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> bioassay<span class="sc">$</span>n,</span>
+<span id="cb182-9"><a href="assignment-5.html#cb182-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha_jump =</span> <span class="dv">1</span>,</span>
+<span id="cb182-10"><a href="assignment-5.html#cb182-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">beta_jump =</span> <span class="dv">3</span>,</span>
+<span id="cb182-11"><a href="assignment-5.html#cb182-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="dv">2000</span></span>
+<span id="cb182-12"><a href="assignment-5.html#cb182-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb182-13"><a href="assignment-5.html#cb182-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_column</span>(<span class="at">chain =</span> <span class="fu">as.character</span>(.x))</span>
+<span id="cb182-14"><a href="assignment-5.html#cb182-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>#&gt; fraction of accepted jumps: 0.4955</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.523</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.519</code></pre>
+<pre><code>#&gt; fraction of accepted jumps: 0.5285</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="assignment-5.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_trace</span>(metropolis_chains)</span></code></pre></div>
+<p><img src="assignment-05_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="assignment-5.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_chains</span>(metropolis_chains, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="assignment-05_files/figure-html/unnamed-chunk-7-2.png" width="2100" /></p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="assignment-5.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
+<p><img src="assignment-05_files/figure-html/unnamed-chunk-7-3.png" width="2100" /></p>
+</div>
+<div id="exercise-2." class="section level3" number="24.2.2">
+<h3><span class="header-section-number">24.2.2</span> Exercise 2.</h3>
+<p><strong>a) Describe in your own words in one paragraph the basic idea of the Metropolis algorithm (see BDA3 Section 11.2, and lecture video 5.1).</strong></p>
+<p>The Metropolis algorithm is a biased random walk through the space of the model parameters.
+The bias is calculated by the ratio of the unnormalized probability of a new set of values to that of the current values.
+If the new location has a higher probability, the random walk will always go to the proposed location, otherwise, the new position is accepted with a probability equal to the ratio.
+This way, the random walk will always tend towards space with higher probability, and then once in a region with relatively high probabilty, will still explore the space at a frequency proportional to the probability density of the region.</p>
+<p><strong>b) The proposal distribution (related to jumping rule) you used.</strong>
+<strong>Describe briefly in words how you chose the final proposal distribution you used for the reported results.</strong></p>
+<p>I chose the final distribution because it produced, visually, good mixing of the chains and exploration of the parameter space.</p>
+<p><strong>c) The initial points of your Metropolis chains (or the explicit mechanism for generating them).</strong></p>
+<p>I just chose a grid to make sure there was enough variability in the starting locations.
+This strategy helped me to understand the effect (if any) of the starting location of the chain on its exploration of the posterior.</p>
+<p><strong>d) Report the chain length or the number of iterations for each chain. Run the simulations long enough for approximate convergence (see BDA Section 11.4, and lecture 5.2).</strong></p>
+<p>I ran the chain for 2,000 steps, 1,000 of which were warm-ups.</p>
+<p><strong>e) Report the warm-up length (see BDA Section 11.4, and lecture 5.2).</strong></p>
+<p>The warm-up length was 1,000 steps.</p>
+<p><strong>f) The number of Metropolis chains used. It is important that multiple Metropolis chains are run for evaluating convergence (see BDA Section 11.4, and lecture 5.2).</strong></p>
+<p>I used 4 chains to make sure that the starting location was not influential in the final location of the chains.</p>
+<p><strong>g) Plot all chains for <span class="math inline">\(\alpha\)</span> in a single line-plot. Overlapping the chains in this way helps in visually assessing whether chains have converged or not.</strong></p>
+<p>(I have already plotted the traces in Exercise 1.)</p>
+<p><strong>h) Do the same for <span class="math inline">\(\beta\)</span>.</strong></p>
+<p>(I have already plotted the traces in Exercise 1.)</p>
+</div>
+<div id="exercise-3-1" class="section level3" number="24.2.3">
+<h3><span class="header-section-number">24.2.3</span> Exercise 3</h3>
+<p><strong>In complex scenarios, visual assessment is not sufficient and <span class="math inline">\(\widehat{R}\)</span> is a more robust indicator of convergence of the Markov chains.</strong>
+<strong>Use <span class="math inline">\(\widehat{R}\)</span> for convergence analysis.</strong>
+<strong>You can either use Eq. (11.4) in <em>BDA3</em> or the more recent version described here.</strong>
+<strong>You should specify which <span class="math inline">\(\widehat{R}\)</span> you used.</strong>
+<strong>In R the best choice is to use function <code>Rhat()</code> from [the] package ‘rstan’</strong>
+<strong>Remember to remove the warm-up samples before computing <span class="math inline">\(\widehat{R}\)</span>.</strong>
+<strong>Report the <span class="math inline">\(\widehat{R}\)</span> values for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> separately.</strong>
+<strong>Report the values for the proposal distribution you finally used.</strong></p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="assignment-5.html#cb190-1" aria-hidden="true" tabindex="-1"></a>long_chains_df_to_matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(chains_df,</span>
+<span id="cb190-2"><a href="assignment-5.html#cb190-2" aria-hidden="true" tabindex="-1"></a>                                     mdl_param,</span>
+<span id="cb190-3"><a href="assignment-5.html#cb190-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">drop_cols =</span> <span class="fu">c</span>(),</span>
+<span id="cb190-4"><a href="assignment-5.html#cb190-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">warm_up =</span> <span class="sc">-</span><span class="dv">1</span>) {</span>
+<span id="cb190-5"><a href="assignment-5.html#cb190-5" aria-hidden="true" tabindex="-1"></a>  chains_df <span class="sc">%&gt;%</span></span>
+<span id="cb190-6"><a href="assignment-5.html#cb190-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(tidyselect<span class="sc">::</span><span class="fu">any_of</span>(drop_cols))) <span class="sc">%&gt;%</span></span>
+<span id="cb190-7"><a href="assignment-5.html#cb190-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(chain) <span class="sc">%&gt;%</span></span>
+<span id="cb190-8"><a href="assignment-5.html#cb190-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">idx__ =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb190-9"><a href="assignment-5.html#cb190-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb190-10"><a href="assignment-5.html#cb190-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(idx__ <span class="sc">&gt;</span> warm_up) <span class="sc">%&gt;%</span></span>
+<span id="cb190-11"><a href="assignment-5.html#cb190-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(idx__, <span class="at">names_from =</span> chain, <span class="at">values_from =</span> {{ mdl_param }}) <span class="sc">%&gt;%</span></span>
+<span id="cb190-12"><a href="assignment-5.html#cb190-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>idx__) <span class="sc">%&gt;%</span></span>
+<span id="cb190-13"><a href="assignment-5.html#cb190-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>()</span>
+<span id="cb190-14"><a href="assignment-5.html#cb190-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="assignment-5.html#cb191-1" aria-hidden="true" tabindex="-1"></a>alpha_rhat <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">Rhat</span>(</span>
+<span id="cb191-2"><a href="assignment-5.html#cb191-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">long_chains_df_to_matrix</span>(</span>
+<span id="cb191-3"><a href="assignment-5.html#cb191-3" aria-hidden="true" tabindex="-1"></a>    metropolis_chains, alpha,</span>
+<span id="cb191-4"><a href="assignment-5.html#cb191-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">drop_cols =</span> <span class="st">&quot;beta&quot;</span>, <span class="at">warm_up =</span> <span class="dv">1000</span></span>
+<span id="cb191-5"><a href="assignment-5.html#cb191-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb191-6"><a href="assignment-5.html#cb191-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb191-7"><a href="assignment-5.html#cb191-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-8"><a href="assignment-5.html#cb191-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;alpha Rhat: {round(alpha_rhat, 3)}&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; alpha Rhat: 1.027</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="assignment-5.html#cb193-1" aria-hidden="true" tabindex="-1"></a>beta_rhat <span class="ot">&lt;-</span> rstan<span class="sc">::</span><span class="fu">Rhat</span>(</span>
+<span id="cb193-2"><a href="assignment-5.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">long_chains_df_to_matrix</span>(</span>
+<span id="cb193-3"><a href="assignment-5.html#cb193-3" aria-hidden="true" tabindex="-1"></a>    metropolis_chains, beta,</span>
+<span id="cb193-4"><a href="assignment-5.html#cb193-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">drop_cols =</span> <span class="st">&quot;alpha&quot;</span>, <span class="at">warm_up =</span> <span class="dv">1000</span></span>
+<span id="cb193-5"><a href="assignment-5.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb193-6"><a href="assignment-5.html#cb193-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb193-7"><a href="assignment-5.html#cb193-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-8"><a href="assignment-5.html#cb193-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;beta Rhat: {round(beta_rhat, 3)}&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; beta Rhat: 1.056</code></pre>
+<p><strong>a) Describe briefly in your own words the basic idea of <span class="math inline">\(\widehat{R}\)</span> and how to to interpret the obtained <span class="math inline">\(\widehat{R}\)</span> values.</strong></p>
+<p><span class="math inline">\(\widehat{R}\)</span> is a metric for how well the chains have converged by comparing the variance within and between chains to the within-chain variance alone.
+If the value is 1, then the between- and within-chain variance are about equal meaning that the chains have both converged and mixed.
+If it is above 1, this is likely because the between-chain variance is greater than the within-chain variance indicating that the chains have yet to mix.
+The value itself represents the degree to which the estimate of the parameter posterior would change if the chains were able to full mix.</p>
+<p><strong>b) Tell whether you obtained good <span class="math inline">\(\widehat{R}\)</span> with first try, or whether you needed to run more iterations or how did you modify the proposal distribution.</strong></p>
+<p>The <span class="math inline">\(\widehat{R}\)</span> for <span class="math inline">\(\alpha\)</span> looks fine, but the value for <span class="math inline">\(\beta\)</span> is a bit large.
+I would just run the chains for a bit longer, perhaps 3,000 steps, or I could continue tweaking the standard deviations of the jump/proposal distribution.</p>
+</div>
+<div id="exercise-4-1" class="section level3" number="24.2.4">
+<h3><span class="header-section-number">24.2.4</span> Exercise 4</h3>
+<p><strong>Plot the draws for <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> (scatter plot) and include this plot in your report.</strong>
+<strong>You can compare the results to Figure 3.3b in BDA3 to verify that your code gives sensible results </strong>
+<strong>Notice though that the results in Figure 3.3b are generated from posterior with a uniform prior, so even when if your algorithm works perfectly, the results will look slightly different (although fairly similar).</strong></p>
+<p>Below is the same plot that was created in Exercise 2.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="assignment-5.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_posterior</span>(metropolis_chains)</span></code></pre></div>
+<p><img src="assignment-05_files/figure-html/unnamed-chunk-10-1.png" width="2100" /></p>
+<hr />
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="assignment-5.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>#&gt; R version 4.1.2 (2021-11-01)
+#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
+#&gt; Running under: macOS Big Sur 10.16
+#&gt; 
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+#&gt; 
+#&gt; locale:
+#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#&gt; 
+#&gt; other attached packages:
+#&gt;  [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4    
+#&gt;  [5] readr_2.0.1     tidyr_1.1.3     tibble_3.1.3    ggplot2_3.3.5  
+#&gt;  [9] tidyverse_1.3.1 patchwork_1.1.1 glue_1.4.2     
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] matrixStats_0.61.0   fs_1.5.0             lubridate_1.7.10    
+#&gt;  [4] bit64_4.0.5          RColorBrewer_1.1-2   httr_1.4.2          
+#&gt;  [7] rprojroot_2.0.2      rstan_2.21.2         tools_4.1.2         
+#&gt; [10] backports_1.2.1      bslib_0.2.5.1        utf8_1.2.2          
+#&gt; [13] R6_2.5.0             DBI_1.1.1            colorspace_2.0-2    
+#&gt; [16] withr_2.4.2          gridExtra_2.3        tidyselect_1.1.1    
+#&gt; [19] prettyunits_1.1.1    processx_3.5.2       curl_4.3.2          
+#&gt; [22] bit_4.0.4            compiler_4.1.2       cli_3.0.1           
+#&gt; [25] rvest_1.0.1          xml2_1.3.2           isoband_0.2.5       
+#&gt; [28] labeling_0.4.2       bookdown_0.24        sass_0.4.0          
+#&gt; [31] scales_1.1.1         checkmate_2.0.0      aaltobda_0.3.1      
+#&gt; [34] mvtnorm_1.1-2        callr_3.7.0          StanHeaders_2.21.0-7
+#&gt; [37] digest_0.6.27        rmarkdown_2.10       pkgconfig_2.0.3     
+#&gt; [40] htmltools_0.5.1.1    dbplyr_2.1.1         highr_0.9           
+#&gt; [43] rlang_0.4.11         readxl_1.3.1         rstudioapi_0.13     
+#&gt; [46] jquerylib_0.1.4      farver_2.1.0         generics_0.1.0      
+#&gt; [49] jsonlite_1.7.2       vroom_1.5.4          inline_0.3.19       
+#&gt; [52] magrittr_2.0.1       loo_2.4.1            Rcpp_1.0.7          
+#&gt; [55] munsell_0.5.0        fansi_0.5.0          lifecycle_1.0.0     
+#&gt; [58] stringi_1.7.3        yaml_2.2.1           MASS_7.3-54         
+#&gt; [61] pkgbuild_1.2.0       grid_4.1.2           parallel_4.1.2      
+#&gt; [64] crayon_1.4.1         haven_2.4.3          hms_1.1.0           
+#&gt; [67] knitr_1.33           ps_1.6.0             pillar_1.6.2        
+#&gt; [70] codetools_0.2-18     clisymbols_1.2.0     stats4_4.1.2        
+#&gt; [73] reprex_2.0.1         evaluate_0.14        V8_3.4.2            
+#&gt; [76] RcppParallel_5.1.4   renv_0.14.0          modelr_0.1.8        
+#&gt; [79] vctrs_0.3.8          tzdb_0.1.2           cellranger_1.1.0    
+#&gt; [82] gtable_0.3.0         assertthat_0.2.1     xfun_0.25           
+#&gt; [85] broom_0.7.9          ellipsis_0.3.2       here_1.0.1</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="assignment-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="assignment-6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/hadley/r4ds/edit/master/assignment-05.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/assignment-05.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

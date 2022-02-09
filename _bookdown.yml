@@ -1,0 +1,67 @@
+title: "Notes for the Bayesian Data Analysis course"
+author: "Joshua Cook"
+description: "My notes and work for the Bayesian Data Analysis course taught by Aki Vehtari."
+book_filename: bookdown
+
+url: 'https://jhrcook.github.io/bayesian-data-analysis-course/'
+github-repo: 'hrcook/bayesian-data-analysis-course'
+twitter-handle: 'joshdoesa'
+
+date: "`r Sys.Date()`"
+
+documentclass: book
+new_session: yes
+delete_merged_file: true
+edit: https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/%s
+view: https://github.com/jhrcook/bayesian-data-analysis-course/blob/master/%s
+
+before_chapter_script: ["src/globals.R"]
+
+output_dir: "docs"
+
+rmd_files: [
+  "index.Rmd",
+
+  "notes-intro.Rmd",
+  "notes-01_introduction_bda3-01.Rmd",
+  "notes-02_basics-of-Bayesian-inference_bda3-02.Rmd",
+  "notes-03_multidimensional-posterior_bda3-03.Rmd",
+  "notes-04_monte-carlo_bda3-10.Rmd",
+  "notes-05_mcmc_bda3-11.Rmd",
+  "notes-06_hmc-nuts-stan_bda3-12.Rmd",
+  "notes-07_hierarchical-models_bda3-5.Rmd",
+  "notes-08_model-checking-and-cv_bda3-6-7.Rmd",
+  "notes-09_model-selection_bda3-7.Rmd",
+  "notes-10_decision-analysis_bda3-9.Rmd",
+  "notes-11_normal-approx-freq-properties_bda3-04.Rmd",
+  "notes-12_extended-topics.Rmd",
+  "notes-13_intro-to-regression-models_bda3-14.Rmd",
+  "notes-14_hierarchical-linear-models_bda3-15.Rmd",
+  "notes-17_parametric-nonlinear-models_bda3-19.Rmd",
+  "notes-18_basis-function-models_bda3-20.Rmd",
+  "notes-19_gaussian-processes_bda3-21.Rmd",
+  "notes-20_finite-mixture-models_bda3-22.Rmd",
+  "notes-21_Dirichlet-process-models_bda3-23.Rmd",
+
+  "assignment_intro.Rmd",
+  "assignment-01.Rmd",
+  "assignment-02.Rmd",
+  "assignment-03.Rmd",
+  "assignment-04.Rmd",
+  "assignment-05.Rmd",
+  "assignment-06.Rmd",
+  "assignment-07.Rmd",
+  "assignment-08.Rmd",
+  "assignment-09.Rmd",
+
+  "exercises_intro.Rmd",
+  "exercises-01.Rmd",
+  "exercises-02.Rmd",
+  "exercises-07.Rmd",
+  "exercises-19.Rmd",
+
+  "stan_models.Rmd",
+
+  "about.Rmd",
+  "references.Rmd"
+]
